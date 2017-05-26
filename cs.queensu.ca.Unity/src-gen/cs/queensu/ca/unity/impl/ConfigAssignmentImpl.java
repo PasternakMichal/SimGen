@@ -3,19 +3,23 @@
  */
 package cs.queensu.ca.unity.impl;
 
-import cs.queensu.ca.unity.Attribute;
+import cs.queensu.ca.unity.Config;
 import cs.queensu.ca.unity.ConfigAssignment;
-import cs.queensu.ca.unity.Expression;
 import cs.queensu.ca.unity.UnityPackage;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,8 +29,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link cs.queensu.ca.unity.impl.ConfigAssignmentImpl#getPropertyName <em>Property Name</em>}</li>
- *   <li>{@link cs.queensu.ca.unity.impl.ConfigAssignmentImpl#getPropertyValue <em>Property Value</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.impl.ConfigAssignmentImpl#getConfigs <em>Configs</em>}</li>
  * </ul>
  *
  * @generated
@@ -34,24 +37,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class ConfigAssignmentImpl extends MinimalEObjectImpl.Container implements ConfigAssignment
 {
   /**
-   * The cached value of the '{@link #getPropertyName() <em>Property Name</em>}' reference.
+   * The cached value of the '{@link #getConfigs() <em>Configs</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPropertyName()
+   * @see #getConfigs()
    * @generated
    * @ordered
    */
-  protected Attribute propertyName;
-
-  /**
-   * The cached value of the '{@link #getPropertyValue() <em>Property Value</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPropertyValue()
-   * @generated
-   * @ordered
-   */
-  protected Expression propertyValue;
+  protected EList<Config> configs;
 
   /**
    * <!-- begin-user-doc -->
@@ -79,90 +72,13 @@ public class ConfigAssignmentImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public Attribute getPropertyName()
+  public EList<Config> getConfigs()
   {
-    if (propertyName != null && propertyName.eIsProxy())
+    if (configs == null)
     {
-      InternalEObject oldPropertyName = (InternalEObject)propertyName;
-      propertyName = (Attribute)eResolveProxy(oldPropertyName);
-      if (propertyName != oldPropertyName)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_NAME, oldPropertyName, propertyName));
-      }
+      configs = new EObjectContainmentEList<Config>(Config.class, this, UnityPackage.CONFIG_ASSIGNMENT__CONFIGS);
     }
-    return propertyName;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Attribute basicGetPropertyName()
-  {
-    return propertyName;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setPropertyName(Attribute newPropertyName)
-  {
-    Attribute oldPropertyName = propertyName;
-    propertyName = newPropertyName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_NAME, oldPropertyName, propertyName));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Expression getPropertyValue()
-  {
-    return propertyValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetPropertyValue(Expression newPropertyValue, NotificationChain msgs)
-  {
-    Expression oldPropertyValue = propertyValue;
-    propertyValue = newPropertyValue;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_VALUE, oldPropertyValue, newPropertyValue);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setPropertyValue(Expression newPropertyValue)
-  {
-    if (newPropertyValue != propertyValue)
-    {
-      NotificationChain msgs = null;
-      if (propertyValue != null)
-        msgs = ((InternalEObject)propertyValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_VALUE, null, msgs);
-      if (newPropertyValue != null)
-        msgs = ((InternalEObject)newPropertyValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_VALUE, null, msgs);
-      msgs = basicSetPropertyValue(newPropertyValue, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_VALUE, newPropertyValue, newPropertyValue));
+    return configs;
   }
 
   /**
@@ -175,8 +91,8 @@ public class ConfigAssignmentImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_VALUE:
-        return basicSetPropertyValue(null, msgs);
+      case UnityPackage.CONFIG_ASSIGNMENT__CONFIGS:
+        return ((InternalEList<?>)getConfigs()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -191,11 +107,8 @@ public class ConfigAssignmentImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_NAME:
-        if (resolve) return getPropertyName();
-        return basicGetPropertyName();
-      case UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_VALUE:
-        return getPropertyValue();
+      case UnityPackage.CONFIG_ASSIGNMENT__CONFIGS:
+        return getConfigs();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -205,16 +118,15 @@ public class ConfigAssignmentImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_NAME:
-        setPropertyName((Attribute)newValue);
-        return;
-      case UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_VALUE:
-        setPropertyValue((Expression)newValue);
+      case UnityPackage.CONFIG_ASSIGNMENT__CONFIGS:
+        getConfigs().clear();
+        getConfigs().addAll((Collection<? extends Config>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -230,11 +142,8 @@ public class ConfigAssignmentImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_NAME:
-        setPropertyName((Attribute)null);
-        return;
-      case UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_VALUE:
-        setPropertyValue((Expression)null);
+      case UnityPackage.CONFIG_ASSIGNMENT__CONFIGS:
+        getConfigs().clear();
         return;
     }
     super.eUnset(featureID);
@@ -250,10 +159,8 @@ public class ConfigAssignmentImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_NAME:
-        return propertyName != null;
-      case UnityPackage.CONFIG_ASSIGNMENT__PROPERTY_VALUE:
-        return propertyValue != null;
+      case UnityPackage.CONFIG_ASSIGNMENT__CONFIGS:
+        return configs != null && !configs.isEmpty();
     }
     return super.eIsSet(featureID);
   }

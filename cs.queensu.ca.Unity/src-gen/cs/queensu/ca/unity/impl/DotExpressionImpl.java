@@ -3,9 +3,9 @@
  */
 package cs.queensu.ca.unity.impl;
 
-import cs.queensu.ca.unity.CompositeRef;
 import cs.queensu.ca.unity.DotExpression;
 import cs.queensu.ca.unity.Property;
+import cs.queensu.ca.unity.Ref;
 import cs.queensu.ca.unity.UnityPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class DotExpressionImpl extends CompositeRefImpl implements DotExpression
+public class DotExpressionImpl extends RefImpl implements DotExpression
 {
   /**
    * The cached value of the '{@link #getHead() <em>Head</em>}' containment reference.
@@ -40,7 +40,7 @@ public class DotExpressionImpl extends CompositeRefImpl implements DotExpression
    * @generated
    * @ordered
    */
-  protected CompositeRef head;
+  protected Ref head;
 
   /**
    * The cached value of the '{@link #getTail() <em>Tail</em>}' reference.
@@ -78,7 +78,7 @@ public class DotExpressionImpl extends CompositeRefImpl implements DotExpression
    * <!-- end-user-doc -->
    * @generated
    */
-  public CompositeRef getHead()
+  public Ref getHead()
   {
     return head;
   }
@@ -88,9 +88,9 @@ public class DotExpressionImpl extends CompositeRefImpl implements DotExpression
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetHead(CompositeRef newHead, NotificationChain msgs)
+  public NotificationChain basicSetHead(Ref newHead, NotificationChain msgs)
   {
-    CompositeRef oldHead = head;
+    Ref oldHead = head;
     head = newHead;
     if (eNotificationRequired())
     {
@@ -105,7 +105,7 @@ public class DotExpressionImpl extends CompositeRefImpl implements DotExpression
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setHead(CompositeRef newHead)
+  public void setHead(Ref newHead)
   {
     if (newHead != head)
     {
@@ -210,7 +210,7 @@ public class DotExpressionImpl extends CompositeRefImpl implements DotExpression
     switch (featureID)
     {
       case UnityPackage.DOT_EXPRESSION__HEAD:
-        setHead((CompositeRef)newValue);
+        setHead((Ref)newValue);
         return;
       case UnityPackage.DOT_EXPRESSION__TAIL:
         setTail((Property)newValue);
@@ -230,7 +230,7 @@ public class DotExpressionImpl extends CompositeRefImpl implements DotExpression
     switch (featureID)
     {
       case UnityPackage.DOT_EXPRESSION__HEAD:
-        setHead((CompositeRef)null);
+        setHead((Ref)null);
         return;
       case UnityPackage.DOT_EXPRESSION__TAIL:
         setTail((Property)null);

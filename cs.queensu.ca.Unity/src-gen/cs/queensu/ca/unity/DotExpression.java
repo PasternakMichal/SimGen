@@ -21,7 +21,7 @@ package cs.queensu.ca.unity;
  * @model
  * @generated
  */
-public interface DotExpression extends CompositeRef
+public interface DotExpression extends Ref
 {
   /**
    * Returns the value of the '<em><b>Head</b></em>' containment reference.
@@ -32,12 +32,12 @@ public interface DotExpression extends CompositeRef
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Head</em>' containment reference.
-   * @see #setHead(CompositeRef)
+   * @see #setHead(Ref)
    * @see cs.queensu.ca.unity.UnityPackage#getDotExpression_Head()
    * @model containment="true"
    * @generated
    */
-  CompositeRef getHead();
+  Ref getHead();
 
   /**
    * Sets the value of the '{@link cs.queensu.ca.unity.DotExpression#getHead <em>Head</em>}' containment reference.
@@ -47,7 +47,7 @@ public interface DotExpression extends CompositeRef
    * @see #getHead()
    * @generated
    */
-  void setHead(CompositeRef value);
+  void setHead(Ref value);
 
   /**
    * Returns the value of the '<em><b>Tail</b></em>' reference.

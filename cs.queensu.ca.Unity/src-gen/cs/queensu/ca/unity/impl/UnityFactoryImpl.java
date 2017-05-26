@@ -70,6 +70,8 @@ public class UnityFactoryImpl extends EFactoryImpl implements UnityFactory
       case UnityPackage.ACTION: return createAction();
       case UnityPackage.PAYLOAD: return createPayload();
       case UnityPackage.PARAM: return createParam();
+      case UnityPackage.REF: return createRef();
+      case UnityPackage.SINGLE_REF: return createSingleRef();
       case UnityPackage.PROPERTY: return createProperty();
       case UnityPackage.ATTRIBUTE: return createAttribute();
       case UnityPackage.VAR_TYPE: return createVarType();
@@ -79,8 +81,7 @@ public class UnityFactoryImpl extends EFactoryImpl implements UnityFactory
       case UnityPackage.UNITY_OBJECT: return createUnityObject();
       case UnityPackage.OVERRIDE_ACTION: return createOverrideAction();
       case UnityPackage.CONFIG_ASSIGNMENT: return createConfigAssignment();
-      case UnityPackage.COMPOSITE_REF: return createCompositeRef();
-      case UnityPackage.SINGLE_REF: return createSingleRef();
+      case UnityPackage.CONFIG: return createConfig();
       case UnityPackage.ENV: return createENV();
       case UnityPackage.INSTANCE: return createInstance();
       case UnityPackage.CHANNEL: return createChannel();
@@ -172,6 +173,28 @@ public class UnityFactoryImpl extends EFactoryImpl implements UnityFactory
   {
     ParamImpl param = new ParamImpl();
     return param;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Ref createRef()
+  {
+    RefImpl ref = new RefImpl();
+    return ref;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SingleRef createSingleRef()
+  {
+    SingleRefImpl singleRef = new SingleRefImpl();
+    return singleRef;
   }
 
   /**
@@ -278,21 +301,10 @@ public class UnityFactoryImpl extends EFactoryImpl implements UnityFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public CompositeRef createCompositeRef()
+  public Config createConfig()
   {
-    CompositeRefImpl compositeRef = new CompositeRefImpl();
-    return compositeRef;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public SingleRef createSingleRef()
-  {
-    SingleRefImpl singleRef = new SingleRefImpl();
-    return singleRef;
+    ConfigImpl config = new ConfigImpl();
+    return config;
   }
 
   /**

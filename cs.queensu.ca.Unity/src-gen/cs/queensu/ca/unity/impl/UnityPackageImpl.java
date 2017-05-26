@@ -11,7 +11,7 @@ import cs.queensu.ca.unity.Assign;
 import cs.queensu.ca.unity.Attribute;
 import cs.queensu.ca.unity.BoolLiteral;
 import cs.queensu.ca.unity.Channel;
-import cs.queensu.ca.unity.CompositeRef;
+import cs.queensu.ca.unity.Config;
 import cs.queensu.ca.unity.ConfigAssignment;
 import cs.queensu.ca.unity.Divide;
 import cs.queensu.ca.unity.DotExpression;
@@ -37,6 +37,7 @@ import cs.queensu.ca.unity.Property;
 import cs.queensu.ca.unity.QName;
 import cs.queensu.ca.unity.Range;
 import cs.queensu.ca.unity.RealLiteral;
+import cs.queensu.ca.unity.Ref;
 import cs.queensu.ca.unity.SingleRef;
 import cs.queensu.ca.unity.Specification;
 import cs.queensu.ca.unity.StLiteral;
@@ -97,6 +98,20 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * @generated
    */
   private EClass paramEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass refEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass singleRefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -166,14 +181,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass compositeRefEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass singleRefEClass = null;
+  private EClass configEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -634,6 +642,36 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getRef()
+  {
+    return refEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSingleRef()
+  {
+    return singleRefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSingleRef_SingleRef()
+  {
+    return (EReference)singleRefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getProperty()
   {
     return propertyEClass;
@@ -834,7 +872,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getUnityObject_Configuration()
+  public EReference getUnityObject_Configurations()
   {
     return (EReference)unityObjectEClass.getEStructuralFeatures().get(2);
   }
@@ -914,7 +952,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getConfigAssignment_PropertyName()
+  public EReference getConfigAssignment_Configs()
   {
     return (EReference)configAssignmentEClass.getEStructuralFeatures().get(0);
   }
@@ -924,9 +962,9 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getConfigAssignment_PropertyValue()
+  public EClass getConfig()
   {
-    return (EReference)configAssignmentEClass.getEStructuralFeatures().get(1);
+    return configEClass;
   }
 
   /**
@@ -934,9 +972,9 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getCompositeRef()
+  public EReference getConfig_PropertyName()
   {
-    return compositeRefEClass;
+    return (EReference)configEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -944,19 +982,9 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getSingleRef()
+  public EReference getConfig_PropertyValue()
   {
-    return singleRefEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getSingleRef_SingleRef()
-  {
-    return (EReference)singleRefEClass.getEStructuralFeatures().get(0);
+    return (EReference)configEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1930,6 +1958,11 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     paramEClass = createEClass(PARAM);
     createEReference(paramEClass, PARAM__TYPE);
 
+    refEClass = createEClass(REF);
+
+    singleRefEClass = createEClass(SINGLE_REF);
+    createEReference(singleRefEClass, SINGLE_REF__SINGLE_REF);
+
     propertyEClass = createEClass(PROPERTY);
     createEAttribute(propertyEClass, PROPERTY__NAME);
 
@@ -1956,7 +1989,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     unityObjectEClass = createEClass(UNITY_OBJECT);
     createEAttribute(unityObjectEClass, UNITY_OBJECT__NAME);
     createEReference(unityObjectEClass, UNITY_OBJECT__TYPE);
-    createEReference(unityObjectEClass, UNITY_OBJECT__CONFIGURATION);
+    createEReference(unityObjectEClass, UNITY_OBJECT__CONFIGURATIONS);
     createEReference(unityObjectEClass, UNITY_OBJECT__NEW_ACTIONS);
     createEReference(unityObjectEClass, UNITY_OBJECT__OVERRIDE_ACTIONS);
     createEReference(unityObjectEClass, UNITY_OBJECT__PROPERTIES);
@@ -1966,13 +1999,11 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     createEReference(overrideActionEClass, OVERRIDE_ACTION__EXPRESSIONS);
 
     configAssignmentEClass = createEClass(CONFIG_ASSIGNMENT);
-    createEReference(configAssignmentEClass, CONFIG_ASSIGNMENT__PROPERTY_NAME);
-    createEReference(configAssignmentEClass, CONFIG_ASSIGNMENT__PROPERTY_VALUE);
+    createEReference(configAssignmentEClass, CONFIG_ASSIGNMENT__CONFIGS);
 
-    compositeRefEClass = createEClass(COMPOSITE_REF);
-
-    singleRefEClass = createEClass(SINGLE_REF);
-    createEReference(singleRefEClass, SINGLE_REF__SINGLE_REF);
+    configEClass = createEClass(CONFIG);
+    createEReference(configEClass, CONFIG__PROPERTY_NAME);
+    createEReference(configEClass, CONFIG__PROPERTY_VALUE);
 
     envEClass = createEClass(ENV);
     createEAttribute(envEClass, ENV__NAME);
@@ -2130,9 +2161,9 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
 
     // Add supertypes to classes
     paramEClass.getESuperTypes().add(this.getProperty());
+    singleRefEClass.getESuperTypes().add(this.getRef());
     attributeEClass.getESuperTypes().add(this.getProperty());
     realLiteralEClass.getESuperTypes().add(this.getLiteral());
-    singleRefEClass.getESuperTypes().add(this.getCompositeRef());
     instanceEClass.getESuperTypes().add(this.getProperty());
     notBooleanExpressionEClass.getESuperTypes().add(this.getExpression());
     literalEClass.getESuperTypes().add(this.getExpression());
@@ -2140,7 +2171,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     boolLiteralEClass.getESuperTypes().add(this.getLiteral());
     stLiteralEClass.getESuperTypes().add(this.getLiteral());
     identifierEClass.getESuperTypes().add(this.getExpression());
-    dotExpressionEClass.getESuperTypes().add(this.getCompositeRef());
+    dotExpressionEClass.getESuperTypes().add(this.getRef());
     assignEClass.getESuperTypes().add(this.getExpression());
     orExpressionEClass.getESuperTypes().add(this.getExpression());
     andExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -2169,8 +2200,8 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
 
     initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAction_Name(), ecorePackage.getEString(), "name", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAction_Payload(), this.getPayload(), null, "payload", null, 0, -1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAction_ReturnPayload(), this.getPayload(), null, "returnPayload", null, 0, -1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAction_Payload(), this.getPayload(), null, "payload", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAction_ReturnPayload(), this.getPayload(), null, "returnPayload", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAction_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(payloadEClass, Payload.class, "Payload", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2178,6 +2209,11 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
 
     initEClass(paramEClass, Param.class, "Param", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getParam_Type(), this.getVarType(), null, "type", null, 0, 1, Param.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(refEClass, Ref.class, "Ref", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(singleRefEClass, SingleRef.class, "SingleRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSingleRef_SingleRef(), this.getProperty(), null, "SingleRef", null, 0, 1, SingleRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2205,7 +2241,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     initEClass(unityObjectEClass, UnityObject.class, "UnityObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnityObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, UnityObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getUnityObject_Type(), this.getMetaObject(), null, "type", null, 0, 1, UnityObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getUnityObject_Configuration(), this.getConfigAssignment(), null, "configuration", null, 0, -1, UnityObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUnityObject_Configurations(), this.getConfigAssignment(), null, "configurations", null, 0, -1, UnityObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getUnityObject_NewActions(), this.getAction(), null, "newActions", null, 0, -1, UnityObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getUnityObject_OverrideActions(), this.getOverrideAction(), null, "overrideActions", null, 0, -1, UnityObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getUnityObject_Properties(), this.getAttribute(), null, "properties", null, 0, -1, UnityObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2215,13 +2251,11 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     initEReference(getOverrideAction_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, OverrideAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(configAssignmentEClass, ConfigAssignment.class, "ConfigAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getConfigAssignment_PropertyName(), this.getAttribute(), null, "propertyName", null, 0, 1, ConfigAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getConfigAssignment_PropertyValue(), this.getExpression(), null, "propertyValue", null, 0, 1, ConfigAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConfigAssignment_Configs(), this.getConfig(), null, "configs", null, 0, -1, ConfigAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(compositeRefEClass, CompositeRef.class, "CompositeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(singleRefEClass, SingleRef.class, "SingleRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSingleRef_SingleRef(), this.getProperty(), null, "SingleRef", null, 0, 1, SingleRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(configEClass, Config.class, "Config", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConfig_PropertyName(), this.getAttribute(), null, "propertyName", null, 0, 1, Config.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConfig_PropertyValue(), this.getExpression(), null, "propertyValue", null, 0, 1, Config.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(envEClass, cs.queensu.ca.unity.ENV.class, "ENV", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getENV_Name(), ecorePackage.getEString(), "name", null, 0, 1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2283,10 +2317,10 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     initEAttribute(getStLiteral_String(), ecorePackage.getEString(), "string", null, 0, 1, StLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(identifierEClass, Identifier.class, "Identifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getIdentifier_Refrence(), this.getCompositeRef(), null, "Refrence", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIdentifier_Refrence(), this.getRef(), null, "Refrence", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(dotExpressionEClass, DotExpression.class, "DotExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDotExpression_Head(), this.getCompositeRef(), null, "head", null, 0, 1, DotExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDotExpression_Head(), this.getRef(), null, "head", null, 0, 1, DotExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDotExpression_Tail(), this.getProperty(), null, "tail", null, 0, 1, DotExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(assignEClass, Assign.class, "Assign", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -69,6 +69,24 @@ public interface UnityFactory extends EFactory
   Param createParam();
 
   /**
+   * Returns a new object of class '<em>Ref</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Ref</em>'.
+   * @generated
+   */
+  Ref createRef();
+
+  /**
+   * Returns a new object of class '<em>Single Ref</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Single Ref</em>'.
+   * @generated
+   */
+  SingleRef createSingleRef();
+
+  /**
    * Returns a new object of class '<em>Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -150,22 +168,13 @@ public interface UnityFactory extends EFactory
   ConfigAssignment createConfigAssignment();
 
   /**
-   * Returns a new object of class '<em>Composite Ref</em>'.
+   * Returns a new object of class '<em>Config</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Composite Ref</em>'.
+   * @return a new object of class '<em>Config</em>'.
    * @generated
    */
-  CompositeRef createCompositeRef();
-
-  /**
-   * Returns a new object of class '<em>Single Ref</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Single Ref</em>'.
-   * @generated
-   */
-  SingleRef createSingleRef();
+  Config createConfig();
 
   /**
    * Returns a new object of class '<em>ENV</em>'.

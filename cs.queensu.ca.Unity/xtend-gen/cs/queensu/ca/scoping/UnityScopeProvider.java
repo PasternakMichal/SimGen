@@ -1,14 +1,21 @@
 package cs.queensu.ca.scoping;
 
 import cs.queensu.ca.scoping.AbstractUnityScopeProvider;
-import cs.queensu.ca.unity.CompositeRef;
+import cs.queensu.ca.unity.Action;
+import cs.queensu.ca.unity.Config;
 import cs.queensu.ca.unity.ConfigAssignment;
 import cs.queensu.ca.unity.DotExpression;
+import cs.queensu.ca.unity.ENV;
+import cs.queensu.ca.unity.Expression;
+import cs.queensu.ca.unity.Identifier;
+import cs.queensu.ca.unity.Init;
 import cs.queensu.ca.unity.Instance;
 import cs.queensu.ca.unity.MetaObject;
 import cs.queensu.ca.unity.OverrideAction;
 import cs.queensu.ca.unity.Param;
+import cs.queensu.ca.unity.Payload;
 import cs.queensu.ca.unity.Property;
+import cs.queensu.ca.unity.Ref;
 import cs.queensu.ca.unity.SingleRef;
 import cs.queensu.ca.unity.UnityObject;
 import java.util.Arrays;
@@ -61,25 +68,58 @@ public class UnityScopeProvider extends AbstractUnityScopeProvider {
     return null;
   }
   
-  /**
-   * var scop=IScope::NULLSCOPE
-   * if(com.actionBodies!==null){
-   * actionBodies: (com.actionBodies as actionBodies).extractScop(ref)
-   * }
-   * else if(com. ){
-   * Actuator: (com.type as Actuator).extractScop(ref)
-   * }
-   * else if (com. ){
-   * }
-   * else{
-   * scop
-   * }
-   */
   protected IScope _extractScop(final SingleRef sr, final EReference ref) {
     IScope _xblockexpression = null;
     {
       IScope scop = IScope.NULLSCOPE;
-      _xblockexpression = InputOutput.<IScope>println(scop);
+      scop = super.getScope(sr.eContainer(), ref);
+      EObject _containerOfType = this.containerOfType(sr, Action.class);
+      boolean _tripleNotEquals = (_containerOfType != null);
+      if (_tripleNotEquals) {
+        EObject _containerOfType_1 = this.containerOfType(sr, Action.class);
+        Action action = ((Action) _containerOfType_1);
+        Payload _payload = action.getPayload();
+        scop = Scopes.scopeFor(((Payload) _payload).getParams(), scop);
+        Payload _returnPayload = action.getReturnPayload();
+        scop = Scopes.scopeFor(((Payload) _returnPayload).getParams(), scop);
+      }
+      EObject _containerOfType_2 = this.containerOfType(sr, MetaObject.class);
+      boolean _tripleNotEquals_1 = (_containerOfType_2 != null);
+      if (_tripleNotEquals_1) {
+        EObject _containerOfType_3 = this.containerOfType(sr, MetaObject.class);
+        MetaObject metaObj = ((MetaObject) _containerOfType_3);
+        scop = Scopes.scopeFor(metaObj.getProperties(), scop);
+      }
+      if (((this.containerOfType(sr, Config.class) != null) && (this.containerOfType(sr, UnityObject.class) != null))) {
+        MetaObject _elvis = null;
+        EObject _containerOfType_4 = this.containerOfType(sr, UnityObject.class);
+        MetaObject _type = ((UnityObject) _containerOfType_4).getType();
+        if (_type != null) {
+          _elvis = _type;
+        } else {
+          _elvis = null;
+        }
+        MetaObject metaObj_1 = _elvis;
+        scop = Scopes.scopeFor(metaObj_1.getProperties(), scop);
+      }
+      if (((this.containerOfType(sr, OverrideAction.class) != null) && (this.containerOfType(sr, UnityObject.class) != null))) {
+        MetaObject _elvis_1 = null;
+        EObject _containerOfType_5 = this.containerOfType(sr, UnityObject.class);
+        MetaObject _type_1 = ((UnityObject) _containerOfType_5).getType();
+        if (_type_1 != null) {
+          _elvis_1 = _type_1;
+        } else {
+          _elvis_1 = null;
+        }
+        MetaObject metaObj_2 = _elvis_1;
+        scop = Scopes.scopeFor(metaObj_2.getProperties(), scop);
+        EObject _containerOfType_6 = this.containerOfType(sr, OverrideAction.class);
+        Action refAction = ((OverrideAction) _containerOfType_6).getActionName();
+        scop = Scopes.scopeFor(refAction.getPayload().getParams(), scop);
+        scop = Scopes.scopeFor(refAction.getReturnPayload().getParams(), scop);
+      }
+      InputOutput.<IScope>println(scop);
+      _xblockexpression = scop;
     }
     return _xblockexpression;
   }
@@ -88,21 +128,34 @@ public class UnityScopeProvider extends AbstractUnityScopeProvider {
     IScope _xblockexpression = null;
     {
       IScope scop = IScope.NULLSCOPE;
-      CompositeRef _head = exp.getHead();
+      IScope _xifexpression = null;
+      Ref _head = exp.getHead();
       if ((_head instanceof SingleRef)) {
-        CompositeRef singleRef = exp.getHead();
-        Property _singleRef = ((SingleRef) singleRef).getSingleRef();
-        boolean _matched = false;
-        if (_singleRef instanceof Property) {
-          _matched=true;
-          scop = this.extractScop(((Property) singleRef), ref);
+        IScope _xblockexpression_1 = null;
+        {
+          Ref _head_1 = exp.getHead();
+          SingleRef head = ((SingleRef) _head_1);
+          IScope _switchResult = null;
+          Property _singleRef = head.getSingleRef();
+          boolean _matched = false;
+          if (_singleRef instanceof Instance) {
+            _matched=true;
+            Property _singleRef_1 = head.getSingleRef();
+            _switchResult = scop = this.extractScop(((Instance) _singleRef_1), ref);
+          }
+          if (!_matched) {
+            return scop;
+          }
+          _xblockexpression_1 = _switchResult;
         }
+        _xifexpression = _xblockexpression_1;
       } else {
-        CompositeRef _head_1 = exp.getHead();
+        Ref _head_1 = exp.getHead();
         if ((_head_1 instanceof DotExpression)) {
+          return scop;
         }
       }
-      _xblockexpression = super.getScope(exp, ref);
+      _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }
@@ -132,8 +185,8 @@ public class UnityScopeProvider extends AbstractUnityScopeProvider {
     IScope _xblockexpression = null;
     {
       IScope scop = IScope.NULLSCOPE;
-      scop = Scopes.scopeFor(ins.getInstanceType().getProperties());
-      _xblockexpression = scop = Scopes.scopeFor(ins.getInstanceType().getType().getProperties());
+      scop = Scopes.scopeFor(ins.getInstanceType().getType().getProperties());
+      _xblockexpression = scop = Scopes.scopeFor(ins.getInstanceType().getProperties(), scop);
     }
     return _xblockexpression;
   }
@@ -143,15 +196,27 @@ public class UnityScopeProvider extends AbstractUnityScopeProvider {
   }
   
   protected IScope _extractScop(final OverrideAction overrideAct, final EReference ref) {
+    int _compareTo = ref.getName().compareTo("actionName");
+    boolean _equals = (_compareTo == 0);
+    if (_equals) {
+      EObject _eContainer = overrideAct.eContainer();
+      MetaObject _type = null;
+      if (((UnityObject) _eContainer)!=null) {
+        _type=((UnityObject) _eContainer).getType();
+      }
+      return Scopes.scopeFor(_type.getActions());
+    }
     IScope scop = IScope.NULLSCOPE;
     EObject _containerOfType = this.containerOfType(overrideAct, UnityObject.class);
     UnityObject parentObj = ((UnityObject) _containerOfType);
     if ((parentObj != null)) {
-      MetaObject _type = parentObj.getType();
-      boolean _tripleNotEquals = (_type != null);
+      MetaObject _type_1 = parentObj.getType();
+      boolean _tripleNotEquals = (_type_1 != null);
       if (_tripleNotEquals) {
-        scop = Scopes.scopeFor(parentObj.getType().getActions());
+        scop = Scopes.scopeFor(overrideAct.getActionName().getPayload().getParams(), scop);
       }
+      scop = Scopes.scopeFor(overrideAct.getActionName().getReturnPayload().getParams(), scop);
+      scop = Scopes.scopeFor(parentObj.getType().getProperties(), scop);
     }
     return scop;
   }
@@ -170,6 +235,78 @@ public class UnityScopeProvider extends AbstractUnityScopeProvider {
     return scop;
   }
   
+  protected IScope _extractScop(final Config configAssig, final EReference ref) {
+    IScope scop = IScope.NULLSCOPE;
+    EObject _containerOfType = this.containerOfType(configAssig, UnityObject.class);
+    UnityObject parentObj = ((UnityObject) _containerOfType);
+    if ((parentObj != null)) {
+      MetaObject _type = parentObj.getType();
+      boolean _tripleNotEquals = (_type != null);
+      if (_tripleNotEquals) {
+        scop = Scopes.scopeFor(parentObj.getType().getProperties());
+      }
+    }
+    return scop;
+  }
+  
+  protected IScope _extractScop(final Expression exp, final EReference ref) {
+    IScope _xblockexpression = null;
+    {
+      IScope scop = IScope.NULLSCOPE;
+      EObject _containerOfType = this.containerOfType(exp, Action.class);
+      boolean _tripleNotEquals = (_containerOfType != null);
+      if (_tripleNotEquals) {
+        EObject _containerOfType_1 = this.containerOfType(exp, Action.class);
+        Action action = ((Action) _containerOfType_1);
+        Payload _payload = action.getPayload();
+        scop = Scopes.scopeFor(((Payload) _payload).getParams(), scop);
+        Payload _returnPayload = action.getReturnPayload();
+        scop = Scopes.scopeFor(((Payload) _returnPayload).getParams(), scop);
+      }
+      EObject _containerOfType_2 = this.containerOfType(exp, MetaObject.class);
+      boolean _tripleNotEquals_1 = (_containerOfType_2 != null);
+      if (_tripleNotEquals_1) {
+        EObject _containerOfType_3 = this.containerOfType(exp, MetaObject.class);
+        MetaObject metaObj = ((MetaObject) _containerOfType_3);
+        scop = Scopes.scopeFor(metaObj.getProperties(), scop);
+      }
+      if (((this.containerOfType(exp, Config.class) != null) && (this.containerOfType(exp, UnityObject.class) != null))) {
+        MetaObject _elvis = null;
+        EObject _containerOfType_4 = this.containerOfType(exp, UnityObject.class);
+        MetaObject _type = ((UnityObject) _containerOfType_4).getType();
+        if (_type != null) {
+          _elvis = _type;
+        } else {
+          _elvis = null;
+        }
+        MetaObject metaObj_1 = _elvis;
+        scop = Scopes.scopeFor(metaObj_1.getProperties(), scop);
+      }
+      if (((this.containerOfType(exp, OverrideAction.class) != null) && (this.containerOfType(exp, UnityObject.class) != null))) {
+        MetaObject _elvis_1 = null;
+        EObject _containerOfType_5 = this.containerOfType(exp, UnityObject.class);
+        MetaObject _type_1 = ((UnityObject) _containerOfType_5).getType();
+        if (_type_1 != null) {
+          _elvis_1 = _type_1;
+        } else {
+          _elvis_1 = null;
+        }
+        MetaObject metaObj_2 = _elvis_1;
+        scop = Scopes.scopeFor(metaObj_2.getProperties(), scop);
+        EObject _containerOfType_6 = this.containerOfType(exp, OverrideAction.class);
+        Action refAction = ((OverrideAction) _containerOfType_6).getActionName();
+        scop = Scopes.scopeFor(refAction.getPayload().getParams(), scop);
+        scop = Scopes.scopeFor(refAction.getReturnPayload().getParams(), scop);
+      }
+      if (((this.containerOfType(exp, Init.class) != null) && (this.containerOfType(exp, ENV.class) != null))) {
+        scop = super.getScope(exp, ref);
+      }
+      InputOutput.<IScope>println(scop);
+      _xblockexpression = scop;
+    }
+    return _xblockexpression;
+  }
+  
   @Override
   public IScope getScope(final EObject context, final EReference reference) {
     IScope _xblockexpression = null;
@@ -181,9 +318,25 @@ public class UnityScopeProvider extends AbstractUnityScopeProvider {
         return this.extractScop(((OverrideAction) context), reference);
       }
       if (!_matched) {
+        if (context instanceof Identifier) {
+          _matched=true;
+          Ref _refrence = ((Identifier)context).getRefrence();
+          if ((_refrence instanceof SingleRef)) {
+            Ref _refrence_1 = ((Identifier)context).getRefrence();
+            return this.extractScop(((SingleRef) _refrence_1), reference);
+          }
+        }
+      }
+      if (!_matched) {
         if (context instanceof ConfigAssignment) {
           _matched=true;
           return this.extractScop(((ConfigAssignment) context), reference);
+        }
+      }
+      if (!_matched) {
+        if (context instanceof Config) {
+          _matched=true;
+          return this.extractScop(((Config) context), reference);
         }
       }
       if (!_matched) {
@@ -198,7 +351,15 @@ public class UnityScopeProvider extends AbstractUnityScopeProvider {
           return this.extractScop(((DotExpression) context), reference);
         }
       }
-      super.getScope(context, reference);
+      if (!_matched) {
+        if (context instanceof Expression) {
+          _matched=true;
+          return this.extractScop(((Expression) context), reference);
+        }
+      }
+      if (!_matched) {
+        super.getScope(context, reference);
+      }
       _xblockexpression = super.getScope(context, reference);
     }
     return _xblockexpression;
@@ -213,8 +374,12 @@ public class UnityScopeProvider extends AbstractUnityScopeProvider {
       return _extractScop((Param)exp, ref);
     } else if (exp instanceof SingleRef) {
       return _extractScop((SingleRef)exp, ref);
+    } else if (exp instanceof Config) {
+      return _extractScop((Config)exp, ref);
     } else if (exp instanceof ConfigAssignment) {
       return _extractScop((ConfigAssignment)exp, ref);
+    } else if (exp instanceof Expression) {
+      return _extractScop((Expression)exp, ref);
     } else if (exp instanceof OverrideAction) {
       return _extractScop((OverrideAction)exp, ref);
     } else if (exp instanceof Property) {

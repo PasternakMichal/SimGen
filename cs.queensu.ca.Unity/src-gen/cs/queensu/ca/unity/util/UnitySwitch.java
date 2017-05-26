@@ -109,6 +109,21 @@ public class UnitySwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case UnityPackage.REF:
+      {
+        Ref ref = (Ref)theEObject;
+        T result = caseRef(ref);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case UnityPackage.SINGLE_REF:
+      {
+        SingleRef singleRef = (SingleRef)theEObject;
+        T result = caseSingleRef(singleRef);
+        if (result == null) result = caseRef(singleRef);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case UnityPackage.PROPERTY:
       {
         Property property = (Property)theEObject;
@@ -175,18 +190,10 @@ public class UnitySwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case UnityPackage.COMPOSITE_REF:
+      case UnityPackage.CONFIG:
       {
-        CompositeRef compositeRef = (CompositeRef)theEObject;
-        T result = caseCompositeRef(compositeRef);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case UnityPackage.SINGLE_REF:
-      {
-        SingleRef singleRef = (SingleRef)theEObject;
-        T result = caseSingleRef(singleRef);
-        if (result == null) result = caseCompositeRef(singleRef);
+        Config config = (Config)theEObject;
+        T result = caseConfig(config);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -323,7 +330,7 @@ public class UnitySwitch<T> extends Switch<T>
       {
         DotExpression dotExpression = (DotExpression)theEObject;
         T result = caseDotExpression(dotExpression);
-        if (result == null) result = caseCompositeRef(dotExpression);
+        if (result == null) result = caseRef(dotExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -532,6 +539,38 @@ public class UnitySwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Ref</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Ref</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRef(Ref object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Single Ref</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Single Ref</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSingleRef(SingleRef object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -676,33 +715,17 @@ public class UnitySwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Composite Ref</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Config</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Composite Ref</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Config</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseCompositeRef(CompositeRef object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Single Ref</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Single Ref</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSingleRef(SingleRef object)
+  public T caseConfig(Config object)
   {
     return null;
   }

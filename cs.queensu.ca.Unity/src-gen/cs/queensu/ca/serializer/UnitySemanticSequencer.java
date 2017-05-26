@@ -12,6 +12,7 @@ import cs.queensu.ca.unity.Assign;
 import cs.queensu.ca.unity.Attribute;
 import cs.queensu.ca.unity.BoolLiteral;
 import cs.queensu.ca.unity.Channel;
+import cs.queensu.ca.unity.Config;
 import cs.queensu.ca.unity.ConfigAssignment;
 import cs.queensu.ca.unity.Divide;
 import cs.queensu.ca.unity.DotExpression;
@@ -98,6 +99,9 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case UnityPackage.CHANNEL:
 				sequence_Channel(context, (Channel) semanticObject); 
+				return; 
+			case UnityPackage.CONFIG:
+				sequence_Config(context, (Config) semanticObject); 
 				return; 
 			case UnityPackage.CONFIG_ASSIGNMENT:
 				sequence_ConfigAssignment(context, (ConfigAssignment) semanticObject); 
@@ -187,7 +191,7 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_RealLiteral(context, (RealLiteral) semanticObject); 
 				return; 
 			case UnityPackage.SINGLE_REF:
-				sequence_PartRef(context, (SingleRef) semanticObject); 
+				sequence_SingleRef(context, (SingleRef) semanticObject); 
 				return; 
 			case UnityPackage.SPECIFICATION:
 				sequence_Specification(context, (Specification) semanticObject); 
@@ -220,7 +224,7 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Action returns Action
 	 *
 	 * Constraint:
-	 *     (name=ID payload+=Payload* returnPayload+=Payload* expressions+=Expression*)
+	 *     (name=ID payload=Payload? returnPayload=Payload? expressions+=Expression*)
 	 */
 	protected void sequence_Action(ISerializationContext context, cs.queensu.ca.unity.Action semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -759,18 +763,30 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ConfigAssignment returns ConfigAssignment
 	 *
 	 * Constraint:
-	 *     (propertyName=[Attribute|ID] propertyValue=Expression)
+	 *     configs+=Config+
 	 */
 	protected void sequence_ConfigAssignment(ISerializationContext context, ConfigAssignment semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Config returns Config
+	 *
+	 * Constraint:
+	 *     (propertyName=[Attribute|ID] propertyValue=Expression)
+	 */
+	protected void sequence_Config(ISerializationContext context, Config semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.CONFIG_ASSIGNMENT__PROPERTY_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.CONFIG_ASSIGNMENT__PROPERTY_NAME));
-			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.CONFIG_ASSIGNMENT__PROPERTY_VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.CONFIG_ASSIGNMENT__PROPERTY_VALUE));
+			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.CONFIG__PROPERTY_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.CONFIG__PROPERTY_NAME));
+			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.CONFIG__PROPERTY_VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.CONFIG__PROPERTY_VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getConfigAssignmentAccess().getPropertyNameAttributeIDTerminalRuleCall_0_0_1(), semanticObject.eGet(UnityPackage.Literals.CONFIG_ASSIGNMENT__PROPERTY_NAME, false));
-		feeder.accept(grammarAccess.getConfigAssignmentAccess().getPropertyValueExpressionParserRuleCall_2_0(), semanticObject.getPropertyValue());
+		feeder.accept(grammarAccess.getConfigAccess().getPropertyNameAttributeIDTerminalRuleCall_0_0_1(), semanticObject.eGet(UnityPackage.Literals.CONFIG__PROPERTY_NAME, false));
+		feeder.accept(grammarAccess.getConfigAccess().getPropertyValueExpressionParserRuleCall_2_0(), semanticObject.getPropertyValue());
 		feeder.finish();
 	}
 	
@@ -1238,26 +1254,6 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     DotExpression returns SingleRef
-	 *     DotExpression.DotExpression_1_0 returns SingleRef
-	 *     PartRef returns SingleRef
-	 *
-	 * Constraint:
-	 *     SingleRef=[Property|ID]
-	 */
-	protected void sequence_PartRef(ISerializationContext context, SingleRef semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.SINGLE_REF__SINGLE_REF) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.SINGLE_REF__SINGLE_REF));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPartRefAccess().getSingleRefPropertyIDTerminalRuleCall_1_0_1(), semanticObject.eGet(UnityPackage.Literals.SINGLE_REF__SINGLE_REF, false));
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Payload returns Payload
 	 *
 	 * Constraint:
@@ -1377,6 +1373,26 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     DotExpression returns SingleRef
+	 *     DotExpression.DotExpression_1_0 returns SingleRef
+	 *     SingleRef returns SingleRef
+	 *
+	 * Constraint:
+	 *     SingleRef=[Property|ID]
+	 */
+	protected void sequence_SingleRef(ISerializationContext context, SingleRef semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.SINGLE_REF__SINGLE_REF) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.SINGLE_REF__SINGLE_REF));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSingleRefAccess().getSingleRefPropertyIDTerminalRuleCall_1_0_1(), semanticObject.eGet(UnityPackage.Literals.SINGLE_REF__SINGLE_REF, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Specification returns Specification
 	 *
 	 * Constraint:
@@ -1477,7 +1493,11 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     UnityObject returns UnityObject
 	 *
 	 * Constraint:
-	 *     (name=ID type=[MetaObject|ID] configuration+=ConfigAssignment* (newActions+=Action | overrideActions+=OverrideAction | properties+=Attribute)*)
+	 *     (
+	 *         name=ID 
+	 *         type=[MetaObject|ID] 
+	 *         (configurations+=ConfigAssignment | newActions+=Action | overrideActions+=OverrideAction | properties+=Attribute)*
+	 *     )
 	 */
 	protected void sequence_UnityObject(ISerializationContext context, UnityObject semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

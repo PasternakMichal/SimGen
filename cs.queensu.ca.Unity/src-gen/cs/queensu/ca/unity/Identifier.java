@@ -31,12 +31,12 @@ public interface Identifier extends Expression
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Refrence</em>' containment reference.
-   * @see #setRefrence(CompositeRef)
+   * @see #setRefrence(Ref)
    * @see cs.queensu.ca.unity.UnityPackage#getIdentifier_Refrence()
    * @model containment="true"
    * @generated
    */
-  CompositeRef getRefrence();
+  Ref getRefrence();
 
   /**
    * Sets the value of the '{@link cs.queensu.ca.unity.Identifier#getRefrence <em>Refrence</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface Identifier extends Expression
    * @see #getRefrence()
    * @generated
    */
-  void setRefrence(CompositeRef value);
+  void setRefrence(Ref value);
 
 } // Identifier

@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link cs.queensu.ca.unity.impl.UnityObjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.UnityObjectImpl#getType <em>Type</em>}</li>
- *   <li>{@link cs.queensu.ca.unity.impl.UnityObjectImpl#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.impl.UnityObjectImpl#getConfigurations <em>Configurations</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.UnityObjectImpl#getNewActions <em>New Actions</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.UnityObjectImpl#getOverrideActions <em>Override Actions</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.UnityObjectImpl#getProperties <em>Properties</em>}</li>
@@ -78,14 +78,14 @@ public class UnityObjectImpl extends MinimalEObjectImpl.Container implements Uni
   protected MetaObject type;
 
   /**
-   * The cached value of the '{@link #getConfiguration() <em>Configuration</em>}' containment reference list.
+   * The cached value of the '{@link #getConfigurations() <em>Configurations</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getConfiguration()
+   * @see #getConfigurations()
    * @generated
    * @ordered
    */
-  protected EList<ConfigAssignment> configuration;
+  protected EList<ConfigAssignment> configurations;
 
   /**
    * The cached value of the '{@link #getNewActions() <em>New Actions</em>}' containment reference list.
@@ -209,13 +209,13 @@ public class UnityObjectImpl extends MinimalEObjectImpl.Container implements Uni
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ConfigAssignment> getConfiguration()
+  public EList<ConfigAssignment> getConfigurations()
   {
-    if (configuration == null)
+    if (configurations == null)
     {
-      configuration = new EObjectContainmentEList<ConfigAssignment>(ConfigAssignment.class, this, UnityPackage.UNITY_OBJECT__CONFIGURATION);
+      configurations = new EObjectContainmentEList<ConfigAssignment>(ConfigAssignment.class, this, UnityPackage.UNITY_OBJECT__CONFIGURATIONS);
     }
-    return configuration;
+    return configurations;
   }
 
   /**
@@ -270,8 +270,8 @@ public class UnityObjectImpl extends MinimalEObjectImpl.Container implements Uni
   {
     switch (featureID)
     {
-      case UnityPackage.UNITY_OBJECT__CONFIGURATION:
-        return ((InternalEList<?>)getConfiguration()).basicRemove(otherEnd, msgs);
+      case UnityPackage.UNITY_OBJECT__CONFIGURATIONS:
+        return ((InternalEList<?>)getConfigurations()).basicRemove(otherEnd, msgs);
       case UnityPackage.UNITY_OBJECT__NEW_ACTIONS:
         return ((InternalEList<?>)getNewActions()).basicRemove(otherEnd, msgs);
       case UnityPackage.UNITY_OBJECT__OVERRIDE_ACTIONS:
@@ -297,8 +297,8 @@ public class UnityObjectImpl extends MinimalEObjectImpl.Container implements Uni
       case UnityPackage.UNITY_OBJECT__TYPE:
         if (resolve) return getType();
         return basicGetType();
-      case UnityPackage.UNITY_OBJECT__CONFIGURATION:
-        return getConfiguration();
+      case UnityPackage.UNITY_OBJECT__CONFIGURATIONS:
+        return getConfigurations();
       case UnityPackage.UNITY_OBJECT__NEW_ACTIONS:
         return getNewActions();
       case UnityPackage.UNITY_OBJECT__OVERRIDE_ACTIONS:
@@ -326,9 +326,9 @@ public class UnityObjectImpl extends MinimalEObjectImpl.Container implements Uni
       case UnityPackage.UNITY_OBJECT__TYPE:
         setType((MetaObject)newValue);
         return;
-      case UnityPackage.UNITY_OBJECT__CONFIGURATION:
-        getConfiguration().clear();
-        getConfiguration().addAll((Collection<? extends ConfigAssignment>)newValue);
+      case UnityPackage.UNITY_OBJECT__CONFIGURATIONS:
+        getConfigurations().clear();
+        getConfigurations().addAll((Collection<? extends ConfigAssignment>)newValue);
         return;
       case UnityPackage.UNITY_OBJECT__NEW_ACTIONS:
         getNewActions().clear();
@@ -362,8 +362,8 @@ public class UnityObjectImpl extends MinimalEObjectImpl.Container implements Uni
       case UnityPackage.UNITY_OBJECT__TYPE:
         setType((MetaObject)null);
         return;
-      case UnityPackage.UNITY_OBJECT__CONFIGURATION:
-        getConfiguration().clear();
+      case UnityPackage.UNITY_OBJECT__CONFIGURATIONS:
+        getConfigurations().clear();
         return;
       case UnityPackage.UNITY_OBJECT__NEW_ACTIONS:
         getNewActions().clear();
@@ -392,8 +392,8 @@ public class UnityObjectImpl extends MinimalEObjectImpl.Container implements Uni
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case UnityPackage.UNITY_OBJECT__TYPE:
         return type != null;
-      case UnityPackage.UNITY_OBJECT__CONFIGURATION:
-        return configuration != null && !configuration.isEmpty();
+      case UnityPackage.UNITY_OBJECT__CONFIGURATIONS:
+        return configurations != null && !configurations.isEmpty();
       case UnityPackage.UNITY_OBJECT__NEW_ACTIONS:
         return newActions != null && !newActions.isEmpty();
       case UnityPackage.UNITY_OBJECT__OVERRIDE_ACTIONS:

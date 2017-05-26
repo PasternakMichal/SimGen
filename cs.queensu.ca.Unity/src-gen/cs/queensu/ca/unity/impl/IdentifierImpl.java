@@ -3,8 +3,8 @@
  */
 package cs.queensu.ca.unity.impl;
 
-import cs.queensu.ca.unity.CompositeRef;
 import cs.queensu.ca.unity.Identifier;
+import cs.queensu.ca.unity.Ref;
 import cs.queensu.ca.unity.UnityPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -38,7 +38,7 @@ public class IdentifierImpl extends ExpressionImpl implements Identifier
    * @generated
    * @ordered
    */
-  protected CompositeRef refrence;
+  protected Ref refrence;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class IdentifierImpl extends ExpressionImpl implements Identifier
    * <!-- end-user-doc -->
    * @generated
    */
-  public CompositeRef getRefrence()
+  public Ref getRefrence()
   {
     return refrence;
   }
@@ -76,9 +76,9 @@ public class IdentifierImpl extends ExpressionImpl implements Identifier
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRefrence(CompositeRef newRefrence, NotificationChain msgs)
+  public NotificationChain basicSetRefrence(Ref newRefrence, NotificationChain msgs)
   {
-    CompositeRef oldRefrence = refrence;
+    Ref oldRefrence = refrence;
     refrence = newRefrence;
     if (eNotificationRequired())
     {
@@ -93,7 +93,7 @@ public class IdentifierImpl extends ExpressionImpl implements Identifier
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRefrence(CompositeRef newRefrence)
+  public void setRefrence(Ref newRefrence)
   {
     if (newRefrence != refrence)
     {
@@ -152,7 +152,7 @@ public class IdentifierImpl extends ExpressionImpl implements Identifier
     switch (featureID)
     {
       case UnityPackage.IDENTIFIER__REFRENCE:
-        setRefrence((CompositeRef)newValue);
+        setRefrence((Ref)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,7 +169,7 @@ public class IdentifierImpl extends ExpressionImpl implements Identifier
     switch (featureID)
     {
       case UnityPackage.IDENTIFIER__REFRENCE:
-        setRefrence((CompositeRef)null);
+        setRefrence((Ref)null);
         return;
     }
     super.eUnset(featureID);

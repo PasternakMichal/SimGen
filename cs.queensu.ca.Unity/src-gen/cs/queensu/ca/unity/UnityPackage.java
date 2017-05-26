@@ -160,7 +160,7 @@ public interface UnityPackage extends EPackage
   int ACTION__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Payload</b></em>' containment reference list.
+   * The feature id for the '<em><b>Payload</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -169,7 +169,7 @@ public interface UnityPackage extends EPackage
   int ACTION__PAYLOAD = 1;
 
   /**
-   * The feature id for the '<em><b>Return Payload</b></em>' containment reference list.
+   * The feature id for the '<em><b>Return Payload</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -231,7 +231,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 5;
+  int PROPERTY = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -289,6 +289,53 @@ public interface UnityPackage extends EPackage
   int PARAM_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link cs.queensu.ca.unity.impl.RefImpl <em>Ref</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see cs.queensu.ca.unity.impl.RefImpl
+   * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getRef()
+   * @generated
+   */
+  int REF = 5;
+
+  /**
+   * The number of structural features of the '<em>Ref</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REF_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link cs.queensu.ca.unity.impl.SingleRefImpl <em>Single Ref</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see cs.queensu.ca.unity.impl.SingleRefImpl
+   * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getSingleRef()
+   * @generated
+   */
+  int SINGLE_REF = 6;
+
+  /**
+   * The feature id for the '<em><b>Single Ref</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SINGLE_REF__SINGLE_REF = REF_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Single Ref</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SINGLE_REF_FEATURE_COUNT = REF_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link cs.queensu.ca.unity.impl.AttributeImpl <em>Attribute</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -296,7 +343,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getAttribute()
    * @generated
    */
-  int ATTRIBUTE = 6;
+  int ATTRIBUTE = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -342,7 +389,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getVarType()
    * @generated
    */
-  int VAR_TYPE = 7;
+  int VAR_TYPE = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -370,7 +417,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getRange()
    * @generated
    */
-  int RANGE = 8;
+  int RANGE = 10;
 
   /**
    * The feature id for the '<em><b>From</b></em>' containment reference.
@@ -407,7 +454,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getValue()
    * @generated
    */
-  int VALUE = 9;
+  int VALUE = 11;
 
   /**
    * The feature id for the '<em><b>Minues</b></em>' attribute.
@@ -453,7 +500,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 26;
+  int EXPRESSION = 27;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -472,7 +519,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 28;
+  int LITERAL = 29;
 
   /**
    * The number of structural features of the '<em>Literal</em>' class.
@@ -491,7 +538,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getRealLiteral()
    * @generated
    */
-  int REAL_LITERAL = 10;
+  int REAL_LITERAL = 12;
 
   /**
    * The feature id for the '<em><b>Int Part</b></em>' attribute.
@@ -528,7 +575,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getUnityObject()
    * @generated
    */
-  int UNITY_OBJECT = 11;
+  int UNITY_OBJECT = 13;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -549,13 +596,13 @@ public interface UnityPackage extends EPackage
   int UNITY_OBJECT__TYPE = 1;
 
   /**
-   * The feature id for the '<em><b>Configuration</b></em>' containment reference list.
+   * The feature id for the '<em><b>Configurations</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int UNITY_OBJECT__CONFIGURATION = 2;
+  int UNITY_OBJECT__CONFIGURATIONS = 2;
 
   /**
    * The feature id for the '<em><b>New Actions</b></em>' containment reference list.
@@ -601,7 +648,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getOverrideAction()
    * @generated
    */
-  int OVERRIDE_ACTION = 12;
+  int OVERRIDE_ACTION = 14;
 
   /**
    * The feature id for the '<em><b>Action Name</b></em>' reference.
@@ -638,25 +685,16 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getConfigAssignment()
    * @generated
    */
-  int CONFIG_ASSIGNMENT = 13;
+  int CONFIG_ASSIGNMENT = 15;
 
   /**
-   * The feature id for the '<em><b>Property Name</b></em>' reference.
+   * The feature id for the '<em><b>Configs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONFIG_ASSIGNMENT__PROPERTY_NAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Property Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONFIG_ASSIGNMENT__PROPERTY_VALUE = 1;
+  int CONFIG_ASSIGNMENT__CONFIGS = 0;
 
   /**
    * The number of structural features of the '<em>Config Assignment</em>' class.
@@ -665,54 +703,44 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONFIG_ASSIGNMENT_FEATURE_COUNT = 2;
+  int CONFIG_ASSIGNMENT_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link cs.queensu.ca.unity.impl.CompositeRefImpl <em>Composite Ref</em>}' class.
+   * The meta object id for the '{@link cs.queensu.ca.unity.impl.ConfigImpl <em>Config</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see cs.queensu.ca.unity.impl.CompositeRefImpl
-   * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getCompositeRef()
+   * @see cs.queensu.ca.unity.impl.ConfigImpl
+   * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getConfig()
    * @generated
    */
-  int COMPOSITE_REF = 14;
+  int CONFIG = 16;
 
   /**
-   * The number of structural features of the '<em>Composite Ref</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMPOSITE_REF_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link cs.queensu.ca.unity.impl.SingleRefImpl <em>Single Ref</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see cs.queensu.ca.unity.impl.SingleRefImpl
-   * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getSingleRef()
-   * @generated
-   */
-  int SINGLE_REF = 15;
-
-  /**
-   * The feature id for the '<em><b>Single Ref</b></em>' reference.
+   * The feature id for the '<em><b>Property Name</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SINGLE_REF__SINGLE_REF = COMPOSITE_REF_FEATURE_COUNT + 0;
+  int CONFIG__PROPERTY_NAME = 0;
 
   /**
-   * The number of structural features of the '<em>Single Ref</em>' class.
+   * The feature id for the '<em><b>Property Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SINGLE_REF_FEATURE_COUNT = COMPOSITE_REF_FEATURE_COUNT + 1;
+  int CONFIG__PROPERTY_VALUE = 1;
+
+  /**
+   * The number of structural features of the '<em>Config</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONFIG_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link cs.queensu.ca.unity.impl.ENVImpl <em>ENV</em>}' class.
@@ -722,7 +750,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getENV()
    * @generated
    */
-  int ENV = 16;
+  int ENV = 17;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -786,7 +814,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getInstance()
    * @generated
    */
-  int INSTANCE = 17;
+  int INSTANCE = 18;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -823,7 +851,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getChannel()
    * @generated
    */
-  int CHANNEL = 18;
+  int CHANNEL = 19;
 
   /**
    * The feature id for the '<em><b>Interface Name</b></em>' attribute.
@@ -905,7 +933,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getInit()
    * @generated
    */
-  int INIT = 19;
+  int INIT = 20;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -933,7 +961,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getMap()
    * @generated
    */
-  int MAP = 20;
+  int MAP = 21;
 
   /**
    * The feature id for the '<em><b>Map Name</b></em>' attribute.
@@ -970,7 +998,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getMessage()
    * @generated
    */
-  int MESSAGE = 21;
+  int MESSAGE = 22;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1007,7 +1035,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getQName()
    * @generated
    */
-  int QNAME = 22;
+  int QNAME = 23;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1035,7 +1063,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getAreaName()
    * @generated
    */
-  int AREA_NAME = 23;
+  int AREA_NAME = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1063,7 +1091,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getPort()
    * @generated
    */
-  int PORT = 24;
+  int PORT = 25;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1100,7 +1128,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getinterfaceType()
    * @generated
    */
-  int INTERFACE_TYPE = 25;
+  int INTERFACE_TYPE = 26;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1128,7 +1156,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getNotBooleanExpression()
    * @generated
    */
-  int NOT_BOOLEAN_EXPRESSION = 27;
+  int NOT_BOOLEAN_EXPRESSION = 28;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -1156,7 +1184,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getIntLiteral()
    * @generated
    */
-  int INT_LITERAL = 29;
+  int INT_LITERAL = 30;
 
   /**
    * The feature id for the '<em><b>Int</b></em>' attribute.
@@ -1184,7 +1212,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getBoolLiteral()
    * @generated
    */
-  int BOOL_LITERAL = 30;
+  int BOOL_LITERAL = 31;
 
   /**
    * The feature id for the '<em><b>Bool</b></em>' attribute.
@@ -1212,7 +1240,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getStLiteral()
    * @generated
    */
-  int ST_LITERAL = 31;
+  int ST_LITERAL = 32;
 
   /**
    * The feature id for the '<em><b>String</b></em>' attribute.
@@ -1240,7 +1268,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getIdentifier()
    * @generated
    */
-  int IDENTIFIER = 32;
+  int IDENTIFIER = 33;
 
   /**
    * The feature id for the '<em><b>Refrence</b></em>' containment reference.
@@ -1268,7 +1296,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getDotExpression()
    * @generated
    */
-  int DOT_EXPRESSION = 33;
+  int DOT_EXPRESSION = 34;
 
   /**
    * The feature id for the '<em><b>Head</b></em>' containment reference.
@@ -1277,7 +1305,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOT_EXPRESSION__HEAD = COMPOSITE_REF_FEATURE_COUNT + 0;
+  int DOT_EXPRESSION__HEAD = REF_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Tail</b></em>' reference.
@@ -1286,7 +1314,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOT_EXPRESSION__TAIL = COMPOSITE_REF_FEATURE_COUNT + 1;
+  int DOT_EXPRESSION__TAIL = REF_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Dot Expression</em>' class.
@@ -1295,7 +1323,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOT_EXPRESSION_FEATURE_COUNT = COMPOSITE_REF_FEATURE_COUNT + 2;
+  int DOT_EXPRESSION_FEATURE_COUNT = REF_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link cs.queensu.ca.unity.impl.AssignImpl <em>Assign</em>}' class.
@@ -1305,7 +1333,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getAssign()
    * @generated
    */
-  int ASSIGN = 34;
+  int ASSIGN = 35;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1342,7 +1370,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getOrExpression()
    * @generated
    */
-  int OR_EXPRESSION = 35;
+  int OR_EXPRESSION = 36;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1379,7 +1407,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getAndExpression()
    * @generated
    */
-  int AND_EXPRESSION = 36;
+  int AND_EXPRESSION = 37;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1416,7 +1444,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getGT()
    * @generated
    */
-  int GT = 37;
+  int GT = 38;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1453,7 +1481,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getLT()
    * @generated
    */
-  int LT = 38;
+  int LT = 39;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1490,7 +1518,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getGE()
    * @generated
    */
-  int GE = 39;
+  int GE = 40;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1527,7 +1555,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getLE()
    * @generated
    */
-  int LE = 40;
+  int LE = 41;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1564,7 +1592,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getEQ()
    * @generated
    */
-  int EQ = 41;
+  int EQ = 42;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1601,7 +1629,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getNE()
    * @generated
    */
-  int NE = 42;
+  int NE = 43;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1638,7 +1666,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 43;
+  int ADDITION = 44;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1675,7 +1703,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 44;
+  int MINUS = 45;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1712,7 +1740,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 45;
+  int MULTIPLICATION = 46;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1749,7 +1777,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getDivide()
    * @generated
    */
-  int DIVIDE = 46;
+  int DIVIDE = 47;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1786,7 +1814,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getModulo()
    * @generated
    */
-  int MODULO = 47;
+  int MODULO = 48;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1823,7 +1851,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getUnaryExpression()
    * @generated
    */
-  int UNARY_EXPRESSION = 48;
+  int UNARY_EXPRESSION = 49;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -1941,10 +1969,10 @@ public interface UnityPackage extends EPackage
   EAttribute getAction_Name();
 
   /**
-   * Returns the meta object for the containment reference list '{@link cs.queensu.ca.unity.Action#getPayload <em>Payload</em>}'.
+   * Returns the meta object for the containment reference '{@link cs.queensu.ca.unity.Action#getPayload <em>Payload</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Payload</em>'.
+   * @return the meta object for the containment reference '<em>Payload</em>'.
    * @see cs.queensu.ca.unity.Action#getPayload()
    * @see #getAction()
    * @generated
@@ -1952,10 +1980,10 @@ public interface UnityPackage extends EPackage
   EReference getAction_Payload();
 
   /**
-   * Returns the meta object for the containment reference list '{@link cs.queensu.ca.unity.Action#getReturnPayload <em>Return Payload</em>}'.
+   * Returns the meta object for the containment reference '{@link cs.queensu.ca.unity.Action#getReturnPayload <em>Return Payload</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Return Payload</em>'.
+   * @return the meta object for the containment reference '<em>Return Payload</em>'.
    * @see cs.queensu.ca.unity.Action#getReturnPayload()
    * @see #getAction()
    * @generated
@@ -2014,6 +2042,37 @@ public interface UnityPackage extends EPackage
    * @generated
    */
   EReference getParam_Type();
+
+  /**
+   * Returns the meta object for class '{@link cs.queensu.ca.unity.Ref <em>Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Ref</em>'.
+   * @see cs.queensu.ca.unity.Ref
+   * @generated
+   */
+  EClass getRef();
+
+  /**
+   * Returns the meta object for class '{@link cs.queensu.ca.unity.SingleRef <em>Single Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Single Ref</em>'.
+   * @see cs.queensu.ca.unity.SingleRef
+   * @generated
+   */
+  EClass getSingleRef();
+
+  /**
+   * Returns the meta object for the reference '{@link cs.queensu.ca.unity.SingleRef#getSingleRef <em>Single Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Single Ref</em>'.
+   * @see cs.queensu.ca.unity.SingleRef#getSingleRef()
+   * @see #getSingleRef()
+   * @generated
+   */
+  EReference getSingleRef_SingleRef();
 
   /**
    * Returns the meta object for class '{@link cs.queensu.ca.unity.Property <em>Property</em>}'.
@@ -2229,15 +2288,15 @@ public interface UnityPackage extends EPackage
   EReference getUnityObject_Type();
 
   /**
-   * Returns the meta object for the containment reference list '{@link cs.queensu.ca.unity.UnityObject#getConfiguration <em>Configuration</em>}'.
+   * Returns the meta object for the containment reference list '{@link cs.queensu.ca.unity.UnityObject#getConfigurations <em>Configurations</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Configuration</em>'.
-   * @see cs.queensu.ca.unity.UnityObject#getConfiguration()
+   * @return the meta object for the containment reference list '<em>Configurations</em>'.
+   * @see cs.queensu.ca.unity.UnityObject#getConfigurations()
    * @see #getUnityObject()
    * @generated
    */
-  EReference getUnityObject_Configuration();
+  EReference getUnityObject_Configurations();
 
   /**
    * Returns the meta object for the containment reference list '{@link cs.queensu.ca.unity.UnityObject#getNewActions <em>New Actions</em>}'.
@@ -2315,57 +2374,47 @@ public interface UnityPackage extends EPackage
   EClass getConfigAssignment();
 
   /**
-   * Returns the meta object for the reference '{@link cs.queensu.ca.unity.ConfigAssignment#getPropertyName <em>Property Name</em>}'.
+   * Returns the meta object for the containment reference list '{@link cs.queensu.ca.unity.ConfigAssignment#getConfigs <em>Configs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Configs</em>'.
+   * @see cs.queensu.ca.unity.ConfigAssignment#getConfigs()
+   * @see #getConfigAssignment()
+   * @generated
+   */
+  EReference getConfigAssignment_Configs();
+
+  /**
+   * Returns the meta object for class '{@link cs.queensu.ca.unity.Config <em>Config</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Config</em>'.
+   * @see cs.queensu.ca.unity.Config
+   * @generated
+   */
+  EClass getConfig();
+
+  /**
+   * Returns the meta object for the reference '{@link cs.queensu.ca.unity.Config#getPropertyName <em>Property Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Property Name</em>'.
-   * @see cs.queensu.ca.unity.ConfigAssignment#getPropertyName()
-   * @see #getConfigAssignment()
+   * @see cs.queensu.ca.unity.Config#getPropertyName()
+   * @see #getConfig()
    * @generated
    */
-  EReference getConfigAssignment_PropertyName();
+  EReference getConfig_PropertyName();
 
   /**
-   * Returns the meta object for the containment reference '{@link cs.queensu.ca.unity.ConfigAssignment#getPropertyValue <em>Property Value</em>}'.
+   * Returns the meta object for the containment reference '{@link cs.queensu.ca.unity.Config#getPropertyValue <em>Property Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Property Value</em>'.
-   * @see cs.queensu.ca.unity.ConfigAssignment#getPropertyValue()
-   * @see #getConfigAssignment()
+   * @see cs.queensu.ca.unity.Config#getPropertyValue()
+   * @see #getConfig()
    * @generated
    */
-  EReference getConfigAssignment_PropertyValue();
-
-  /**
-   * Returns the meta object for class '{@link cs.queensu.ca.unity.CompositeRef <em>Composite Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Composite Ref</em>'.
-   * @see cs.queensu.ca.unity.CompositeRef
-   * @generated
-   */
-  EClass getCompositeRef();
-
-  /**
-   * Returns the meta object for class '{@link cs.queensu.ca.unity.SingleRef <em>Single Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Single Ref</em>'.
-   * @see cs.queensu.ca.unity.SingleRef
-   * @generated
-   */
-  EClass getSingleRef();
-
-  /**
-   * Returns the meta object for the reference '{@link cs.queensu.ca.unity.SingleRef#getSingleRef <em>Single Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Single Ref</em>'.
-   * @see cs.queensu.ca.unity.SingleRef#getSingleRef()
-   * @see #getSingleRef()
-   * @generated
-   */
-  EReference getSingleRef_SingleRef();
+  EReference getConfig_PropertyValue();
 
   /**
    * Returns the meta object for class '{@link cs.queensu.ca.unity.ENV <em>ENV</em>}'.
@@ -3448,7 +3497,7 @@ public interface UnityPackage extends EPackage
     EAttribute ACTION__NAME = eINSTANCE.getAction_Name();
 
     /**
-     * The meta object literal for the '<em><b>Payload</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Payload</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -3456,7 +3505,7 @@ public interface UnityPackage extends EPackage
     EReference ACTION__PAYLOAD = eINSTANCE.getAction_Payload();
 
     /**
-     * The meta object literal for the '<em><b>Return Payload</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Return Payload</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -3506,6 +3555,34 @@ public interface UnityPackage extends EPackage
      * @generated
      */
     EReference PARAM__TYPE = eINSTANCE.getParam_Type();
+
+    /**
+     * The meta object literal for the '{@link cs.queensu.ca.unity.impl.RefImpl <em>Ref</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see cs.queensu.ca.unity.impl.RefImpl
+     * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getRef()
+     * @generated
+     */
+    EClass REF = eINSTANCE.getRef();
+
+    /**
+     * The meta object literal for the '{@link cs.queensu.ca.unity.impl.SingleRefImpl <em>Single Ref</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see cs.queensu.ca.unity.impl.SingleRefImpl
+     * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getSingleRef()
+     * @generated
+     */
+    EClass SINGLE_REF = eINSTANCE.getSingleRef();
+
+    /**
+     * The meta object literal for the '<em><b>Single Ref</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SINGLE_REF__SINGLE_REF = eINSTANCE.getSingleRef_SingleRef();
 
     /**
      * The meta object literal for the '{@link cs.queensu.ca.unity.impl.PropertyImpl <em>Property</em>}' class.
@@ -3682,12 +3759,12 @@ public interface UnityPackage extends EPackage
     EReference UNITY_OBJECT__TYPE = eINSTANCE.getUnityObject_Type();
 
     /**
-     * The meta object literal for the '<em><b>Configuration</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Configurations</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference UNITY_OBJECT__CONFIGURATION = eINSTANCE.getUnityObject_Configuration();
+    EReference UNITY_OBJECT__CONFIGURATIONS = eINSTANCE.getUnityObject_Configurations();
 
     /**
      * The meta object literal for the '<em><b>New Actions</b></em>' containment reference list feature.
@@ -3750,12 +3827,30 @@ public interface UnityPackage extends EPackage
     EClass CONFIG_ASSIGNMENT = eINSTANCE.getConfigAssignment();
 
     /**
+     * The meta object literal for the '<em><b>Configs</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONFIG_ASSIGNMENT__CONFIGS = eINSTANCE.getConfigAssignment_Configs();
+
+    /**
+     * The meta object literal for the '{@link cs.queensu.ca.unity.impl.ConfigImpl <em>Config</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see cs.queensu.ca.unity.impl.ConfigImpl
+     * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getConfig()
+     * @generated
+     */
+    EClass CONFIG = eINSTANCE.getConfig();
+
+    /**
      * The meta object literal for the '<em><b>Property Name</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONFIG_ASSIGNMENT__PROPERTY_NAME = eINSTANCE.getConfigAssignment_PropertyName();
+    EReference CONFIG__PROPERTY_NAME = eINSTANCE.getConfig_PropertyName();
 
     /**
      * The meta object literal for the '<em><b>Property Value</b></em>' containment reference feature.
@@ -3763,35 +3858,7 @@ public interface UnityPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONFIG_ASSIGNMENT__PROPERTY_VALUE = eINSTANCE.getConfigAssignment_PropertyValue();
-
-    /**
-     * The meta object literal for the '{@link cs.queensu.ca.unity.impl.CompositeRefImpl <em>Composite Ref</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see cs.queensu.ca.unity.impl.CompositeRefImpl
-     * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getCompositeRef()
-     * @generated
-     */
-    EClass COMPOSITE_REF = eINSTANCE.getCompositeRef();
-
-    /**
-     * The meta object literal for the '{@link cs.queensu.ca.unity.impl.SingleRefImpl <em>Single Ref</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see cs.queensu.ca.unity.impl.SingleRefImpl
-     * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getSingleRef()
-     * @generated
-     */
-    EClass SINGLE_REF = eINSTANCE.getSingleRef();
-
-    /**
-     * The meta object literal for the '<em><b>Single Ref</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SINGLE_REF__SINGLE_REF = eINSTANCE.getSingleRef_SingleRef();
+    EReference CONFIG__PROPERTY_VALUE = eINSTANCE.getConfig_PropertyValue();
 
     /**
      * The meta object literal for the '{@link cs.queensu.ca.unity.impl.ENVImpl <em>ENV</em>}' class.

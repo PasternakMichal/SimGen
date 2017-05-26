@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class SingleRefImpl extends CompositeRefImpl implements SingleRef
+public class SingleRefImpl extends RefImpl implements SingleRef
 {
   /**
    * The cached value of the '{@link #getSingleRef() <em>Single Ref</em>}' reference.

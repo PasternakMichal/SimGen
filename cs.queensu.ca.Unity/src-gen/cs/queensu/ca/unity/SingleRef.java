@@ -20,7 +20,7 @@ package cs.queensu.ca.unity;
  * @model
  * @generated
  */
-public interface SingleRef extends CompositeRef
+public interface SingleRef extends Ref
 {
   /**
    * Returns the value of the '<em><b>Single Ref</b></em>' reference.

@@ -25,7 +25,7 @@ MetaObject:
 	;
 	
 Action: 
-		'Action' name=ID  '(' payload+=Payload*  ')' ('return' '(' returnPayload+=Payload*  ')')		
+		'Action' name=ID  '(' payload=Payload?  ')' ('return' '(' returnPayload=Payload?  ')')		
 			 '{'
 				 expressions+=Expression*
 			  '}'
@@ -38,7 +38,15 @@ Payload:
 Param: 
 	 (name=ID ':' type=VarType )
 	;
-			   			
+
+DotExpression returns Ref:
+    	SingleRef ({DotExpression.head=current}  "." tail=([Property]))*
+	;
+
+SingleRef returns SingleRef:
+    	{SingleRef} SingleRef=[Property]
+    ;
+    			   			
 Property:
 		Attribute|Instance|Param
 	;
@@ -76,35 +84,33 @@ RealLiteral:
 UnityObject:
 	 'Object' name=ID ':' type=[MetaObject] 
 	    	'{'
-	    	    'config' 
-	    	    	'{' 
-	    	    		configuration+=ConfigAssignment*
-	    	    	'}'
-	    	     (
-	    	     	 newActions+=Action
+	    	        (configurations+=ConfigAssignment
+	    	        | newActions+=Action
 	    	     	|overrideActions+=OverrideAction 
 	    	     	|properties+=Attribute
-	    	     )*
+	    	     	)*
 	   		 '}'
  	;
+
+
 
 OverrideAction:
 	'override' actionName=[Action] '{'
 									 expressions+=Expression*	
 								   '}'
 	;
+ConfigAssignment :
+	'config' '{' 
+	   {ConfigAssignment}
+	 	configs+=Config+
+	'}'
+;
 
-ConfigAssignment:
+Config:
 		propertyName=[Attribute] '=' propertyValue=Expression
 	;
 
-DotExpression returns CompositeRef:
-    	PartRef ({DotExpression.head=current}  "." tail=([Property]))*
-	;
 
-PartRef returns SingleRef:
-    	{SingleRef} SingleRef=[Property]
-    ;
 
 /*=====================================================================================================
  * ENV 

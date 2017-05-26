@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link cs.queensu.ca.unity.UnityObject#getName <em>Name</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.UnityObject#getType <em>Type</em>}</li>
- *   <li>{@link cs.queensu.ca.unity.UnityObject#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.UnityObject#getConfigurations <em>Configurations</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.UnityObject#getNewActions <em>New Actions</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.UnityObject#getOverrideActions <em>Override Actions</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.UnityObject#getProperties <em>Properties</em>}</li>
@@ -83,20 +83,20 @@ public interface UnityObject extends EObject
   void setType(MetaObject value);
 
   /**
-   * Returns the value of the '<em><b>Configuration</b></em>' containment reference list.
+   * Returns the value of the '<em><b>Configurations</b></em>' containment reference list.
    * The list contents are of type {@link cs.queensu.ca.unity.ConfigAssignment}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Configuration</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Configurations</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Configuration</em>' containment reference list.
-   * @see cs.queensu.ca.unity.UnityPackage#getUnityObject_Configuration()
+   * @return the value of the '<em>Configurations</em>' containment reference list.
+   * @see cs.queensu.ca.unity.UnityPackage#getUnityObject_Configurations()
    * @model containment="true"
    * @generated
    */
-  EList<ConfigAssignment> getConfiguration();
+  EList<ConfigAssignment> getConfigurations();
 
   /**
    * Returns the value of the '<em><b>New Actions</b></em>' containment reference list.

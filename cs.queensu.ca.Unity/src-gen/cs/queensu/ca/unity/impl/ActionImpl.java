@@ -63,24 +63,24 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getPayload() <em>Payload</em>}' containment reference list.
+   * The cached value of the '{@link #getPayload() <em>Payload</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getPayload()
    * @generated
    * @ordered
    */
-  protected EList<Payload> payload;
+  protected Payload payload;
 
   /**
-   * The cached value of the '{@link #getReturnPayload() <em>Return Payload</em>}' containment reference list.
+   * The cached value of the '{@link #getReturnPayload() <em>Return Payload</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getReturnPayload()
    * @generated
    * @ordered
    */
-  protected EList<Payload> returnPayload;
+  protected Payload returnPayload;
 
   /**
    * The cached value of the '{@link #getExpressions() <em>Expressions</em>}' containment reference list.
@@ -141,12 +141,8 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Payload> getPayload()
+  public Payload getPayload()
   {
-    if (payload == null)
-    {
-      payload = new EObjectContainmentEList<Payload>(Payload.class, this, UnityPackage.ACTION__PAYLOAD);
-    }
     return payload;
   }
 
@@ -155,13 +151,85 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Payload> getReturnPayload()
+  public NotificationChain basicSetPayload(Payload newPayload, NotificationChain msgs)
   {
-    if (returnPayload == null)
+    Payload oldPayload = payload;
+    payload = newPayload;
+    if (eNotificationRequired())
     {
-      returnPayload = new EObjectContainmentEList<Payload>(Payload.class, this, UnityPackage.ACTION__RETURN_PAYLOAD);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UnityPackage.ACTION__PAYLOAD, oldPayload, newPayload);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPayload(Payload newPayload)
+  {
+    if (newPayload != payload)
+    {
+      NotificationChain msgs = null;
+      if (payload != null)
+        msgs = ((InternalEObject)payload).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UnityPackage.ACTION__PAYLOAD, null, msgs);
+      if (newPayload != null)
+        msgs = ((InternalEObject)newPayload).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UnityPackage.ACTION__PAYLOAD, null, msgs);
+      msgs = basicSetPayload(newPayload, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.ACTION__PAYLOAD, newPayload, newPayload));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Payload getReturnPayload()
+  {
     return returnPayload;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetReturnPayload(Payload newReturnPayload, NotificationChain msgs)
+  {
+    Payload oldReturnPayload = returnPayload;
+    returnPayload = newReturnPayload;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UnityPackage.ACTION__RETURN_PAYLOAD, oldReturnPayload, newReturnPayload);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setReturnPayload(Payload newReturnPayload)
+  {
+    if (newReturnPayload != returnPayload)
+    {
+      NotificationChain msgs = null;
+      if (returnPayload != null)
+        msgs = ((InternalEObject)returnPayload).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UnityPackage.ACTION__RETURN_PAYLOAD, null, msgs);
+      if (newReturnPayload != null)
+        msgs = ((InternalEObject)newReturnPayload).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UnityPackage.ACTION__RETURN_PAYLOAD, null, msgs);
+      msgs = basicSetReturnPayload(newReturnPayload, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.ACTION__RETURN_PAYLOAD, newReturnPayload, newReturnPayload));
   }
 
   /**
@@ -189,9 +257,9 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
     switch (featureID)
     {
       case UnityPackage.ACTION__PAYLOAD:
-        return ((InternalEList<?>)getPayload()).basicRemove(otherEnd, msgs);
+        return basicSetPayload(null, msgs);
       case UnityPackage.ACTION__RETURN_PAYLOAD:
-        return ((InternalEList<?>)getReturnPayload()).basicRemove(otherEnd, msgs);
+        return basicSetReturnPayload(null, msgs);
       case UnityPackage.ACTION__EXPRESSIONS:
         return ((InternalEList<?>)getExpressions()).basicRemove(otherEnd, msgs);
     }
@@ -235,12 +303,10 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
         setName((String)newValue);
         return;
       case UnityPackage.ACTION__PAYLOAD:
-        getPayload().clear();
-        getPayload().addAll((Collection<? extends Payload>)newValue);
+        setPayload((Payload)newValue);
         return;
       case UnityPackage.ACTION__RETURN_PAYLOAD:
-        getReturnPayload().clear();
-        getReturnPayload().addAll((Collection<? extends Payload>)newValue);
+        setReturnPayload((Payload)newValue);
         return;
       case UnityPackage.ACTION__EXPRESSIONS:
         getExpressions().clear();
@@ -264,10 +330,10 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
         setName(NAME_EDEFAULT);
         return;
       case UnityPackage.ACTION__PAYLOAD:
-        getPayload().clear();
+        setPayload((Payload)null);
         return;
       case UnityPackage.ACTION__RETURN_PAYLOAD:
-        getReturnPayload().clear();
+        setReturnPayload((Payload)null);
         return;
       case UnityPackage.ACTION__EXPRESSIONS:
         getExpressions().clear();
@@ -289,9 +355,9 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
       case UnityPackage.ACTION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case UnityPackage.ACTION__PAYLOAD:
-        return payload != null && !payload.isEmpty();
+        return payload != null;
       case UnityPackage.ACTION__RETURN_PAYLOAD:
-        return returnPayload != null && !returnPayload.isEmpty();
+        return returnPayload != null;
       case UnityPackage.ACTION__EXPRESSIONS:
         return expressions != null && !expressions.isEmpty();
     }

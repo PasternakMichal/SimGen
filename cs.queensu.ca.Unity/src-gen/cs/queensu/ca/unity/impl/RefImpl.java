@@ -3,7 +3,7 @@
  */
 package cs.queensu.ca.unity.impl;
 
-import cs.queensu.ca.unity.CompositeRef;
+import cs.queensu.ca.unity.Ref;
 import cs.queensu.ca.unity.UnityPackage;
 
 import org.eclipse.emf.ecore.EClass;
@@ -12,19 +12,19 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Composite Ref</b></em>'.
+ * An implementation of the model object '<em><b>Ref</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class CompositeRefImpl extends MinimalEObjectImpl.Container implements CompositeRef
+public class RefImpl extends MinimalEObjectImpl.Container implements Ref
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected CompositeRefImpl()
+  protected RefImpl()
   {
     super();
   }
@@ -37,7 +37,7 @@ public class CompositeRefImpl extends MinimalEObjectImpl.Container implements Co
   @Override
   protected EClass eStaticClass()
   {
-    return UnityPackage.Literals.COMPOSITE_REF;
+    return UnityPackage.Literals.REF;
   }
 
-} //CompositeRefImpl
+} //RefImpl

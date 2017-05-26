@@ -101,6 +101,16 @@ public class UnityAdapterFactory extends AdapterFactoryImpl
         return createParamAdapter();
       }
       @Override
+      public Adapter caseRef(Ref object)
+      {
+        return createRefAdapter();
+      }
+      @Override
+      public Adapter caseSingleRef(SingleRef object)
+      {
+        return createSingleRefAdapter();
+      }
+      @Override
       public Adapter caseProperty(Property object)
       {
         return createPropertyAdapter();
@@ -146,14 +156,9 @@ public class UnityAdapterFactory extends AdapterFactoryImpl
         return createConfigAssignmentAdapter();
       }
       @Override
-      public Adapter caseCompositeRef(CompositeRef object)
+      public Adapter caseConfig(Config object)
       {
-        return createCompositeRefAdapter();
-      }
-      @Override
-      public Adapter caseSingleRef(SingleRef object)
-      {
-        return createSingleRefAdapter();
+        return createConfigAdapter();
       }
       @Override
       public Adapter caseENV(ENV object)
@@ -418,6 +423,36 @@ public class UnityAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link cs.queensu.ca.unity.Ref <em>Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see cs.queensu.ca.unity.Ref
+   * @generated
+   */
+  public Adapter createRefAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link cs.queensu.ca.unity.SingleRef <em>Single Ref</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see cs.queensu.ca.unity.SingleRef
+   * @generated
+   */
+  public Adapter createSingleRefAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link cs.queensu.ca.unity.Property <em>Property</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -553,31 +588,16 @@ public class UnityAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link cs.queensu.ca.unity.CompositeRef <em>Composite Ref</em>}'.
+   * Creates a new adapter for an object of class '{@link cs.queensu.ca.unity.Config <em>Config</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see cs.queensu.ca.unity.CompositeRef
+   * @see cs.queensu.ca.unity.Config
    * @generated
    */
-  public Adapter createCompositeRefAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link cs.queensu.ca.unity.SingleRef <em>Single Ref</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see cs.queensu.ca.unity.SingleRef
-   * @generated
-   */
-  public Adapter createSingleRefAdapter()
+  public Adapter createConfigAdapter()
   {
     return null;
   }

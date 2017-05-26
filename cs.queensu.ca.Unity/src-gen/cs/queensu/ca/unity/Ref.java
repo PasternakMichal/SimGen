@@ -7,14 +7,14 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Composite Ref</b></em>'.
+ * A representation of the model object '<em><b>Ref</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see cs.queensu.ca.unity.UnityPackage#getCompositeRef()
+ * @see cs.queensu.ca.unity.UnityPackage#getRef()
  * @model
  * @generated
  */
-public interface CompositeRef extends EObject
+public interface Ref extends EObject
 {
-} // CompositeRef
+} // Ref

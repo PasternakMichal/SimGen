@@ -15,10 +15,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Action">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="payload" upperBound="-1"
-        eType="#//Payload" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="returnPayload" upperBound="-1"
-        eType="#//Payload" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="payload" eType="#//Payload"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="returnPayload" eType="#//Payload"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
@@ -29,6 +29,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Param" eSuperTypes="#//Property">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//VarType"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ref"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleRef" eSuperTypes="#//Ref">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="SingleRef" eType="#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Property">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -60,7 +64,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="UnityObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//MetaObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configurations" upperBound="-1"
         eType="#//ConfigAssignment" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="newActions" upperBound="-1"
         eType="#//Action" containment="true"/>
@@ -75,13 +79,13 @@
         eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConfigAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configs" upperBound="-1"
+        eType="#//Config" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Config">
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyName" eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyValue" eType="#//Expression"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompositeRef"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SingleRef" eSuperTypes="#//CompositeRef">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="SingleRef" eType="#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ENV">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -151,12 +155,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Identifier" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Refrence" eType="#//CompositeRef"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Refrence" eType="#//Ref"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DotExpression" eSuperTypes="#//CompositeRef">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="head" eType="#//CompositeRef"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DotExpression" eSuperTypes="#//Ref">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="head" eType="#//Ref" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tail" eType="#//Property"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Assign" eSuperTypes="#//Expression">

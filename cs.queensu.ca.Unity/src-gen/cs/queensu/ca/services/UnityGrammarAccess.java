@@ -156,13 +156,13 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Action:
-		//	'Action' name=ID '(' payload+=Payload* ')' ('return' '(' returnPayload+=Payload* ')')
+		//	'Action' name=ID '(' payload=Payload? ')' ('return' '(' returnPayload=Payload? ')')
 		//	'{'
 		//	expressions+=Expression*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Action' name=ID '(' payload+=Payload* ')' ('return' '(' returnPayload+=Payload* ')') '{' expressions+=Expression* '}'
+		//'Action' name=ID '(' payload=Payload? ')' ('return' '(' returnPayload=Payload? ')') '{' expressions+=Expression* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Action'
@@ -177,7 +177,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 		
-		//payload+=Payload*
+		//payload=Payload?
 		public Assignment getPayloadAssignment_3() { return cPayloadAssignment_3; }
 		
 		//Payload
@@ -186,7 +186,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 		
-		//'return' '(' returnPayload+=Payload* ')'
+		//'return' '(' returnPayload=Payload? ')'
 		public Group getGroup_5() { return cGroup_5; }
 		
 		//'return'
@@ -195,7 +195,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_5_1() { return cLeftParenthesisKeyword_5_1; }
 		
-		//returnPayload+=Payload*
+		//returnPayload=Payload?
 		public Assignment getReturnPayloadAssignment_5_2() { return cReturnPayloadAssignment_5_2; }
 		
 		//Payload
@@ -281,6 +281,72 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//VarType
 		public RuleCall getTypeVarTypeParserRuleCall_2_0() { return cTypeVarTypeParserRuleCall_2_0; }
+	}
+	public class DotExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.DotExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cSingleRefParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Action cDotExpressionHeadAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Keyword cFullStopKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cTailAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final CrossReference cTailPropertyCrossReference_1_2_0 = (CrossReference)cTailAssignment_1_2.eContents().get(0);
+		private final RuleCall cTailPropertyIDTerminalRuleCall_1_2_0_1 = (RuleCall)cTailPropertyCrossReference_1_2_0.eContents().get(1);
+		
+		//DotExpression Ref:
+		//	SingleRef ({DotExpression.head=current} "." tail=[Property])*;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//SingleRef ({DotExpression.head=current} "." tail=[Property])*
+		public Group getGroup() { return cGroup; }
+		
+		//SingleRef
+		public RuleCall getSingleRefParserRuleCall_0() { return cSingleRefParserRuleCall_0; }
+		
+		//({DotExpression.head=current} "." tail=[Property])*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//{DotExpression.head=current}
+		public Action getDotExpressionHeadAction_1_0() { return cDotExpressionHeadAction_1_0; }
+		
+		//"."
+		public Keyword getFullStopKeyword_1_1() { return cFullStopKeyword_1_1; }
+		
+		//tail=[Property]
+		public Assignment getTailAssignment_1_2() { return cTailAssignment_1_2; }
+		
+		//[Property]
+		public CrossReference getTailPropertyCrossReference_1_2_0() { return cTailPropertyCrossReference_1_2_0; }
+		
+		//ID
+		public RuleCall getTailPropertyIDTerminalRuleCall_1_2_0_1() { return cTailPropertyIDTerminalRuleCall_1_2_0_1; }
+	}
+	public class SingleRefElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.SingleRef");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cSingleRefAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cSingleRefAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cSingleRefPropertyCrossReference_1_0 = (CrossReference)cSingleRefAssignment_1.eContents().get(0);
+		private final RuleCall cSingleRefPropertyIDTerminalRuleCall_1_0_1 = (RuleCall)cSingleRefPropertyCrossReference_1_0.eContents().get(1);
+		
+		//SingleRef:
+		//	{SingleRef} SingleRef=[Property];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{SingleRef} SingleRef=[Property]
+		public Group getGroup() { return cGroup; }
+		
+		//{SingleRef}
+		public Action getSingleRefAction_0() { return cSingleRefAction_0; }
+		
+		//SingleRef=[Property]
+		public Assignment getSingleRefAssignment_1() { return cSingleRefAssignment_1; }
+		
+		//[Property]
+		public CrossReference getSingleRefPropertyCrossReference_1_0() { return cSingleRefPropertyCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getSingleRefPropertyIDTerminalRuleCall_1_0_1() { return cSingleRefPropertyIDTerminalRuleCall_1_0_1; }
 	}
 	public class PropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.Property");
@@ -511,19 +577,16 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cTypeMetaObjectCrossReference_3_0 = (CrossReference)cTypeAssignment_3.eContents().get(0);
 		private final RuleCall cTypeMetaObjectIDTerminalRuleCall_3_0_1 = (RuleCall)cTypeMetaObjectCrossReference_3_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Keyword cConfigKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cConfigurationAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cConfigurationConfigAssignmentParserRuleCall_7_0 = (RuleCall)cConfigurationAssignment_7.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Alternatives cAlternatives_9 = (Alternatives)cGroup.eContents().get(9);
-		private final Assignment cNewActionsAssignment_9_0 = (Assignment)cAlternatives_9.eContents().get(0);
-		private final RuleCall cNewActionsActionParserRuleCall_9_0_0 = (RuleCall)cNewActionsAssignment_9_0.eContents().get(0);
-		private final Assignment cOverrideActionsAssignment_9_1 = (Assignment)cAlternatives_9.eContents().get(1);
-		private final RuleCall cOverrideActionsOverrideActionParserRuleCall_9_1_0 = (RuleCall)cOverrideActionsAssignment_9_1.eContents().get(0);
-		private final Assignment cPropertiesAssignment_9_2 = (Assignment)cAlternatives_9.eContents().get(2);
-		private final RuleCall cPropertiesAttributeParserRuleCall_9_2_0 = (RuleCall)cPropertiesAssignment_9_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
+		private final Assignment cConfigurationsAssignment_5_0 = (Assignment)cAlternatives_5.eContents().get(0);
+		private final RuleCall cConfigurationsConfigAssignmentParserRuleCall_5_0_0 = (RuleCall)cConfigurationsAssignment_5_0.eContents().get(0);
+		private final Assignment cNewActionsAssignment_5_1 = (Assignment)cAlternatives_5.eContents().get(1);
+		private final RuleCall cNewActionsActionParserRuleCall_5_1_0 = (RuleCall)cNewActionsAssignment_5_1.eContents().get(0);
+		private final Assignment cOverrideActionsAssignment_5_2 = (Assignment)cAlternatives_5.eContents().get(2);
+		private final RuleCall cOverrideActionsOverrideActionParserRuleCall_5_2_0 = (RuleCall)cOverrideActionsAssignment_5_2.eContents().get(0);
+		private final Assignment cPropertiesAssignment_5_3 = (Assignment)cAlternatives_5.eContents().get(3);
+		private final RuleCall cPropertiesAttributeParserRuleCall_5_3_0 = (RuleCall)cPropertiesAssignment_5_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		///*=====================================================================================================
 		// * Object is an instance of MetaObject, which includes configuration, implementing 
@@ -531,17 +594,14 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//  * 
 		// =====================================================================================================*/ UnityObject:
 		//	'Object' name=ID ':' type=[MetaObject]
-		//	'{'
-		//	'config'
-		//	'{'
-		//	configuration+=ConfigAssignment*
-		//	'}' (newActions+=Action
+		//	'{' (configurations+=ConfigAssignment
+		//	| newActions+=Action
 		//	| overrideActions+=OverrideAction
 		//	| properties+=Attribute)*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Object' name=ID ':' type=[MetaObject] '{' 'config' '{' configuration+=ConfigAssignment* '}' (newActions+=Action |
+		//'Object' name=ID ':' type=[MetaObject] '{' (configurations+=ConfigAssignment | newActions+=Action |
 		//overrideActions+=OverrideAction | properties+=Attribute)* '}'
 		public Group getGroup() { return cGroup; }
 		
@@ -569,44 +629,35 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 		
-		//'config'
-		public Keyword getConfigKeyword_5() { return cConfigKeyword_5; }
+		//(configurations+=ConfigAssignment | newActions+=Action | overrideActions+=OverrideAction | properties+=Attribute)*
+		public Alternatives getAlternatives_5() { return cAlternatives_5; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
-		
-		//configuration+=ConfigAssignment*
-		public Assignment getConfigurationAssignment_7() { return cConfigurationAssignment_7; }
+		//configurations+=ConfigAssignment
+		public Assignment getConfigurationsAssignment_5_0() { return cConfigurationsAssignment_5_0; }
 		
 		//ConfigAssignment
-		public RuleCall getConfigurationConfigAssignmentParserRuleCall_7_0() { return cConfigurationConfigAssignmentParserRuleCall_7_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
-		
-		//(newActions+=Action | overrideActions+=OverrideAction | properties+=Attribute)*
-		public Alternatives getAlternatives_9() { return cAlternatives_9; }
+		public RuleCall getConfigurationsConfigAssignmentParserRuleCall_5_0_0() { return cConfigurationsConfigAssignmentParserRuleCall_5_0_0; }
 		
 		//newActions+=Action
-		public Assignment getNewActionsAssignment_9_0() { return cNewActionsAssignment_9_0; }
+		public Assignment getNewActionsAssignment_5_1() { return cNewActionsAssignment_5_1; }
 		
 		//Action
-		public RuleCall getNewActionsActionParserRuleCall_9_0_0() { return cNewActionsActionParserRuleCall_9_0_0; }
+		public RuleCall getNewActionsActionParserRuleCall_5_1_0() { return cNewActionsActionParserRuleCall_5_1_0; }
 		
 		//overrideActions+=OverrideAction
-		public Assignment getOverrideActionsAssignment_9_1() { return cOverrideActionsAssignment_9_1; }
+		public Assignment getOverrideActionsAssignment_5_2() { return cOverrideActionsAssignment_5_2; }
 		
 		//OverrideAction
-		public RuleCall getOverrideActionsOverrideActionParserRuleCall_9_1_0() { return cOverrideActionsOverrideActionParserRuleCall_9_1_0; }
+		public RuleCall getOverrideActionsOverrideActionParserRuleCall_5_2_0() { return cOverrideActionsOverrideActionParserRuleCall_5_2_0; }
 		
 		//properties+=Attribute
-		public Assignment getPropertiesAssignment_9_2() { return cPropertiesAssignment_9_2; }
+		public Assignment getPropertiesAssignment_5_3() { return cPropertiesAssignment_5_3; }
 		
 		//Attribute
-		public RuleCall getPropertiesAttributeParserRuleCall_9_2_0() { return cPropertiesAttributeParserRuleCall_9_2_0; }
+		public RuleCall getPropertiesAttributeParserRuleCall_5_3_0() { return cPropertiesAttributeParserRuleCall_5_3_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
+		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
 	}
 	public class OverrideActionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.OverrideAction");
@@ -656,6 +707,42 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	public class ConfigAssignmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.ConfigAssignment");
 		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cConfigKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Action cConfigAssignmentAction_2 = (Action)cGroup.eContents().get(2);
+		private final Assignment cConfigsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cConfigsConfigParserRuleCall_3_0 = (RuleCall)cConfigsAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//ConfigAssignment:
+		//	'config' '{' {ConfigAssignment} configs+=Config+
+		//	'}';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'config' '{' {ConfigAssignment} configs+=Config+ '}'
+		public Group getGroup() { return cGroup; }
+		
+		//'config'
+		public Keyword getConfigKeyword_0() { return cConfigKeyword_0; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		
+		//{ConfigAssignment}
+		public Action getConfigAssignmentAction_2() { return cConfigAssignmentAction_2; }
+		
+		//configs+=Config+
+		public Assignment getConfigsAssignment_3() { return cConfigsAssignment_3; }
+		
+		//Config
+		public RuleCall getConfigsConfigParserRuleCall_3_0() { return cConfigsConfigParserRuleCall_3_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+	}
+	public class ConfigElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.Config");
+		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cPropertyNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cPropertyNameAttributeCrossReference_0_0 = (CrossReference)cPropertyNameAssignment_0.eContents().get(0);
 		private final RuleCall cPropertyNameAttributeIDTerminalRuleCall_0_0_1 = (RuleCall)cPropertyNameAttributeCrossReference_0_0.eContents().get(1);
@@ -663,7 +750,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cPropertyValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cPropertyValueExpressionParserRuleCall_2_0 = (RuleCall)cPropertyValueAssignment_2.eContents().get(0);
 		
-		//ConfigAssignment:
+		//Config:
 		//	propertyName=[Attribute] '=' propertyValue=Expression;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -687,72 +774,6 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//Expression
 		public RuleCall getPropertyValueExpressionParserRuleCall_2_0() { return cPropertyValueExpressionParserRuleCall_2_0; }
-	}
-	public class DotExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.DotExpression");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cPartRefParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cDotExpressionHeadAction_1_0 = (Action)cGroup_1.eContents().get(0);
-		private final Keyword cFullStopKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cTailAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final CrossReference cTailPropertyCrossReference_1_2_0 = (CrossReference)cTailAssignment_1_2.eContents().get(0);
-		private final RuleCall cTailPropertyIDTerminalRuleCall_1_2_0_1 = (RuleCall)cTailPropertyCrossReference_1_2_0.eContents().get(1);
-		
-		//DotExpression CompositeRef:
-		//	PartRef ({DotExpression.head=current} "." tail=[Property])*;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//PartRef ({DotExpression.head=current} "." tail=[Property])*
-		public Group getGroup() { return cGroup; }
-		
-		//PartRef
-		public RuleCall getPartRefParserRuleCall_0() { return cPartRefParserRuleCall_0; }
-		
-		//({DotExpression.head=current} "." tail=[Property])*
-		public Group getGroup_1() { return cGroup_1; }
-		
-		//{DotExpression.head=current}
-		public Action getDotExpressionHeadAction_1_0() { return cDotExpressionHeadAction_1_0; }
-		
-		//"."
-		public Keyword getFullStopKeyword_1_1() { return cFullStopKeyword_1_1; }
-		
-		//tail=[Property]
-		public Assignment getTailAssignment_1_2() { return cTailAssignment_1_2; }
-		
-		//[Property]
-		public CrossReference getTailPropertyCrossReference_1_2_0() { return cTailPropertyCrossReference_1_2_0; }
-		
-		//ID
-		public RuleCall getTailPropertyIDTerminalRuleCall_1_2_0_1() { return cTailPropertyIDTerminalRuleCall_1_2_0_1; }
-	}
-	public class PartRefElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.PartRef");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cSingleRefAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cSingleRefAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cSingleRefPropertyCrossReference_1_0 = (CrossReference)cSingleRefAssignment_1.eContents().get(0);
-		private final RuleCall cSingleRefPropertyIDTerminalRuleCall_1_0_1 = (RuleCall)cSingleRefPropertyCrossReference_1_0.eContents().get(1);
-		
-		//PartRef SingleRef:
-		//	{SingleRef} SingleRef=[Property];
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{SingleRef} SingleRef=[Property]
-		public Group getGroup() { return cGroup; }
-		
-		//{SingleRef}
-		public Action getSingleRefAction_0() { return cSingleRefAction_0; }
-		
-		//SingleRef=[Property]
-		public Assignment getSingleRefAssignment_1() { return cSingleRefAssignment_1; }
-		
-		//[Property]
-		public CrossReference getSingleRefPropertyCrossReference_1_0() { return cSingleRefPropertyCrossReference_1_0; }
-		
-		//ID
-		public RuleCall getSingleRefPropertyIDTerminalRuleCall_1_0_1() { return cSingleRefPropertyIDTerminalRuleCall_1_0_1; }
 	}
 	public class ENVElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.ENV");
@@ -1882,6 +1903,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	private final ActionElements pAction;
 	private final PayloadElements pPayload;
 	private final ParamElements pParam;
+	private final DotExpressionElements pDotExpression;
+	private final SingleRefElements pSingleRef;
 	private final PropertyElements pProperty;
 	private final AttributeElements pAttribute;
 	private final VarTypeElements pVarType;
@@ -1891,8 +1914,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	private final UnityObjectElements pUnityObject;
 	private final OverrideActionElements pOverrideAction;
 	private final ConfigAssignmentElements pConfigAssignment;
-	private final DotExpressionElements pDotExpression;
-	private final PartRefElements pPartRef;
+	private final ConfigElements pConfig;
 	private final ENVElements pENV;
 	private final InstanceElements pInstance;
 	private final ChannelElements pChannel;
@@ -1937,6 +1959,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAction = new ActionElements();
 		this.pPayload = new PayloadElements();
 		this.pParam = new ParamElements();
+		this.pDotExpression = new DotExpressionElements();
+		this.pSingleRef = new SingleRefElements();
 		this.pProperty = new PropertyElements();
 		this.pAttribute = new AttributeElements();
 		this.pVarType = new VarTypeElements();
@@ -1946,8 +1970,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		this.pUnityObject = new UnityObjectElements();
 		this.pOverrideAction = new OverrideActionElements();
 		this.pConfigAssignment = new ConfigAssignmentElements();
-		this.pDotExpression = new DotExpressionElements();
-		this.pPartRef = new PartRefElements();
+		this.pConfig = new ConfigElements();
 		this.pENV = new ENVElements();
 		this.pInstance = new InstanceElements();
 		this.pChannel = new ChannelElements();
@@ -2035,7 +2058,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Action:
-	//	'Action' name=ID '(' payload+=Payload* ')' ('return' '(' returnPayload+=Payload* ')')
+	//	'Action' name=ID '(' payload=Payload? ')' ('return' '(' returnPayload=Payload? ')')
 	//	'{'
 	//	expressions+=Expression*
 	//	'}';
@@ -2065,6 +2088,26 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getParamRule() {
 		return getParamAccess().getRule();
+	}
+	
+	//DotExpression Ref:
+	//	SingleRef ({DotExpression.head=current} "." tail=[Property])*;
+	public DotExpressionElements getDotExpressionAccess() {
+		return pDotExpression;
+	}
+	
+	public ParserRule getDotExpressionRule() {
+		return getDotExpressionAccess().getRule();
+	}
+	
+	//SingleRef:
+	//	{SingleRef} SingleRef=[Property];
+	public SingleRefElements getSingleRefAccess() {
+		return pSingleRef;
+	}
+	
+	public ParserRule getSingleRefRule() {
+		return getSingleRefAccess().getRule();
 	}
 	
 	//Property:
@@ -2137,11 +2180,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	//  * 
 	// =====================================================================================================*/ UnityObject:
 	//	'Object' name=ID ':' type=[MetaObject]
-	//	'{'
-	//	'config'
-	//	'{'
-	//	configuration+=ConfigAssignment*
-	//	'}' (newActions+=Action
+	//	'{' (configurations+=ConfigAssignment
+	//	| newActions+=Action
 	//	| overrideActions+=OverrideAction
 	//	| properties+=Attribute)*
 	//	'}';
@@ -2166,7 +2206,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ConfigAssignment:
-	//	propertyName=[Attribute] '=' propertyValue=Expression;
+	//	'config' '{' {ConfigAssignment} configs+=Config+
+	//	'}';
 	public ConfigAssignmentElements getConfigAssignmentAccess() {
 		return pConfigAssignment;
 	}
@@ -2175,24 +2216,14 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		return getConfigAssignmentAccess().getRule();
 	}
 	
-	//DotExpression CompositeRef:
-	//	PartRef ({DotExpression.head=current} "." tail=[Property])*;
-	public DotExpressionElements getDotExpressionAccess() {
-		return pDotExpression;
+	//Config:
+	//	propertyName=[Attribute] '=' propertyValue=Expression;
+	public ConfigElements getConfigAccess() {
+		return pConfig;
 	}
 	
-	public ParserRule getDotExpressionRule() {
-		return getDotExpressionAccess().getRule();
-	}
-	
-	//PartRef SingleRef:
-	//	{SingleRef} SingleRef=[Property];
-	public PartRefElements getPartRefAccess() {
-		return pPartRef;
-	}
-	
-	public ParserRule getPartRefRule() {
-		return getPartRefAccess().getRule();
+	public ParserRule getConfigRule() {
+		return getConfigAccess().getRule();
 	}
 	
 	///*=====================================================================================================

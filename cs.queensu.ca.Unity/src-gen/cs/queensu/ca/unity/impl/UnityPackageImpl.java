@@ -624,19 +624,9 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getParam_Name()
-  {
-    return (EAttribute)paramEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getParam_Type()
   {
-    return (EReference)paramEClass.getEStructuralFeatures().get(1);
+    return (EReference)paramEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -654,6 +644,16 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getProperty_Name()
+  {
+    return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getAttribute()
   {
     return attributeEClass;
@@ -664,19 +664,9 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAttribute_Name()
-  {
-    return (EAttribute)attributeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getAttribute_PropertyType()
   {
-    return (EReference)attributeEClass.getEStructuralFeatures().get(1);
+    return (EReference)attributeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -686,7 +676,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    */
   public EReference getAttribute_Range()
   {
-    return (EReference)attributeEClass.getEStructuralFeatures().get(2);
+    return (EReference)attributeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1014,7 +1004,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getENV_Instances()
+  public EReference getENV_Properties()
   {
     return (EReference)envEClass.getEStructuralFeatures().get(3);
   }
@@ -1044,19 +1034,9 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getInstance_InstanceName()
-  {
-    return (EAttribute)instanceEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getInstance_InstanceType()
   {
-    return (EReference)instanceEClass.getEStructuralFeatures().get(1);
+    return (EReference)instanceEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1948,13 +1928,12 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     createEReference(payloadEClass, PAYLOAD__PARAMS);
 
     paramEClass = createEClass(PARAM);
-    createEAttribute(paramEClass, PARAM__NAME);
     createEReference(paramEClass, PARAM__TYPE);
 
     propertyEClass = createEClass(PROPERTY);
+    createEAttribute(propertyEClass, PROPERTY__NAME);
 
     attributeEClass = createEClass(ATTRIBUTE);
-    createEAttribute(attributeEClass, ATTRIBUTE__NAME);
     createEReference(attributeEClass, ATTRIBUTE__PROPERTY_TYPE);
     createEReference(attributeEClass, ATTRIBUTE__RANGE);
 
@@ -1999,11 +1978,10 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     createEAttribute(envEClass, ENV__NAME);
     createEReference(envEClass, ENV__CHANNELS);
     createEReference(envEClass, ENV__MAPS);
-    createEReference(envEClass, ENV__INSTANCES);
+    createEReference(envEClass, ENV__PROPERTIES);
     createEReference(envEClass, ENV__INIT_CODES);
 
     instanceEClass = createEClass(INSTANCE);
-    createEAttribute(instanceEClass, INSTANCE__INSTANCE_NAME);
     createEReference(instanceEClass, INSTANCE__INSTANCE_TYPE);
 
     channelEClass = createEClass(CHANNEL);
@@ -2199,13 +2177,12 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     initEReference(getPayload_Params(), this.getParam(), null, "params", null, 0, -1, Payload.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(paramEClass, Param.class, "Param", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getParam_Name(), ecorePackage.getEString(), "name", null, 0, 1, Param.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParam_Type(), this.getVarType(), null, "type", null, 0, 1, Param.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAttribute_PropertyType(), this.getVarType(), null, "propertyType", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAttribute_Range(), this.getRange(), null, "range", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2250,11 +2227,10 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     initEAttribute(getENV_Name(), ecorePackage.getEString(), "name", null, 0, 1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getENV_Channels(), this.getChannel(), null, "channels", null, 0, -1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getENV_Maps(), this.getMap(), null, "maps", null, 0, -1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getENV_Instances(), this.getInstance(), null, "instances", null, 0, -1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getENV_Properties(), this.getProperty(), null, "properties", null, 0, -1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getENV_InitCodes(), this.getInit(), null, "initCodes", null, 0, 1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(instanceEClass, Instance.class, "Instance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getInstance_InstanceName(), ecorePackage.getEString(), "instanceName", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstance_InstanceType(), this.getUnityObject(), null, "instanceType", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(channelEClass, Channel.class, "Channel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

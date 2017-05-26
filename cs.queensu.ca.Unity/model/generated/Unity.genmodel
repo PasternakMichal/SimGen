@@ -25,12 +25,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//Payload/params"/>
     </genClasses>
     <genClasses ecoreClass="Unity.ecore#//Param">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Unity.ecore#//Param/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//Param/type"/>
     </genClasses>
-    <genClasses ecoreClass="Unity.ecore#//Property"/>
+    <genClasses ecoreClass="Unity.ecore#//Property">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Unity.ecore#//Property/name"/>
+    </genClasses>
     <genClasses ecoreClass="Unity.ecore#//Attribute">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Unity.ecore#//Attribute/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//Attribute/propertyType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//Attribute/range"/>
     </genClasses>
@@ -74,11 +74,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Unity.ecore#//ENV/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//ENV/channels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//ENV/maps"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//ENV/instances"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//ENV/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//ENV/initCodes"/>
     </genClasses>
     <genClasses ecoreClass="Unity.ecore#//Instance">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Unity.ecore#//Instance/instanceName"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Unity.ecore#//Instance/instanceType"/>
     </genClasses>
     <genClasses ecoreClass="Unity.ecore#//Channel">

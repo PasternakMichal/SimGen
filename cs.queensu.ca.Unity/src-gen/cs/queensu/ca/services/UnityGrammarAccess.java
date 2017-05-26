@@ -79,14 +79,11 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		// =====================================================================================================*/ MetaObject:
 		//	'MetaObject' name=ID ':' kind=('car' | 'rover' | 'others')
 		//	'{' (properties+=Attribute
-		//	| actions+=Action
-		//	//|commands+=Command 
-		//)*
+		//	| actions+=Action)*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'MetaObject' name=ID ':' kind=('car' | 'rover' | 'others') '{' (properties+=Attribute | actions+=Action //|commands+=Command 
-		//)* '}'
+		//'MetaObject' name=ID ':' kind=('car' | 'rover' | 'others') '{' (properties+=Attribute | actions+=Action)* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'MetaObject'
@@ -119,11 +116,9 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
 		
-		//(properties+=Attribute | actions+=Action //|commands+=Command 
-		//)*
+		//(properties+=Attribute | actions+=Action)*
 		public Alternatives getAlternatives_5() { return cAlternatives_5; }
 		
-		//// ('property' (properties+=Property) (';' properties+=Property)* ';')
 		//properties+=Attribute
 		public Assignment getPropertiesAssignment_5_0() { return cPropertiesAssignment_5_0; }
 		
@@ -160,11 +155,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpressionsExpressionParserRuleCall_7_0 = (RuleCall)cExpressionsAssignment_7.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
-		///*Command:
-		//		'command' name=ID '(' 
-		//							 	payload=Payload 
-		//						   ')' (('return' returnParm=ID':' var+=VarType ';')|(';'))				
-		//	;*/ Action:
+		//Action:
 		//	'Action' name=ID '(' payload+=Payload* ')' ('return' '(' returnPayload+=Payload* ')')
 		//	'{'
 		//	expressions+=Expression*
@@ -235,31 +226,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cParamsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cParamsParamParserRuleCall_1_1_0 = (RuleCall)cParamsAssignment_1_1.eContents().get(0);
 		
-		///*Action:
-		//		'Action' name=ID  
-		//			'{'
-		//					(
-		//						(inputs+=Input ';')
-		//						|(outputs+=Output ';')
-		//						|(expressions+=Expression ';')
-		//					)*
-		//			'}'
-		//	;*/ /*Input: 
-		//		'input' ((name=ID ) | ( name=ID '(' 
-		//									payload=Payload?
-		//					   			')'))
-		//	;
-		//	
-		//Output:
-		//		'output' ((name=ID ) | ( name=ID '(' 
-		//									payload=Payload
-		//					   			')'))
-		//	;*/ //Payload:
-		////   		(parms+=ID ':' var+=VarType ) (','parms+=ID ':' var+=VarType )*
-		////    ;			
 		//Payload:
-		//	params+=Param (',' params+=Param)* // (',' name+=ID ':' type+=VarType )*
-		//;
+		//	params+=Param (',' params+=Param)*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//params+=Param (',' params+=Param)*
@@ -558,7 +526,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		
 		///*=====================================================================================================
-		// * Object can be considered as an instance of MetaObject, which includes configuration, implementing 
+		// * Object is an instance of MetaObject, which includes configuration, implementing 
 		//  actions and commands defined in MetaObject.
 		//  * 
 		// =====================================================================================================*/ UnityObject:
@@ -691,25 +659,15 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cPropertyNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cPropertyNameAttributeCrossReference_0_0 = (CrossReference)cPropertyNameAssignment_0.eContents().get(0);
 		private final RuleCall cPropertyNameAttributeIDTerminalRuleCall_0_0_1 = (RuleCall)cPropertyNameAttributeCrossReference_0_0.eContents().get(1);
-		private final Assignment cPropertyValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPropertyValueExpressionParserRuleCall_1_0 = (RuleCall)cPropertyValueAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cPropertyValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPropertyValueExpressionParserRuleCall_2_0 = (RuleCall)cPropertyValueAssignment_2.eContents().get(0);
 		
-		///*ObjectCommand:
-		//	  	 'command'	commands+=[Command|QualifiedName] 
-		//		   		'{'
-		//					expressions+=Expression
-		//				 '}'
-		//	;
-		//*/ /*ActionBody:
-		//		'Body' 'of' 'Action' actionName=[Action|QualifiedName] 
-		//				'{'
-		//					expressions+=Expression*
-		//				'}'
-		//	;*/ ConfigAssignment:
-		//	propertyName=[Attribute] propertyValue=Expression;
+		//ConfigAssignment:
+		//	propertyName=[Attribute] '=' propertyValue=Expression;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//propertyName=[Attribute] propertyValue=Expression
+		//propertyName=[Attribute] '=' propertyValue=Expression
 		public Group getGroup() { return cGroup; }
 		
 		//propertyName=[Attribute]
@@ -721,11 +679,14 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getPropertyNameAttributeIDTerminalRuleCall_0_0_1() { return cPropertyNameAttributeIDTerminalRuleCall_0_0_1; }
 		
+		//'='
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
+		
 		//propertyValue=Expression
-		public Assignment getPropertyValueAssignment_1() { return cPropertyValueAssignment_1; }
+		public Assignment getPropertyValueAssignment_2() { return cPropertyValueAssignment_2; }
 		
 		//Expression
-		public RuleCall getPropertyValueExpressionParserRuleCall_1_0() { return cPropertyValueExpressionParserRuleCall_1_0; }
+		public RuleCall getPropertyValueExpressionParserRuleCall_2_0() { return cPropertyValueExpressionParserRuleCall_2_0; }
 	}
 	public class DotExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.DotExpression");
@@ -805,8 +766,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cChannelsChannelParserRuleCall_3_0_0 = (RuleCall)cChannelsAssignment_3_0.eContents().get(0);
 		private final Assignment cMapsAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
 		private final RuleCall cMapsMapParserRuleCall_3_1_0 = (RuleCall)cMapsAssignment_3_1.eContents().get(0);
-		private final Assignment cInstancesAssignment_3_2 = (Assignment)cAlternatives_3.eContents().get(2);
-		private final RuleCall cInstancesInstanceParserRuleCall_3_2_0 = (RuleCall)cInstancesAssignment_3_2.eContents().get(0);
+		private final Assignment cPropertiesAssignment_3_2 = (Assignment)cAlternatives_3.eContents().get(2);
+		private final RuleCall cPropertiesPropertyParserRuleCall_3_2_0 = (RuleCall)cPropertiesAssignment_3_2.eContents().get(0);
 		private final Assignment cInitCodesAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cInitCodesInitParserRuleCall_4_0 = (RuleCall)cInitCodesAssignment_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
@@ -817,12 +778,14 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//	'Env' name=ID
 		//	'{' (channels+=Channel
 		//	| maps+=Map
-		//	| instances+=Instance)*
+		//	//|instances+=Instance
+		//	| properties+=Property)*
 		//	initCodes=Init?
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Env' name=ID '{' (channels+=Channel | maps+=Map | instances+=Instance)* initCodes=Init? '}'
+		//'Env' name=ID '{' (channels+=Channel | maps+=Map //|instances+=Instance
+		//| properties+=Property)* initCodes=Init? '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Env'
@@ -837,7 +800,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//(channels+=Channel | maps+=Map | instances+=Instance)*
+		//(channels+=Channel | maps+=Map //|instances+=Instance
+		//| properties+=Property)*
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
 		//channels+=Channel
@@ -852,11 +816,11 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//Map
 		public RuleCall getMapsMapParserRuleCall_3_1_0() { return cMapsMapParserRuleCall_3_1_0; }
 		
-		//instances+=Instance
-		public Assignment getInstancesAssignment_3_2() { return cInstancesAssignment_3_2; }
+		//properties+=Property
+		public Assignment getPropertiesAssignment_3_2() { return cPropertiesAssignment_3_2; }
 		
-		//Instance
-		public RuleCall getInstancesInstanceParserRuleCall_3_2_0() { return cInstancesInstanceParserRuleCall_3_2_0; }
+		//Property
+		public RuleCall getPropertiesPropertyParserRuleCall_3_2_0() { return cPropertiesPropertyParserRuleCall_3_2_0; }
 		
 		//initCodes=Init?
 		public Assignment getInitCodesAssignment_4() { return cInitCodesAssignment_4; }
@@ -871,28 +835,28 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.Instance");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cInstanceKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cInstanceNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cInstanceNameIDTerminalRuleCall_1_0 = (RuleCall)cInstanceNameAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cInstanceTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cInstanceTypeUnityObjectCrossReference_3_0 = (CrossReference)cInstanceTypeAssignment_3.eContents().get(0);
 		private final RuleCall cInstanceTypeUnityObjectIDTerminalRuleCall_3_0_1 = (RuleCall)cInstanceTypeUnityObjectCrossReference_3_0.eContents().get(1);
 		
 		//Instance:
-		//	'Instance' instanceName=ID ':' instanceType=[UnityObject];
+		//	'Instance' name=ID ':' instanceType=[UnityObject];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Instance' instanceName=ID ':' instanceType=[UnityObject]
+		//'Instance' name=ID ':' instanceType=[UnityObject]
 		public Group getGroup() { return cGroup; }
 		
 		//'Instance'
 		public Keyword getInstanceKeyword_0() { return cInstanceKeyword_0; }
 		
-		//instanceName=ID
-		public Assignment getInstanceNameAssignment_1() { return cInstanceNameAssignment_1; }
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
-		public RuleCall getInstanceNameIDTerminalRuleCall_1_0() { return cInstanceNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
 		//':'
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
@@ -2060,9 +2024,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	// =====================================================================================================*/ MetaObject:
 	//	'MetaObject' name=ID ':' kind=('car' | 'rover' | 'others')
 	//	'{' (properties+=Attribute
-	//	| actions+=Action
-	//	//|commands+=Command 
-	//)*
+	//	| actions+=Action)*
 	//	'}';
 	public MetaObjectElements getMetaObjectAccess() {
 		return pMetaObject;
@@ -2072,11 +2034,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		return getMetaObjectAccess().getRule();
 	}
 	
-	///*Command:
-	//		'command' name=ID '(' 
-	//							 	payload=Payload 
-	//						   ')' (('return' returnParm=ID':' var+=VarType ';')|(';'))				
-	//	;*/ Action:
+	//Action:
 	//	'Action' name=ID '(' payload+=Payload* ')' ('return' '(' returnPayload+=Payload* ')')
 	//	'{'
 	//	expressions+=Expression*
@@ -2089,31 +2047,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		return getActionAccess().getRule();
 	}
 	
-	///*Action:
-	//		'Action' name=ID  
-	//			'{'
-	//					(
-	//						(inputs+=Input ';')
-	//						|(outputs+=Output ';')
-	//						|(expressions+=Expression ';')
-	//					)*
-	//			'}'
-	//	;*/ /*Input: 
-	//		'input' ((name=ID ) | ( name=ID '(' 
-	//									payload=Payload?
-	//					   			')'))
-	//	;
-	//	
-	//Output:
-	//		'output' ((name=ID ) | ( name=ID '(' 
-	//									payload=Payload
-	//					   			')'))
-	//	;*/ //Payload:
-	////   		(parms+=ID ':' var+=VarType ) (','parms+=ID ':' var+=VarType )*
-	////    ;			
 	//Payload:
-	//	params+=Param (',' params+=Param)* // (',' name+=ID ':' type+=VarType )*
-	//;
+	//	params+=Param (',' params+=Param)*;
 	public PayloadElements getPayloadAccess() {
 		return pPayload;
 	}
@@ -2197,7 +2132,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	///*=====================================================================================================
-	// * Object can be considered as an instance of MetaObject, which includes configuration, implementing 
+	// * Object is an instance of MetaObject, which includes configuration, implementing 
 	//  actions and commands defined in MetaObject.
 	//  * 
 	// =====================================================================================================*/ UnityObject:
@@ -2230,19 +2165,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		return getOverrideActionAccess().getRule();
 	}
 	
-	///*ObjectCommand:
-	//	  	 'command'	commands+=[Command|QualifiedName] 
-	//		   		'{'
-	//					expressions+=Expression
-	//				 '}'
-	//	;
-	//*/ /*ActionBody:
-	//		'Body' 'of' 'Action' actionName=[Action|QualifiedName] 
-	//				'{'
-	//					expressions+=Expression*
-	//				'}'
-	//	;*/ ConfigAssignment:
-	//	propertyName=[Attribute] propertyValue=Expression;
+	//ConfigAssignment:
+	//	propertyName=[Attribute] '=' propertyValue=Expression;
 	public ConfigAssignmentElements getConfigAssignmentAccess() {
 		return pConfigAssignment;
 	}
@@ -2277,7 +2201,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	//	'Env' name=ID
 	//	'{' (channels+=Channel
 	//	| maps+=Map
-	//	| instances+=Instance)*
+	//	//|instances+=Instance
+	//	| properties+=Property)*
 	//	initCodes=Init?
 	//	'}';
 	public ENVElements getENVAccess() {
@@ -2289,7 +2214,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Instance:
-	//	'Instance' instanceName=ID ':' instanceType=[UnityObject];
+	//	'Instance' name=ID ':' instanceType=[UnityObject];
 	public InstanceElements getInstanceAccess() {
 		return pInstance;
 	}

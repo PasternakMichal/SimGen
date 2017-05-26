@@ -513,6 +513,51 @@ ruleParam returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleProperty
+entryRuleProperty returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPropertyRule()); }
+	iv_ruleProperty=ruleProperty
+	{ $current=$iv_ruleProperty.current; }
+	EOF;
+
+// Rule Property
+ruleProperty returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getPropertyAccess().getAttributeParserRuleCall_0());
+		}
+		this_Attribute_0=ruleAttribute
+		{
+			$current = $this_Attribute_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPropertyAccess().getInstanceParserRuleCall_1());
+		}
+		this_Instance_1=ruleInstance
+		{
+			$current = $this_Instance_1.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getPropertyAccess().getParamParserRuleCall_2());
+		}
+		this_Param_2=ruleParam
+		{
+			$current = $this_Param_2.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
 // Entry rule entryRuleAttribute
 entryRuleAttribute returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getAttributeRule()); }
@@ -1119,12 +1164,16 @@ ruleConfigAssignment returns [EObject current=null]
 				}
 			)
 		)
+		otherlv_1='='
+		{
+			newLeafNode(otherlv_1, grammarAccess.getConfigAssignmentAccess().getEqualsSignKeyword_1());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getConfigAssignmentAccess().getPropertyValueExpressionParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getConfigAssignmentAccess().getPropertyValueExpressionParserRuleCall_2_0());
 				}
-				lv_propertyValue_1_0=ruleExpression
+				lv_propertyValue_2_0=ruleExpression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getConfigAssignmentRule());
@@ -1132,7 +1181,7 @@ ruleConfigAssignment returns [EObject current=null]
 					set(
 						$current,
 						"propertyValue",
-						lv_propertyValue_1_0,
+						lv_propertyValue_2_0,
 						"cs.queensu.ca.Unity.Expression");
 					afterParserOrEnumRuleCall();
 				}
@@ -1319,18 +1368,18 @@ ruleENV returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getENVAccess().getInstancesInstanceParserRuleCall_3_2_0());
+						newCompositeNode(grammarAccess.getENVAccess().getPropertiesPropertyParserRuleCall_3_2_0());
 					}
-					lv_instances_5_0=ruleInstance
+					lv_properties_5_0=ruleProperty
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getENVRule());
 						}
 						add(
 							$current,
-							"instances",
-							lv_instances_5_0,
-							"cs.queensu.ca.Unity.Instance");
+							"properties",
+							lv_properties_5_0,
+							"cs.queensu.ca.Unity.Property");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -1384,9 +1433,9 @@ ruleInstance returns [EObject current=null]
 		}
 		(
 			(
-				lv_instanceName_1_0=RULE_ID
+				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_instanceName_1_0, grammarAccess.getInstanceAccess().getInstanceNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getInstanceAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -1394,8 +1443,8 @@ ruleInstance returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"instanceName",
-						lv_instanceName_1_0,
+						"name",
+						lv_name_1_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)

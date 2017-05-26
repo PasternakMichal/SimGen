@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link cs.queensu.ca.unity.impl.AttributeImpl#getName <em>Name</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.AttributeImpl#getPropertyType <em>Property Type</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.AttributeImpl#getRange <em>Range</em>}</li>
  * </ul>
@@ -33,26 +32,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class AttributeImpl extends PropertyImpl implements Attribute
 {
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getPropertyType() <em>Property Type</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -92,29 +71,6 @@ public class AttributeImpl extends PropertyImpl implements Attribute
   protected EClass eStaticClass()
   {
     return UnityPackage.Literals.ATTRIBUTE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.ATTRIBUTE__NAME, oldName, name));
   }
 
   /**
@@ -241,8 +197,6 @@ public class AttributeImpl extends PropertyImpl implements Attribute
   {
     switch (featureID)
     {
-      case UnityPackage.ATTRIBUTE__NAME:
-        return getName();
       case UnityPackage.ATTRIBUTE__PROPERTY_TYPE:
         return getPropertyType();
       case UnityPackage.ATTRIBUTE__RANGE:
@@ -261,9 +215,6 @@ public class AttributeImpl extends PropertyImpl implements Attribute
   {
     switch (featureID)
     {
-      case UnityPackage.ATTRIBUTE__NAME:
-        setName((String)newValue);
-        return;
       case UnityPackage.ATTRIBUTE__PROPERTY_TYPE:
         setPropertyType((VarType)newValue);
         return;
@@ -284,9 +235,6 @@ public class AttributeImpl extends PropertyImpl implements Attribute
   {
     switch (featureID)
     {
-      case UnityPackage.ATTRIBUTE__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case UnityPackage.ATTRIBUTE__PROPERTY_TYPE:
         setPropertyType((VarType)null);
         return;
@@ -307,31 +255,12 @@ public class AttributeImpl extends PropertyImpl implements Attribute
   {
     switch (featureID)
     {
-      case UnityPackage.ATTRIBUTE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case UnityPackage.ATTRIBUTE__PROPERTY_TYPE:
         return propertyType != null;
       case UnityPackage.ATTRIBUTE__RANGE:
         return range != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //AttributeImpl

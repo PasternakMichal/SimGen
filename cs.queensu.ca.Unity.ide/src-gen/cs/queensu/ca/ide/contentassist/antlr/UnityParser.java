@@ -145,15 +145,15 @@ public class UnityParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOverrideActionAccess().getActionNameAssignment_1(), "rule__OverrideAction__ActionNameAssignment_1");
 					put(grammarAccess.getOverrideActionAccess().getExpressionsAssignment_3(), "rule__OverrideAction__ExpressionsAssignment_3");
 					put(grammarAccess.getConfigAssignmentAccess().getPropertyNameAssignment_0(), "rule__ConfigAssignment__PropertyNameAssignment_0");
-					put(grammarAccess.getConfigAssignmentAccess().getPropertyValueAssignment_1(), "rule__ConfigAssignment__PropertyValueAssignment_1");
+					put(grammarAccess.getConfigAssignmentAccess().getPropertyValueAssignment_2(), "rule__ConfigAssignment__PropertyValueAssignment_2");
 					put(grammarAccess.getDotExpressionAccess().getTailAssignment_1_2(), "rule__DotExpression__TailAssignment_1_2");
 					put(grammarAccess.getPartRefAccess().getSingleRefAssignment_1(), "rule__PartRef__SingleRefAssignment_1");
 					put(grammarAccess.getENVAccess().getNameAssignment_1(), "rule__ENV__NameAssignment_1");
 					put(grammarAccess.getENVAccess().getChannelsAssignment_3_0(), "rule__ENV__ChannelsAssignment_3_0");
 					put(grammarAccess.getENVAccess().getMapsAssignment_3_1(), "rule__ENV__MapsAssignment_3_1");
-					put(grammarAccess.getENVAccess().getInstancesAssignment_3_2(), "rule__ENV__InstancesAssignment_3_2");
+					put(grammarAccess.getENVAccess().getPropertiesAssignment_3_2(), "rule__ENV__PropertiesAssignment_3_2");
 					put(grammarAccess.getENVAccess().getInitCodesAssignment_4(), "rule__ENV__InitCodesAssignment_4");
-					put(grammarAccess.getInstanceAccess().getInstanceNameAssignment_1(), "rule__Instance__InstanceNameAssignment_1");
+					put(grammarAccess.getInstanceAccess().getNameAssignment_1(), "rule__Instance__NameAssignment_1");
 					put(grammarAccess.getInstanceAccess().getInstanceTypeAssignment_3(), "rule__Instance__InstanceTypeAssignment_3");
 					put(grammarAccess.getChannelAccess().getInterfaceNameAssignment_1(), "rule__Channel__InterfaceNameAssignment_1");
 					put(grammarAccess.getChannelAccess().getTypeAssignment_2(), "rule__Channel__TypeAssignment_2");

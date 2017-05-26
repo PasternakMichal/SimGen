@@ -18,19 +18,11 @@ MetaObject:
 		'MetaObject' name=ID ':' kind=('car'|'rover'|'others')
 			'{'
 					(
-						// ('property' (properties+=Property) (';' properties+=Property)* ';')
 						 properties+=Attribute
 						 |actions+=Action 
-						 //|commands+=Command 
 					)*
 			'}'
 	;
-
-/*Command:
-		'command' name=ID '(' 
-							 	payload=Payload 
-						   ')' (('return' returnParm=ID':' var+=VarType ';')|(';'))				
-	;*/
 	
 Action: 
 		'Action' name=ID  '(' payload+=Payload*  ')' ('return' '(' returnPayload+=Payload*  ')')		
@@ -39,18 +31,13 @@ Action:
 			  '}'
 	;
 	
-
-	
-
-		
-
 Payload:
-    params+=Param (',' params+=Param)* // (',' name+=ID ':' type+=VarType )*
+    params+=Param (',' params+=Param)* 
     ;
+    
 Param: 
 	 (name=ID ':' type=VarType )
 	;
-
 			   			
 Property:
 		Attribute|Instance|Param
@@ -107,23 +94,8 @@ OverrideAction:
 								   '}'
 	;
 
-
-/*ObjectCommand:
-	  	 'command'	commands+=[Command|QualifiedName] 
-		   		'{'
-					expressions+=Expression
-				 '}'
-	;
-*/
-/*ActionBody:
-		'Body' 'of' 'Action' actionName=[Action|QualifiedName] 
-				'{'
-					expressions+=Expression*
-				'}'
-	;*/
-
 ConfigAssignment:
-		propertyName=[Attribute] propertyValue=Expression
+		propertyName=[Attribute] '=' propertyValue=Expression
 	;
 
 DotExpression returns CompositeRef:
@@ -144,21 +116,17 @@ ENV:
 				(
 				 channels+=Channel
 			 	 |maps+=Map
-			 	 |instances+=Instance
+			 	 //|instances+=Instance
+			 	 |properties+=Property
 				)*
 				initCodes=Init?
 			'}'
 	;
 
-
-
-
-
 Instance:
-		'Instance' instanceName=ID ':' instanceType=[UnityObject]
- 
-
-;
+		'Instance' name=ID ':' instanceType=[UnityObject]
+	;
+	
 Channel:
 		'Channel' interfaceName=ID type=interfaceType ('cardinality' cardinality=INT)? 
 			 			'('
@@ -168,18 +136,17 @@ Channel:
 			 				)
 			 			 ')'
     ;
+    
 Init: 'config' '{'
 		expressions+=Expression*
 		
 	  '}'
-;
-
-
- 
+	;
 
 Map:
 	'load' 'map' mapName=ID  'from' pathName=StLiteral
 	;
+	
 Message:
 		 'message' ':' name=ID 'content' ':' content=STRING
 	;
@@ -191,8 +158,6 @@ QName:
 AreaName:
 		'area' ':'name=ID
 	;
-
-
 
 Port:
 		'port' ':' name=ID 'portnumber' ':' portnumber=INT

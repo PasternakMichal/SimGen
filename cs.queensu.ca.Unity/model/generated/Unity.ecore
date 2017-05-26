@@ -27,13 +27,13 @@
         eType="#//Param" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Param" eSuperTypes="#//Property">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//VarType"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Property"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//Property">
+  <eClassifiers xsi:type="ecore:EClass" name="Property">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//Property">
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyType" eType="#//VarType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="range" eType="#//Range"
@@ -89,13 +89,12 @@
         eType="#//Channel" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="maps" upperBound="-1" eType="#//Map"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
-        eType="#//Instance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//Property" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initCodes" eType="#//Init"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//Property">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceType" eType="#//UnityObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Channel">

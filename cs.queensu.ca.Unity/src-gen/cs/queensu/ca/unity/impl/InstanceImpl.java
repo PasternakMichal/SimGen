@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link cs.queensu.ca.unity.impl.InstanceImpl#getInstanceName <em>Instance Name</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.InstanceImpl#getInstanceType <em>Instance Type</em>}</li>
  * </ul>
  *
@@ -30,26 +29,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class InstanceImpl extends PropertyImpl implements Instance
 {
-  /**
-   * The default value of the '{@link #getInstanceName() <em>Instance Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getInstanceName()
-   * @generated
-   * @ordered
-   */
-  protected static final String INSTANCE_NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getInstanceName() <em>Instance Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getInstanceName()
-   * @generated
-   * @ordered
-   */
-  protected String instanceName = INSTANCE_NAME_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getInstanceType() <em>Instance Type</em>}' reference.
    * <!-- begin-user-doc -->
@@ -79,29 +58,6 @@ public class InstanceImpl extends PropertyImpl implements Instance
   protected EClass eStaticClass()
   {
     return UnityPackage.Literals.INSTANCE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getInstanceName()
-  {
-    return instanceName;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setInstanceName(String newInstanceName)
-  {
-    String oldInstanceName = instanceName;
-    instanceName = newInstanceName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.INSTANCE__INSTANCE_NAME, oldInstanceName, instanceName));
   }
 
   /**
@@ -157,8 +113,6 @@ public class InstanceImpl extends PropertyImpl implements Instance
   {
     switch (featureID)
     {
-      case UnityPackage.INSTANCE__INSTANCE_NAME:
-        return getInstanceName();
       case UnityPackage.INSTANCE__INSTANCE_TYPE:
         if (resolve) return getInstanceType();
         return basicGetInstanceType();
@@ -176,9 +130,6 @@ public class InstanceImpl extends PropertyImpl implements Instance
   {
     switch (featureID)
     {
-      case UnityPackage.INSTANCE__INSTANCE_NAME:
-        setInstanceName((String)newValue);
-        return;
       case UnityPackage.INSTANCE__INSTANCE_TYPE:
         setInstanceType((UnityObject)newValue);
         return;
@@ -196,9 +147,6 @@ public class InstanceImpl extends PropertyImpl implements Instance
   {
     switch (featureID)
     {
-      case UnityPackage.INSTANCE__INSTANCE_NAME:
-        setInstanceName(INSTANCE_NAME_EDEFAULT);
-        return;
       case UnityPackage.INSTANCE__INSTANCE_TYPE:
         setInstanceType((UnityObject)null);
         return;
@@ -216,29 +164,10 @@ public class InstanceImpl extends PropertyImpl implements Instance
   {
     switch (featureID)
     {
-      case UnityPackage.INSTANCE__INSTANCE_NAME:
-        return INSTANCE_NAME_EDEFAULT == null ? instanceName != null : !INSTANCE_NAME_EDEFAULT.equals(instanceName);
       case UnityPackage.INSTANCE__INSTANCE_TYPE:
         return instanceType != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (instanceName: ");
-    result.append(instanceName);
-    result.append(')');
-    return result.toString();
   }
 
 } //InstanceImpl

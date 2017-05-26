@@ -13,7 +13,6 @@ package cs.queensu.ca.unity;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link cs.queensu.ca.unity.Instance#getInstanceName <em>Instance Name</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Instance#getInstanceType <em>Instance Type</em>}</li>
  * </ul>
  *
@@ -23,32 +22,6 @@ package cs.queensu.ca.unity;
  */
 public interface Instance extends Property
 {
-  /**
-   * Returns the value of the '<em><b>Instance Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Instance Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Instance Name</em>' attribute.
-   * @see #setInstanceName(String)
-   * @see cs.queensu.ca.unity.UnityPackage#getInstance_InstanceName()
-   * @model
-   * @generated
-   */
-  String getInstanceName();
-
-  /**
-   * Sets the value of the '{@link cs.queensu.ca.unity.Instance#getInstanceName <em>Instance Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Instance Name</em>' attribute.
-   * @see #getInstanceName()
-   * @generated
-   */
-  void setInstanceName(String value);
-
   /**
    * Returns the value of the '<em><b>Instance Type</b></em>' reference.
    * <!-- begin-user-doc -->

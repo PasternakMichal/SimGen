@@ -234,13 +234,22 @@ public interface UnityPackage extends EPackage
   int PROPERTY = 5;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROPERTY__NAME = 0;
+
+  /**
    * The number of structural features of the '<em>Property</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_FEATURE_COUNT = 0;
+  int PROPERTY_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link cs.queensu.ca.unity.impl.ParamImpl <em>Param</em>}' class.
@@ -259,7 +268,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PARAM__NAME = PROPERTY_FEATURE_COUNT + 0;
+  int PARAM__NAME = PROPERTY__NAME;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -268,7 +277,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PARAM__TYPE = PROPERTY_FEATURE_COUNT + 1;
+  int PARAM__TYPE = PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Param</em>' class.
@@ -277,7 +286,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PARAM_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
+  int PARAM_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link cs.queensu.ca.unity.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -296,7 +305,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__NAME = PROPERTY_FEATURE_COUNT + 0;
+  int ATTRIBUTE__NAME = PROPERTY__NAME;
 
   /**
    * The feature id for the '<em><b>Property Type</b></em>' containment reference.
@@ -305,7 +314,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__PROPERTY_TYPE = PROPERTY_FEATURE_COUNT + 1;
+  int ATTRIBUTE__PROPERTY_TYPE = PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Range</b></em>' containment reference.
@@ -314,7 +323,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__RANGE = PROPERTY_FEATURE_COUNT + 2;
+  int ATTRIBUTE__RANGE = PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Attribute</em>' class.
@@ -323,7 +332,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 3;
+  int ATTRIBUTE_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link cs.queensu.ca.unity.impl.VarTypeImpl <em>Var Type</em>}' class.
@@ -743,13 +752,13 @@ public interface UnityPackage extends EPackage
   int ENV__MAPS = 2;
 
   /**
-   * The feature id for the '<em><b>Instances</b></em>' containment reference list.
+   * The feature id for the '<em><b>Properties</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENV__INSTANCES = 3;
+  int ENV__PROPERTIES = 3;
 
   /**
    * The feature id for the '<em><b>Init Codes</b></em>' containment reference.
@@ -780,13 +789,13 @@ public interface UnityPackage extends EPackage
   int INSTANCE = 17;
 
   /**
-   * The feature id for the '<em><b>Instance Name</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INSTANCE__INSTANCE_NAME = PROPERTY_FEATURE_COUNT + 0;
+  int INSTANCE__NAME = PROPERTY__NAME;
 
   /**
    * The feature id for the '<em><b>Instance Type</b></em>' reference.
@@ -795,7 +804,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTANCE__INSTANCE_TYPE = PROPERTY_FEATURE_COUNT + 1;
+  int INSTANCE__INSTANCE_TYPE = PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Instance</em>' class.
@@ -804,7 +813,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTANCE_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
+  int INSTANCE_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link cs.queensu.ca.unity.impl.ChannelImpl <em>Channel</em>}' class.
@@ -1996,17 +2005,6 @@ public interface UnityPackage extends EPackage
   EClass getParam();
 
   /**
-   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Param#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see cs.queensu.ca.unity.Param#getName()
-   * @see #getParam()
-   * @generated
-   */
-  EAttribute getParam_Name();
-
-  /**
    * Returns the meta object for the containment reference '{@link cs.queensu.ca.unity.Param#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2028,6 +2026,17 @@ public interface UnityPackage extends EPackage
   EClass getProperty();
 
   /**
+   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Property#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see cs.queensu.ca.unity.Property#getName()
+   * @see #getProperty()
+   * @generated
+   */
+  EAttribute getProperty_Name();
+
+  /**
    * Returns the meta object for class '{@link cs.queensu.ca.unity.Attribute <em>Attribute</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2036,17 +2045,6 @@ public interface UnityPackage extends EPackage
    * @generated
    */
   EClass getAttribute();
-
-  /**
-   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Attribute#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see cs.queensu.ca.unity.Attribute#getName()
-   * @see #getAttribute()
-   * @generated
-   */
-  EAttribute getAttribute_Name();
 
   /**
    * Returns the meta object for the containment reference '{@link cs.queensu.ca.unity.Attribute#getPropertyType <em>Property Type</em>}'.
@@ -2413,15 +2411,15 @@ public interface UnityPackage extends EPackage
   EReference getENV_Maps();
 
   /**
-   * Returns the meta object for the containment reference list '{@link cs.queensu.ca.unity.ENV#getInstances <em>Instances</em>}'.
+   * Returns the meta object for the containment reference list '{@link cs.queensu.ca.unity.ENV#getProperties <em>Properties</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Instances</em>'.
-   * @see cs.queensu.ca.unity.ENV#getInstances()
+   * @return the meta object for the containment reference list '<em>Properties</em>'.
+   * @see cs.queensu.ca.unity.ENV#getProperties()
    * @see #getENV()
    * @generated
    */
-  EReference getENV_Instances();
+  EReference getENV_Properties();
 
   /**
    * Returns the meta object for the containment reference '{@link cs.queensu.ca.unity.ENV#getInitCodes <em>Init Codes</em>}'.
@@ -2443,17 +2441,6 @@ public interface UnityPackage extends EPackage
    * @generated
    */
   EClass getInstance();
-
-  /**
-   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Instance#getInstanceName <em>Instance Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Instance Name</em>'.
-   * @see cs.queensu.ca.unity.Instance#getInstanceName()
-   * @see #getInstance()
-   * @generated
-   */
-  EAttribute getInstance_InstanceName();
 
   /**
    * Returns the meta object for the reference '{@link cs.queensu.ca.unity.Instance#getInstanceType <em>Instance Type</em>}'.
@@ -3513,14 +3500,6 @@ public interface UnityPackage extends EPackage
     EClass PARAM = eINSTANCE.getParam();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PARAM__NAME = eINSTANCE.getParam_Name();
-
-    /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3539,6 +3518,14 @@ public interface UnityPackage extends EPackage
     EClass PROPERTY = eINSTANCE.getProperty();
 
     /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PROPERTY__NAME = eINSTANCE.getProperty_Name();
+
+    /**
      * The meta object literal for the '{@link cs.queensu.ca.unity.impl.AttributeImpl <em>Attribute</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3547,14 +3534,6 @@ public interface UnityPackage extends EPackage
      * @generated
      */
     EClass ATTRIBUTE = eINSTANCE.getAttribute();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
 
     /**
      * The meta object literal for the '<em><b>Property Type</b></em>' containment reference feature.
@@ -3849,12 +3828,12 @@ public interface UnityPackage extends EPackage
     EReference ENV__MAPS = eINSTANCE.getENV_Maps();
 
     /**
-     * The meta object literal for the '<em><b>Instances</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ENV__INSTANCES = eINSTANCE.getENV_Instances();
+    EReference ENV__PROPERTIES = eINSTANCE.getENV_Properties();
 
     /**
      * The meta object literal for the '<em><b>Init Codes</b></em>' containment reference feature.
@@ -3873,14 +3852,6 @@ public interface UnityPackage extends EPackage
      * @generated
      */
     EClass INSTANCE = eINSTANCE.getInstance();
-
-    /**
-     * The meta object literal for the '<em><b>Instance Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INSTANCE__INSTANCE_NAME = eINSTANCE.getInstance_InstanceName();
 
     /**
      * The meta object literal for the '<em><b>Instance Type</b></em>' reference feature.

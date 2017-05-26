@@ -770,7 +770,7 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getConfigAssignmentAccess().getPropertyNameAttributeIDTerminalRuleCall_0_0_1(), semanticObject.eGet(UnityPackage.Literals.CONFIG_ASSIGNMENT__PROPERTY_NAME, false));
-		feeder.accept(grammarAccess.getConfigAssignmentAccess().getPropertyValueExpressionParserRuleCall_1_0(), semanticObject.getPropertyValue());
+		feeder.accept(grammarAccess.getConfigAssignmentAccess().getPropertyValueExpressionParserRuleCall_2_0(), semanticObject.getPropertyValue());
 		feeder.finish();
 	}
 	
@@ -802,7 +802,7 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ENV returns ENV
 	 *
 	 * Constraint:
-	 *     (name=ID (channels+=Channel | maps+=Map | instances+=Instance)* initCodes=Init?)
+	 *     (name=ID (channels+=Channel | maps+=Map | properties+=Property)* initCodes=Init?)
 	 */
 	protected void sequence_ENV(ISerializationContext context, ENV semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -870,17 +870,17 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Instance returns Instance
 	 *
 	 * Constraint:
-	 *     (instanceName=ID instanceType=[UnityObject|ID])
+	 *     (name=ID instanceType=[UnityObject|ID])
 	 */
 	protected void sequence_Instance(ISerializationContext context, Instance semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.INSTANCE__INSTANCE_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.INSTANCE__INSTANCE_NAME));
+			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.PROPERTY__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.PROPERTY__NAME));
 			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.INSTANCE__INSTANCE_TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.INSTANCE__INSTANCE_TYPE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getInstanceAccess().getInstanceNameIDTerminalRuleCall_1_0(), semanticObject.getInstanceName());
+		feeder.accept(grammarAccess.getInstanceAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getInstanceAccess().getInstanceTypeUnityObjectIDTerminalRuleCall_3_0_1(), semanticObject.eGet(UnityPackage.Literals.INSTANCE__INSTANCE_TYPE, false));
 		feeder.finish();
 	}
@@ -1224,8 +1224,8 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_Param(ISerializationContext context, Param semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.PARAM__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.PARAM__NAME));
+			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.PROPERTY__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.PROPERTY__NAME));
 			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.PARAM__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.PARAM__TYPE));
 		}

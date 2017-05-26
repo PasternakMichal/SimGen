@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link cs.queensu.ca.unity.impl.ParamImpl#getName <em>Name</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ParamImpl#getType <em>Type</em>}</li>
  * </ul>
  *
@@ -31,26 +30,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ParamImpl extends PropertyImpl implements Param
 {
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
-
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -80,29 +59,6 @@ public class ParamImpl extends PropertyImpl implements Param
   protected EClass eStaticClass()
   {
     return UnityPackage.Literals.PARAM;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.PARAM__NAME, oldName, name));
   }
 
   /**
@@ -179,8 +135,6 @@ public class ParamImpl extends PropertyImpl implements Param
   {
     switch (featureID)
     {
-      case UnityPackage.PARAM__NAME:
-        return getName();
       case UnityPackage.PARAM__TYPE:
         return getType();
     }
@@ -197,9 +151,6 @@ public class ParamImpl extends PropertyImpl implements Param
   {
     switch (featureID)
     {
-      case UnityPackage.PARAM__NAME:
-        setName((String)newValue);
-        return;
       case UnityPackage.PARAM__TYPE:
         setType((VarType)newValue);
         return;
@@ -217,9 +168,6 @@ public class ParamImpl extends PropertyImpl implements Param
   {
     switch (featureID)
     {
-      case UnityPackage.PARAM__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case UnityPackage.PARAM__TYPE:
         setType((VarType)null);
         return;
@@ -237,29 +185,10 @@ public class ParamImpl extends PropertyImpl implements Param
   {
     switch (featureID)
     {
-      case UnityPackage.PARAM__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case UnityPackage.PARAM__TYPE:
         return type != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //ParamImpl

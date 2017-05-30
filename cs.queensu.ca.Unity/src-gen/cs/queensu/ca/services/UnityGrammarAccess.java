@@ -672,7 +672,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//OverrideAction:
-		//	'override' actionName=[Action] '{'
+		//	'override' actionName=[Action]
+		//	'{'
 		//	expressions+=Expression*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
@@ -2194,7 +2195,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//OverrideAction:
-	//	'override' actionName=[Action] '{'
+	//	'override' actionName=[Action]
+	//	'{'
 	//	expressions+=Expression*
 	//	'}';
 	public OverrideActionElements getOverrideActionAccess() {

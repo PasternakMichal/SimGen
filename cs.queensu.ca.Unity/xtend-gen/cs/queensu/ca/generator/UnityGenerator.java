@@ -3,10 +3,16 @@
  */
 package cs.queensu.ca.generator;
 
+import com.google.inject.Injector;
+import cs.queensu.ca.UnityStandaloneSetup;
+import java.io.IOException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 /**
  * Generates code from your model files on save.
@@ -17,5 +23,22 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class UnityGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    InputOutput.<String>println("Saving Ecore model is started");
+    Injector injector = new UnityStandaloneSetup().createInjectorAndDoEMFRegistration();
+    XtextResourceSet resourceSet = injector.<XtextResourceSet>getInstance(XtextResourceSet.class);
+    String xtextFilename = resource.getURI().lastSegment();
+    String EcoreFileName = xtextFilename.replace(xtextFilename.split("\\.")[1], "xmi");
+    Resource xmiResource = resourceSet.createResource(fsa.getURI(EcoreFileName));
+    xmiResource.getContents().add(resource.getContents().get(0));
+    try {
+      xmiResource.save(null);
+    } catch (final Throwable _t) {
+      if (_t instanceof IOException) {
+        final IOException e = (IOException)_t;
+        e.printStackTrace();
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
   }
 }

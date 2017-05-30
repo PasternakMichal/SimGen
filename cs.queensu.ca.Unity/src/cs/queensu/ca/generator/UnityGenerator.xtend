@@ -7,6 +7,10 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import org.eclipse.xtext.resource.XtextResourceSet
+import cs.queensu.ca.UnityStandaloneSetup
+import java.io.IOException
+import com.google.inject.Injector
 
 /**
  * Generates code from your model files on save.
@@ -16,10 +20,20 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class UnityGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
-	}
+		println("Saving Ecore model is started");
+
+		var Injector injector = new UnityStandaloneSetup().createInjectorAndDoEMFRegistration();
+		var XtextResourceSet resourceSet =injector.getInstance(XtextResourceSet);
+		var String xtextFilename=resource.URI.lastSegment;
+		var String EcoreFileName=xtextFilename.replace(xtextFilename.split("\\.").get(1),"xmi")
+		var Resource xmiResource=resourceSet.createResource(fsa.getURI(EcoreFileName));
+
+		xmiResource.getContents().add(resource.getContents().get(0));
+
+   			try {
+      		 	xmiResource.save(null);
+    		} catch (IOException e) {
+       	 		e.printStackTrace();
+   			}
+			}
 }

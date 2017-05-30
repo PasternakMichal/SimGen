@@ -32,11 +32,11 @@ Action:
 	;
 	
 Payload:
-    params+=Param (',' params+=Param)* 
+   		 params+=Param (',' params+=Param)* 
     ;
     
 Param: 
-	 (name=ID ':' type=VarType )
+		 (name=ID ':' type=VarType )
 	;
 
 DotExpression returns Ref:
@@ -92,19 +92,19 @@ UnityObject:
 	   		 '}'
  	;
 
-
-
 OverrideAction:
-	'override' actionName=[Action] '{'
-									 expressions+=Expression*	
-								   '}'
+	'override' actionName=[Action] 
+				'{'
+					expressions+=Expression*	
+				'}'
 	;
+	
 ConfigAssignment :
 	'config' '{' 
-	   {ConfigAssignment}
-	 	configs+=Config+
-	'}'
-;
+	   			{ConfigAssignment}
+	 			configs+=Config+
+			 '}'
+	;
 
 Config:
 		propertyName=[Attribute] '=' propertyValue=Expression
@@ -150,7 +150,7 @@ Init: 'config' '{'
 	;
 
 Map:
-	'load' 'map' mapName=ID  'from' pathName=StLiteral
+		'load' 'map' mapName=ID  'from' pathName=StLiteral
 	;
 	
 Message:

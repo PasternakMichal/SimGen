@@ -1,0 +1,90 @@
+MetaObject Rover : rover {
+	property size : int
+	property posx : int
+	property posy : int
+	property posz : int
+	property power : int 
+	property brake : int 
+	property network: bool
+	property Port: int
+	property NetId: int
+}
+MetaObject Car : car {
+	property size : int
+	property posx : int
+	property posy : int
+	property posz : int
+	property power : int 
+	property brake : int 
+	property network: bool
+	property Port: int
+	property NetId: int
+}
+
+MetaObject Plane : others {
+	property sizex : int
+	property sizey : int
+	property sizez : int 
+	property posx : int
+	property posy : int
+	property posz : int
+	
+}
+MetaObject Gem : others {
+	property sizex : int
+	property sizey : int
+	property sizez : int 
+	property posx : int
+	property posy : int
+	property posz : int
+	
+}
+
+Object zoomzoom : Rover {
+
+	config {
+		posx = 0
+		posy = 3
+		posz = 0
+		size = 1
+		brake = 200
+		power = 1000
+		network = true
+		Port = 8888
+		NetId = 23
+	}
+}
+Object brz :Car {
+	
+	config{
+		posx = 4
+		posy = 3
+		posz = 4
+		size = 1
+		brake = 100
+		power = 3000
+		network = true
+		Port = 8889
+		NetId = 24
+	}
+	
+	
+}
+Object land : Plane {
+	config {
+		posx = 0
+		posy = 0
+		posz = 0
+		sizex = 20
+		sizey = 1
+		sizez = 20
+	}
+	
+}
+
+Env simulation {
+	Instance land : land
+	Instance buddy : zoomzoom
+	Instance beth : brz
+}
+

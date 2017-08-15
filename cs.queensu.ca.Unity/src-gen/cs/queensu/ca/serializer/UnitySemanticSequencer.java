@@ -818,7 +818,7 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ENV returns ENV
 	 *
 	 * Constraint:
-	 *     (name=ID (channels+=Channel | maps+=Map | properties+=Property)* initCodes=Init?)
+	 *     (name=ID (channels+=Channel | maps+=Map | instances+=Instance | properties+=Property)* initCodes=Init?)
 	 */
 	protected void sequence_ENV(ISerializationContext context, ENV semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

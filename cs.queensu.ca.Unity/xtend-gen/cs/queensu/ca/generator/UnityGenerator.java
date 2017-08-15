@@ -3,16 +3,31 @@
  */
 package cs.queensu.ca.generator;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import com.google.inject.Injector;
 import cs.queensu.ca.UnityStandaloneSetup;
+import cs.queensu.ca.unity.BoolLiteral;
+import cs.queensu.ca.unity.Config;
+import cs.queensu.ca.unity.ConfigAssignment;
+import cs.queensu.ca.unity.ENV;
+import cs.queensu.ca.unity.Expression;
+import cs.queensu.ca.unity.Instance;
+import cs.queensu.ca.unity.IntLiteral;
+import cs.queensu.ca.unity.Literal;
+import cs.queensu.ca.unity.UnityObject;
 import java.io.IOException;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -24,6 +39,40 @@ public class UnityGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     InputOutput.<String>println("Saving Ecore model is started");
+    Iterable<ENV> _filter = Iterables.<ENV>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), ENV.class);
+    for (final ENV a : _filter) {
+      {
+        fsa.generateFile("starter.cs", this.starter(a));
+        EList<Instance> _instances = a.getInstances();
+        for (final Instance b : _instances) {
+          String _kind = b.getInstanceType().getType().getKind();
+          boolean _equals = Objects.equal(_kind, "others");
+          if (_equals) {
+            String _name = b.getName();
+            String _plus = (_name + "Script.cs");
+            fsa.generateFile(_plus, this.landscape(b));
+          } else {
+            String _kind_1 = b.getInstanceType().getType().getKind();
+            boolean _equals_1 = Objects.equal(_kind_1, "rover");
+            if (_equals_1) {
+              String _name_1 = b.getName();
+              String _plus_1 = (_name_1 + "Script.cs");
+              fsa.generateFile(_plus_1, this.rover(b));
+            } else {
+              String _kind_2 = b.getInstanceType().getType().getKind();
+              boolean _equals_2 = Objects.equal(_kind_2, "car");
+              if (_equals_2) {
+                String _name_2 = b.getName();
+                String _plus_2 = (_name_2 + "Script.cs");
+                fsa.generateFile(_plus_2, this.car(b));
+              } else {
+                InputOutput.<String>println("unknown MetaObject");
+              }
+            }
+          }
+        }
+      }
+    }
     Injector injector = new UnityStandaloneSetup().createInjectorAndDoEMFRegistration();
     XtextResourceSet resourceSet = injector.<XtextResourceSet>getInstance(XtextResourceSet.class);
     String xtextFilename = resource.getURI().lastSegment();
@@ -40,5 +89,640 @@ public class UnityGenerator extends AbstractGenerator {
         throw Exceptions.sneakyThrow(_t);
       }
     }
+  }
+  
+  public int intExtractor(final Expression e) {
+    boolean _matched = false;
+    if (e instanceof Literal) {
+      _matched=true;
+      Literal litvalue = ((Literal) e);
+      if ((litvalue instanceof IntLiteral)) {
+        InputOutput.<Integer>print(Integer.valueOf(((IntLiteral) litvalue).getInt()));
+        int i = Integer.valueOf(((IntLiteral) litvalue).getInt()).intValue();
+        return i;
+      }
+    }
+    return 0;
+  }
+  
+  public boolean boolExtractor(final Expression e) {
+    boolean _matched = false;
+    if (e instanceof Literal) {
+      _matched=true;
+      Literal litvalue = ((Literal) e);
+      if ((litvalue instanceof BoolLiteral)) {
+        InputOutput.<Boolean>print(Boolean.valueOf(((BoolLiteral) litvalue).isBool()));
+        boolean b = Boolean.valueOf(((BoolLiteral) litvalue).isBool()).booleanValue();
+        return b;
+      }
+    }
+    return false;
+  }
+  
+  public int getIntValue(final UnityObject a, final String b) {
+    EList<ConfigAssignment> _configurations = a.getConfigurations();
+    for (final ConfigAssignment q : _configurations) {
+      EList<Config> _configs = q.getConfigs();
+      for (final Config w : _configs) {
+        String _name = w.getPropertyName().getName();
+        boolean _equals = Objects.equal(_name, b);
+        if (_equals) {
+          return this.intExtractor(w.getPropertyValue());
+        }
+      }
+    }
+    return 0;
+  }
+  
+  public boolean getBoolValue(final UnityObject a, final String b) {
+    EList<ConfigAssignment> _configurations = a.getConfigurations();
+    for (final ConfigAssignment q : _configurations) {
+      EList<Config> _configs = q.getConfigs();
+      for (final Config w : _configs) {
+        String _name = w.getPropertyName().getName();
+        boolean _equals = Objects.equal(_name, b);
+        if (_equals) {
+          return this.boolExtractor(w.getPropertyValue());
+        }
+      }
+    }
+    return false;
+  }
+  
+  public CharSequence sizeAndScale(final UnityObject e, final String a) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("Transform t = GetComponentInChildren<Transform>();");
+    _builder.newLine();
+    {
+      boolean _equals = Objects.equal(a, "rover");
+      if (_equals) {
+        _builder.append("t.localScale = new Vector3 (");
+        int _intValue = this.getIntValue(e, "size");
+        _builder.append(_intValue);
+        _builder.append("f,");
+        int _intValue_1 = this.getIntValue(e, "size");
+        _builder.append(_intValue_1);
+        _builder.append("f,");
+        int _intValue_2 = this.getIntValue(e, "size");
+        _builder.append(_intValue_2);
+        _builder.append("f);");
+        _builder.newLineIfNotEmpty();
+      } else {
+        _builder.append("t.localScale = new Vector3 (");
+        int _intValue_3 = this.getIntValue(e, "sizex");
+        _builder.append(_intValue_3);
+        _builder.append("f,");
+        int _intValue_4 = this.getIntValue(e, "sizey");
+        _builder.append(_intValue_4);
+        _builder.append("f,");
+        int _intValue_5 = this.getIntValue(e, "sizez");
+        _builder.append(_intValue_5);
+        _builder.append("f);");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("t.localPosition = new Vector3(");
+    int _intValue_6 = this.getIntValue(e, "posx");
+    _builder.append(_intValue_6);
+    _builder.append("f,");
+    int _intValue_7 = this.getIntValue(e, "posy");
+    _builder.append(_intValue_7);
+    _builder.append("f,");
+    int _intValue_8 = this.getIntValue(e, "posz");
+    _builder.append(_intValue_8);
+    _builder.append("f);");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence landscape(final Instance e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("using System.Collections;");
+    _builder.newLine();
+    _builder.append("using System.Collections.Generic;");
+    _builder.newLine();
+    _builder.append("using UnityEngine;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("public class ");
+    String _name = e.getName();
+    _builder.append(_name);
+    _builder.append("Script : MonoBehaviour {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("void Start () {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    CharSequence _sizeAndScale = this.sizeAndScale(e.getInstanceType(), e.getName());
+    _builder.append(_sizeAndScale, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("void Update () {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("// on going monitoring or changing things based on object");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence starter(final ENV e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("using System.Collections;");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.append("using System.Collections.Generic;");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.append("using UnityEngine;");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.append("public class starter : MonoBehaviour {");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("// ---- These must be assigned as prefabs in Unity and as \"metaobjects\" in the DSL");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("public GameObject Plane;");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("public GameObject Rover;");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("public GameObject Car;");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("public GameObject Gem;");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("void Start () {");
+    _builder.newLine();
+    {
+      EList<Instance> _instances = e.getInstances();
+      for(final Instance k : _instances) {
+        _builder.append("   \t\t\t\t");
+        _builder.append("GameObject ");
+        String _name = k.getName();
+        _builder.append(_name, "   \t\t\t\t");
+        _builder.append("Object = Instantiate (");
+        String _name_1 = k.getInstanceType().getType().getName();
+        _builder.append(_name_1, "   \t\t\t\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+        _builder.append("   \t\t\t\t");
+        String _name_2 = k.getName();
+        _builder.append(_name_2, "   \t\t\t\t");
+        _builder.append("Object.AddComponent<");
+        String _name_3 = k.getName();
+        _builder.append(_name_3, "   \t\t\t\t");
+        _builder.append("Script>();");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("   \t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("// Update is called once per frame");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("void Update () {");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence car(final Instance e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("using System.Collections;");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.append("using System.Collections.Generic;");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.append("using UnityEngine;");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.append("public class ");
+    String _name = e.getName();
+    _builder.append(_name, "   \t\t");
+    _builder.append("Script : MonoBehaviour {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("   \t\t\t");
+    _builder.append("void Start () {");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    CharSequence _sizeAndScale = this.sizeAndScale(e.getInstanceType(), e.getName());
+    _builder.append(_sizeAndScale, "   \t\t\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("   \t\t\t\t");
+    _builder.append("carMover interface1 = GetComponent<carMover>();");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.append("interface1.ConnectCar(");
+    int _intValue = this.getIntValue(e.getInstanceType(), "brake");
+    _builder.append(_intValue, "   \t\t\t\t");
+    _builder.append("f,");
+    int _intValue_1 = this.getIntValue(e.getInstanceType(), "power");
+    _builder.append(_intValue_1, "   \t\t\t\t");
+    _builder.append("f,\"");
+    String _name_1 = e.getName();
+    _builder.append(_name_1, "   \t\t\t\t");
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("   \t\t\t\t");
+    CharSequence _includeNetwork = this.includeNetwork(e, this.getBoolValue(e.getInstanceType(), "network"), 20);
+    _builder.append(_includeNetwork, "   \t\t\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("   \t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("void Update () {");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.append("if (comms.isContainerEmpty() ==false){");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("translate(comms.getMessage());");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("void translate(string message){");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.append("string reply = null;");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.append("int num = (num) decode(message);");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.append("message = cut(message);");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.append("switch(num){");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("case 1: ");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("comms.EnginePower(decode(message));");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("message = cut(message);");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("comms.SteerInput(decode(message));");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("message = cut(message);");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("comms.BrakePower(decode(message));");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("case 2:");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("reply = comms.CarInfo();");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("if(reply!= null)");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t");
+    _builder.append("comms.SendMessage(reply);");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("public float decode(string message){");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.append("if (message !=\"\" || message!= null){");
+    _builder.newLine();
+    _builder.append("   \t\t\t   \t\t");
+    _builder.append("return float.Parse( message.Substring(0,message.IndexOf(\',\')));");
+    _builder.newLine();
+    _builder.append("   \t\t\t   \t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t   \t");
+    _builder.append("else");
+    _builder.newLine();
+    _builder.append("   \t\t\t   \t");
+    _builder.append("{");
+    _builder.newLine();
+    _builder.append("   \t\t\t   \t\t");
+    _builder.append("Debug.Log(\"error in the decode function, decoding empty string\");");
+    _builder.newLine();
+    _builder.append("   \t\t\t   \t\t");
+    _builder.append("return 0;");
+    _builder.newLine();
+    _builder.append("   \t\t\t   \t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("public string cut(string message){");
+    _builder.newLine();
+    _builder.append("   \t\t\t   \t");
+    _builder.append("return message.Substring(message.IndexOf(\',\'));");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("// 1 = set speed,brake;");
+    _builder.newLine();
+    _builder.append("//2 = get speed,brake, position;");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence rover(final Instance e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("using System.Collections;");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.append("using System.Collections.Generic;");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.append("using UnityEngine;");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.newLine();
+    _builder.append("   \t\t");
+    _builder.append("public class ");
+    String _name = e.getName();
+    _builder.append(_name, "   \t\t");
+    _builder.append("Script : MonoBehaviour {");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("void Start () {");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    CharSequence _sizeAndScale = this.sizeAndScale(e.getInstanceType(), "rover");
+    _builder.append(_sizeAndScale, "   \t\t\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("   \t\t\t\t");
+    _builder.append("roverMover interface1 = GetComponent<roverMover>();");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("interface1.ConnectRover(");
+    int _intValue = this.getIntValue(e.getInstanceType(), "brake");
+    _builder.append(_intValue, "   \t\t\t");
+    _builder.append("f,");
+    int _intValue_1 = this.getIntValue(e.getInstanceType(), "power");
+    _builder.append(_intValue_1, "   \t\t\t");
+    _builder.append("f,\"");
+    String _name_1 = e.getName();
+    _builder.append(_name_1, "   \t\t\t");
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("   \t\t\t");
+    CharSequence _includeNetwork = this.includeNetwork(e, this.getBoolValue(e.getInstanceType(), "network"), 20);
+    _builder.append(_includeNetwork, "   \t\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("   \t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("// Update is called once per frame");
+    _builder.newLine();
+    _builder.append("   \t\t\t   \t\t\t");
+    _builder.append("void Update () {");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("if (comms.isContainerEmpty () == false) {");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t");
+    _builder.append("translate(comms.getMessage ());");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t   \t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("void translate(string message){");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("string reply = null;");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("roverMover rover = GetComponent<roverMover> ();");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("int num = (int) decode(message);");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t");
+    _builder.append("message = cut(message);");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t");
+    _builder.append("switch (num)");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t");
+    _builder.append("{");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("case 1: ");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("rover.LeftPower(decode(message));");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("message=cut(message);");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("rover.RightPower(decode(message));");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("message=cut(message);");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("rover.LeftBrake(decode(message));");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("message=cut(message);");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("rover.LeftBrake(decode(message));");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("break;");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("case 2:");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("reply = \"2,\"+rover.RoverEngine();");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("break;");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("if (reply!=null)");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t");
+    _builder.append("comms.SendMessage (reply);");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t");
+    _builder.append("public float decode(string message){");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("if (message !=\"\" || message!= null){");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t\t");
+    _builder.append("return float.Parse( message.Substring(0,message.IndexOf(\',\')));");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("else");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t\t\t");
+    _builder.append("{");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t\t\t");
+    _builder.append("Debug.Log(\"error in the decode function, decoding empty string\");");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t\t\t");
+    _builder.append("return 0;");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t");
+    _builder.append("public string cut(string message){");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t\t\t\t");
+    _builder.append("return message.Substring(message.IndexOf(\',\'));");
+    _builder.newLine();
+    _builder.append("   \t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t   \t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("//1,LS,RS,LB,RB");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("// 1 - send a state command");
+    _builder.newLine();
+    _builder.append("   \t\t\t");
+    _builder.append("// 2- request a state command");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence includeNetwork(final Instance e, final boolean nets, final int size) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((nets == true)) {
+        _builder.append("Network comms = new Network(");
+        int _intValue = this.getIntValue(e.getInstanceType(), "Port");
+        _builder.append(_intValue);
+        _builder.append(",");
+        int _intValue_1 = this.getIntValue(e.getInstanceType(), "NetId");
+        _builder.append(_intValue_1);
+        _builder.append(",");
+        _builder.append(size);
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+        _builder.append("Debug.Log(\"comms initiated on ");
+        int _intValue_2 = this.getIntValue(e.getInstanceType(), "Port");
+        _builder.append(_intValue_2);
+        _builder.append(" for ");
+        String _name = e.getName();
+        _builder.append(_name);
+        _builder.append("\");");
+        _builder.newLineIfNotEmpty();
+      } else {
+        _builder.append("Debug.Log(\"");
+        String _name_1 = e.getName();
+        _builder.append(_name_1);
+        _builder.append(" has no network capability\");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
   }
 }

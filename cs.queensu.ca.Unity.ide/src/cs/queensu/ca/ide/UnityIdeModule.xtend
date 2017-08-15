@@ -4,7 +4,7 @@
 package cs.queensu.ca.ide
 
 
-/**lll
+/**
  * Use this class to register ide components.
  */
 class UnityIdeModule extends AbstractUnityIdeModule {

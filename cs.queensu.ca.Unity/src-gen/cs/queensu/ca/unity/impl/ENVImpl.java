@@ -6,6 +6,7 @@ package cs.queensu.ca.unity.impl;
 import cs.queensu.ca.unity.Channel;
 import cs.queensu.ca.unity.ENV;
 import cs.queensu.ca.unity.Init;
+import cs.queensu.ca.unity.Instance;
 import cs.queensu.ca.unity.Map;
 import cs.queensu.ca.unity.Property;
 import cs.queensu.ca.unity.UnityPackage;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link cs.queensu.ca.unity.impl.ENVImpl#getName <em>Name</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ENVImpl#getChannels <em>Channels</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ENVImpl#getMaps <em>Maps</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.impl.ENVImpl#getInstances <em>Instances</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ENVImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ENVImpl#getInitCodes <em>Init Codes</em>}</li>
  * </ul>
@@ -84,6 +86,16 @@ public class ENVImpl extends MinimalEObjectImpl.Container implements ENV
    * @ordered
    */
   protected EList<Map> maps;
+
+  /**
+   * The cached value of the '{@link #getInstances() <em>Instances</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getInstances()
+   * @generated
+   * @ordered
+   */
+  protected EList<Instance> instances;
 
   /**
    * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
@@ -182,6 +194,20 @@ public class ENVImpl extends MinimalEObjectImpl.Container implements ENV
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Instance> getInstances()
+  {
+    if (instances == null)
+    {
+      instances = new EObjectContainmentEList<Instance>(Instance.class, this, UnityPackage.ENV__INSTANCES);
+    }
+    return instances;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<Property> getProperties()
   {
     if (properties == null)
@@ -253,6 +279,8 @@ public class ENVImpl extends MinimalEObjectImpl.Container implements ENV
         return ((InternalEList<?>)getChannels()).basicRemove(otherEnd, msgs);
       case UnityPackage.ENV__MAPS:
         return ((InternalEList<?>)getMaps()).basicRemove(otherEnd, msgs);
+      case UnityPackage.ENV__INSTANCES:
+        return ((InternalEList<?>)getInstances()).basicRemove(otherEnd, msgs);
       case UnityPackage.ENV__PROPERTIES:
         return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
       case UnityPackage.ENV__INIT_CODES:
@@ -277,6 +305,8 @@ public class ENVImpl extends MinimalEObjectImpl.Container implements ENV
         return getChannels();
       case UnityPackage.ENV__MAPS:
         return getMaps();
+      case UnityPackage.ENV__INSTANCES:
+        return getInstances();
       case UnityPackage.ENV__PROPERTIES:
         return getProperties();
       case UnityPackage.ENV__INIT_CODES:
@@ -306,6 +336,10 @@ public class ENVImpl extends MinimalEObjectImpl.Container implements ENV
       case UnityPackage.ENV__MAPS:
         getMaps().clear();
         getMaps().addAll((Collection<? extends Map>)newValue);
+        return;
+      case UnityPackage.ENV__INSTANCES:
+        getInstances().clear();
+        getInstances().addAll((Collection<? extends Instance>)newValue);
         return;
       case UnityPackage.ENV__PROPERTIES:
         getProperties().clear();
@@ -337,6 +371,9 @@ public class ENVImpl extends MinimalEObjectImpl.Container implements ENV
       case UnityPackage.ENV__MAPS:
         getMaps().clear();
         return;
+      case UnityPackage.ENV__INSTANCES:
+        getInstances().clear();
+        return;
       case UnityPackage.ENV__PROPERTIES:
         getProperties().clear();
         return;
@@ -363,6 +400,8 @@ public class ENVImpl extends MinimalEObjectImpl.Container implements ENV
         return channels != null && !channels.isEmpty();
       case UnityPackage.ENV__MAPS:
         return maps != null && !maps.isEmpty();
+      case UnityPackage.ENV__INSTANCES:
+        return instances != null && !instances.isEmpty();
       case UnityPackage.ENV__PROPERTIES:
         return properties != null && !properties.isEmpty();
       case UnityPackage.ENV__INIT_CODES:

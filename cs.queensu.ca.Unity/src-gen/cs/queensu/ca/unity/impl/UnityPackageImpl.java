@@ -1032,7 +1032,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getENV_Properties()
+  public EReference getENV_Instances()
   {
     return (EReference)envEClass.getEStructuralFeatures().get(3);
   }
@@ -1042,9 +1042,19 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getENV_InitCodes()
+  public EReference getENV_Properties()
   {
     return (EReference)envEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getENV_InitCodes()
+  {
+    return (EReference)envEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -2009,6 +2019,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     createEAttribute(envEClass, ENV__NAME);
     createEReference(envEClass, ENV__CHANNELS);
     createEReference(envEClass, ENV__MAPS);
+    createEReference(envEClass, ENV__INSTANCES);
     createEReference(envEClass, ENV__PROPERTIES);
     createEReference(envEClass, ENV__INIT_CODES);
 
@@ -2261,6 +2272,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     initEAttribute(getENV_Name(), ecorePackage.getEString(), "name", null, 0, 1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getENV_Channels(), this.getChannel(), null, "channels", null, 0, -1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getENV_Maps(), this.getMap(), null, "maps", null, 0, -1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getENV_Instances(), this.getInstance(), null, "instances", null, 0, -1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getENV_Properties(), this.getProperty(), null, "properties", null, 0, -1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getENV_InitCodes(), this.getInit(), null, "initCodes", null, 0, 1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

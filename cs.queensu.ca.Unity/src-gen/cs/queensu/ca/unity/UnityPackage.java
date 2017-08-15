@@ -780,13 +780,22 @@ public interface UnityPackage extends EPackage
   int ENV__MAPS = 2;
 
   /**
+   * The feature id for the '<em><b>Instances</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENV__INSTANCES = 3;
+
+  /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ENV__PROPERTIES = 3;
+  int ENV__PROPERTIES = 4;
 
   /**
    * The feature id for the '<em><b>Init Codes</b></em>' containment reference.
@@ -795,7 +804,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENV__INIT_CODES = 4;
+  int ENV__INIT_CODES = 5;
 
   /**
    * The number of structural features of the '<em>ENV</em>' class.
@@ -804,7 +813,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ENV_FEATURE_COUNT = 5;
+  int ENV_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link cs.queensu.ca.unity.impl.InstanceImpl <em>Instance</em>}' class.
@@ -2460,6 +2469,17 @@ public interface UnityPackage extends EPackage
   EReference getENV_Maps();
 
   /**
+   * Returns the meta object for the containment reference list '{@link cs.queensu.ca.unity.ENV#getInstances <em>Instances</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Instances</em>'.
+   * @see cs.queensu.ca.unity.ENV#getInstances()
+   * @see #getENV()
+   * @generated
+   */
+  EReference getENV_Instances();
+
+  /**
    * Returns the meta object for the containment reference list '{@link cs.queensu.ca.unity.ENV#getProperties <em>Properties</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3893,6 +3913,14 @@ public interface UnityPackage extends EPackage
      * @generated
      */
     EReference ENV__MAPS = eINSTANCE.getENV_Maps();
+
+    /**
+     * The meta object literal for the '<em><b>Instances</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENV__INSTANCES = eINSTANCE.getENV_Instances();
 
     /**
      * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.

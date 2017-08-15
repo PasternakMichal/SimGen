@@ -153,7 +153,8 @@ public class UnityParser extends AbstractContentAssistParser {
 					put(grammarAccess.getENVAccess().getNameAssignment_1(), "rule__ENV__NameAssignment_1");
 					put(grammarAccess.getENVAccess().getChannelsAssignment_3_0(), "rule__ENV__ChannelsAssignment_3_0");
 					put(grammarAccess.getENVAccess().getMapsAssignment_3_1(), "rule__ENV__MapsAssignment_3_1");
-					put(grammarAccess.getENVAccess().getPropertiesAssignment_3_2(), "rule__ENV__PropertiesAssignment_3_2");
+					put(grammarAccess.getENVAccess().getInstancesAssignment_3_2(), "rule__ENV__InstancesAssignment_3_2");
+					put(grammarAccess.getENVAccess().getPropertiesAssignment_3_3(), "rule__ENV__PropertiesAssignment_3_3");
 					put(grammarAccess.getENVAccess().getInitCodesAssignment_4(), "rule__ENV__InitCodesAssignment_4");
 					put(grammarAccess.getInstanceAccess().getNameAssignment_1(), "rule__Instance__NameAssignment_1");
 					put(grammarAccess.getInstanceAccess().getInstanceTypeAssignment_3(), "rule__Instance__InstanceTypeAssignment_3");

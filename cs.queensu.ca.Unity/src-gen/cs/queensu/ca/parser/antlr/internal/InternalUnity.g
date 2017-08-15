@@ -1414,9 +1414,29 @@ ruleENV returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getENVAccess().getPropertiesPropertyParserRuleCall_3_2_0());
+						newCompositeNode(grammarAccess.getENVAccess().getInstancesInstanceParserRuleCall_3_2_0());
 					}
-					lv_properties_5_0=ruleProperty
+					lv_instances_5_0=ruleInstance
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getENVRule());
+						}
+						add(
+							$current,
+							"instances",
+							lv_instances_5_0,
+							"cs.queensu.ca.Unity.Instance");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getENVAccess().getPropertiesPropertyParserRuleCall_3_3_0());
+					}
+					lv_properties_6_0=ruleProperty
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getENVRule());
@@ -1424,7 +1444,7 @@ ruleENV returns [EObject current=null]
 						add(
 							$current,
 							"properties",
-							lv_properties_5_0,
+							lv_properties_6_0,
 							"cs.queensu.ca.Unity.Property");
 						afterParserOrEnumRuleCall();
 					}
@@ -1436,7 +1456,7 @@ ruleENV returns [EObject current=null]
 				{
 					newCompositeNode(grammarAccess.getENVAccess().getInitCodesInitParserRuleCall_4_0());
 				}
-				lv_initCodes_6_0=ruleInit
+				lv_initCodes_7_0=ruleInit
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getENVRule());
@@ -1444,15 +1464,15 @@ ruleENV returns [EObject current=null]
 					set(
 						$current,
 						"initCodes",
-						lv_initCodes_6_0,
+						lv_initCodes_7_0,
 						"cs.queensu.ca.Unity.Init");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)?
-		otherlv_7='}'
+		otherlv_8='}'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getENVAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_8, grammarAccess.getENVAccess().getRightCurlyBracketKeyword_5());
 		}
 	)
 ;

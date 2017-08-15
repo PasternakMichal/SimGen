@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link cs.queensu.ca.unity.ENV#getName <em>Name</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.ENV#getChannels <em>Channels</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.ENV#getMaps <em>Maps</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.ENV#getInstances <em>Instances</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.ENV#getProperties <em>Properties</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.ENV#getInitCodes <em>Init Codes</em>}</li>
  * </ul>
@@ -86,6 +87,22 @@ public interface ENV extends EObject
    * @generated
    */
   EList<Map> getMaps();
+
+  /**
+   * Returns the value of the '<em><b>Instances</b></em>' containment reference list.
+   * The list contents are of type {@link cs.queensu.ca.unity.Instance}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Instances</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Instances</em>' containment reference list.
+   * @see cs.queensu.ca.unity.UnityPackage#getENV_Instances()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Instance> getInstances();
 
   /**
    * Returns the value of the '<em><b>Properties</b></em>' containment reference list.

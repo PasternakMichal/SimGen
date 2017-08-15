@@ -120,7 +120,7 @@ ENV:
 				(
 				 channels+=Channel
 			 	 |maps+=Map
-			 	 //|instances+=Instance
+			 	 |instances+=Instance
 			 	 |properties+=Property
 				)*
 				initCodes=Init?

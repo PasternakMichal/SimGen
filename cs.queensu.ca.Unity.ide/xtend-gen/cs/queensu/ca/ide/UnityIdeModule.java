@@ -6,7 +6,6 @@ package cs.queensu.ca.ide;
 import cs.queensu.ca.ide.AbstractUnityIdeModule;
 
 /**
- * lll
  * Use this class to register ide components.
  */
 @SuppressWarnings("all")

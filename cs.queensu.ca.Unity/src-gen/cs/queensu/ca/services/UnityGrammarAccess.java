@@ -788,8 +788,10 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cChannelsChannelParserRuleCall_3_0_0 = (RuleCall)cChannelsAssignment_3_0.eContents().get(0);
 		private final Assignment cMapsAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
 		private final RuleCall cMapsMapParserRuleCall_3_1_0 = (RuleCall)cMapsAssignment_3_1.eContents().get(0);
-		private final Assignment cPropertiesAssignment_3_2 = (Assignment)cAlternatives_3.eContents().get(2);
-		private final RuleCall cPropertiesPropertyParserRuleCall_3_2_0 = (RuleCall)cPropertiesAssignment_3_2.eContents().get(0);
+		private final Assignment cInstancesAssignment_3_2 = (Assignment)cAlternatives_3.eContents().get(2);
+		private final RuleCall cInstancesInstanceParserRuleCall_3_2_0 = (RuleCall)cInstancesAssignment_3_2.eContents().get(0);
+		private final Assignment cPropertiesAssignment_3_3 = (Assignment)cAlternatives_3.eContents().get(3);
+		private final RuleCall cPropertiesPropertyParserRuleCall_3_3_0 = (RuleCall)cPropertiesAssignment_3_3.eContents().get(0);
 		private final Assignment cInitCodesAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cInitCodesInitParserRuleCall_4_0 = (RuleCall)cInitCodesAssignment_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
@@ -800,14 +802,13 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//	'Env' name=ID
 		//	'{' (channels+=Channel
 		//	| maps+=Map
-		//	//|instances+=Instance
+		//	| instances+=Instance
 		//	| properties+=Property)*
 		//	initCodes=Init?
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Env' name=ID '{' (channels+=Channel | maps+=Map //|instances+=Instance
-		//| properties+=Property)* initCodes=Init? '}'
+		//'Env' name=ID '{' (channels+=Channel | maps+=Map | instances+=Instance | properties+=Property)* initCodes=Init? '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'Env'
@@ -822,8 +823,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//(channels+=Channel | maps+=Map //|instances+=Instance
-		//| properties+=Property)*
+		//(channels+=Channel | maps+=Map | instances+=Instance | properties+=Property)*
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
 		//channels+=Channel
@@ -838,11 +838,17 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//Map
 		public RuleCall getMapsMapParserRuleCall_3_1_0() { return cMapsMapParserRuleCall_3_1_0; }
 		
+		//instances+=Instance
+		public Assignment getInstancesAssignment_3_2() { return cInstancesAssignment_3_2; }
+		
+		//Instance
+		public RuleCall getInstancesInstanceParserRuleCall_3_2_0() { return cInstancesInstanceParserRuleCall_3_2_0; }
+		
 		//properties+=Property
-		public Assignment getPropertiesAssignment_3_2() { return cPropertiesAssignment_3_2; }
+		public Assignment getPropertiesAssignment_3_3() { return cPropertiesAssignment_3_3; }
 		
 		//Property
-		public RuleCall getPropertiesPropertyParserRuleCall_3_2_0() { return cPropertiesPropertyParserRuleCall_3_2_0; }
+		public RuleCall getPropertiesPropertyParserRuleCall_3_3_0() { return cPropertiesPropertyParserRuleCall_3_3_0; }
 		
 		//initCodes=Init?
 		public Assignment getInitCodesAssignment_4() { return cInitCodesAssignment_4; }
@@ -2234,7 +2240,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	//	'Env' name=ID
 	//	'{' (channels+=Channel
 	//	| maps+=Map
-	//	//|instances+=Instance
+	//	| instances+=Instance
 	//	| properties+=Property)*
 	//	initCodes=Init?
 	//	'}';

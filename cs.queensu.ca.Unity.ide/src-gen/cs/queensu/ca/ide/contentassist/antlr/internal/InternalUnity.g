@@ -1332,9 +1332,15 @@ rule__ENV__Alternatives_3
 	)
 	|
 	(
-		{ before(grammarAccess.getENVAccess().getPropertiesAssignment_3_2()); }
-		(rule__ENV__PropertiesAssignment_3_2)
-		{ after(grammarAccess.getENVAccess().getPropertiesAssignment_3_2()); }
+		{ before(grammarAccess.getENVAccess().getInstancesAssignment_3_2()); }
+		(rule__ENV__InstancesAssignment_3_2)
+		{ after(grammarAccess.getENVAccess().getInstancesAssignment_3_2()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getENVAccess().getPropertiesAssignment_3_3()); }
+		(rule__ENV__PropertiesAssignment_3_3)
+		{ after(grammarAccess.getENVAccess().getPropertiesAssignment_3_3()); }
 	)
 ;
 finally {
@@ -7165,15 +7171,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ENV__PropertiesAssignment_3_2
+rule__ENV__InstancesAssignment_3_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getENVAccess().getPropertiesPropertyParserRuleCall_3_2_0()); }
+		{ before(grammarAccess.getENVAccess().getInstancesInstanceParserRuleCall_3_2_0()); }
+		ruleInstance
+		{ after(grammarAccess.getENVAccess().getInstancesInstanceParserRuleCall_3_2_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ENV__PropertiesAssignment_3_3
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getENVAccess().getPropertiesPropertyParserRuleCall_3_3_0()); }
 		ruleProperty
-		{ after(grammarAccess.getENVAccess().getPropertiesPropertyParserRuleCall_3_2_0()); }
+		{ after(grammarAccess.getENVAccess().getPropertiesPropertyParserRuleCall_3_3_0()); }
 	)
 ;
 finally {

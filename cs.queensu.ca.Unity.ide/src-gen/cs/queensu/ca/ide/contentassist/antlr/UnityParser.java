@@ -162,14 +162,14 @@ public class UnityParser extends AbstractContentAssistParser {
 					put(grammarAccess.getENVAccess().getInitCodesAssignment_4(), "rule__ENV__InitCodesAssignment_4");
 					put(grammarAccess.getInstanceAccess().getNameAssignment_1(), "rule__Instance__NameAssignment_1");
 					put(grammarAccess.getInstanceAccess().getInstanceTypeAssignment_3(), "rule__Instance__InstanceTypeAssignment_3");
-					put(grammarAccess.getChannelAccess().getChannelNameAssignment_1(), "rule__Channel__ChannelNameAssignment_1");
+					put(grammarAccess.getChannelAccess().getNameAssignment_1(), "rule__Channel__NameAssignment_1");
 					put(grammarAccess.getChannelAccess().getDirectionAssignment_2_1(), "rule__Channel__DirectionAssignment_2_1");
 					put(grammarAccess.getChannelAccess().getTypeAssignment_3_1(), "rule__Channel__TypeAssignment_3_1");
 					put(grammarAccess.getChannelAccess().getIpAssignment_5_0_0(), "rule__Channel__IpAssignment_5_0_0");
 					put(grammarAccess.getChannelAccess().getPortAssignment_5_0_2(), "rule__Channel__PortAssignment_5_0_2");
 					put(grammarAccess.getChannelAccess().getAreanameAssignment_5_1_0(), "rule__Channel__AreanameAssignment_5_1_0");
 					put(grammarAccess.getChannelAccess().getQnameAssignment_5_1_2(), "rule__Channel__QnameAssignment_5_1_2");
-					put(grammarAccess.getChannelAccess().getBindedInstancesAssignment_7_1(), "rule__Channel__BindedInstancesAssignment_7_1");
+					put(grammarAccess.getChannelAccess().getBoundInstancesAssignment_7_1(), "rule__Channel__BoundInstancesAssignment_7_1");
 					put(grammarAccess.getInitAccess().getExpressionsAssignment_2(), "rule__Init__ExpressionsAssignment_2");
 					put(grammarAccess.getMapAccess().getMapNameAssignment_2(), "rule__Map__MapNameAssignment_2");
 					put(grammarAccess.getMapAccess().getPathNameAssignment_4(), "rule__Map__PathNameAssignment_4");

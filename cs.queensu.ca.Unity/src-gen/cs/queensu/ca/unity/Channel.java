@@ -16,14 +16,14 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link cs.queensu.ca.unity.Channel#getChannelName <em>Channel Name</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.Channel#getName <em>Name</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Channel#getDirection <em>Direction</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Channel#getType <em>Type</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Channel#getIp <em>Ip</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Channel#getPort <em>Port</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Channel#getAreaname <em>Areaname</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Channel#getQname <em>Qname</em>}</li>
- *   <li>{@link cs.queensu.ca.unity.Channel#getBindedInstances <em>Binded Instances</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.Channel#getBoundInstances <em>Bound Instances</em>}</li>
  * </ul>
  *
  * @see cs.queensu.ca.unity.UnityPackage#getChannel()
@@ -33,30 +33,30 @@ import org.eclipse.emf.ecore.EObject;
 public interface Channel extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Channel Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Channel Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Channel Name</em>' attribute.
-   * @see #setChannelName(String)
-   * @see cs.queensu.ca.unity.UnityPackage#getChannel_ChannelName()
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see cs.queensu.ca.unity.UnityPackage#getChannel_Name()
    * @model
    * @generated
    */
-  String getChannelName();
+  String getName();
 
   /**
-   * Sets the value of the '{@link cs.queensu.ca.unity.Channel#getChannelName <em>Channel Name</em>}' attribute.
+   * Sets the value of the '{@link cs.queensu.ca.unity.Channel#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Channel Name</em>' attribute.
-   * @see #getChannelName()
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
    * @generated
    */
-  void setChannelName(String value);
+  void setName(String value);
 
   /**
    * Returns the value of the '<em><b>Direction</b></em>' attribute.
@@ -215,19 +215,19 @@ public interface Channel extends EObject
   void setQname(QName value);
 
   /**
-   * Returns the value of the '<em><b>Binded Instances</b></em>' reference list.
+   * Returns the value of the '<em><b>Bound Instances</b></em>' reference list.
    * The list contents are of type {@link cs.queensu.ca.unity.Instance}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Binded Instances</em>' reference list isn't clear,
+   * If the meaning of the '<em>Bound Instances</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Binded Instances</em>' reference list.
-   * @see cs.queensu.ca.unity.UnityPackage#getChannel_BindedInstances()
+   * @return the value of the '<em>Bound Instances</em>' reference list.
+   * @see cs.queensu.ca.unity.UnityPackage#getChannel_BoundInstances()
    * @model
    * @generated
    */
-  EList<Instance> getBindedInstances();
+  EList<Instance> getBoundInstances();
 
 } // Channel

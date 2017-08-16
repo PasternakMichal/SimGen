@@ -105,7 +105,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceType" eType="#//UnityObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Channel">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="channelName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//interfaceType"
         containment="true"/>
@@ -115,7 +115,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="qname" eType="#//QName"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="bindedInstances" unique="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundInstances" unique="false"
         upperBound="-1" eType="#//Instance"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Init">

@@ -863,13 +863,13 @@ public interface UnityPackage extends EPackage
   int CHANNEL = 19;
 
   /**
-   * The feature id for the '<em><b>Channel Name</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHANNEL__CHANNEL_NAME = 0;
+  int CHANNEL__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Direction</b></em>' attribute.
@@ -926,13 +926,13 @@ public interface UnityPackage extends EPackage
   int CHANNEL__QNAME = 6;
 
   /**
-   * The feature id for the '<em><b>Binded Instances</b></em>' reference list.
+   * The feature id for the '<em><b>Bound Instances</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHANNEL__BINDED_INSTANCES = 7;
+  int CHANNEL__BOUND_INSTANCES = 7;
 
   /**
    * The number of structural features of the '<em>Channel</em>' class.
@@ -2572,15 +2572,15 @@ public interface UnityPackage extends EPackage
   EClass getChannel();
 
   /**
-   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Channel#getChannelName <em>Channel Name</em>}'.
+   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Channel#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Channel Name</em>'.
-   * @see cs.queensu.ca.unity.Channel#getChannelName()
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see cs.queensu.ca.unity.Channel#getName()
    * @see #getChannel()
    * @generated
    */
-  EAttribute getChannel_ChannelName();
+  EAttribute getChannel_Name();
 
   /**
    * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Channel#getDirection <em>Direction</em>}'.
@@ -2649,15 +2649,15 @@ public interface UnityPackage extends EPackage
   EReference getChannel_Qname();
 
   /**
-   * Returns the meta object for the reference list '{@link cs.queensu.ca.unity.Channel#getBindedInstances <em>Binded Instances</em>}'.
+   * Returns the meta object for the reference list '{@link cs.queensu.ca.unity.Channel#getBoundInstances <em>Bound Instances</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Binded Instances</em>'.
-   * @see cs.queensu.ca.unity.Channel#getBindedInstances()
+   * @return the meta object for the reference list '<em>Bound Instances</em>'.
+   * @see cs.queensu.ca.unity.Channel#getBoundInstances()
    * @see #getChannel()
    * @generated
    */
-  EReference getChannel_BindedInstances();
+  EReference getChannel_BoundInstances();
 
   /**
    * Returns the meta object for class '{@link cs.queensu.ca.unity.Init <em>Init</em>}'.
@@ -4035,12 +4035,12 @@ public interface UnityPackage extends EPackage
     EClass CHANNEL = eINSTANCE.getChannel();
 
     /**
-     * The meta object literal for the '<em><b>Channel Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CHANNEL__CHANNEL_NAME = eINSTANCE.getChannel_ChannelName();
+    EAttribute CHANNEL__NAME = eINSTANCE.getChannel_Name();
 
     /**
      * The meta object literal for the '<em><b>Direction</b></em>' attribute feature.
@@ -4091,12 +4091,12 @@ public interface UnityPackage extends EPackage
     EReference CHANNEL__QNAME = eINSTANCE.getChannel_Qname();
 
     /**
-     * The meta object literal for the '<em><b>Binded Instances</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Bound Instances</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CHANNEL__BINDED_INSTANCES = eINSTANCE.getChannel_BindedInstances();
+    EReference CHANNEL__BOUND_INSTANCES = eINSTANCE.getChannel_BoundInstances();
 
     /**
      * The meta object literal for the '{@link cs.queensu.ca.unity.impl.InitImpl <em>Init</em>}' class.

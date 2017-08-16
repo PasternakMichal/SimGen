@@ -127,23 +127,19 @@ ENV:
 			'}'
 	;
 
-//Channel: 'test'
-	
-//;
-
 Instance:
-		'Instance' name=ID ':' instanceType=[UnityObject] //('bind' channel=[Channel])?
+		'Instance' name=ID ':' instanceType=[UnityObject] 
 	;
 	
 Channel:
-		'Channel' channelName=ID    ('direction' direction=Direction)?
+		'Channel' name=ID    ('direction' direction=Direction)?
 		 ('type' type=interfaceType)?
 			 			'('
 			 				(
 			 			 		 (ip=IP ',' port=Port)
 			 			 		|(areaname=AreaName ',' qname=QName )
 			 				)
-			 			 ')'  ('assign' (bindedInstances+=[Instance])+)?
+			 			 ')'  ('assign' (boundInstances+=[Instance])+)?
     ;
     
 Direction: ('in'|'out'|'inout');

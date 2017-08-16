@@ -3909,9 +3909,9 @@ rule__Channel__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getChannelAccess().getChannelNameAssignment_1()); }
-	(rule__Channel__ChannelNameAssignment_1)
-	{ after(grammarAccess.getChannelAccess().getChannelNameAssignment_1()); }
+	{ before(grammarAccess.getChannelAccess().getNameAssignment_1()); }
+	(rule__Channel__NameAssignment_1)
+	{ after(grammarAccess.getChannelAccess().getNameAssignment_1()); }
 )
 ;
 finally {
@@ -4395,14 +4395,14 @@ rule__Channel__Group_7__1__Impl
 :
 (
 	(
-		{ before(grammarAccess.getChannelAccess().getBindedInstancesAssignment_7_1()); }
-		(rule__Channel__BindedInstancesAssignment_7_1)
-		{ after(grammarAccess.getChannelAccess().getBindedInstancesAssignment_7_1()); }
+		{ before(grammarAccess.getChannelAccess().getBoundInstancesAssignment_7_1()); }
+		(rule__Channel__BoundInstancesAssignment_7_1)
+		{ after(grammarAccess.getChannelAccess().getBoundInstancesAssignment_7_1()); }
 	)
 	(
-		{ before(grammarAccess.getChannelAccess().getBindedInstancesAssignment_7_1()); }
-		(rule__Channel__BindedInstancesAssignment_7_1)*
-		{ after(grammarAccess.getChannelAccess().getBindedInstancesAssignment_7_1()); }
+		{ before(grammarAccess.getChannelAccess().getBoundInstancesAssignment_7_1()); }
+		(rule__Channel__BoundInstancesAssignment_7_1)*
+		{ after(grammarAccess.getChannelAccess().getBoundInstancesAssignment_7_1()); }
 	)
 )
 ;
@@ -7463,15 +7463,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Channel__ChannelNameAssignment_1
+rule__Channel__NameAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getChannelAccess().getChannelNameIDTerminalRuleCall_1_0()); }
+		{ before(grammarAccess.getChannelAccess().getNameIDTerminalRuleCall_1_0()); }
 		RULE_ID
-		{ after(grammarAccess.getChannelAccess().getChannelNameIDTerminalRuleCall_1_0()); }
+		{ after(grammarAccess.getChannelAccess().getNameIDTerminalRuleCall_1_0()); }
 	)
 ;
 finally {
@@ -7568,19 +7568,19 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Channel__BindedInstancesAssignment_7_1
+rule__Channel__BoundInstancesAssignment_7_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getChannelAccess().getBindedInstancesInstanceCrossReference_7_1_0()); }
+		{ before(grammarAccess.getChannelAccess().getBoundInstancesInstanceCrossReference_7_1_0()); }
 		(
-			{ before(grammarAccess.getChannelAccess().getBindedInstancesInstanceIDTerminalRuleCall_7_1_0_1()); }
+			{ before(grammarAccess.getChannelAccess().getBoundInstancesInstanceIDTerminalRuleCall_7_1_0_1()); }
 			RULE_ID
-			{ after(grammarAccess.getChannelAccess().getBindedInstancesInstanceIDTerminalRuleCall_7_1_0_1()); }
+			{ after(grammarAccess.getChannelAccess().getBoundInstancesInstanceIDTerminalRuleCall_7_1_0_1()); }
 		)
-		{ after(grammarAccess.getChannelAccess().getBindedInstancesInstanceCrossReference_7_1_0()); }
+		{ after(grammarAccess.getChannelAccess().getBoundInstancesInstanceCrossReference_7_1_0()); }
 	)
 ;
 finally {

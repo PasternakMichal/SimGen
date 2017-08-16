@@ -8,6 +8,10 @@ MetaObject Rover : rover {
 	property network: bool
 	property Port: int
 	property NetId: int
+	
+	Action forward () return (speed : int) {
+		 
+		}
 }
 MetaObject Car : car {
 	property size : int
@@ -53,6 +57,7 @@ Object zoomzoom : Rover {
 		Port = 8888
 		NetId = 23
 	}
+	
 }
 Object brz :Car {
 	
@@ -70,6 +75,7 @@ Object brz :Car {
 	
 	
 }
+
 Object land : Plane {
 	config {
 		posx = 0
@@ -78,13 +84,15 @@ Object land : Plane {
 		sizex = 20
 		sizey = 1
 		sizez = 20
+		
 	}
+	
 	
 }
 
 Env simulation {
 	Instance land : land
 	Instance buddy : zoomzoom
-	Instance beth : brz
+	Channel MyChannel direction inout type TCP (ip : "192.168.1.1", port : 1234) assign buddy land  
 }
 

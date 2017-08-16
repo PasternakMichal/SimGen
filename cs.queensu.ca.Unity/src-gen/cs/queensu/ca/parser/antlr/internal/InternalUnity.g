@@ -1548,9 +1548,9 @@ ruleChannel returns [EObject current=null]
 		}
 		(
 			(
-				lv_channelName_1_0=RULE_ID
+				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_channelName_1_0, grammarAccess.getChannelAccess().getChannelNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getChannelAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -1558,8 +1558,8 @@ ruleChannel returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"channelName",
-						lv_channelName_1_0,
+						"name",
+						lv_name_1_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
@@ -1727,7 +1727,7 @@ ruleChannel returns [EObject current=null]
 					}
 					otherlv_15=RULE_ID
 					{
-						newLeafNode(otherlv_15, grammarAccess.getChannelAccess().getBindedInstancesInstanceCrossReference_7_1_0());
+						newLeafNode(otherlv_15, grammarAccess.getChannelAccess().getBoundInstancesInstanceCrossReference_7_1_0());
 					}
 				)
 			)+

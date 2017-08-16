@@ -4244,12 +4244,12 @@ public class InternalUnityParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleChannel"
-    // InternalUnity.g:1537:1: ruleChannel returns [EObject current=null] : (otherlv_0= 'Channel' ( (lv_channelName_1_0= RULE_ID ) ) (otherlv_2= 'direction' ( (lv_direction_3_0= ruleDirection ) ) )? (otherlv_4= 'type' ( (lv_type_5_0= ruleinterfaceType ) ) )? otherlv_6= '(' ( ( ( (lv_ip_7_0= ruleIP ) ) otherlv_8= ',' ( (lv_port_9_0= rulePort ) ) ) | ( ( (lv_areaname_10_0= ruleAreaName ) ) otherlv_11= ',' ( (lv_qname_12_0= ruleQName ) ) ) ) otherlv_13= ')' (otherlv_14= 'assign' ( (otherlv_15= RULE_ID ) )+ )? ) ;
+    // InternalUnity.g:1537:1: ruleChannel returns [EObject current=null] : (otherlv_0= 'Channel' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'direction' ( (lv_direction_3_0= ruleDirection ) ) )? (otherlv_4= 'type' ( (lv_type_5_0= ruleinterfaceType ) ) )? otherlv_6= '(' ( ( ( (lv_ip_7_0= ruleIP ) ) otherlv_8= ',' ( (lv_port_9_0= rulePort ) ) ) | ( ( (lv_areaname_10_0= ruleAreaName ) ) otherlv_11= ',' ( (lv_qname_12_0= ruleQName ) ) ) ) otherlv_13= ')' (otherlv_14= 'assign' ( (otherlv_15= RULE_ID ) )+ )? ) ;
     public final EObject ruleChannel() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_channelName_1_0=null;
+        Token lv_name_1_0=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
         Token otherlv_6=null;
@@ -4275,11 +4275,11 @@ public class InternalUnityParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalUnity.g:1543:2: ( (otherlv_0= 'Channel' ( (lv_channelName_1_0= RULE_ID ) ) (otherlv_2= 'direction' ( (lv_direction_3_0= ruleDirection ) ) )? (otherlv_4= 'type' ( (lv_type_5_0= ruleinterfaceType ) ) )? otherlv_6= '(' ( ( ( (lv_ip_7_0= ruleIP ) ) otherlv_8= ',' ( (lv_port_9_0= rulePort ) ) ) | ( ( (lv_areaname_10_0= ruleAreaName ) ) otherlv_11= ',' ( (lv_qname_12_0= ruleQName ) ) ) ) otherlv_13= ')' (otherlv_14= 'assign' ( (otherlv_15= RULE_ID ) )+ )? ) )
-            // InternalUnity.g:1544:2: (otherlv_0= 'Channel' ( (lv_channelName_1_0= RULE_ID ) ) (otherlv_2= 'direction' ( (lv_direction_3_0= ruleDirection ) ) )? (otherlv_4= 'type' ( (lv_type_5_0= ruleinterfaceType ) ) )? otherlv_6= '(' ( ( ( (lv_ip_7_0= ruleIP ) ) otherlv_8= ',' ( (lv_port_9_0= rulePort ) ) ) | ( ( (lv_areaname_10_0= ruleAreaName ) ) otherlv_11= ',' ( (lv_qname_12_0= ruleQName ) ) ) ) otherlv_13= ')' (otherlv_14= 'assign' ( (otherlv_15= RULE_ID ) )+ )? )
+            // InternalUnity.g:1543:2: ( (otherlv_0= 'Channel' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'direction' ( (lv_direction_3_0= ruleDirection ) ) )? (otherlv_4= 'type' ( (lv_type_5_0= ruleinterfaceType ) ) )? otherlv_6= '(' ( ( ( (lv_ip_7_0= ruleIP ) ) otherlv_8= ',' ( (lv_port_9_0= rulePort ) ) ) | ( ( (lv_areaname_10_0= ruleAreaName ) ) otherlv_11= ',' ( (lv_qname_12_0= ruleQName ) ) ) ) otherlv_13= ')' (otherlv_14= 'assign' ( (otherlv_15= RULE_ID ) )+ )? ) )
+            // InternalUnity.g:1544:2: (otherlv_0= 'Channel' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'direction' ( (lv_direction_3_0= ruleDirection ) ) )? (otherlv_4= 'type' ( (lv_type_5_0= ruleinterfaceType ) ) )? otherlv_6= '(' ( ( ( (lv_ip_7_0= ruleIP ) ) otherlv_8= ',' ( (lv_port_9_0= rulePort ) ) ) | ( ( (lv_areaname_10_0= ruleAreaName ) ) otherlv_11= ',' ( (lv_qname_12_0= ruleQName ) ) ) ) otherlv_13= ')' (otherlv_14= 'assign' ( (otherlv_15= RULE_ID ) )+ )? )
             {
-            // InternalUnity.g:1544:2: (otherlv_0= 'Channel' ( (lv_channelName_1_0= RULE_ID ) ) (otherlv_2= 'direction' ( (lv_direction_3_0= ruleDirection ) ) )? (otherlv_4= 'type' ( (lv_type_5_0= ruleinterfaceType ) ) )? otherlv_6= '(' ( ( ( (lv_ip_7_0= ruleIP ) ) otherlv_8= ',' ( (lv_port_9_0= rulePort ) ) ) | ( ( (lv_areaname_10_0= ruleAreaName ) ) otherlv_11= ',' ( (lv_qname_12_0= ruleQName ) ) ) ) otherlv_13= ')' (otherlv_14= 'assign' ( (otherlv_15= RULE_ID ) )+ )? )
-            // InternalUnity.g:1545:3: otherlv_0= 'Channel' ( (lv_channelName_1_0= RULE_ID ) ) (otherlv_2= 'direction' ( (lv_direction_3_0= ruleDirection ) ) )? (otherlv_4= 'type' ( (lv_type_5_0= ruleinterfaceType ) ) )? otherlv_6= '(' ( ( ( (lv_ip_7_0= ruleIP ) ) otherlv_8= ',' ( (lv_port_9_0= rulePort ) ) ) | ( ( (lv_areaname_10_0= ruleAreaName ) ) otherlv_11= ',' ( (lv_qname_12_0= ruleQName ) ) ) ) otherlv_13= ')' (otherlv_14= 'assign' ( (otherlv_15= RULE_ID ) )+ )?
+            // InternalUnity.g:1544:2: (otherlv_0= 'Channel' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'direction' ( (lv_direction_3_0= ruleDirection ) ) )? (otherlv_4= 'type' ( (lv_type_5_0= ruleinterfaceType ) ) )? otherlv_6= '(' ( ( ( (lv_ip_7_0= ruleIP ) ) otherlv_8= ',' ( (lv_port_9_0= rulePort ) ) ) | ( ( (lv_areaname_10_0= ruleAreaName ) ) otherlv_11= ',' ( (lv_qname_12_0= ruleQName ) ) ) ) otherlv_13= ')' (otherlv_14= 'assign' ( (otherlv_15= RULE_ID ) )+ )? )
+            // InternalUnity.g:1545:3: otherlv_0= 'Channel' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'direction' ( (lv_direction_3_0= ruleDirection ) ) )? (otherlv_4= 'type' ( (lv_type_5_0= ruleinterfaceType ) ) )? otherlv_6= '(' ( ( ( (lv_ip_7_0= ruleIP ) ) otherlv_8= ',' ( (lv_port_9_0= rulePort ) ) ) | ( ( (lv_areaname_10_0= ruleAreaName ) ) otherlv_11= ',' ( (lv_qname_12_0= ruleQName ) ) ) ) otherlv_13= ')' (otherlv_14= 'assign' ( (otherlv_15= RULE_ID ) )+ )?
             {
             otherlv_0=(Token)match(input,38,FOLLOW_4); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -4287,16 +4287,16 @@ public class InternalUnityParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getChannelAccess().getChannelKeyword_0());
               		
             }
-            // InternalUnity.g:1549:3: ( (lv_channelName_1_0= RULE_ID ) )
-            // InternalUnity.g:1550:4: (lv_channelName_1_0= RULE_ID )
+            // InternalUnity.g:1549:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalUnity.g:1550:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalUnity.g:1550:4: (lv_channelName_1_0= RULE_ID )
-            // InternalUnity.g:1551:5: lv_channelName_1_0= RULE_ID
+            // InternalUnity.g:1550:4: (lv_name_1_0= RULE_ID )
+            // InternalUnity.g:1551:5: lv_name_1_0= RULE_ID
             {
-            lv_channelName_1_0=(Token)match(input,RULE_ID,FOLLOW_28); if (state.failed) return current;
+            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_28); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              					newLeafNode(lv_channelName_1_0, grammarAccess.getChannelAccess().getChannelNameIDTerminalRuleCall_1_0());
+              					newLeafNode(lv_name_1_0, grammarAccess.getChannelAccess().getNameIDTerminalRuleCall_1_0());
               				
             }
             if ( state.backtracking==0 ) {
@@ -4306,8 +4306,8 @@ public class InternalUnityParser extends AbstractInternalAntlrParser {
               					}
               					setWithLastConsumed(
               						current,
-              						"channelName",
-              						lv_channelName_1_0,
+              						"name",
+              						lv_name_1_0,
               						"org.eclipse.xtext.common.Terminals.ID");
               				
             }
@@ -4694,7 +4694,7 @@ public class InternalUnityParser extends AbstractInternalAntlrParser {
                     	    otherlv_15=(Token)match(input,RULE_ID,FOLLOW_37); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
-                    	      						newLeafNode(otherlv_15, grammarAccess.getChannelAccess().getBindedInstancesInstanceCrossReference_7_1_0());
+                    	      						newLeafNode(otherlv_15, grammarAccess.getChannelAccess().getBoundInstancesInstanceCrossReference_7_1_0());
                     	      					
                     	    }
 

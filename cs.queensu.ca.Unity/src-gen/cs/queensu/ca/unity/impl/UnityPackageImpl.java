@@ -1109,7 +1109,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getChannel_ChannelName()
+  public EAttribute getChannel_Name()
   {
     return (EAttribute)channelEClass.getEStructuralFeatures().get(0);
   }
@@ -1179,7 +1179,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getChannel_BindedInstances()
+  public EReference getChannel_BoundInstances()
   {
     return (EReference)channelEClass.getEStructuralFeatures().get(7);
   }
@@ -2065,14 +2065,14 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     createEReference(instanceEClass, INSTANCE__INSTANCE_TYPE);
 
     channelEClass = createEClass(CHANNEL);
-    createEAttribute(channelEClass, CHANNEL__CHANNEL_NAME);
+    createEAttribute(channelEClass, CHANNEL__NAME);
     createEAttribute(channelEClass, CHANNEL__DIRECTION);
     createEReference(channelEClass, CHANNEL__TYPE);
     createEReference(channelEClass, CHANNEL__IP);
     createEReference(channelEClass, CHANNEL__PORT);
     createEReference(channelEClass, CHANNEL__AREANAME);
     createEReference(channelEClass, CHANNEL__QNAME);
-    createEReference(channelEClass, CHANNEL__BINDED_INSTANCES);
+    createEReference(channelEClass, CHANNEL__BOUND_INSTANCES);
 
     initEClass = createEClass(INIT);
     createEReference(initEClass, INIT__EXPRESSIONS);
@@ -2321,14 +2321,14 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     initEReference(getInstance_InstanceType(), this.getUnityObject(), null, "instanceType", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(channelEClass, Channel.class, "Channel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getChannel_ChannelName(), ecorePackage.getEString(), "channelName", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getChannel_Name(), ecorePackage.getEString(), "name", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getChannel_Direction(), ecorePackage.getEString(), "direction", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChannel_Type(), this.getinterfaceType(), null, "type", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChannel_Ip(), this.getIP(), null, "ip", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChannel_Port(), this.getPort(), null, "port", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChannel_Areaname(), this.getAreaName(), null, "areaname", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChannel_Qname(), this.getQName(), null, "qname", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getChannel_BindedInstances(), this.getInstance(), null, "bindedInstances", null, 0, -1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChannel_BoundInstances(), this.getInstance(), null, "boundInstances", null, 0, -1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(initEClass, Init.class, "Init", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInit_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, Init.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

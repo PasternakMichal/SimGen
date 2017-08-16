@@ -13295,26 +13295,26 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Channel__Group__1__Impl"
-    // InternalUnity.g:3906:1: rule__Channel__Group__1__Impl : ( ( rule__Channel__ChannelNameAssignment_1 ) ) ;
+    // InternalUnity.g:3906:1: rule__Channel__Group__1__Impl : ( ( rule__Channel__NameAssignment_1 ) ) ;
     public final void rule__Channel__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalUnity.g:3910:1: ( ( ( rule__Channel__ChannelNameAssignment_1 ) ) )
-            // InternalUnity.g:3911:1: ( ( rule__Channel__ChannelNameAssignment_1 ) )
+            // InternalUnity.g:3910:1: ( ( ( rule__Channel__NameAssignment_1 ) ) )
+            // InternalUnity.g:3911:1: ( ( rule__Channel__NameAssignment_1 ) )
             {
-            // InternalUnity.g:3911:1: ( ( rule__Channel__ChannelNameAssignment_1 ) )
-            // InternalUnity.g:3912:2: ( rule__Channel__ChannelNameAssignment_1 )
+            // InternalUnity.g:3911:1: ( ( rule__Channel__NameAssignment_1 ) )
+            // InternalUnity.g:3912:2: ( rule__Channel__NameAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getChannelAccess().getChannelNameAssignment_1()); 
+               before(grammarAccess.getChannelAccess().getNameAssignment_1()); 
             }
-            // InternalUnity.g:3913:2: ( rule__Channel__ChannelNameAssignment_1 )
-            // InternalUnity.g:3913:3: rule__Channel__ChannelNameAssignment_1
+            // InternalUnity.g:3913:2: ( rule__Channel__NameAssignment_1 )
+            // InternalUnity.g:3913:3: rule__Channel__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__Channel__ChannelNameAssignment_1();
+            rule__Channel__NameAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -13322,7 +13322,7 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getChannelAccess().getChannelNameAssignment_1()); 
+               after(grammarAccess.getChannelAccess().getNameAssignment_1()); 
             }
 
             }
@@ -14830,29 +14830,29 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Channel__Group_7__1__Impl"
-    // InternalUnity.g:4391:1: rule__Channel__Group_7__1__Impl : ( ( ( rule__Channel__BindedInstancesAssignment_7_1 ) ) ( ( rule__Channel__BindedInstancesAssignment_7_1 )* ) ) ;
+    // InternalUnity.g:4391:1: rule__Channel__Group_7__1__Impl : ( ( ( rule__Channel__BoundInstancesAssignment_7_1 ) ) ( ( rule__Channel__BoundInstancesAssignment_7_1 )* ) ) ;
     public final void rule__Channel__Group_7__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalUnity.g:4395:1: ( ( ( ( rule__Channel__BindedInstancesAssignment_7_1 ) ) ( ( rule__Channel__BindedInstancesAssignment_7_1 )* ) ) )
-            // InternalUnity.g:4396:1: ( ( ( rule__Channel__BindedInstancesAssignment_7_1 ) ) ( ( rule__Channel__BindedInstancesAssignment_7_1 )* ) )
+            // InternalUnity.g:4395:1: ( ( ( ( rule__Channel__BoundInstancesAssignment_7_1 ) ) ( ( rule__Channel__BoundInstancesAssignment_7_1 )* ) ) )
+            // InternalUnity.g:4396:1: ( ( ( rule__Channel__BoundInstancesAssignment_7_1 ) ) ( ( rule__Channel__BoundInstancesAssignment_7_1 )* ) )
             {
-            // InternalUnity.g:4396:1: ( ( ( rule__Channel__BindedInstancesAssignment_7_1 ) ) ( ( rule__Channel__BindedInstancesAssignment_7_1 )* ) )
-            // InternalUnity.g:4397:2: ( ( rule__Channel__BindedInstancesAssignment_7_1 ) ) ( ( rule__Channel__BindedInstancesAssignment_7_1 )* )
+            // InternalUnity.g:4396:1: ( ( ( rule__Channel__BoundInstancesAssignment_7_1 ) ) ( ( rule__Channel__BoundInstancesAssignment_7_1 )* ) )
+            // InternalUnity.g:4397:2: ( ( rule__Channel__BoundInstancesAssignment_7_1 ) ) ( ( rule__Channel__BoundInstancesAssignment_7_1 )* )
             {
-            // InternalUnity.g:4397:2: ( ( rule__Channel__BindedInstancesAssignment_7_1 ) )
-            // InternalUnity.g:4398:3: ( rule__Channel__BindedInstancesAssignment_7_1 )
+            // InternalUnity.g:4397:2: ( ( rule__Channel__BoundInstancesAssignment_7_1 ) )
+            // InternalUnity.g:4398:3: ( rule__Channel__BoundInstancesAssignment_7_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getChannelAccess().getBindedInstancesAssignment_7_1()); 
+               before(grammarAccess.getChannelAccess().getBoundInstancesAssignment_7_1()); 
             }
-            // InternalUnity.g:4399:3: ( rule__Channel__BindedInstancesAssignment_7_1 )
-            // InternalUnity.g:4399:4: rule__Channel__BindedInstancesAssignment_7_1
+            // InternalUnity.g:4399:3: ( rule__Channel__BoundInstancesAssignment_7_1 )
+            // InternalUnity.g:4399:4: rule__Channel__BoundInstancesAssignment_7_1
             {
             pushFollow(FOLLOW_30);
-            rule__Channel__BindedInstancesAssignment_7_1();
+            rule__Channel__BoundInstancesAssignment_7_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -14860,18 +14860,18 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getChannelAccess().getBindedInstancesAssignment_7_1()); 
+               after(grammarAccess.getChannelAccess().getBoundInstancesAssignment_7_1()); 
             }
 
             }
 
-            // InternalUnity.g:4402:2: ( ( rule__Channel__BindedInstancesAssignment_7_1 )* )
-            // InternalUnity.g:4403:3: ( rule__Channel__BindedInstancesAssignment_7_1 )*
+            // InternalUnity.g:4402:2: ( ( rule__Channel__BoundInstancesAssignment_7_1 )* )
+            // InternalUnity.g:4403:3: ( rule__Channel__BoundInstancesAssignment_7_1 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getChannelAccess().getBindedInstancesAssignment_7_1()); 
+               before(grammarAccess.getChannelAccess().getBoundInstancesAssignment_7_1()); 
             }
-            // InternalUnity.g:4404:3: ( rule__Channel__BindedInstancesAssignment_7_1 )*
+            // InternalUnity.g:4404:3: ( rule__Channel__BoundInstancesAssignment_7_1 )*
             loop37:
             do {
                 int alt37=2;
@@ -14890,10 +14890,10 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
 
                 switch (alt37) {
             	case 1 :
-            	    // InternalUnity.g:4404:4: rule__Channel__BindedInstancesAssignment_7_1
+            	    // InternalUnity.g:4404:4: rule__Channel__BoundInstancesAssignment_7_1
             	    {
             	    pushFollow(FOLLOW_30);
-            	    rule__Channel__BindedInstancesAssignment_7_1();
+            	    rule__Channel__BoundInstancesAssignment_7_1();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -14907,7 +14907,7 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getChannelAccess().getBindedInstancesAssignment_7_1()); 
+               after(grammarAccess.getChannelAccess().getBoundInstancesAssignment_7_1()); 
             }
 
             }
@@ -24123,9 +24123,9 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Instance__InstanceTypeAssignment_3"
 
 
-    // $ANTLR start "rule__Channel__ChannelNameAssignment_1"
-    // InternalUnity.g:7466:1: rule__Channel__ChannelNameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__Channel__ChannelNameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Channel__NameAssignment_1"
+    // InternalUnity.g:7466:1: rule__Channel__NameAssignment_1 : ( RULE_ID ) ;
+    public final void rule__Channel__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -24137,11 +24137,11 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
             // InternalUnity.g:7472:3: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getChannelAccess().getChannelNameIDTerminalRuleCall_1_0()); 
+               before(grammarAccess.getChannelAccess().getNameIDTerminalRuleCall_1_0()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getChannelAccess().getChannelNameIDTerminalRuleCall_1_0()); 
+               after(grammarAccess.getChannelAccess().getNameIDTerminalRuleCall_1_0()); 
             }
 
             }
@@ -24161,7 +24161,7 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Channel__ChannelNameAssignment_1"
+    // $ANTLR end "rule__Channel__NameAssignment_1"
 
 
     // $ANTLR start "rule__Channel__DirectionAssignment_2_1"
@@ -24434,9 +24434,9 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Channel__QnameAssignment_5_1_2"
 
 
-    // $ANTLR start "rule__Channel__BindedInstancesAssignment_7_1"
-    // InternalUnity.g:7571:1: rule__Channel__BindedInstancesAssignment_7_1 : ( ( RULE_ID ) ) ;
-    public final void rule__Channel__BindedInstancesAssignment_7_1() throws RecognitionException {
+    // $ANTLR start "rule__Channel__BoundInstancesAssignment_7_1"
+    // InternalUnity.g:7571:1: rule__Channel__BoundInstancesAssignment_7_1 : ( ( RULE_ID ) ) ;
+    public final void rule__Channel__BoundInstancesAssignment_7_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -24448,23 +24448,23 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
             // InternalUnity.g:7577:3: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getChannelAccess().getBindedInstancesInstanceCrossReference_7_1_0()); 
+               before(grammarAccess.getChannelAccess().getBoundInstancesInstanceCrossReference_7_1_0()); 
             }
             // InternalUnity.g:7578:3: ( RULE_ID )
             // InternalUnity.g:7579:4: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getChannelAccess().getBindedInstancesInstanceIDTerminalRuleCall_7_1_0_1()); 
+               before(grammarAccess.getChannelAccess().getBoundInstancesInstanceIDTerminalRuleCall_7_1_0_1()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getChannelAccess().getBindedInstancesInstanceIDTerminalRuleCall_7_1_0_1()); 
+               after(grammarAccess.getChannelAccess().getBoundInstancesInstanceIDTerminalRuleCall_7_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getChannelAccess().getBindedInstancesInstanceCrossReference_7_1_0()); 
+               after(grammarAccess.getChannelAccess().getBoundInstancesInstanceCrossReference_7_1_0()); 
             }
 
             }
@@ -24484,7 +24484,7 @@ public class InternalUnityParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Channel__BindedInstancesAssignment_7_1"
+    // $ANTLR end "rule__Channel__BoundInstancesAssignment_7_1"
 
 
     // $ANTLR start "rule__Init__ExpressionsAssignment_2"

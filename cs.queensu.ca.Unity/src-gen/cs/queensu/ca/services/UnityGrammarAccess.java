@@ -866,8 +866,6 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cInstanceTypeUnityObjectCrossReference_3_0 = (CrossReference)cInstanceTypeAssignment_3.eContents().get(0);
 		private final RuleCall cInstanceTypeUnityObjectIDTerminalRuleCall_3_0_1 = (RuleCall)cInstanceTypeUnityObjectCrossReference_3_0.eContents().get(1);
 		
-		////Channel: 'test'
-		////;
 		//Instance:
 		//	'Instance' name=ID ':' instanceType=[UnityObject];
 		@Override public ParserRule getRule() { return rule; }
@@ -900,8 +898,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.Channel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cChannelKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cChannelNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cChannelNameIDTerminalRuleCall_1_0 = (RuleCall)cChannelNameAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cDirectionKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cDirectionAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
@@ -927,28 +925,28 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
 		private final Keyword cAssignKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Assignment cBindedInstancesAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
-		private final CrossReference cBindedInstancesInstanceCrossReference_7_1_0 = (CrossReference)cBindedInstancesAssignment_7_1.eContents().get(0);
-		private final RuleCall cBindedInstancesInstanceIDTerminalRuleCall_7_1_0_1 = (RuleCall)cBindedInstancesInstanceCrossReference_7_1_0.eContents().get(1);
+		private final Assignment cBoundInstancesAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final CrossReference cBoundInstancesInstanceCrossReference_7_1_0 = (CrossReference)cBoundInstancesAssignment_7_1.eContents().get(0);
+		private final RuleCall cBoundInstancesInstanceIDTerminalRuleCall_7_1_0_1 = (RuleCall)cBoundInstancesInstanceCrossReference_7_1_0.eContents().get(1);
 		
 		//Channel:
-		//	'Channel' channelName=ID ('direction' direction=Direction)? ('type' type=interfaceType)?
+		//	'Channel' name=ID ('direction' direction=Direction)? ('type' type=interfaceType)?
 		//	'(' (ip=IP ',' port=Port | areaname=AreaName ',' qname=QName)
-		//	')' ('assign' bindedInstances+=[Instance]+)?;
+		//	')' ('assign' boundInstances+=[Instance]+)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Channel' channelName=ID ('direction' direction=Direction)? ('type' type=interfaceType)? '(' (ip=IP ',' port=Port |
-		//areaname=AreaName ',' qname=QName) ')' ('assign' bindedInstances+=[Instance]+)?
+		//'Channel' name=ID ('direction' direction=Direction)? ('type' type=interfaceType)? '(' (ip=IP ',' port=Port |
+		//areaname=AreaName ',' qname=QName) ')' ('assign' boundInstances+=[Instance]+)?
 		public Group getGroup() { return cGroup; }
 		
 		//'Channel'
 		public Keyword getChannelKeyword_0() { return cChannelKeyword_0; }
 		
-		//channelName=ID
-		public Assignment getChannelNameAssignment_1() { return cChannelNameAssignment_1; }
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
-		public RuleCall getChannelNameIDTerminalRuleCall_1_0() { return cChannelNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
 		//('direction' direction=Direction)?
 		public Group getGroup_2() { return cGroup_2; }
@@ -1019,20 +1017,20 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
 		
-		//('assign' bindedInstances+=[Instance]+)?
+		//('assign' boundInstances+=[Instance]+)?
 		public Group getGroup_7() { return cGroup_7; }
 		
 		//'assign'
 		public Keyword getAssignKeyword_7_0() { return cAssignKeyword_7_0; }
 		
-		//bindedInstances+=[Instance]+
-		public Assignment getBindedInstancesAssignment_7_1() { return cBindedInstancesAssignment_7_1; }
+		//boundInstances+=[Instance]+
+		public Assignment getBoundInstancesAssignment_7_1() { return cBoundInstancesAssignment_7_1; }
 		
 		//[Instance]
-		public CrossReference getBindedInstancesInstanceCrossReference_7_1_0() { return cBindedInstancesInstanceCrossReference_7_1_0; }
+		public CrossReference getBoundInstancesInstanceCrossReference_7_1_0() { return cBoundInstancesInstanceCrossReference_7_1_0; }
 		
 		//ID
-		public RuleCall getBindedInstancesInstanceIDTerminalRuleCall_7_1_0_1() { return cBindedInstancesInstanceIDTerminalRuleCall_7_1_0_1; }
+		public RuleCall getBoundInstancesInstanceIDTerminalRuleCall_7_1_0_1() { return cBoundInstancesInstanceIDTerminalRuleCall_7_1_0_1; }
 	}
 	public class DirectionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.Direction");
@@ -2316,8 +2314,6 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		return getENVAccess().getRule();
 	}
 	
-	////Channel: 'test'
-	////;
 	//Instance:
 	//	'Instance' name=ID ':' instanceType=[UnityObject];
 	public InstanceElements getInstanceAccess() {
@@ -2329,9 +2325,9 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Channel:
-	//	'Channel' channelName=ID ('direction' direction=Direction)? ('type' type=interfaceType)?
+	//	'Channel' name=ID ('direction' direction=Direction)? ('type' type=interfaceType)?
 	//	'(' (ip=IP ',' port=Port | areaname=AreaName ',' qname=QName)
-	//	')' ('assign' bindedInstances+=[Instance]+)?;
+	//	')' ('assign' boundInstances+=[Instance]+)?;
 	public ChannelElements getChannelAccess() {
 		return pChannel;
 	}

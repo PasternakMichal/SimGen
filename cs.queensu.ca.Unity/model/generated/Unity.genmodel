@@ -86,14 +86,14 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Unity.ecore#//Instance/instanceType"/>
     </genClasses>
     <genClasses ecoreClass="Unity.ecore#//Channel">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Unity.ecore#//Channel/channelName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Unity.ecore#//Channel/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Unity.ecore#//Channel/direction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//Channel/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//Channel/ip"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//Channel/port"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//Channel/areaname"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//Channel/qname"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Unity.ecore#//Channel/bindedInstances"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Unity.ecore#//Channel/boundInstances"/>
     </genClasses>
     <genClasses ecoreClass="Unity.ecore#//Init">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Unity.ecore#//Init/expressions"/>

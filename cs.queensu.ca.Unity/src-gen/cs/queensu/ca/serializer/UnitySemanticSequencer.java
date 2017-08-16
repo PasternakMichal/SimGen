@@ -491,7 +491,7 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Channel returns Channel
 	 *
 	 * Constraint:
-	 *     (channelName=ID direction=Direction? type=interfaceType? ((ip=IP port=Port) | (areaname=AreaName qname=QName)) bindedInstances+=[Instance|ID]*)
+	 *     (name=ID direction=Direction? type=interfaceType? ((ip=IP port=Port) | (areaname=AreaName qname=QName)) boundInstances+=[Instance|ID]*)
 	 */
 	protected void sequence_Channel(ISerializationContext context, Channel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -35,14 +35,14 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getChannelName <em>Channel Name</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getName <em>Name</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getType <em>Type</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getIp <em>Ip</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getPort <em>Port</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getAreaname <em>Areaname</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getQname <em>Qname</em>}</li>
- *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getBindedInstances <em>Binded Instances</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getBoundInstances <em>Bound Instances</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,24 +50,24 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
 {
   /**
-   * The default value of the '{@link #getChannelName() <em>Channel Name</em>}' attribute.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getChannelName()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String CHANNEL_NAME_EDEFAULT = null;
+  protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getChannelName() <em>Channel Name</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getChannelName()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected String channelName = CHANNEL_NAME_EDEFAULT;
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
@@ -140,14 +140,14 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
   protected QName qname;
 
   /**
-   * The cached value of the '{@link #getBindedInstances() <em>Binded Instances</em>}' reference list.
+   * The cached value of the '{@link #getBoundInstances() <em>Bound Instances</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBindedInstances()
+   * @see #getBoundInstances()
    * @generated
    * @ordered
    */
-  protected EList<Instance> bindedInstances;
+  protected EList<Instance> boundInstances;
 
   /**
    * <!-- begin-user-doc -->
@@ -175,9 +175,9 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getChannelName()
+  public String getName()
   {
-    return channelName;
+    return name;
   }
 
   /**
@@ -185,12 +185,12 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setChannelName(String newChannelName)
+  public void setName(String newName)
   {
-    String oldChannelName = channelName;
-    channelName = newChannelName;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.CHANNEL__CHANNEL_NAME, oldChannelName, channelName));
+      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.CHANNEL__NAME, oldName, name));
   }
 
   /**
@@ -461,13 +461,13 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Instance> getBindedInstances()
+  public EList<Instance> getBoundInstances()
   {
-    if (bindedInstances == null)
+    if (boundInstances == null)
     {
-      bindedInstances = new EObjectResolvingEList<Instance>(Instance.class, this, UnityPackage.CHANNEL__BINDED_INSTANCES);
+      boundInstances = new EObjectResolvingEList<Instance>(Instance.class, this, UnityPackage.CHANNEL__BOUND_INSTANCES);
     }
-    return bindedInstances;
+    return boundInstances;
   }
 
   /**
@@ -504,8 +504,8 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
   {
     switch (featureID)
     {
-      case UnityPackage.CHANNEL__CHANNEL_NAME:
-        return getChannelName();
+      case UnityPackage.CHANNEL__NAME:
+        return getName();
       case UnityPackage.CHANNEL__DIRECTION:
         return getDirection();
       case UnityPackage.CHANNEL__TYPE:
@@ -518,8 +518,8 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
         return getAreaname();
       case UnityPackage.CHANNEL__QNAME:
         return getQname();
-      case UnityPackage.CHANNEL__BINDED_INSTANCES:
-        return getBindedInstances();
+      case UnityPackage.CHANNEL__BOUND_INSTANCES:
+        return getBoundInstances();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -535,8 +535,8 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
   {
     switch (featureID)
     {
-      case UnityPackage.CHANNEL__CHANNEL_NAME:
-        setChannelName((String)newValue);
+      case UnityPackage.CHANNEL__NAME:
+        setName((String)newValue);
         return;
       case UnityPackage.CHANNEL__DIRECTION:
         setDirection((String)newValue);
@@ -556,9 +556,9 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
       case UnityPackage.CHANNEL__QNAME:
         setQname((QName)newValue);
         return;
-      case UnityPackage.CHANNEL__BINDED_INSTANCES:
-        getBindedInstances().clear();
-        getBindedInstances().addAll((Collection<? extends Instance>)newValue);
+      case UnityPackage.CHANNEL__BOUND_INSTANCES:
+        getBoundInstances().clear();
+        getBoundInstances().addAll((Collection<? extends Instance>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -574,8 +574,8 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
   {
     switch (featureID)
     {
-      case UnityPackage.CHANNEL__CHANNEL_NAME:
-        setChannelName(CHANNEL_NAME_EDEFAULT);
+      case UnityPackage.CHANNEL__NAME:
+        setName(NAME_EDEFAULT);
         return;
       case UnityPackage.CHANNEL__DIRECTION:
         setDirection(DIRECTION_EDEFAULT);
@@ -595,8 +595,8 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
       case UnityPackage.CHANNEL__QNAME:
         setQname((QName)null);
         return;
-      case UnityPackage.CHANNEL__BINDED_INSTANCES:
-        getBindedInstances().clear();
+      case UnityPackage.CHANNEL__BOUND_INSTANCES:
+        getBoundInstances().clear();
         return;
     }
     super.eUnset(featureID);
@@ -612,8 +612,8 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
   {
     switch (featureID)
     {
-      case UnityPackage.CHANNEL__CHANNEL_NAME:
-        return CHANNEL_NAME_EDEFAULT == null ? channelName != null : !CHANNEL_NAME_EDEFAULT.equals(channelName);
+      case UnityPackage.CHANNEL__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case UnityPackage.CHANNEL__DIRECTION:
         return DIRECTION_EDEFAULT == null ? direction != null : !DIRECTION_EDEFAULT.equals(direction);
       case UnityPackage.CHANNEL__TYPE:
@@ -626,8 +626,8 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
         return areaname != null;
       case UnityPackage.CHANNEL__QNAME:
         return qname != null;
-      case UnityPackage.CHANNEL__BINDED_INSTANCES:
-        return bindedInstances != null && !bindedInstances.isEmpty();
+      case UnityPackage.CHANNEL__BOUND_INSTANCES:
+        return boundInstances != null && !boundInstances.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -643,8 +643,8 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (channelName: ");
-    result.append(channelName);
+    result.append(" (name: ");
+    result.append(name);
     result.append(", direction: ");
     result.append(direction);
     result.append(')');

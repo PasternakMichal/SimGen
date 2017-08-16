@@ -43,6 +43,9 @@ class UnityGenerator extends AbstractGenerator {
    			else
    			println("unknown MetaObject");
    			}
+   		for (c: a.channels){
+   			fsa.generateFile(("ChannelController"+c.name+".cs"),channelcontroller(c));
+   		}
    			
    		}
    		
@@ -152,34 +155,80 @@ class UnityGenerator extends AbstractGenerator {
    		// --- starter needs all game object pre fabs to be declared and attached
    		def starter(ENV e)'''
    		using System.Collections;
-   		   		using System.Collections.Generic;
-   		   		using UnityEngine;
+   		using System.Collections.Generic;
+   		using UnityEngine;
    		   		
-   		   		public class starter : MonoBehaviour {
-   		   			// ---- These must be assigned as prefabs in Unity and as "metaobjects" in the DSL
-   		   			public GameObject Plane;
-   		   			public GameObject Rover;
-   		   			public GameObject Car;
-   		   			public GameObject Gem;
-   		   			void Start () {
-   		   				«FOR k:e.instances»
-   		   				GameObject «k.name»Object = Instantiate («k.instanceType.type.name»);
-   		   				«k.name»Object.AddComponent<«k.name»Script>();
-   		   				«ENDFOR»
-   		   			}
-   		   			
-   		   			// Update is called once per frame
-   		   			void Update () {
-   		   				
-   		   			}
-   		   		}
+   		public class starter : MonoBehaviour {
+   		// ---- These must be assigned as prefabs in Unity and as "metaobjects" in the DSL
+   			public GameObject Plane;
+   			public GameObject Rover;
+   			public GameObject Car;
+   			public GameObject Gem;
+   		//-----
+   			void Start () {
+   		//-- adding the necessary instances
+   		   	«FOR k:e.instances»
+   		   		GameObject «k.name»Object = Instantiate («k.instanceType.type.name»,transform);
+   		   		«k.name»Object.AddComponent<«k.name»Script>();
+   		   	«ENDFOR»
+   		//adding the necessary channel information scripts	
+   		   	«FOR k:e.channels»
+   		   	Object.AddComponent<ChannelController«k.name»>();
+   		   	«ENDFOR»
+   			}
+   		}
+   		'''
    		
+   		def channelcontroller(Channel c)'''
+   		using System.Collections;
+   		using System.Collections.Generic;
+   		using UnityEngine;
+   		
+   		public class ChannelController : MonoBehaviour {
+   			
+   			public Network externalComm;
+   			public string myName = «c.name»;
+   		
+   			void Start () {
+   				externalComm = new Network(«c.port»,«c.name»,20); // port, net ID, Container size
+   				externalComm.StartNetwork();
+   			}
+   		
+   			// Update is called once per frame
+   			void Update () {
+   				if (externalComm.isContainerEmpty () == false) {
+   					route(externalComm.getMessage());
+   				}
+   		
+   			}
+   				public void route(string S){
+   					if (S != null || S != "") {
+   						string name = S.Substring (0, S.IndexOf (','));
+   						S = cut (S);
+   						// send the message on to the designated recipient inout
+   						«FOR q: c.boundInstances»
+   					if (name == "«q.name»") {
+   						«q.name»Script «q.name» = GetComponentInChildren<«q.name»Script> ();
+   						string reply = «q.name».command (S);
+   						// if inout, then do this if in only don't 
+   						if (reply!= "" || reply != null)
+   							externalComm.SendMessage("«q.name»,"+reply);
+   						}
+   						«ENDFOR»
+   					}
+   				}
+   		
+   			public string cut(string message){
+   				return message.Substring(message.IndexOf(','));
+   			}
+   		}
+   		//message example "buddy,1,LS,RS,LB,RB"
    		'''
    		
    		def car(Instance e)'''
    		using System.Collections;
-   		   		using System.Collections.Generic;
-   		   		using UnityEngine;
+   		using System.Collections.Generic;
+   		using UnityEngine;
    		   		
    		   		public class «e.name»Script : MonoBehaviour {
    		   			void Start () {
@@ -234,72 +283,62 @@ class UnityGenerator extends AbstractGenerator {
    		
    		def rover(Instance e) '''
    		using System.Collections;
-   		   		using System.Collections.Generic;
-   		   		using UnityEngine;
+   		using System.Collections.Generic;
+   		using UnityEngine;
+   		
+   		public class «e.name»Script : MonoBehaviour {
+   		   	public string channelID;
+   			void Start () {
+   		   		«sizeAndScale(e.instanceType,"rover")»
+   		   		roverMover interface1 = GetComponent<roverMover>();
+   		   		interface1.ConnectRover(«getIntValue(e.instanceType,"brake")»f,«getIntValue(e.instanceType,"power")»f,"«e.name»");
+   		   	}
+   		   			
+   		   	void Update () {}
+   		   			
+   		   	public string command(string com){
+   		   		return translate(com);
+   		   	}
+   		   	string translate(string message){
+   		   		string reply = null;
+   		   		roverMover rover = GetComponent<roverMover> ();
+   		   		int num = (int) decode(message);
+   		   		message = cut(message);
+   		   		switch (num){
+   		   			case 1: 
+   		   			rover.LeftPower(decode(message));
+   		   			message=cut(message);
+   		   			rover.RightPower(decode(message));
+   		   			message=cut(message);
+   		   			rover.LeftBrake(decode(message));
+   		   			message=cut(message);
+   		   			rover.LeftBrake(decode(message));
+   		   			break;
+   		   					
+   		   			case 2:
+   		   			reply = "2,"+rover.RoverEngine();
+   		   			break;
+   		  		}
+   		   			
+   		   		return reply;
+   		   	}
    		   		
-   		   		public class «e.name»Script : MonoBehaviour {
-   		public Network comms;
-   		void Start () {
-   		   «sizeAndScale(e.instanceType,"rover")»
-   		   				roverMover interface1 = GetComponent<roverMover>();
-   		   			interface1.ConnectRover(«getIntValue(e.instanceType,"brake")»f,«getIntValue(e.instanceType,"power")»f,"«e.name»");
-   		   			«includeNetwork(e,getBoolValue(e.instanceType,"network"),20)»
-   		   			}
-   		   			
-   		   			// Update is called once per frame
-   		   			   			void Update () {
-   		   					if (comms.isContainerEmpty () == false) {
-   		   						translate(comms.getMessage ());
-   		   			
-   		   					}
-   		   			   			}
-   		   			
-   		   					void translate(string message){
-   		   					string reply = null;
-   		   					roverMover rover = GetComponent<roverMover> ();
-   		   					int num = (int) decode(message);
-   		   						message = cut(message);
-   		   						switch (num)
-   		   						{
-   		   							case 1: 
-   		   							rover.LeftPower(decode(message));
-   		   							message=cut(message);
-   		   							rover.RightPower(decode(message));
-   		   							message=cut(message);
-   		   							rover.LeftBrake(decode(message));
-   		   							message=cut(message);
-   		   							rover.LeftBrake(decode(message));
-   		   							break;
-   		   							case 2:
-   		   							reply = "2,"+rover.RoverEngine();
-   		   								
-   		   							break;
-   		   			
-   		   						}
-   		   			
-   		   					if (reply!=null)
-   		   					comms.SendMessage (reply);
-   		   				}
-   		   						public float decode(string message){
-   		   							if (message !="" || message!= null){
-   		   								return float.Parse( message.Substring(0,message.IndexOf(',')));
-   		   									}
-   		   							else
-   		   									{
-   		   									Debug.Log("error in the decode function, decoding empty string");
-   		   									return 0;
-   		   									}
-   		   								
-   		   				}
-   		   						public string cut(string message){
-   		   							return message.Substring(message.IndexOf(','));
-   		   				}
-   		   			
-   		   			   		}
-   		   			
-   		   			//1,LS,RS,LB,RB
-   		   			// 1 - send a state command
-   		   			// 2- request a state command
+   			public float decode(string message){
+   		   		if (message !="" || message!= null){
+   		   			return float.Parse( message.Substring(0,message.IndexOf(',')));
+   		   		}
+   		   		else{
+   		   			Debug.Log("error in the decode function, decoding empty string");
+   		   			return 0;
+   		   		}
+   		   	}
+   			public string cut(string message){
+   		   		return message.Substring(message.IndexOf(','));
+   		   	}
+   		}
+   		//1,LS,RS,LB,RB
+   		// 1 - send a state command
+   		// 2- request a state command
    		'''
    		
    		def includeNetwork(Instance e, boolean nets,int size ) '''

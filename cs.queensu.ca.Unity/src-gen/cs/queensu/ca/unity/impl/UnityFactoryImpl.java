@@ -91,6 +91,7 @@ public class UnityFactoryImpl extends EFactoryImpl implements UnityFactory
       case UnityPackage.QNAME: return createQName();
       case UnityPackage.AREA_NAME: return createAreaName();
       case UnityPackage.PORT: return createPort();
+      case UnityPackage.IP: return createIP();
       case UnityPackage.INTERFACE_TYPE: return createinterfaceType();
       case UnityPackage.EXPRESSION: return createExpression();
       case UnityPackage.NOT_BOOLEAN_EXPRESSION: return createNotBooleanExpression();
@@ -404,6 +405,17 @@ public class UnityFactoryImpl extends EFactoryImpl implements UnityFactory
   {
     PortImpl port = new PortImpl();
     return port;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public IP createIP()
+  {
+    IPImpl ip = new IPImpl();
+    return ip;
   }
 
   /**

@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link cs.queensu.ca.unity.impl.PortImpl#getName <em>Name</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.PortImpl#getPortnumber <em>Portnumber</em>}</li>
  * </ul>
  *
@@ -29,26 +28,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class PortImpl extends MinimalEObjectImpl.Container implements Port
 {
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
-
   /**
    * The default value of the '{@link #getPortnumber() <em>Portnumber</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -95,29 +74,6 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.PORT__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public int getPortnumber()
   {
     return portnumber;
@@ -146,8 +102,6 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
   {
     switch (featureID)
     {
-      case UnityPackage.PORT__NAME:
-        return getName();
       case UnityPackage.PORT__PORTNUMBER:
         return getPortnumber();
     }
@@ -164,9 +118,6 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
   {
     switch (featureID)
     {
-      case UnityPackage.PORT__NAME:
-        setName((String)newValue);
-        return;
       case UnityPackage.PORT__PORTNUMBER:
         setPortnumber((Integer)newValue);
         return;
@@ -184,9 +135,6 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
   {
     switch (featureID)
     {
-      case UnityPackage.PORT__NAME:
-        setName(NAME_EDEFAULT);
-        return;
       case UnityPackage.PORT__PORTNUMBER:
         setPortnumber(PORTNUMBER_EDEFAULT);
         return;
@@ -204,8 +152,6 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
   {
     switch (featureID)
     {
-      case UnityPackage.PORT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case UnityPackage.PORT__PORTNUMBER:
         return portnumber != PORTNUMBER_EDEFAULT;
     }
@@ -223,9 +169,7 @@ public class PortImpl extends MinimalEObjectImpl.Container implements Port
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(", portnumber: ");
+    result.append(" (portnumber: ");
     result.append(portnumber);
     result.append(')');
     return result.toString();

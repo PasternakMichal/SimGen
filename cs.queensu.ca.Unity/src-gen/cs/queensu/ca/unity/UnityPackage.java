@@ -500,7 +500,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 27;
+  int EXPRESSION = 28;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -519,7 +519,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getLiteral()
    * @generated
    */
-  int LITERAL = 29;
+  int LITERAL = 30;
 
   /**
    * The number of structural features of the '<em>Literal</em>' class.
@@ -832,7 +832,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTANCE__NAME = PROPERTY__NAME;
+  int INSTANCE__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Instance Type</b></em>' reference.
@@ -841,7 +841,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTANCE__INSTANCE_TYPE = PROPERTY_FEATURE_COUNT + 0;
+  int INSTANCE__INSTANCE_TYPE = 1;
 
   /**
    * The number of structural features of the '<em>Instance</em>' class.
@@ -850,7 +850,7 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTANCE_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
+  int INSTANCE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link cs.queensu.ca.unity.impl.ChannelImpl <em>Channel</em>}' class.
@@ -863,13 +863,22 @@ public interface UnityPackage extends EPackage
   int CHANNEL = 19;
 
   /**
-   * The feature id for the '<em><b>Interface Name</b></em>' attribute.
+   * The feature id for the '<em><b>Channel Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHANNEL__INTERFACE_NAME = 0;
+  int CHANNEL__CHANNEL_NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Direction</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANNEL__DIRECTION = 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -878,19 +887,10 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CHANNEL__TYPE = 1;
+  int CHANNEL__TYPE = 2;
 
   /**
-   * The feature id for the '<em><b>Cardinality</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CHANNEL__CARDINALITY = 2;
-
-  /**
-   * The feature id for the '<em><b>Ip</b></em>' attribute.
+   * The feature id for the '<em><b>Ip</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -926,13 +926,22 @@ public interface UnityPackage extends EPackage
   int CHANNEL__QNAME = 6;
 
   /**
+   * The feature id for the '<em><b>Binded Instances</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANNEL__BINDED_INSTANCES = 7;
+
+  /**
    * The number of structural features of the '<em>Channel</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHANNEL_FEATURE_COUNT = 7;
+  int CHANNEL_FEATURE_COUNT = 8;
 
   /**
    * The meta object id for the '{@link cs.queensu.ca.unity.impl.InitImpl <em>Init</em>}' class.
@@ -1103,22 +1112,13 @@ public interface UnityPackage extends EPackage
   int PORT = 25;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PORT__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Portnumber</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PORT__PORTNUMBER = 1;
+  int PORT__PORTNUMBER = 0;
 
   /**
    * The number of structural features of the '<em>Port</em>' class.
@@ -1127,7 +1127,35 @@ public interface UnityPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PORT_FEATURE_COUNT = 2;
+  int PORT_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link cs.queensu.ca.unity.impl.IPImpl <em>IP</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see cs.queensu.ca.unity.impl.IPImpl
+   * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getIP()
+   * @generated
+   */
+  int IP = 26;
+
+  /**
+   * The feature id for the '<em><b>Ip Addr</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IP__IP_ADDR = 0;
+
+  /**
+   * The number of structural features of the '<em>IP</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IP_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link cs.queensu.ca.unity.impl.interfaceTypeImpl <em>interface Type</em>}' class.
@@ -1137,7 +1165,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getinterfaceType()
    * @generated
    */
-  int INTERFACE_TYPE = 26;
+  int INTERFACE_TYPE = 27;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1165,7 +1193,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getNotBooleanExpression()
    * @generated
    */
-  int NOT_BOOLEAN_EXPRESSION = 28;
+  int NOT_BOOLEAN_EXPRESSION = 29;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -1193,7 +1221,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getIntLiteral()
    * @generated
    */
-  int INT_LITERAL = 30;
+  int INT_LITERAL = 31;
 
   /**
    * The feature id for the '<em><b>Int</b></em>' attribute.
@@ -1221,7 +1249,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getBoolLiteral()
    * @generated
    */
-  int BOOL_LITERAL = 31;
+  int BOOL_LITERAL = 32;
 
   /**
    * The feature id for the '<em><b>Bool</b></em>' attribute.
@@ -1249,7 +1277,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getStLiteral()
    * @generated
    */
-  int ST_LITERAL = 32;
+  int ST_LITERAL = 33;
 
   /**
    * The feature id for the '<em><b>String</b></em>' attribute.
@@ -1277,7 +1305,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getIdentifier()
    * @generated
    */
-  int IDENTIFIER = 33;
+  int IDENTIFIER = 34;
 
   /**
    * The feature id for the '<em><b>Refrence</b></em>' containment reference.
@@ -1305,7 +1333,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getDotExpression()
    * @generated
    */
-  int DOT_EXPRESSION = 34;
+  int DOT_EXPRESSION = 35;
 
   /**
    * The feature id for the '<em><b>Head</b></em>' containment reference.
@@ -1342,7 +1370,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getAssign()
    * @generated
    */
-  int ASSIGN = 35;
+  int ASSIGN = 36;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1379,7 +1407,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getOrExpression()
    * @generated
    */
-  int OR_EXPRESSION = 36;
+  int OR_EXPRESSION = 37;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1416,7 +1444,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getAndExpression()
    * @generated
    */
-  int AND_EXPRESSION = 37;
+  int AND_EXPRESSION = 38;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1453,7 +1481,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getGT()
    * @generated
    */
-  int GT = 38;
+  int GT = 39;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1490,7 +1518,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getLT()
    * @generated
    */
-  int LT = 39;
+  int LT = 40;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1527,7 +1555,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getGE()
    * @generated
    */
-  int GE = 40;
+  int GE = 41;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1564,7 +1592,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getLE()
    * @generated
    */
-  int LE = 41;
+  int LE = 42;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1601,7 +1629,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getEQ()
    * @generated
    */
-  int EQ = 42;
+  int EQ = 43;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1638,7 +1666,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getNE()
    * @generated
    */
-  int NE = 43;
+  int NE = 44;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1675,7 +1703,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 44;
+  int ADDITION = 45;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1712,7 +1740,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getMinus()
    * @generated
    */
-  int MINUS = 45;
+  int MINUS = 46;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1749,7 +1777,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 46;
+  int MULTIPLICATION = 47;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1786,7 +1814,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getDivide()
    * @generated
    */
-  int DIVIDE = 47;
+  int DIVIDE = 48;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1823,7 +1851,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getModulo()
    * @generated
    */
-  int MODULO = 48;
+  int MODULO = 49;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1860,7 +1888,7 @@ public interface UnityPackage extends EPackage
    * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getUnaryExpression()
    * @generated
    */
-  int UNARY_EXPRESSION = 49;
+  int UNARY_EXPRESSION = 50;
 
   /**
    * The feature id for the '<em><b>Exp</b></em>' containment reference.
@@ -2512,6 +2540,17 @@ public interface UnityPackage extends EPackage
   EClass getInstance();
 
   /**
+   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Instance#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see cs.queensu.ca.unity.Instance#getName()
+   * @see #getInstance()
+   * @generated
+   */
+  EAttribute getInstance_Name();
+
+  /**
    * Returns the meta object for the reference '{@link cs.queensu.ca.unity.Instance#getInstanceType <em>Instance Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2533,15 +2572,26 @@ public interface UnityPackage extends EPackage
   EClass getChannel();
 
   /**
-   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Channel#getInterfaceName <em>Interface Name</em>}'.
+   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Channel#getChannelName <em>Channel Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Interface Name</em>'.
-   * @see cs.queensu.ca.unity.Channel#getInterfaceName()
+   * @return the meta object for the attribute '<em>Channel Name</em>'.
+   * @see cs.queensu.ca.unity.Channel#getChannelName()
    * @see #getChannel()
    * @generated
    */
-  EAttribute getChannel_InterfaceName();
+  EAttribute getChannel_ChannelName();
+
+  /**
+   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Channel#getDirection <em>Direction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Direction</em>'.
+   * @see cs.queensu.ca.unity.Channel#getDirection()
+   * @see #getChannel()
+   * @generated
+   */
+  EAttribute getChannel_Direction();
 
   /**
    * Returns the meta object for the containment reference '{@link cs.queensu.ca.unity.Channel#getType <em>Type</em>}'.
@@ -2555,26 +2605,15 @@ public interface UnityPackage extends EPackage
   EReference getChannel_Type();
 
   /**
-   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Channel#getCardinality <em>Cardinality</em>}'.
+   * Returns the meta object for the containment reference '{@link cs.queensu.ca.unity.Channel#getIp <em>Ip</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Cardinality</em>'.
-   * @see cs.queensu.ca.unity.Channel#getCardinality()
-   * @see #getChannel()
-   * @generated
-   */
-  EAttribute getChannel_Cardinality();
-
-  /**
-   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Channel#getIp <em>Ip</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Ip</em>'.
+   * @return the meta object for the containment reference '<em>Ip</em>'.
    * @see cs.queensu.ca.unity.Channel#getIp()
    * @see #getChannel()
    * @generated
    */
-  EAttribute getChannel_Ip();
+  EReference getChannel_Ip();
 
   /**
    * Returns the meta object for the containment reference '{@link cs.queensu.ca.unity.Channel#getPort <em>Port</em>}'.
@@ -2608,6 +2647,17 @@ public interface UnityPackage extends EPackage
    * @generated
    */
   EReference getChannel_Qname();
+
+  /**
+   * Returns the meta object for the reference list '{@link cs.queensu.ca.unity.Channel#getBindedInstances <em>Binded Instances</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Binded Instances</em>'.
+   * @see cs.queensu.ca.unity.Channel#getBindedInstances()
+   * @see #getChannel()
+   * @generated
+   */
+  EReference getChannel_BindedInstances();
 
   /**
    * Returns the meta object for class '{@link cs.queensu.ca.unity.Init <em>Init</em>}'.
@@ -2747,17 +2797,6 @@ public interface UnityPackage extends EPackage
   EClass getPort();
 
   /**
-   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Port#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see cs.queensu.ca.unity.Port#getName()
-   * @see #getPort()
-   * @generated
-   */
-  EAttribute getPort_Name();
-
-  /**
    * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.Port#getPortnumber <em>Portnumber</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2767,6 +2806,27 @@ public interface UnityPackage extends EPackage
    * @generated
    */
   EAttribute getPort_Portnumber();
+
+  /**
+   * Returns the meta object for class '{@link cs.queensu.ca.unity.IP <em>IP</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>IP</em>'.
+   * @see cs.queensu.ca.unity.IP
+   * @generated
+   */
+  EClass getIP();
+
+  /**
+   * Returns the meta object for the attribute '{@link cs.queensu.ca.unity.IP#getIpAddr <em>Ip Addr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ip Addr</em>'.
+   * @see cs.queensu.ca.unity.IP#getIpAddr()
+   * @see #getIP()
+   * @generated
+   */
+  EAttribute getIP_IpAddr();
 
   /**
    * Returns the meta object for class '{@link cs.queensu.ca.unity.interfaceType <em>interface Type</em>}'.
@@ -3949,6 +4009,14 @@ public interface UnityPackage extends EPackage
     EClass INSTANCE = eINSTANCE.getInstance();
 
     /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INSTANCE__NAME = eINSTANCE.getInstance_Name();
+
+    /**
      * The meta object literal for the '<em><b>Instance Type</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3967,12 +4035,20 @@ public interface UnityPackage extends EPackage
     EClass CHANNEL = eINSTANCE.getChannel();
 
     /**
-     * The meta object literal for the '<em><b>Interface Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Channel Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CHANNEL__INTERFACE_NAME = eINSTANCE.getChannel_InterfaceName();
+    EAttribute CHANNEL__CHANNEL_NAME = eINSTANCE.getChannel_ChannelName();
+
+    /**
+     * The meta object literal for the '<em><b>Direction</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CHANNEL__DIRECTION = eINSTANCE.getChannel_Direction();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
@@ -3983,20 +4059,12 @@ public interface UnityPackage extends EPackage
     EReference CHANNEL__TYPE = eINSTANCE.getChannel_Type();
 
     /**
-     * The meta object literal for the '<em><b>Cardinality</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Ip</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CHANNEL__CARDINALITY = eINSTANCE.getChannel_Cardinality();
-
-    /**
-     * The meta object literal for the '<em><b>Ip</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CHANNEL__IP = eINSTANCE.getChannel_Ip();
+    EReference CHANNEL__IP = eINSTANCE.getChannel_Ip();
 
     /**
      * The meta object literal for the '<em><b>Port</b></em>' containment reference feature.
@@ -4021,6 +4089,14 @@ public interface UnityPackage extends EPackage
      * @generated
      */
     EReference CHANNEL__QNAME = eINSTANCE.getChannel_Qname();
+
+    /**
+     * The meta object literal for the '<em><b>Binded Instances</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANNEL__BINDED_INSTANCES = eINSTANCE.getChannel_BindedInstances();
 
     /**
      * The meta object literal for the '{@link cs.queensu.ca.unity.impl.InitImpl <em>Init</em>}' class.
@@ -4139,20 +4215,30 @@ public interface UnityPackage extends EPackage
     EClass PORT = eINSTANCE.getPort();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PORT__NAME = eINSTANCE.getPort_Name();
-
-    /**
      * The meta object literal for the '<em><b>Portnumber</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute PORT__PORTNUMBER = eINSTANCE.getPort_Portnumber();
+
+    /**
+     * The meta object literal for the '{@link cs.queensu.ca.unity.impl.IPImpl <em>IP</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see cs.queensu.ca.unity.impl.IPImpl
+     * @see cs.queensu.ca.unity.impl.UnityPackageImpl#getIP()
+     * @generated
+     */
+    EClass IP = eINSTANCE.getIP();
+
+    /**
+     * The meta object literal for the '<em><b>Ip Addr</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute IP__IP_ADDR = eINSTANCE.getIP_IpAddr();
 
     /**
      * The meta object literal for the '{@link cs.queensu.ca.unity.impl.interfaceTypeImpl <em>interface Type</em>}' class.

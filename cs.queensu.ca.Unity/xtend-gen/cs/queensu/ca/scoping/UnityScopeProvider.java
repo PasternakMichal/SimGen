@@ -368,8 +368,6 @@ public class UnityScopeProvider extends AbstractUnityScopeProvider {
   public IScope extractScop(final EObject exp, final EReference ref) {
     if (exp instanceof DotExpression) {
       return _extractScop((DotExpression)exp, ref);
-    } else if (exp instanceof Instance) {
-      return _extractScop((Instance)exp, ref);
     } else if (exp instanceof Param) {
       return _extractScop((Param)exp, ref);
     } else if (exp instanceof SingleRef) {
@@ -380,6 +378,8 @@ public class UnityScopeProvider extends AbstractUnityScopeProvider {
       return _extractScop((ConfigAssignment)exp, ref);
     } else if (exp instanceof Expression) {
       return _extractScop((Expression)exp, ref);
+    } else if (exp instanceof Instance) {
+      return _extractScop((Instance)exp, ref);
     } else if (exp instanceof OverrideAction) {
       return _extractScop((OverrideAction)exp, ref);
     } else if (exp instanceof Property) {

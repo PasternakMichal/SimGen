@@ -251,6 +251,13 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass ipEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass interfaceTypeEClass = null;
 
   /**
@@ -1072,9 +1079,19 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getInstance_Name()
+  {
+    return (EAttribute)instanceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getInstance_InstanceType()
   {
-    return (EReference)instanceEClass.getEStructuralFeatures().get(0);
+    return (EReference)instanceEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1092,7 +1109,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getChannel_InterfaceName()
+  public EAttribute getChannel_ChannelName()
   {
     return (EAttribute)channelEClass.getEStructuralFeatures().get(0);
   }
@@ -1102,9 +1119,19 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getChannel_Direction()
+  {
+    return (EAttribute)channelEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getChannel_Type()
   {
-    return (EReference)channelEClass.getEStructuralFeatures().get(1);
+    return (EReference)channelEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1112,19 +1139,9 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getChannel_Cardinality()
+  public EReference getChannel_Ip()
   {
-    return (EAttribute)channelEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getChannel_Ip()
-  {
-    return (EAttribute)channelEClass.getEStructuralFeatures().get(3);
+    return (EReference)channelEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1155,6 +1172,16 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
   public EReference getChannel_Qname()
   {
     return (EReference)channelEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getChannel_BindedInstances()
+  {
+    return (EReference)channelEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -1292,7 +1319,7 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPort_Name()
+  public EAttribute getPort_Portnumber()
   {
     return (EAttribute)portEClass.getEStructuralFeatures().get(0);
   }
@@ -1302,9 +1329,19 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPort_Portnumber()
+  public EClass getIP()
   {
-    return (EAttribute)portEClass.getEStructuralFeatures().get(1);
+    return ipEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIP_IpAddr()
+  {
+    return (EAttribute)ipEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2024,16 +2061,18 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     createEReference(envEClass, ENV__INIT_CODES);
 
     instanceEClass = createEClass(INSTANCE);
+    createEAttribute(instanceEClass, INSTANCE__NAME);
     createEReference(instanceEClass, INSTANCE__INSTANCE_TYPE);
 
     channelEClass = createEClass(CHANNEL);
-    createEAttribute(channelEClass, CHANNEL__INTERFACE_NAME);
+    createEAttribute(channelEClass, CHANNEL__CHANNEL_NAME);
+    createEAttribute(channelEClass, CHANNEL__DIRECTION);
     createEReference(channelEClass, CHANNEL__TYPE);
-    createEAttribute(channelEClass, CHANNEL__CARDINALITY);
-    createEAttribute(channelEClass, CHANNEL__IP);
+    createEReference(channelEClass, CHANNEL__IP);
     createEReference(channelEClass, CHANNEL__PORT);
     createEReference(channelEClass, CHANNEL__AREANAME);
     createEReference(channelEClass, CHANNEL__QNAME);
+    createEReference(channelEClass, CHANNEL__BINDED_INSTANCES);
 
     initEClass = createEClass(INIT);
     createEReference(initEClass, INIT__EXPRESSIONS);
@@ -2053,8 +2092,10 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     createEAttribute(areaNameEClass, AREA_NAME__NAME);
 
     portEClass = createEClass(PORT);
-    createEAttribute(portEClass, PORT__NAME);
     createEAttribute(portEClass, PORT__PORTNUMBER);
+
+    ipEClass = createEClass(IP);
+    createEAttribute(ipEClass, IP__IP_ADDR);
 
     interfaceTypeEClass = createEClass(INTERFACE_TYPE);
     createEAttribute(interfaceTypeEClass, INTERFACE_TYPE__NAME);
@@ -2175,7 +2216,6 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     singleRefEClass.getESuperTypes().add(this.getRef());
     attributeEClass.getESuperTypes().add(this.getProperty());
     realLiteralEClass.getESuperTypes().add(this.getLiteral());
-    instanceEClass.getESuperTypes().add(this.getProperty());
     notBooleanExpressionEClass.getESuperTypes().add(this.getExpression());
     literalEClass.getESuperTypes().add(this.getExpression());
     intLiteralEClass.getESuperTypes().add(this.getLiteral());
@@ -2277,16 +2317,18 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     initEReference(getENV_InitCodes(), this.getInit(), null, "initCodes", null, 0, 1, cs.queensu.ca.unity.ENV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(instanceEClass, Instance.class, "Instance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getInstance_Name(), ecorePackage.getEString(), "name", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstance_InstanceType(), this.getUnityObject(), null, "instanceType", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(channelEClass, Channel.class, "Channel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getChannel_InterfaceName(), ecorePackage.getEString(), "interfaceName", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getChannel_ChannelName(), ecorePackage.getEString(), "channelName", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getChannel_Direction(), ecorePackage.getEString(), "direction", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChannel_Type(), this.getinterfaceType(), null, "type", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getChannel_Cardinality(), ecorePackage.getEInt(), "cardinality", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getChannel_Ip(), ecorePackage.getEString(), "ip", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChannel_Ip(), this.getIP(), null, "ip", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChannel_Port(), this.getPort(), null, "port", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChannel_Areaname(), this.getAreaName(), null, "areaname", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChannel_Qname(), this.getQName(), null, "qname", null, 0, 1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChannel_BindedInstances(), this.getInstance(), null, "bindedInstances", null, 0, -1, Channel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(initEClass, Init.class, "Init", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInit_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, Init.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2306,8 +2348,10 @@ public class UnityPackageImpl extends EPackageImpl implements UnityPackage
     initEAttribute(getAreaName_Name(), ecorePackage.getEString(), "name", null, 0, 1, AreaName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(portEClass, Port.class, "Port", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPort_Name(), ecorePackage.getEString(), "name", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPort_Portnumber(), ecorePackage.getEInt(), "portnumber", null, 0, 1, Port.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(ipEClass, cs.queensu.ca.unity.IP.class, "IP", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIP_IpAddr(), ecorePackage.getEString(), "ipAddr", null, 0, 1, cs.queensu.ca.unity.IP.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(interfaceTypeEClass, interfaceType.class, "interfaceType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getinterfaceType_Name(), ecorePackage.getEString(), "name", null, 0, 1, interfaceType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

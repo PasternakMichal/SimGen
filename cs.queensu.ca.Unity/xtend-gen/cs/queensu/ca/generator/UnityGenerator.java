@@ -504,13 +504,13 @@ public class UnityGenerator extends AbstractGenerator {
     _builder.append(_name, "   \t\t");
     _builder.append("Script : MonoBehaviour {");
     _builder.newLineIfNotEmpty();
+    _builder.append("public Network comms;");
     _builder.newLine();
-    _builder.append("   \t\t\t");
     _builder.append("void Start () {");
     _builder.newLine();
-    _builder.append("   \t\t\t\t");
+    _builder.append("   ");
     CharSequence _sizeAndScale = this.sizeAndScale(e.getInstanceType(), "rover");
-    _builder.append(_sizeAndScale, "   \t\t\t\t");
+    _builder.append(_sizeAndScale, "   ");
     _builder.newLineIfNotEmpty();
     _builder.append("   \t\t\t\t");
     _builder.append("roverMover interface1 = GetComponent<roverMover>();");
@@ -697,7 +697,7 @@ public class UnityGenerator extends AbstractGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       if ((nets == true)) {
-        _builder.append("Network comms = new Network(");
+        _builder.append("comms = new Network(");
         int _intValue = this.getIntValue(e.getInstanceType(), "Port");
         _builder.append(_intValue);
         _builder.append(",");

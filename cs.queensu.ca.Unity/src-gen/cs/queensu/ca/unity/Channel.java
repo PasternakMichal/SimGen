@@ -3,6 +3,8 @@
  */
 package cs.queensu.ca.unity;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,13 +16,14 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link cs.queensu.ca.unity.Channel#getInterfaceName <em>Interface Name</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.Channel#getChannelName <em>Channel Name</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.Channel#getDirection <em>Direction</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Channel#getType <em>Type</em>}</li>
- *   <li>{@link cs.queensu.ca.unity.Channel#getCardinality <em>Cardinality</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Channel#getIp <em>Ip</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Channel#getPort <em>Port</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Channel#getAreaname <em>Areaname</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.Channel#getQname <em>Qname</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.Channel#getBindedInstances <em>Binded Instances</em>}</li>
  * </ul>
  *
  * @see cs.queensu.ca.unity.UnityPackage#getChannel()
@@ -30,30 +33,56 @@ import org.eclipse.emf.ecore.EObject;
 public interface Channel extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Interface Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Channel Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Interface Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Channel Name</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Interface Name</em>' attribute.
-   * @see #setInterfaceName(String)
-   * @see cs.queensu.ca.unity.UnityPackage#getChannel_InterfaceName()
+   * @return the value of the '<em>Channel Name</em>' attribute.
+   * @see #setChannelName(String)
+   * @see cs.queensu.ca.unity.UnityPackage#getChannel_ChannelName()
    * @model
    * @generated
    */
-  String getInterfaceName();
+  String getChannelName();
 
   /**
-   * Sets the value of the '{@link cs.queensu.ca.unity.Channel#getInterfaceName <em>Interface Name</em>}' attribute.
+   * Sets the value of the '{@link cs.queensu.ca.unity.Channel#getChannelName <em>Channel Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Interface Name</em>' attribute.
-   * @see #getInterfaceName()
+   * @param value the new value of the '<em>Channel Name</em>' attribute.
+   * @see #getChannelName()
    * @generated
    */
-  void setInterfaceName(String value);
+  void setChannelName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Direction</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Direction</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Direction</em>' attribute.
+   * @see #setDirection(String)
+   * @see cs.queensu.ca.unity.UnityPackage#getChannel_Direction()
+   * @model
+   * @generated
+   */
+  String getDirection();
+
+  /**
+   * Sets the value of the '{@link cs.queensu.ca.unity.Channel#getDirection <em>Direction</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Direction</em>' attribute.
+   * @see #getDirection()
+   * @generated
+   */
+  void setDirection(String value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.
@@ -82,56 +111,30 @@ public interface Channel extends EObject
   void setType(interfaceType value);
 
   /**
-   * Returns the value of the '<em><b>Cardinality</b></em>' attribute.
+   * Returns the value of the '<em><b>Ip</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Cardinality</em>' attribute isn't clear,
+   * If the meaning of the '<em>Ip</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Cardinality</em>' attribute.
-   * @see #setCardinality(int)
-   * @see cs.queensu.ca.unity.UnityPackage#getChannel_Cardinality()
-   * @model
-   * @generated
-   */
-  int getCardinality();
-
-  /**
-   * Sets the value of the '{@link cs.queensu.ca.unity.Channel#getCardinality <em>Cardinality</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Cardinality</em>' attribute.
-   * @see #getCardinality()
-   * @generated
-   */
-  void setCardinality(int value);
-
-  /**
-   * Returns the value of the '<em><b>Ip</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Ip</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Ip</em>' attribute.
-   * @see #setIp(String)
+   * @return the value of the '<em>Ip</em>' containment reference.
+   * @see #setIp(IP)
    * @see cs.queensu.ca.unity.UnityPackage#getChannel_Ip()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getIp();
+  IP getIp();
 
   /**
-   * Sets the value of the '{@link cs.queensu.ca.unity.Channel#getIp <em>Ip</em>}' attribute.
+   * Sets the value of the '{@link cs.queensu.ca.unity.Channel#getIp <em>Ip</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ip</em>' attribute.
+   * @param value the new value of the '<em>Ip</em>' containment reference.
    * @see #getIp()
    * @generated
    */
-  void setIp(String value);
+  void setIp(IP value);
 
   /**
    * Returns the value of the '<em><b>Port</b></em>' containment reference.
@@ -210,5 +213,21 @@ public interface Channel extends EObject
    * @generated
    */
   void setQname(QName value);
+
+  /**
+   * Returns the value of the '<em><b>Binded Instances</b></em>' reference list.
+   * The list contents are of type {@link cs.queensu.ca.unity.Instance}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Binded Instances</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Binded Instances</em>' reference list.
+   * @see cs.queensu.ca.unity.UnityPackage#getChannel_BindedInstances()
+   * @model
+   * @generated
+   */
+  EList<Instance> getBindedInstances();
 
 } // Channel

@@ -631,20 +631,11 @@ ruleProperty returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getPropertyAccess().getInstanceParserRuleCall_1());
+			newCompositeNode(grammarAccess.getPropertyAccess().getParamParserRuleCall_1());
 		}
-		this_Instance_1=ruleInstance
+		this_Param_1=ruleParam
 		{
-			$current = $this_Instance_1.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getPropertyAccess().getParamParserRuleCall_2());
-		}
-		this_Param_2=ruleParam
-		{
-			$current = $this_Param_2.current;
+			$current = $this_Param_1.current;
 			afterParserOrEnumRuleCall();
 		}
 	)
@@ -1557,9 +1548,9 @@ ruleChannel returns [EObject current=null]
 		}
 		(
 			(
-				lv_interfaceName_1_0=RULE_ID
+				lv_channelName_1_0=RULE_ID
 				{
-					newLeafNode(lv_interfaceName_1_0, grammarAccess.getChannelAccess().getInterfaceNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_channelName_1_0, grammarAccess.getChannelAccess().getChannelNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -1567,89 +1558,97 @@ ruleChannel returns [EObject current=null]
 					}
 					setWithLastConsumed(
 						$current,
-						"interfaceName",
-						lv_interfaceName_1_0,
+						"channelName",
+						lv_channelName_1_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getChannelAccess().getTypeInterfaceTypeParserRuleCall_2_0());
-				}
-				lv_type_2_0=ruleinterfaceType
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getChannelRule());
-					}
-					set(
-						$current,
-						"type",
-						lv_type_2_0,
-						"cs.queensu.ca.Unity.interfaceType");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			otherlv_3='cardinality'
+			otherlv_2='direction'
 			{
-				newLeafNode(otherlv_3, grammarAccess.getChannelAccess().getCardinalityKeyword_3_0());
+				newLeafNode(otherlv_2, grammarAccess.getChannelAccess().getDirectionKeyword_2_0());
 			}
 			(
 				(
-					lv_cardinality_4_0=RULE_INT
 					{
-						newLeafNode(lv_cardinality_4_0, grammarAccess.getChannelAccess().getCardinalityINTTerminalRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getChannelAccess().getDirectionDirectionParserRuleCall_2_1_0());
 					}
+					lv_direction_3_0=ruleDirection
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getChannelRule());
+							$current = createModelElementForParent(grammarAccess.getChannelRule());
 						}
-						setWithLastConsumed(
+						set(
 							$current,
-							"cardinality",
-							lv_cardinality_4_0,
-							"org.eclipse.xtext.common.Terminals.INT");
+							"direction",
+							lv_direction_3_0,
+							"cs.queensu.ca.Unity.Direction");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)?
-		otherlv_5='('
+		(
+			otherlv_4='type'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getChannelAccess().getTypeKeyword_3_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getChannelAccess().getTypeInterfaceTypeParserRuleCall_3_1_0());
+					}
+					lv_type_5_0=ruleinterfaceType
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getChannelRule());
+						}
+						set(
+							$current,
+							"type",
+							lv_type_5_0,
+							"cs.queensu.ca.Unity.interfaceType");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_6='('
 		{
-			newLeafNode(otherlv_5, grammarAccess.getChannelAccess().getLeftParenthesisKeyword_4());
+			newLeafNode(otherlv_6, grammarAccess.getChannelAccess().getLeftParenthesisKeyword_4());
 		}
 		(
 			(
 				(
 					(
-						lv_ip_6_0=RULE_ID
 						{
-							newLeafNode(lv_ip_6_0, grammarAccess.getChannelAccess().getIpIDTerminalRuleCall_5_0_0_0());
+							newCompositeNode(grammarAccess.getChannelAccess().getIpIPParserRuleCall_5_0_0_0());
 						}
+						lv_ip_7_0=ruleIP
 						{
 							if ($current==null) {
-								$current = createModelElement(grammarAccess.getChannelRule());
+								$current = createModelElementForParent(grammarAccess.getChannelRule());
 							}
-							setWithLastConsumed(
+							set(
 								$current,
 								"ip",
-								lv_ip_6_0,
-								"org.eclipse.xtext.common.Terminals.ID");
+								lv_ip_7_0,
+								"cs.queensu.ca.Unity.IP");
+							afterParserOrEnumRuleCall();
 						}
 					)
 				)
-				otherlv_7=','
+				otherlv_8=','
 				{
-					newLeafNode(otherlv_7, grammarAccess.getChannelAccess().getCommaKeyword_5_0_1());
+					newLeafNode(otherlv_8, grammarAccess.getChannelAccess().getCommaKeyword_5_0_1());
 				}
 				(
 					(
 						{
 							newCompositeNode(grammarAccess.getChannelAccess().getPortPortParserRuleCall_5_0_2_0());
 						}
-						lv_port_8_0=rulePort
+						lv_port_9_0=rulePort
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getChannelRule());
@@ -1657,7 +1656,7 @@ ruleChannel returns [EObject current=null]
 							set(
 								$current,
 								"port",
-								lv_port_8_0,
+								lv_port_9_0,
 								"cs.queensu.ca.Unity.Port");
 							afterParserOrEnumRuleCall();
 						}
@@ -1671,7 +1670,7 @@ ruleChannel returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getChannelAccess().getAreanameAreaNameParserRuleCall_5_1_0_0());
 						}
-						lv_areaname_9_0=ruleAreaName
+						lv_areaname_10_0=ruleAreaName
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getChannelRule());
@@ -1679,22 +1678,22 @@ ruleChannel returns [EObject current=null]
 							set(
 								$current,
 								"areaname",
-								lv_areaname_9_0,
+								lv_areaname_10_0,
 								"cs.queensu.ca.Unity.AreaName");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
-				otherlv_10=','
+				otherlv_11=','
 				{
-					newLeafNode(otherlv_10, grammarAccess.getChannelAccess().getCommaKeyword_5_1_1());
+					newLeafNode(otherlv_11, grammarAccess.getChannelAccess().getCommaKeyword_5_1_1());
 				}
 				(
 					(
 						{
 							newCompositeNode(grammarAccess.getChannelAccess().getQnameQNameParserRuleCall_5_1_2_0());
 						}
-						lv_qname_11_0=ruleQName
+						lv_qname_12_0=ruleQName
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getChannelRule());
@@ -1702,7 +1701,7 @@ ruleChannel returns [EObject current=null]
 							set(
 								$current,
 								"qname",
-								lv_qname_11_0,
+								lv_qname_12_0,
 								"cs.queensu.ca.Unity.QName");
 							afterParserOrEnumRuleCall();
 						}
@@ -1710,9 +1709,64 @@ ruleChannel returns [EObject current=null]
 				)
 			)
 		)
-		otherlv_12=')'
+		otherlv_13=')'
 		{
-			newLeafNode(otherlv_12, grammarAccess.getChannelAccess().getRightParenthesisKeyword_6());
+			newLeafNode(otherlv_13, grammarAccess.getChannelAccess().getRightParenthesisKeyword_6());
+		}
+		(
+			otherlv_14='assign'
+			{
+				newLeafNode(otherlv_14, grammarAccess.getChannelAccess().getAssignKeyword_7_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getChannelRule());
+						}
+					}
+					otherlv_15=RULE_ID
+					{
+						newLeafNode(otherlv_15, grammarAccess.getChannelAccess().getBindedInstancesInstanceCrossReference_7_1_0());
+					}
+				)
+			)+
+		)?
+	)
+;
+
+// Entry rule entryRuleDirection
+entryRuleDirection returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getDirectionRule()); }
+	iv_ruleDirection=ruleDirection
+	{ $current=$iv_ruleDirection.current.getText(); }
+	EOF;
+
+// Rule Direction
+ruleDirection returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='in'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getDirectionAccess().getInKeyword_0());
+		}
+		    |
+		kw='out'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getDirectionAccess().getOutKeyword_1());
+		}
+		    |
+		kw='inout'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getDirectionAccess().getInoutKeyword_2());
 		}
 	)
 ;
@@ -1951,35 +2005,9 @@ rulePort returns [EObject current=null]
 		}
 		(
 			(
-				lv_name_2_0=RULE_ID
+				lv_portnumber_2_0=RULE_INT
 				{
-					newLeafNode(lv_name_2_0, grammarAccess.getPortAccess().getNameIDTerminalRuleCall_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPortRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"name",
-						lv_name_2_0,
-						"org.eclipse.xtext.common.Terminals.ID");
-				}
-			)
-		)
-		otherlv_3='portnumber'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getPortAccess().getPortnumberKeyword_3());
-		}
-		otherlv_4=':'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getPortAccess().getColonKeyword_4());
-		}
-		(
-			(
-				lv_portnumber_5_0=RULE_INT
-				{
-					newLeafNode(lv_portnumber_5_0, grammarAccess.getPortAccess().getPortnumberINTTerminalRuleCall_5_0());
+					newLeafNode(lv_portnumber_2_0, grammarAccess.getPortAccess().getPortnumberINTTerminalRuleCall_2_0());
 				}
 				{
 					if ($current==null) {
@@ -1988,8 +2016,53 @@ rulePort returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"portnumber",
-						lv_portnumber_5_0,
+						lv_portnumber_2_0,
 						"org.eclipse.xtext.common.Terminals.INT");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleIP
+entryRuleIP returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIPRule()); }
+	iv_ruleIP=ruleIP
+	{ $current=$iv_ruleIP.current; }
+	EOF;
+
+// Rule IP
+ruleIP returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='ip'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getIPAccess().getIpKeyword_0());
+		}
+		otherlv_1=':'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getIPAccess().getColonKeyword_1());
+		}
+		(
+			(
+				lv_ipAddr_2_0=RULE_STRING
+				{
+					newLeafNode(lv_ipAddr_2_0, grammarAccess.getIPAccess().getIpAddrSTRINGTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getIPRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ipAddr",
+						lv_ipAddr_2_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)

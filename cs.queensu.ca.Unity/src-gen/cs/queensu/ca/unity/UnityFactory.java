@@ -258,6 +258,15 @@ public interface UnityFactory extends EFactory
   Port createPort();
 
   /**
+   * Returns a new object of class '<em>IP</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>IP</em>'.
+   * @generated
+   */
+  IP createIP();
+
+  /**
    * Returns a new object of class '<em>interface Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

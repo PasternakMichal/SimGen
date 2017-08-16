@@ -206,6 +206,11 @@ public class UnityAdapterFactory extends AdapterFactoryImpl
         return createPortAdapter();
       }
       @Override
+      public Adapter caseIP(IP object)
+      {
+        return createIPAdapter();
+      }
+      @Override
       public Adapter caseinterfaceType(interfaceType object)
       {
         return createinterfaceTypeAdapter();
@@ -733,6 +738,21 @@ public class UnityAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPortAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link cs.queensu.ca.unity.IP <em>IP</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see cs.queensu.ca.unity.IP
+   * @generated
+   */
+  public Adapter createIPAdapter()
   {
     return null;
   }

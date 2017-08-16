@@ -352,24 +352,20 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.Property");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cAttributeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cInstanceParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cParamParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cParamParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Property:
-		//	Attribute | Instance | Param;
+		//	Attribute | Param;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Attribute | Instance | Param
+		//Attribute | Param
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Attribute
 		public RuleCall getAttributeParserRuleCall_0() { return cAttributeParserRuleCall_0; }
 		
-		//Instance
-		public RuleCall getInstanceParserRuleCall_1() { return cInstanceParserRuleCall_1; }
-		
 		//Param
-		public RuleCall getParamParserRuleCall_2() { return cParamParserRuleCall_2; }
+		public RuleCall getParamParserRuleCall_1() { return cParamParserRuleCall_1; }
 	}
 	public class AttributeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.Attribute");
@@ -870,6 +866,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cInstanceTypeUnityObjectCrossReference_3_0 = (CrossReference)cInstanceTypeAssignment_3.eContents().get(0);
 		private final RuleCall cInstanceTypeUnityObjectIDTerminalRuleCall_3_0_1 = (RuleCall)cInstanceTypeUnityObjectCrossReference_3_0.eContents().get(1);
 		
+		////Channel: 'test'
+		////;
 		//Instance:
 		//	'Instance' name=ID ':' instanceType=[UnityObject];
 		@Override public ParserRule getRule() { return rule; }
@@ -902,19 +900,21 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.Channel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cChannelKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cInterfaceNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cInterfaceNameIDTerminalRuleCall_1_0 = (RuleCall)cInterfaceNameAssignment_1.eContents().get(0);
-		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTypeInterfaceTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
+		private final Assignment cChannelNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cChannelNameIDTerminalRuleCall_1_0 = (RuleCall)cChannelNameAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cDirectionKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cDirectionAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cDirectionDirectionParserRuleCall_2_1_0 = (RuleCall)cDirectionAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cCardinalityKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cCardinalityAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cCardinalityINTTerminalRuleCall_3_1_0 = (RuleCall)cCardinalityAssignment_3_1.eContents().get(0);
+		private final Keyword cTypeKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cTypeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cTypeInterfaceTypeParserRuleCall_3_1_0 = (RuleCall)cTypeAssignment_3_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
 		private final Group cGroup_5_0 = (Group)cAlternatives_5.eContents().get(0);
 		private final Assignment cIpAssignment_5_0_0 = (Assignment)cGroup_5_0.eContents().get(0);
-		private final RuleCall cIpIDTerminalRuleCall_5_0_0_0 = (RuleCall)cIpAssignment_5_0_0.eContents().get(0);
+		private final RuleCall cIpIPParserRuleCall_5_0_0_0 = (RuleCall)cIpAssignment_5_0_0.eContents().get(0);
 		private final Keyword cCommaKeyword_5_0_1 = (Keyword)cGroup_5_0.eContents().get(1);
 		private final Assignment cPortAssignment_5_0_2 = (Assignment)cGroup_5_0.eContents().get(2);
 		private final RuleCall cPortPortParserRuleCall_5_0_2_0 = (RuleCall)cPortAssignment_5_0_2.eContents().get(0);
@@ -925,58 +925,69 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cQnameAssignment_5_1_2 = (Assignment)cGroup_5_1.eContents().get(2);
 		private final RuleCall cQnameQNameParserRuleCall_5_1_2_0 = (RuleCall)cQnameAssignment_5_1_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Keyword cAssignKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cBindedInstancesAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final CrossReference cBindedInstancesInstanceCrossReference_7_1_0 = (CrossReference)cBindedInstancesAssignment_7_1.eContents().get(0);
+		private final RuleCall cBindedInstancesInstanceIDTerminalRuleCall_7_1_0_1 = (RuleCall)cBindedInstancesInstanceCrossReference_7_1_0.eContents().get(1);
 		
 		//Channel:
-		//	'Channel' interfaceName=ID type=interfaceType ('cardinality' cardinality=INT)?
-		//	'(' (ip=ID ',' port=Port | areaname=AreaName ',' qname=QName)
-		//	')';
+		//	'Channel' channelName=ID ('direction' direction=Direction)? ('type' type=interfaceType)?
+		//	'(' (ip=IP ',' port=Port | areaname=AreaName ',' qname=QName)
+		//	')' ('assign' bindedInstances+=[Instance]+)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Channel' interfaceName=ID type=interfaceType ('cardinality' cardinality=INT)? '(' (ip=ID ',' port=Port |
-		//areaname=AreaName ',' qname=QName) ')'
+		//'Channel' channelName=ID ('direction' direction=Direction)? ('type' type=interfaceType)? '(' (ip=IP ',' port=Port |
+		//areaname=AreaName ',' qname=QName) ')' ('assign' bindedInstances+=[Instance]+)?
 		public Group getGroup() { return cGroup; }
 		
 		//'Channel'
 		public Keyword getChannelKeyword_0() { return cChannelKeyword_0; }
 		
-		//interfaceName=ID
-		public Assignment getInterfaceNameAssignment_1() { return cInterfaceNameAssignment_1; }
+		//channelName=ID
+		public Assignment getChannelNameAssignment_1() { return cChannelNameAssignment_1; }
 		
 		//ID
-		public RuleCall getInterfaceNameIDTerminalRuleCall_1_0() { return cInterfaceNameIDTerminalRuleCall_1_0; }
+		public RuleCall getChannelNameIDTerminalRuleCall_1_0() { return cChannelNameIDTerminalRuleCall_1_0; }
 		
-		//type=interfaceType
-		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
+		//('direction' direction=Direction)?
+		public Group getGroup_2() { return cGroup_2; }
 		
-		//interfaceType
-		public RuleCall getTypeInterfaceTypeParserRuleCall_2_0() { return cTypeInterfaceTypeParserRuleCall_2_0; }
+		//'direction'
+		public Keyword getDirectionKeyword_2_0() { return cDirectionKeyword_2_0; }
 		
-		//('cardinality' cardinality=INT)?
+		//direction=Direction
+		public Assignment getDirectionAssignment_2_1() { return cDirectionAssignment_2_1; }
+		
+		//Direction
+		public RuleCall getDirectionDirectionParserRuleCall_2_1_0() { return cDirectionDirectionParserRuleCall_2_1_0; }
+		
+		//('type' type=interfaceType)?
 		public Group getGroup_3() { return cGroup_3; }
 		
-		//'cardinality'
-		public Keyword getCardinalityKeyword_3_0() { return cCardinalityKeyword_3_0; }
+		//'type'
+		public Keyword getTypeKeyword_3_0() { return cTypeKeyword_3_0; }
 		
-		//cardinality=INT
-		public Assignment getCardinalityAssignment_3_1() { return cCardinalityAssignment_3_1; }
+		//type=interfaceType
+		public Assignment getTypeAssignment_3_1() { return cTypeAssignment_3_1; }
 		
-		//INT
-		public RuleCall getCardinalityINTTerminalRuleCall_3_1_0() { return cCardinalityINTTerminalRuleCall_3_1_0; }
+		//interfaceType
+		public RuleCall getTypeInterfaceTypeParserRuleCall_3_1_0() { return cTypeInterfaceTypeParserRuleCall_3_1_0; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_4() { return cLeftParenthesisKeyword_4; }
 		
-		//ip=ID ',' port=Port | areaname=AreaName ',' qname=QName
+		//ip=IP ',' port=Port | areaname=AreaName ',' qname=QName
 		public Alternatives getAlternatives_5() { return cAlternatives_5; }
 		
-		//ip=ID ',' port=Port
+		//ip=IP ',' port=Port
 		public Group getGroup_5_0() { return cGroup_5_0; }
 		
-		//ip=ID
+		//ip=IP
 		public Assignment getIpAssignment_5_0_0() { return cIpAssignment_5_0_0; }
 		
-		//ID
-		public RuleCall getIpIDTerminalRuleCall_5_0_0_0() { return cIpIDTerminalRuleCall_5_0_0_0; }
+		//IP
+		public RuleCall getIpIPParserRuleCall_5_0_0_0() { return cIpIPParserRuleCall_5_0_0_0; }
 		
 		//','
 		public Keyword getCommaKeyword_5_0_1() { return cCommaKeyword_5_0_1; }
@@ -1007,6 +1018,44 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
+		
+		//('assign' bindedInstances+=[Instance]+)?
+		public Group getGroup_7() { return cGroup_7; }
+		
+		//'assign'
+		public Keyword getAssignKeyword_7_0() { return cAssignKeyword_7_0; }
+		
+		//bindedInstances+=[Instance]+
+		public Assignment getBindedInstancesAssignment_7_1() { return cBindedInstancesAssignment_7_1; }
+		
+		//[Instance]
+		public CrossReference getBindedInstancesInstanceCrossReference_7_1_0() { return cBindedInstancesInstanceCrossReference_7_1_0; }
+		
+		//ID
+		public RuleCall getBindedInstancesInstanceIDTerminalRuleCall_7_1_0_1() { return cBindedInstancesInstanceIDTerminalRuleCall_7_1_0_1; }
+	}
+	public class DirectionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.Direction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cInKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cOutKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Keyword cInoutKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
+		
+		//Direction:
+		//	'in' | 'out' | 'inout';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'in' | 'out' | 'inout'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//'in'
+		public Keyword getInKeyword_0() { return cInKeyword_0; }
+		
+		//'out'
+		public Keyword getOutKeyword_1() { return cOutKeyword_1; }
+		
+		//'inout'
+		public Keyword getInoutKeyword_2() { return cInoutKeyword_2; }
 	}
 	public class InitElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.Init");
@@ -1182,18 +1231,14 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cPortKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Keyword cPortnumberKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cPortnumberAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cPortnumberINTTerminalRuleCall_5_0 = (RuleCall)cPortnumberAssignment_5.eContents().get(0);
+		private final Assignment cPortnumberAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cPortnumberINTTerminalRuleCall_2_0 = (RuleCall)cPortnumberAssignment_2.eContents().get(0);
 		
 		//Port:
-		//	'port' ':' name=ID 'portnumber' ':' portnumber=INT;
+		//	'port' ':' portnumber=INT;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'port' ':' name=ID 'portnumber' ':' portnumber=INT
+		//'port' ':' portnumber=INT
 		public Group getGroup() { return cGroup; }
 		
 		//'port'
@@ -1202,23 +1247,38 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//':'
 		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
 		
-		//name=ID
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
-		
-		//'portnumber'
-		public Keyword getPortnumberKeyword_3() { return cPortnumberKeyword_3; }
-		
-		//':'
-		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
-		
 		//portnumber=INT
-		public Assignment getPortnumberAssignment_5() { return cPortnumberAssignment_5; }
+		public Assignment getPortnumberAssignment_2() { return cPortnumberAssignment_2; }
 		
 		//INT
-		public RuleCall getPortnumberINTTerminalRuleCall_5_0() { return cPortnumberINTTerminalRuleCall_5_0; }
+		public RuleCall getPortnumberINTTerminalRuleCall_2_0() { return cPortnumberINTTerminalRuleCall_2_0; }
+	}
+	public class IPElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.IP");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cIpKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cIpAddrAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cIpAddrSTRINGTerminalRuleCall_2_0 = (RuleCall)cIpAddrAssignment_2.eContents().get(0);
+		
+		//IP:
+		//	'ip' ':' ipAddr=STRING;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'ip' ':' ipAddr=STRING
+		public Group getGroup() { return cGroup; }
+		
+		//'ip'
+		public Keyword getIpKeyword_0() { return cIpKeyword_0; }
+		
+		//':'
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+		
+		//ipAddr=STRING
+		public Assignment getIpAddrAssignment_2() { return cIpAddrAssignment_2; }
+		
+		//STRING
+		public RuleCall getIpAddrSTRINGTerminalRuleCall_2_0() { return cIpAddrSTRINGTerminalRuleCall_2_0; }
 	}
 	public class InterfaceTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "cs.queensu.ca.Unity.interfaceType");
@@ -1925,12 +1985,14 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	private final ENVElements pENV;
 	private final InstanceElements pInstance;
 	private final ChannelElements pChannel;
+	private final DirectionElements pDirection;
 	private final InitElements pInit;
 	private final MapElements pMap;
 	private final MessageElements pMessage;
 	private final QNameElements pQName;
 	private final AreaNameElements pAreaName;
 	private final PortElements pPort;
+	private final IPElements pIP;
 	private final InterfaceTypeElements pInterfaceType;
 	private final ExpressionElements pExpression;
 	private final AssignElements pAssign;
@@ -1981,12 +2043,14 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		this.pENV = new ENVElements();
 		this.pInstance = new InstanceElements();
 		this.pChannel = new ChannelElements();
+		this.pDirection = new DirectionElements();
 		this.pInit = new InitElements();
 		this.pMap = new MapElements();
 		this.pMessage = new MessageElements();
 		this.pQName = new QNameElements();
 		this.pAreaName = new AreaNameElements();
 		this.pPort = new PortElements();
+		this.pIP = new IPElements();
 		this.pInterfaceType = new InterfaceTypeElements();
 		this.pExpression = new ExpressionElements();
 		this.pAssign = new AssignElements();
@@ -2118,7 +2182,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Property:
-	//	Attribute | Instance | Param;
+	//	Attribute | Param;
 	public PropertyElements getPropertyAccess() {
 		return pProperty;
 	}
@@ -2252,6 +2316,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		return getENVAccess().getRule();
 	}
 	
+	////Channel: 'test'
+	////;
 	//Instance:
 	//	'Instance' name=ID ':' instanceType=[UnityObject];
 	public InstanceElements getInstanceAccess() {
@@ -2263,15 +2329,25 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Channel:
-	//	'Channel' interfaceName=ID type=interfaceType ('cardinality' cardinality=INT)?
-	//	'(' (ip=ID ',' port=Port | areaname=AreaName ',' qname=QName)
-	//	')';
+	//	'Channel' channelName=ID ('direction' direction=Direction)? ('type' type=interfaceType)?
+	//	'(' (ip=IP ',' port=Port | areaname=AreaName ',' qname=QName)
+	//	')' ('assign' bindedInstances+=[Instance]+)?;
 	public ChannelElements getChannelAccess() {
 		return pChannel;
 	}
 	
 	public ParserRule getChannelRule() {
 		return getChannelAccess().getRule();
+	}
+	
+	//Direction:
+	//	'in' | 'out' | 'inout';
+	public DirectionElements getDirectionAccess() {
+		return pDirection;
+	}
+	
+	public ParserRule getDirectionRule() {
+		return getDirectionAccess().getRule();
 	}
 	
 	//Init:
@@ -2327,13 +2403,23 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Port:
-	//	'port' ':' name=ID 'portnumber' ':' portnumber=INT;
+	//	'port' ':' portnumber=INT;
 	public PortElements getPortAccess() {
 		return pPort;
 	}
 	
 	public ParserRule getPortRule() {
 		return getPortAccess().getRule();
+	}
+	
+	//IP:
+	//	'ip' ':' ipAddr=STRING;
+	public IPElements getIPAccess() {
+		return pIP;
+	}
+	
+	public ParserRule getIPRule() {
+		return getIPAccess().getRule();
 	}
 	
 	//interfaceType:

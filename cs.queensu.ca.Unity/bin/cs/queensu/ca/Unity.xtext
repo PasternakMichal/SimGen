@@ -48,7 +48,7 @@ SingleRef returns SingleRef:
     ;
     			   			
 Property:
-		Attribute|Instance|Param
+		Attribute|Param
 	;
 
 Attribute:
@@ -127,20 +127,27 @@ ENV:
 			'}'
 	;
 
+//Channel: 'test'
+	
+//;
+
 Instance:
-		'Instance' name=ID ':' instanceType=[UnityObject]
+		'Instance' name=ID ':' instanceType=[UnityObject] //('bind' channel=[Channel])?
 	;
 	
 Channel:
-		'Channel' interfaceName=ID type=interfaceType ('cardinality' cardinality=INT)? 
+		'Channel' channelName=ID    ('direction' direction=Direction)?
+		 ('type' type=interfaceType)?
 			 			'('
 			 				(
-			 			 		 (ip=ID ',' port=Port)
+			 			 		 (ip=IP ',' port=Port)
 			 			 		|(areaname=AreaName ',' qname=QName )
 			 				)
-			 			 ')'
+			 			 ')'  ('assign' (bindedInstances+=[Instance])+)?
     ;
     
+Direction: ('in'|'out'|'inout');
+
 Init: 'config' '{'
 		expressions+=Expression*
 		
@@ -164,7 +171,11 @@ AreaName:
 	;
 
 Port:
-		'port' ':' name=ID 'portnumber' ':' portnumber=INT
+		'port' ':'  portnumber=INT
+	;
+
+IP:
+		'ip' ':'   ipAddr=STRING
 	;
 
 interfaceType: 

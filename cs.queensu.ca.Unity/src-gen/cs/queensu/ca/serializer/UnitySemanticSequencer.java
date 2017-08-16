@@ -20,6 +20,7 @@ import cs.queensu.ca.unity.ENV;
 import cs.queensu.ca.unity.EQ;
 import cs.queensu.ca.unity.GE;
 import cs.queensu.ca.unity.GT;
+import cs.queensu.ca.unity.IP;
 import cs.queensu.ca.unity.Identifier;
 import cs.queensu.ca.unity.Init;
 import cs.queensu.ca.unity.Instance;
@@ -123,6 +124,9 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case UnityPackage.GT:
 				sequence_ComparisonOperators(context, (GT) semanticObject); 
+				return; 
+			case UnityPackage.IP:
+				sequence_IP(context, (IP) semanticObject); 
 				return; 
 			case UnityPackage.IDENTIFIER:
 				sequence_Identifier(context, (Identifier) semanticObject); 
@@ -487,7 +491,7 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Channel returns Channel
 	 *
 	 * Constraint:
-	 *     (interfaceName=ID type=interfaceType cardinality=INT? ((ip=ID port=Port) | (areaname=AreaName qname=QName)))
+	 *     (channelName=ID direction=Direction? type=interfaceType? ((ip=IP port=Port) | (areaname=AreaName qname=QName)) bindedInstances+=[Instance|ID]*)
 	 */
 	protected void sequence_Channel(ISerializationContext context, Channel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -827,6 +831,24 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     IP returns IP
+	 *
+	 * Constraint:
+	 *     ipAddr=STRING
+	 */
+	protected void sequence_IP(ISerializationContext context, IP semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.IP__IP_ADDR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.IP__IP_ADDR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIPAccess().getIpAddrSTRINGTerminalRuleCall_2_0(), semanticObject.getIpAddr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Expression returns Identifier
 	 *     Assign returns Identifier
 	 *     Assign.Assign_1_0 returns Identifier
@@ -882,7 +904,6 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     Property returns Instance
 	 *     Instance returns Instance
 	 *
 	 * Constraint:
@@ -890,8 +911,8 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_Instance(ISerializationContext context, Instance semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.PROPERTY__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.PROPERTY__NAME));
+			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.INSTANCE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.INSTANCE__NAME));
 			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.INSTANCE__INSTANCE_TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.INSTANCE__INSTANCE_TYPE));
 		}
@@ -1269,18 +1290,15 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Port returns Port
 	 *
 	 * Constraint:
-	 *     (name=ID portnumber=INT)
+	 *     portnumber=INT
 	 */
 	protected void sequence_Port(ISerializationContext context, Port semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.PORT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.PORT__NAME));
 			if (transientValues.isValueTransient(semanticObject, UnityPackage.Literals.PORT__PORTNUMBER) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UnityPackage.Literals.PORT__PORTNUMBER));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPortAccess().getNameIDTerminalRuleCall_2_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getPortAccess().getPortnumberINTTerminalRuleCall_5_0(), semanticObject.getPortnumber());
+		feeder.accept(grammarAccess.getPortAccess().getPortnumberINTTerminalRuleCall_2_0(), semanticObject.getPortnumber());
 		feeder.finish();
 	}
 	

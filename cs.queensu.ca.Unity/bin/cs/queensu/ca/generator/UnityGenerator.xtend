@@ -238,9 +238,9 @@ class UnityGenerator extends AbstractGenerator {
    		   		using UnityEngine;
    		   		
    		   		public class «e.name»Script : MonoBehaviour {
-   		
-   		   			void Start () {
-   		   				«sizeAndScale(e.instanceType,"rover")»
+   		public Network comms;
+   		void Start () {
+   		   «sizeAndScale(e.instanceType,"rover")»
    		   				roverMover interface1 = GetComponent<roverMover>();
    		   			interface1.ConnectRover(«getIntValue(e.instanceType,"brake")»f,«getIntValue(e.instanceType,"power")»f,"«e.name»");
    		   			«includeNetwork(e,getBoolValue(e.instanceType,"network"),20)»
@@ -304,7 +304,7 @@ class UnityGenerator extends AbstractGenerator {
    		
    		def includeNetwork(Instance e, boolean nets,int size ) '''
    		«IF nets ==true»
-   		Network comms = new Network(«getIntValue(e.instanceType,"Port")»,«getIntValue(e.instanceType,"NetId")»,«size»);
+   		comms = new Network(«getIntValue(e.instanceType,"Port")»,«getIntValue(e.instanceType,"NetId")»,«size»);
    		Debug.Log("comms initiated on «getIntValue(e.instanceType,"Port")» for «e.name»");
    		«ELSE»
    		Debug.Log("«e.name» has no network capability");

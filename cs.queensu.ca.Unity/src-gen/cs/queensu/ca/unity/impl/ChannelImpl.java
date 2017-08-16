@@ -5,19 +5,27 @@ package cs.queensu.ca.unity.impl;
 
 import cs.queensu.ca.unity.AreaName;
 import cs.queensu.ca.unity.Channel;
+import cs.queensu.ca.unity.IP;
+import cs.queensu.ca.unity.Instance;
 import cs.queensu.ca.unity.Port;
 import cs.queensu.ca.unity.QName;
 import cs.queensu.ca.unity.UnityPackage;
 import cs.queensu.ca.unity.interfaceType;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,13 +35,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getInterfaceName <em>Interface Name</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getChannelName <em>Channel Name</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getType <em>Type</em>}</li>
- *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getCardinality <em>Cardinality</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getIp <em>Ip</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getPort <em>Port</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getAreaname <em>Areaname</em>}</li>
  *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getQname <em>Qname</em>}</li>
+ *   <li>{@link cs.queensu.ca.unity.impl.ChannelImpl#getBindedInstances <em>Binded Instances</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,24 +50,44 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
 {
   /**
-   * The default value of the '{@link #getInterfaceName() <em>Interface Name</em>}' attribute.
+   * The default value of the '{@link #getChannelName() <em>Channel Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getInterfaceName()
+   * @see #getChannelName()
    * @generated
    * @ordered
    */
-  protected static final String INTERFACE_NAME_EDEFAULT = null;
+  protected static final String CHANNEL_NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getInterfaceName() <em>Interface Name</em>}' attribute.
+   * The cached value of the '{@link #getChannelName() <em>Channel Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getInterfaceName()
+   * @see #getChannelName()
    * @generated
    * @ordered
    */
-  protected String interfaceName = INTERFACE_NAME_EDEFAULT;
+  protected String channelName = CHANNEL_NAME_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirection()
+   * @generated
+   * @ordered
+   */
+  protected static final String DIRECTION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirection()
+   * @generated
+   * @ordered
+   */
+  protected String direction = DIRECTION_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -71,44 +100,14 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
   protected interfaceType type;
 
   /**
-   * The default value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCardinality()
-   * @generated
-   * @ordered
-   */
-  protected static final int CARDINALITY_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getCardinality() <em>Cardinality</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCardinality()
-   * @generated
-   * @ordered
-   */
-  protected int cardinality = CARDINALITY_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getIp() <em>Ip</em>}' attribute.
+   * The cached value of the '{@link #getIp() <em>Ip</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getIp()
    * @generated
    * @ordered
    */
-  protected static final String IP_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getIp() <em>Ip</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getIp()
-   * @generated
-   * @ordered
-   */
-  protected String ip = IP_EDEFAULT;
+  protected IP ip;
 
   /**
    * The cached value of the '{@link #getPort() <em>Port</em>}' containment reference.
@@ -141,6 +140,16 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
   protected QName qname;
 
   /**
+   * The cached value of the '{@link #getBindedInstances() <em>Binded Instances</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBindedInstances()
+   * @generated
+   * @ordered
+   */
+  protected EList<Instance> bindedInstances;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -166,9 +175,9 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getInterfaceName()
+  public String getChannelName()
   {
-    return interfaceName;
+    return channelName;
   }
 
   /**
@@ -176,12 +185,35 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setInterfaceName(String newInterfaceName)
+  public void setChannelName(String newChannelName)
   {
-    String oldInterfaceName = interfaceName;
-    interfaceName = newInterfaceName;
+    String oldChannelName = channelName;
+    channelName = newChannelName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.CHANNEL__INTERFACE_NAME, oldInterfaceName, interfaceName));
+      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.CHANNEL__CHANNEL_NAME, oldChannelName, channelName));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getDirection()
+  {
+    return direction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDirection(String newDirection)
+  {
+    String oldDirection = direction;
+    direction = newDirection;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.CHANNEL__DIRECTION, oldDirection, direction));
   }
 
   /**
@@ -237,30 +269,7 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getCardinality()
-  {
-    return cardinality;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setCardinality(int newCardinality)
-  {
-    int oldCardinality = cardinality;
-    cardinality = newCardinality;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.CHANNEL__CARDINALITY, oldCardinality, cardinality));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getIp()
+  public IP getIp()
   {
     return ip;
   }
@@ -270,12 +279,37 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIp(String newIp)
+  public NotificationChain basicSetIp(IP newIp, NotificationChain msgs)
   {
-    String oldIp = ip;
+    IP oldIp = ip;
     ip = newIp;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.CHANNEL__IP, oldIp, ip));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UnityPackage.CHANNEL__IP, oldIp, newIp);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setIp(IP newIp)
+  {
+    if (newIp != ip)
+    {
+      NotificationChain msgs = null;
+      if (ip != null)
+        msgs = ((InternalEObject)ip).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UnityPackage.CHANNEL__IP, null, msgs);
+      if (newIp != null)
+        msgs = ((InternalEObject)newIp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UnityPackage.CHANNEL__IP, null, msgs);
+      msgs = basicSetIp(newIp, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, UnityPackage.CHANNEL__IP, newIp, newIp));
   }
 
   /**
@@ -427,6 +461,20 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Instance> getBindedInstances()
+  {
+    if (bindedInstances == null)
+    {
+      bindedInstances = new EObjectResolvingEList<Instance>(Instance.class, this, UnityPackage.CHANNEL__BINDED_INSTANCES);
+    }
+    return bindedInstances;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -434,6 +482,8 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
     {
       case UnityPackage.CHANNEL__TYPE:
         return basicSetType(null, msgs);
+      case UnityPackage.CHANNEL__IP:
+        return basicSetIp(null, msgs);
       case UnityPackage.CHANNEL__PORT:
         return basicSetPort(null, msgs);
       case UnityPackage.CHANNEL__AREANAME:
@@ -454,12 +504,12 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
   {
     switch (featureID)
     {
-      case UnityPackage.CHANNEL__INTERFACE_NAME:
-        return getInterfaceName();
+      case UnityPackage.CHANNEL__CHANNEL_NAME:
+        return getChannelName();
+      case UnityPackage.CHANNEL__DIRECTION:
+        return getDirection();
       case UnityPackage.CHANNEL__TYPE:
         return getType();
-      case UnityPackage.CHANNEL__CARDINALITY:
-        return getCardinality();
       case UnityPackage.CHANNEL__IP:
         return getIp();
       case UnityPackage.CHANNEL__PORT:
@@ -468,6 +518,8 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
         return getAreaname();
       case UnityPackage.CHANNEL__QNAME:
         return getQname();
+      case UnityPackage.CHANNEL__BINDED_INSTANCES:
+        return getBindedInstances();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -477,22 +529,23 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case UnityPackage.CHANNEL__INTERFACE_NAME:
-        setInterfaceName((String)newValue);
+      case UnityPackage.CHANNEL__CHANNEL_NAME:
+        setChannelName((String)newValue);
+        return;
+      case UnityPackage.CHANNEL__DIRECTION:
+        setDirection((String)newValue);
         return;
       case UnityPackage.CHANNEL__TYPE:
         setType((interfaceType)newValue);
         return;
-      case UnityPackage.CHANNEL__CARDINALITY:
-        setCardinality((Integer)newValue);
-        return;
       case UnityPackage.CHANNEL__IP:
-        setIp((String)newValue);
+        setIp((IP)newValue);
         return;
       case UnityPackage.CHANNEL__PORT:
         setPort((Port)newValue);
@@ -502,6 +555,10 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
         return;
       case UnityPackage.CHANNEL__QNAME:
         setQname((QName)newValue);
+        return;
+      case UnityPackage.CHANNEL__BINDED_INSTANCES:
+        getBindedInstances().clear();
+        getBindedInstances().addAll((Collection<? extends Instance>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -517,17 +574,17 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
   {
     switch (featureID)
     {
-      case UnityPackage.CHANNEL__INTERFACE_NAME:
-        setInterfaceName(INTERFACE_NAME_EDEFAULT);
+      case UnityPackage.CHANNEL__CHANNEL_NAME:
+        setChannelName(CHANNEL_NAME_EDEFAULT);
+        return;
+      case UnityPackage.CHANNEL__DIRECTION:
+        setDirection(DIRECTION_EDEFAULT);
         return;
       case UnityPackage.CHANNEL__TYPE:
         setType((interfaceType)null);
         return;
-      case UnityPackage.CHANNEL__CARDINALITY:
-        setCardinality(CARDINALITY_EDEFAULT);
-        return;
       case UnityPackage.CHANNEL__IP:
-        setIp(IP_EDEFAULT);
+        setIp((IP)null);
         return;
       case UnityPackage.CHANNEL__PORT:
         setPort((Port)null);
@@ -537,6 +594,9 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
         return;
       case UnityPackage.CHANNEL__QNAME:
         setQname((QName)null);
+        return;
+      case UnityPackage.CHANNEL__BINDED_INSTANCES:
+        getBindedInstances().clear();
         return;
     }
     super.eUnset(featureID);
@@ -552,20 +612,22 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
   {
     switch (featureID)
     {
-      case UnityPackage.CHANNEL__INTERFACE_NAME:
-        return INTERFACE_NAME_EDEFAULT == null ? interfaceName != null : !INTERFACE_NAME_EDEFAULT.equals(interfaceName);
+      case UnityPackage.CHANNEL__CHANNEL_NAME:
+        return CHANNEL_NAME_EDEFAULT == null ? channelName != null : !CHANNEL_NAME_EDEFAULT.equals(channelName);
+      case UnityPackage.CHANNEL__DIRECTION:
+        return DIRECTION_EDEFAULT == null ? direction != null : !DIRECTION_EDEFAULT.equals(direction);
       case UnityPackage.CHANNEL__TYPE:
         return type != null;
-      case UnityPackage.CHANNEL__CARDINALITY:
-        return cardinality != CARDINALITY_EDEFAULT;
       case UnityPackage.CHANNEL__IP:
-        return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
+        return ip != null;
       case UnityPackage.CHANNEL__PORT:
         return port != null;
       case UnityPackage.CHANNEL__AREANAME:
         return areaname != null;
       case UnityPackage.CHANNEL__QNAME:
         return qname != null;
+      case UnityPackage.CHANNEL__BINDED_INSTANCES:
+        return bindedInstances != null && !bindedInstances.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -581,12 +643,10 @@ public class ChannelImpl extends MinimalEObjectImpl.Container implements Channel
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (interfaceName: ");
-    result.append(interfaceName);
-    result.append(", cardinality: ");
-    result.append(cardinality);
-    result.append(", ip: ");
-    result.append(ip);
+    result.append(" (channelName: ");
+    result.append(channelName);
+    result.append(", direction: ");
+    result.append(direction);
     result.append(')');
     return result.toString();
   }

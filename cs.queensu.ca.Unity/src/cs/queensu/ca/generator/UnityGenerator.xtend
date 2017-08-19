@@ -173,7 +173,7 @@ class UnityGenerator extends AbstractGenerator {
    		   	«ENDFOR»
    		//adding the necessary channel information scripts	
    		   	«FOR k:e.channels»
-   		   	Object.AddComponent<ChannelController«k.name»>();
+   		   	gameObject.AddComponent<ChannelController«k.name»>();
    		   	«ENDFOR»
    			}
    		}
@@ -184,13 +184,13 @@ class UnityGenerator extends AbstractGenerator {
    		using System.Collections.Generic;
    		using UnityEngine;
    		
-   		public class ChannelController : MonoBehaviour {
+   		public class ChannelController«c.name» : MonoBehaviour {
    			
    			public Network externalComm;
-   			public string myName = «c.name»;
+   			public string myName = "«c.name»";
    		
    			void Start () {
-   				externalComm = new Network(«c.port»,«c.name»,20); // port, net ID, Container size
+   				externalComm = new Network(«c.port.portnumber»,myName,20); // port, net ID, Container size
    				externalComm.StartNetwork();
    			}
    		
@@ -290,6 +290,9 @@ class UnityGenerator extends AbstractGenerator {
    		   	public string channelID;
    			void Start () {
    		   		«sizeAndScale(e.instanceType,"rover")»
+   		   		Rigidbody rb = GetComponent<Rigidbody> ();
+   		   		rb.velocity = new Vector3 (0f,0f,0f);
+   		   		rb.angularVelocity = new Vector3 (0f,0f,0f);
    		   		roverMover interface1 = GetComponent<roverMover>();
    		   		interface1.ConnectRover(«getIntValue(e.instanceType,"brake")»f,«getIntValue(e.instanceType,"power")»f,"«e.name»");
    		   	}

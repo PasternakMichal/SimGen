@@ -16,6 +16,7 @@ import cs.queensu.ca.unity.Expression;
 import cs.queensu.ca.unity.Instance;
 import cs.queensu.ca.unity.IntLiteral;
 import cs.queensu.ca.unity.Literal;
+import cs.queensu.ca.unity.StLiteral;
 import cs.queensu.ca.unity.UnityObject;
 import java.io.IOException;
 import org.eclipse.emf.common.util.EList;
@@ -46,38 +47,47 @@ public class UnityGenerator extends AbstractGenerator {
         fsa.generateFile("starter.cs", this.starter(a));
         EList<Instance> _instances = a.getInstances();
         for (final Instance b : _instances) {
-          String _kind = b.getInstanceType().getType().getKind();
-          boolean _equals = Objects.equal(_kind, "others");
-          if (_equals) {
-            String _name = b.getName();
-            String _plus = (_name + "Script.cs");
-            fsa.generateFile(_plus, this.landscape(b));
-          } else {
+          {
+            String _kind = b.getInstanceType().getType().getKind();
+            boolean _equals = Objects.equal(_kind, "generic");
+            if (_equals) {
+              String _name = b.getName();
+              String _plus = (_name + "Script.cs");
+              fsa.generateFile(_plus, this.generic(b));
+            }
             String _kind_1 = b.getInstanceType().getType().getKind();
-            boolean _equals_1 = Objects.equal(_kind_1, "rover");
+            boolean _equals_1 = Objects.equal(_kind_1, "others");
             if (_equals_1) {
               String _name_1 = b.getName();
               String _plus_1 = (_name_1 + "Script.cs");
-              fsa.generateFile(_plus_1, this.rover(b));
+              fsa.generateFile(_plus_1, this.landscape(b));
             } else {
               String _kind_2 = b.getInstanceType().getType().getKind();
-              boolean _equals_2 = Objects.equal(_kind_2, "car");
+              boolean _equals_2 = Objects.equal(_kind_2, "rover");
               if (_equals_2) {
                 String _name_2 = b.getName();
                 String _plus_2 = (_name_2 + "Script.cs");
-                fsa.generateFile(_plus_2, this.car(b));
+                fsa.generateFile(_plus_2, this.rover(b));
               } else {
-                InputOutput.<String>println("unknown MetaObject");
+                String _kind_3 = b.getInstanceType().getType().getKind();
+                boolean _equals_3 = Objects.equal(_kind_3, "car");
+                if (_equals_3) {
+                  String _name_3 = b.getName();
+                  String _plus_3 = (_name_3 + "Script.cs");
+                  fsa.generateFile(_plus_3, this.car(b));
+                } else {
+                  InputOutput.<String>println("unknown MetaObject");
+                }
               }
             }
           }
         }
         EList<Channel> _channels = a.getChannels();
         for (final Channel c : _channels) {
-          String _name_3 = c.getName();
-          String _plus_3 = ("ChannelController" + _name_3);
-          String _plus_4 = (_plus_3 + ".cs");
-          fsa.generateFile(_plus_4, this.channelcontroller(c));
+          String _name = c.getName();
+          String _plus = ("ChannelController" + _name);
+          String _plus_1 = (_plus + ".cs");
+          fsa.generateFile(_plus_1, this.channelcontroller(c));
         }
       }
     }
@@ -113,6 +123,20 @@ public class UnityGenerator extends AbstractGenerator {
     return 0;
   }
   
+  public String stringExtractor(final Expression e) {
+    boolean _matched = false;
+    if (e instanceof Literal) {
+      _matched=true;
+      Literal litvalue = ((Literal) e);
+      if ((litvalue instanceof StLiteral)) {
+        InputOutput.<String>print(((StLiteral) litvalue).getString());
+        String i = ((StLiteral) litvalue).getString();
+        return i;
+      }
+    }
+    return null;
+  }
+  
   public boolean boolExtractor(final Expression e) {
     boolean _matched = false;
     if (e instanceof Literal) {
@@ -142,6 +166,21 @@ public class UnityGenerator extends AbstractGenerator {
     return 0;
   }
   
+  public String getStringValue(final UnityObject a, final String b) {
+    EList<ConfigAssignment> _configurations = a.getConfigurations();
+    for (final ConfigAssignment q : _configurations) {
+      EList<Config> _configs = q.getConfigs();
+      for (final Config w : _configs) {
+        String _name = w.getPropertyName().getName();
+        boolean _equals = Objects.equal(_name, b);
+        if (_equals) {
+          return this.stringExtractor(w.getPropertyValue());
+        }
+      }
+    }
+    return "";
+  }
+  
   public boolean getBoolValue(final UnityObject a, final String b) {
     EList<ConfigAssignment> _configurations = a.getConfigurations();
     for (final ConfigAssignment q : _configurations) {
@@ -162,8 +201,7 @@ public class UnityGenerator extends AbstractGenerator {
     _builder.append("Transform t = GetComponentInChildren<Transform>();");
     _builder.newLine();
     {
-      boolean _equals = Objects.equal(a, "rover");
-      if (_equals) {
+      if (((Objects.equal(a, "rover") || Objects.equal(a, "generic")) || Objects.equal(a, "car"))) {
         _builder.append("t.localScale = new Vector3 (");
         int _intValue = this.getIntValue(e, "size");
         _builder.append(_intValue);
@@ -218,12 +256,17 @@ public class UnityGenerator extends AbstractGenerator {
     _builder.append("Script : MonoBehaviour {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
+    _builder.append("public sateliteCameraScript cam;");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.append("void Start () {");
     _builder.newLine();
     _builder.append("\t\t");
     CharSequence _sizeAndScale = this.sizeAndScale(e.getInstanceType(), e.getName());
     _builder.append(_sizeAndScale, "\t\t");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
@@ -238,10 +281,158 @@ public class UnityGenerator extends AbstractGenerator {
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
+    _builder.append("\t");
+    _builder.append("void focus(){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("cam.observedObject = gameObject;");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
+    _builder.append("}");
     _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence generic(final Instance e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("using System.Collections;");
     _builder.newLine();
+    _builder.append("using System.Collections.Generic;");
+    _builder.newLine();
+    _builder.append("using UnityEngine;");
+    _builder.newLine();
+    _builder.append("public class ");
+    String _name = e.getName();
+    _builder.append(_name);
+    _builder.append("Script : MonoBehaviour {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("public sateliteCameraScript cam;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("void Start () {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    CharSequence _sizeAndScale = this.sizeAndScale(e.getInstanceType(), e.getName());
+    _builder.append(_sizeAndScale, "\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("Rigidbody rb = gameObject.GetComponent<Rigidbody> ();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("rb.mass = ");
+    int _intValue = this.getIntValue(e.getInstanceType(), "mass");
+    _builder.append(_intValue, "\t\t");
+    _builder.append(";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("// load all meshes in model and find the specified mesh");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("MeshFilter myMeshFilter = gameObject.GetComponent<MeshFilter> ();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("GameObject loadedModel = Resources.Load(\"");
+    String _stringValue = this.getStringValue(e.getInstanceType(), "model");
+    _builder.append(_stringValue, "\t\t");
+    _builder.append("\") as GameObject; ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("// first check object, if not found then check all children.");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("if (loadedModel.GetComponent<MeshFilter> () != null && loadedModel.GetComponent<MeshFilter> ().sharedMesh.name ==(\"");
+    String _stringValue_1 = this.getStringValue(e.getInstanceType(), "mesh");
+    _builder.append(_stringValue_1, "\t\t");
+    _builder.append("\")) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.append("myMeshFilter.mesh = loadedModel.GetComponent<MeshFilter> ().sharedMesh;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("} else {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("MeshFilter[] loadedMeshFilters = loadedModel.GetComponentsInChildren<MeshFilter> ();");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("foreach (MeshFilter mf in loadedMeshFilters) { ");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("if (mf.sharedMesh.name == \"");
+    String _stringValue_2 = this.getStringValue(e.getInstanceType(), "mesh");
+    _builder.append(_stringValue_2, "\t\t\t\t");
+    _builder.append("\") {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("myMeshFilter.mesh = mf.sharedMesh; ");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("break;");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("// Set the renderer to specified image ");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("Renderer myRenderer = gameObject.GetComponent<Renderer>();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("myRenderer.material = new Material(Shader.Find(\"Diffuse\"));");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("myRenderer.material.mainTexture = Resources.Load(\"");
+    String _stringValue_3 = this.getStringValue(e.getInstanceType(), "texture");
+    _builder.append(_stringValue_3, "\t\t");
+    _builder.append("\") as Texture;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("// Set Collider");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("MeshCollider myMeshCollider = gameObject.GetComponent<MeshCollider> ();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("myMeshCollider.sharedMesh = myMeshFilter.mesh;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("void Update () {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("// on going monitoring or changing things based on object");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("void focus(){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("cam.observedObject = gameObject;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}   \t\t");
     _builder.newLine();
     return _builder;
   }
@@ -259,6 +450,9 @@ public class UnityGenerator extends AbstractGenerator {
     _builder.append("public class starter : MonoBehaviour {");
     _builder.newLine();
     _builder.append("// ---- These must be assigned as prefabs in Unity and as \"metaobjects\" in the DSL");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public GameObject Generic;");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("public GameObject Plane;");
@@ -648,6 +842,9 @@ public class UnityGenerator extends AbstractGenerator {
     _builder.append("   \t");
     _builder.append("public string channelID;");
     _builder.newLine();
+    _builder.append("   \t");
+    _builder.append("public sateliteCameraScript cam;");
+    _builder.newLine();
     _builder.append("\t");
     _builder.append("void Start () {");
     _builder.newLine();
@@ -801,6 +998,15 @@ public class UnityGenerator extends AbstractGenerator {
     _builder.append("return message.Substring(message.IndexOf(\',\'));");
     _builder.newLine();
     _builder.append("   \t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("void focus(){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("cam.observedObject = gameObject;");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
     _builder.append("}");

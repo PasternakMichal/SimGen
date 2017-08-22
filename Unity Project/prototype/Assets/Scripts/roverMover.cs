@@ -19,6 +19,10 @@ public class roverMover : MonoBehaviour {
 	public string RoverName;
 
 	void Start () {
+		RightPower (0);
+		LeftPower (0);
+		RightBrake (20);
+		LeftBrake (20);
 	}
 	
 	// Update is called once per frame

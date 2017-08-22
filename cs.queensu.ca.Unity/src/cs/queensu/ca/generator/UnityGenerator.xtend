@@ -30,10 +30,12 @@ class UnityGenerator extends AbstractGenerator {
 			fsa.generateFile("starter.cs",starter(a));
 			// ------- Create Unity scripts for each metaobject -------
    		for (b: a.instances){
+   			if (b.instanceType.type.kind == 'generic'){
+   			fsa.generateFile((b.name+"Script.cs"),generic(b));
+   			}
    			if (b.instanceType.type.kind == 'others'){
    			fsa.generateFile((b.name+"Script.cs"),landscape(b));
    			}
-   			
    			else if (b.instanceType.type.kind == 'rover'){
    			fsa.generateFile((b.name+"Script.cs"),rover(b));
    			}
@@ -86,6 +88,22 @@ class UnityGenerator extends AbstractGenerator {
 	   						}
 	   			}
 	   		}
+	   		def stringExtractor(Expression e){
+		    
+	   			switch (e)
+	   			{
+	   				Literal: {
+	   						var Literal litvalue=e as Literal;
+	   						if (litvalue instanceof StLiteral){
+	   							 print((litvalue as StLiteral).getString()) ;
+	   							 var String i=(litvalue as StLiteral).getString();
+	   							 return i;
+	   							 }
+	   							 
+	   						
+	   						}
+	   			}
+	   		}
 	   		
 	   		
 	   		def boolExtractor(Expression e){
@@ -113,6 +131,15 @@ class UnityGenerator extends AbstractGenerator {
 	   			}
 	   			return 0;
 	   		}
+	   		def getStringValue(UnityObject a,String b){
+	   			for (q: a.configurations){
+	   				for (w: q.configs){
+	   					if (w.propertyName.name == b)
+	   						return (stringExtractor(w.propertyValue));
+	   				}
+	   			}
+	   			return "";
+	   		}
 	   		
 	   		def getBoolValue(UnityObject a,String b){
 	   			for (q: a.configurations){
@@ -126,7 +153,7 @@ class UnityGenerator extends AbstractGenerator {
 	   		
 	   		def sizeAndScale(UnityObject e,String a)'''
 	   		Transform t = GetComponentInChildren<Transform>();
-	   		«IF a=="rover"»
+	   		«IF a=="rover" || a=="generic" || a =="car"»
 	   		t.localScale = new Vector3 («e.getIntValue("size")»f,«e.getIntValue("size")»f,«e.getIntValue("size")»f);
 	   		«ELSE»
 	   		t.localScale = new Vector3 («e.getIntValue("sizex")»f,«e.getIntValue("sizey")»f,«e.getIntValue("sizez")»f);
@@ -140,19 +167,65 @@ class UnityGenerator extends AbstractGenerator {
    		using UnityEngine;
    		
    		public class «e.name»Script : MonoBehaviour {
+   			public sateliteCameraScript cam;
    			void Start () {
    				«sizeAndScale(e.instanceType,e.name)»
+   				
    			}
    			
    			void Update () {
    				// on going monitoring or changing things based on object
    			}
+   			void focus(){
+   				cam.observedObject = gameObject;
+   			}
    		}
-   		
-   		
-   		
    		'''
-   		// --- starter needs all game object pre fabs to be declared and attached
+   		def generic(Instance e) '''
+   		using System.Collections;
+   		using System.Collections.Generic;
+   		using UnityEngine;
+   		public class «e.name»Script : MonoBehaviour {
+   			public sateliteCameraScript cam;
+   			void Start () {
+   				«sizeAndScale(e.instanceType,e.name)»
+   				Rigidbody rb = gameObject.GetComponent<Rigidbody> ();
+   				rb.mass = «getIntValue(e.instanceType,"mass")»;
+   				
+   				// load all meshes in model and find the specified mesh
+   				MeshFilter myMeshFilter = gameObject.GetComponent<MeshFilter> ();
+   				GameObject loadedModel = Resources.Load("«getStringValue(e.instanceType,"model")»") as GameObject; 
+   				// first check object, if not found then check all children.
+   				if (loadedModel.GetComponent<MeshFilter> () != null && loadedModel.GetComponent<MeshFilter> ().sharedMesh.name ==("«getStringValue(e.instanceType,"mesh")»")) {
+   					myMeshFilter.mesh = loadedModel.GetComponent<MeshFilter> ().sharedMesh;
+   				} else {
+   					MeshFilter[] loadedMeshFilters = loadedModel.GetComponentsInChildren<MeshFilter> ();
+   					foreach (MeshFilter mf in loadedMeshFilters) { 
+   						if (mf.sharedMesh.name == "«getStringValue(e.instanceType,"mesh")»") {
+   							myMeshFilter.mesh = mf.sharedMesh; 
+   							break;
+   						}
+   					}
+   				}
+   				// Set the renderer to specified image 
+   				Renderer myRenderer = gameObject.GetComponent<Renderer>();
+   				myRenderer.material = new Material(Shader.Find("Diffuse"));
+   				myRenderer.material.mainTexture = Resources.Load("«getStringValue(e.instanceType,"texture")»") as Texture;
+   				// Set Collider
+   				MeshCollider myMeshCollider = gameObject.GetComponent<MeshCollider> ();
+   				myMeshCollider.sharedMesh = myMeshFilter.mesh;
+   				
+   			}
+   			
+   			void Update () {
+   				// on going monitoring or changing things based on object
+   			}
+   			void focus(){
+   				cam.observedObject = gameObject;
+   			}
+   		}   		
+   		'''
+   		// --- starter needs all game object prefabs to be declared and attached
    		def starter(ENV e)'''
    		using System.Collections;
    		using System.Collections.Generic;
@@ -160,6 +233,7 @@ class UnityGenerator extends AbstractGenerator {
    		   		
    		public class starter : MonoBehaviour {
    		// ---- These must be assigned as prefabs in Unity and as "metaobjects" in the DSL
+   			public GameObject Generic;
    			public GameObject Plane;
    			public GameObject Rover;
    			public GameObject Car;
@@ -288,6 +362,7 @@ class UnityGenerator extends AbstractGenerator {
    		
    		public class «e.name»Script : MonoBehaviour {
    		   	public string channelID;
+   		   	public sateliteCameraScript cam;
    			void Start () {
    		   		«sizeAndScale(e.instanceType,"rover")»
    		   		Rigidbody rb = GetComponent<Rigidbody> ();
@@ -338,6 +413,9 @@ class UnityGenerator extends AbstractGenerator {
    			public string cut(string message){
    		   		return message.Substring(message.IndexOf(','));
    		   	}
+   			void focus(){
+   				cam.observedObject = gameObject;
+   			}
    		}
    		//1,LS,RS,LB,RB
    		// 1 - send a state command

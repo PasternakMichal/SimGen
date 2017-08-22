@@ -2,15 +2,17 @@
 using System.Collections;
 
 public class sateliteCameraScript : MonoBehaviour {
-	public GameObject rover; 
-	Vector3 offset ;
+	public GameObject observedObject; 
+	Vector3 posOffset = new Vector3 (0,2,-4);
+	Vector3 rotOffset = new Vector3 (20,0,0);
 	// Use this for initialization
 	void Start () {
-		offset = transform.position - rover.transform.position;
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () {
-		transform.position = rover.transform.position + offset;
+		transform.position = observedObject.transform.position + posOffset;
+		transform.rotation = observedObject.transform.rotation;
+		transform.Rotate(rotOffset);
 	}
 }

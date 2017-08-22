@@ -1,21 +1,22 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TCPsocket.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/roverMover.cs">
     <Files>
+      <File FileName="Assets/Scripts/carScript.cs" Line="5" Column="23" />
       <File FileName="Assets/Scripts/roverMover.cs" Line="68" Column="9" />
       <File FileName="Assets/Scripts/wheelScript.cs" Line="12" Column="1" />
-      <File FileName="Assets/Scripts/starter.cs" Line="20" Column="41" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="16" Column="3" />
-      <File FileName="Assets/Scripts/TCPsocket.cs" Line="45" Column="28" />
-      <File FileName="Assets/Scripts/buddyScript.cs" Line="12" Column="17" />
+      <File FileName="Assets/Scripts/starter.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/buddyScript.cs" Line="20" Column="30" />
       <File FileName="Assets/Scripts/lolzScript.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/landScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Transporter.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Selector.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/wheelScriptCar.cs" Line="18" Column="3" />
+      <File FileName="Assets/Scripts/Network.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <RunToCursorBreakpoint file="/Users/michal/Desktop/School/Masters work/Unity/prototype/Assets/Scripts/wheelScriptCar.cs" line="36" column="14" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

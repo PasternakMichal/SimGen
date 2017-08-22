@@ -1220,9 +1220,15 @@ rule__MetaObject__KindAlternatives_3_0
 	)
 	|
 	(
-		{ before(grammarAccess.getMetaObjectAccess().getKindOthersKeyword_3_0_2()); }
+		{ before(grammarAccess.getMetaObjectAccess().getKindGenericKeyword_3_0_2()); }
+		'generic'
+		{ after(grammarAccess.getMetaObjectAccess().getKindGenericKeyword_3_0_2()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getMetaObjectAccess().getKindOthersKeyword_3_0_3()); }
 		'others'
-		{ after(grammarAccess.getMetaObjectAccess().getKindOthersKeyword_3_0_2()); }
+		{ after(grammarAccess.getMetaObjectAccess().getKindOthersKeyword_3_0_3()); }
 	)
 ;
 finally {

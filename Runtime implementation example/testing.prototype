@@ -24,6 +24,16 @@ MetaObject Car : car {
 	property Port: int
 	property NetId: int
 }
+MetaObject Generic : generic{
+	property size : int
+	property posx : int
+	property posy : int
+	property posz : int
+	property model: string
+	property mesh : string
+	property texture : string
+	property mass : int
+}
 
 MetaObject Plane : others {
 	property sizex : int
@@ -59,6 +69,36 @@ Object zoomzoom : Rover {
 	}
 	
 }
+Object rock : Generic {
+config{
+	posx = 0
+	posy = 3
+	posz = 0
+	size = 1
+	mesh = "Icosphere_001"
+	texture = "Rock6"
+	model = "RockSet"
+	mass = 1000
+}
+	
+	
+}
+Object spirit : Rover {
+
+	config {
+		posx = 5
+		posy = 3
+		posz = 0
+		size = 2
+		brake = 200
+		power = 1000
+		network = true
+		Port = 8887
+		NetId = 24
+	}
+	
+}
+
 Object brz :Car {
 	
 	config{
@@ -84,15 +124,15 @@ Object land : Plane {
 		sizex = 20
 		sizey = 1
 		sizez = 20
-		
 	}
-	
 	
 }
 
 Env simulation {
 	Instance land : land
 	Instance buddy : zoomzoom
-	Channel MyChannel direction inout type TCP (ip : "192.168.1.1", port : 1234) assign buddy land  
+	Instance realdeal : spirit
+	Instance obstacle : rock
+	Channel MyChannel direction inout type TCP (ip : "192.168.1.1", port : 1234) assign buddy realdeal  
 }
 

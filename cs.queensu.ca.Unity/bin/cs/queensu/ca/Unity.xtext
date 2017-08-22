@@ -15,7 +15,7 @@ Specification:
  =====================================================================================================*/
 
 MetaObject:
-		'MetaObject' name=ID ':' kind=('car'|'rover'|'others')
+		'MetaObject' name=ID ':' kind=('car'|'rover'|'generic'|'others')
 			'{'
 					(
 						 properties+=Attribute

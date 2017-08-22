@@ -1014,7 +1014,7 @@ public class UnitySemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     MetaObject returns MetaObject
 	 *
 	 * Constraint:
-	 *     (name=ID (kind='car' | kind='rover' | kind='others') properties+=Attribute? (actions+=Action? properties+=Attribute?)*)
+	 *     (name=ID (kind='car' | kind='rover' | kind='generic' | kind='others') properties+=Attribute? (actions+=Action? properties+=Attribute?)*)
 	 */
 	protected void sequence_MetaObject(ISerializationContext context, MetaObject semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

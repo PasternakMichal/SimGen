@@ -197,15 +197,26 @@ ruleMetaObject returns [EObject current=null]
 						setWithLastConsumed($current, "kind", lv_kind_3_2, null);
 					}
 					    |
-					lv_kind_3_3='others'
+					lv_kind_3_3='generic'
 					{
-						newLeafNode(lv_kind_3_3, grammarAccess.getMetaObjectAccess().getKindOthersKeyword_3_0_2());
+						newLeafNode(lv_kind_3_3, grammarAccess.getMetaObjectAccess().getKindGenericKeyword_3_0_2());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getMetaObjectRule());
 						}
 						setWithLastConsumed($current, "kind", lv_kind_3_3, null);
+					}
+					    |
+					lv_kind_3_4='others'
+					{
+						newLeafNode(lv_kind_3_4, grammarAccess.getMetaObjectAccess().getKindOthersKeyword_3_0_3());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMetaObjectRule());
+						}
+						setWithLastConsumed($current, "kind", lv_kind_3_4, null);
 					}
 				)
 			)

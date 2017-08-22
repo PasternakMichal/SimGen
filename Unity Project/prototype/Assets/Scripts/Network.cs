@@ -12,13 +12,15 @@ public class Network {
 
 	public bool ON = false;
 	private Socket _serverSocket;
-	public string lastmessage = "";
 	container msgbox;
 	int port = 8888;
 
-	public Network(int p, int id,int cap){
+	public Network(int p, string id,int cap){
 		port = p;
 		msgbox = new container (id, cap);
+	}
+
+	public void StartNetwork(){
 		StartServer ();
 	}
 
@@ -149,12 +151,12 @@ public class container{ // dual pointer list
 	public int capacity;
 	public string[] messagequeue;
 	public string name = ""; 
-	public int containerID = 99;
+	public string containerID = null;
 	public int head = 0;
 	public int tail = 0;
 	public Socket workSocket = null;
 
-	public container(int ID, int capacity1){
+	public container(string ID, int capacity1){
 		containerID = ID;
 		capacity = capacity1;
 		messagequeue = new string[capacity];

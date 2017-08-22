@@ -62,7 +62,8 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cKindAlternatives_3_0 = (Alternatives)cKindAssignment_3.eContents().get(0);
 		private final Keyword cKindCarKeyword_3_0_0 = (Keyword)cKindAlternatives_3_0.eContents().get(0);
 		private final Keyword cKindRoverKeyword_3_0_1 = (Keyword)cKindAlternatives_3_0.eContents().get(1);
-		private final Keyword cKindOthersKeyword_3_0_2 = (Keyword)cKindAlternatives_3_0.eContents().get(2);
+		private final Keyword cKindGenericKeyword_3_0_2 = (Keyword)cKindAlternatives_3_0.eContents().get(2);
+		private final Keyword cKindOthersKeyword_3_0_3 = (Keyword)cKindAlternatives_3_0.eContents().get(3);
 		private final Keyword cLeftCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
 		private final Assignment cPropertiesAssignment_5_0 = (Assignment)cAlternatives_5.eContents().get(0);
@@ -77,13 +78,14 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		// * Action rule includes input, output, and expressions
 		// * Command rule can defines commands such as command c1(parm1:bool,parm1:int) returns out:boolean;
 		// =====================================================================================================*/ MetaObject:
-		//	'MetaObject' name=ID ':' kind=('car' | 'rover' | 'others')
+		//	'MetaObject' name=ID ':' kind=('car' | 'rover' | 'generic' | 'others')
 		//	'{' (properties+=Attribute
 		//	| actions+=Action)*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'MetaObject' name=ID ':' kind=('car' | 'rover' | 'others') '{' (properties+=Attribute | actions+=Action)* '}'
+		//'MetaObject' name=ID ':' kind=('car' | 'rover' | 'generic' | 'others') '{' (properties+=Attribute | actions+=Action)*
+		//'}'
 		public Group getGroup() { return cGroup; }
 		
 		//'MetaObject'
@@ -98,10 +100,10 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//':'
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 		
-		//kind=('car' | 'rover' | 'others')
+		//kind=('car' | 'rover' | 'generic' | 'others')
 		public Assignment getKindAssignment_3() { return cKindAssignment_3; }
 		
-		//('car' | 'rover' | 'others')
+		//('car' | 'rover' | 'generic' | 'others')
 		public Alternatives getKindAlternatives_3_0() { return cKindAlternatives_3_0; }
 		
 		//'car'
@@ -110,8 +112,11 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 		//'rover'
 		public Keyword getKindRoverKeyword_3_0_1() { return cKindRoverKeyword_3_0_1; }
 		
+		//'generic'
+		public Keyword getKindGenericKeyword_3_0_2() { return cKindGenericKeyword_3_0_2; }
+		
 		//'others'
-		public Keyword getKindOthersKeyword_3_0_2() { return cKindOthersKeyword_3_0_2; }
+		public Keyword getKindOthersKeyword_3_0_3() { return cKindOthersKeyword_3_0_3; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_4() { return cLeftCurlyBracketKeyword_4; }
@@ -2114,7 +2119,7 @@ public class UnityGrammarAccess extends AbstractGrammarElementFinder {
 	// * Action rule includes input, output, and expressions
 	// * Command rule can defines commands such as command c1(parm1:bool,parm1:int) returns out:boolean;
 	// =====================================================================================================*/ MetaObject:
-	//	'MetaObject' name=ID ':' kind=('car' | 'rover' | 'others')
+	//	'MetaObject' name=ID ':' kind=('car' | 'rover' | 'generic' | 'others')
 	//	'{' (properties+=Attribute
 	//	| actions+=Action)*
 	//	'}';

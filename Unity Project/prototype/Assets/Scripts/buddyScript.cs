@@ -13,7 +13,7 @@ public class buddyScript : MonoBehaviour {
    		rb.velocity = new Vector3 (0f,0f,0f);
    		rb.angularVelocity = new Vector3 (0f,0f,0f);
    		roverMover interface1 = GetComponent<roverMover>();
-   		interface1.ConnectRover(200f,1000f,"buddy");
+   		interface1.ConnectRover(20f,100f,"buddy");
    	}
    			
    	void Update () {}
@@ -34,7 +34,7 @@ public class buddyScript : MonoBehaviour {
    			message=cut(message);
    			rover.LeftBrake(decode(message));
    			message=cut(message);
-   			rover.LeftBrake(decode(message));
+   			rover.RightBrake(decode(message));
    			break;
    					
    			case 2:
@@ -47,7 +47,12 @@ public class buddyScript : MonoBehaviour {
    		
 	public float decode(string message){
    		if (message !="" || message!= null){
-   			return float.Parse( message.Substring(0,message.IndexOf(',')));
+   			if (message.Contains(",")){
+   				return float.Parse( message.Substring(0,message.IndexOf(',')));
+   			}
+   			else{
+   				return float.Parse( message.Substring(0,message.IndexOf(';')));
+   			}
    		}
    		else{
    			Debug.Log("error in the decode function, decoding empty string");
@@ -55,7 +60,10 @@ public class buddyScript : MonoBehaviour {
    		}
    	}
 	public string cut(string message){
-   		return message.Substring(message.IndexOf(','));
+		if(message.Contains(",")){
+   			return message.Substring(message.IndexOf(',')+1);
+   		}
+   		return message;
    	}
 	void focus(){
 		cam.observedObject = gameObject;

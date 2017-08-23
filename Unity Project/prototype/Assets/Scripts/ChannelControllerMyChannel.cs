@@ -8,7 +8,7 @@ public class ChannelControllerMyChannel : MonoBehaviour {
 	public string myName = "MyChannel";
 
 	void Start () {
-		externalComm = new Network(1234,myName,20); // port, net ID, Container size
+		externalComm = new Network(8888,myName,20); // port, net ID, Container size
 		externalComm.StartNetwork();
 	}
 
@@ -29,20 +29,20 @@ if (name == "buddy") {
 	string reply = buddy.command (S);
 	// if inout, then do this if in only don't 
 	if (reply!= "" || reply != null)
-		externalComm.SendMessage("buddy,"+reply);
+		externalComm.SendMessage("buddy,"+reply+";");
 	}
 if (name == "realdeal") {
 	realdealScript realdeal = GetComponentInChildren<realdealScript> ();
 	string reply = realdeal.command (S);
 	// if inout, then do this if in only don't 
 	if (reply!= "" || reply != null)
-		externalComm.SendMessage("realdeal,"+reply);
+		externalComm.SendMessage("realdeal,"+reply+";");
 	}
 			}
 		}
 
 	public string cut(string message){
-		return message.Substring(message.IndexOf(','));
+		return message.Substring(message.IndexOf(',')+1);
 	}
 }
 //message example "buddy,1,LS,RS,LB,RB"

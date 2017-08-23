@@ -3,16 +3,23 @@
  */
 package cs.queensu.ca.generator
 
+import com.google.inject.Injector
+import cs.queensu.ca.UnityStandaloneSetup
+import cs.queensu.ca.unity.BoolLiteral
+import cs.queensu.ca.unity.Channel
+import cs.queensu.ca.unity.ENV
+import cs.queensu.ca.unity.Expression
+import cs.queensu.ca.unity.Instance
+import cs.queensu.ca.unity.IntLiteral
+import cs.queensu.ca.unity.Literal
+import cs.queensu.ca.unity.StLiteral
+import cs.queensu.ca.unity.UnityObject
+import java.io.IOException
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import org.eclipse.xtext.resource.XtextResourceSet
-import cs.queensu.ca.UnityStandaloneSetup
-import java.io.IOException
-import com.google.inject.Injector
-import cs.queensu.ca.unity.Channel
-import cs.queensu.ca.unity.*
 
 /**
  * Generates code from your model files on save.
@@ -24,33 +31,24 @@ class UnityGenerator extends AbstractGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		//----- Unity File Generation -----
 		println("Saving Ecore model is started");
-		
-		for (a: resource.allContents.toIterable.filter(ENV)){
-			//starter populates the scene with all relevant objects for the simulation
-			fsa.generateFile("starter.cs",starter(a));
-			// ------- Create Unity scripts for each metaobject -------
-   		for (b: a.instances){
-   			if (b.instanceType.type.kind == 'generic'){
-   			fsa.generateFile((b.name+"Script.cs"),generic(b));
-   			}
-   			if (b.instanceType.type.kind == 'others'){
-   			fsa.generateFile((b.name+"Script.cs"),landscape(b));
-   			}
-   			else if (b.instanceType.type.kind == 'rover'){
-   			fsa.generateFile((b.name+"Script.cs"),rover(b));
-   			}
-   			else if (b.instanceType.type.kind == 'car'){
-   			fsa.generateFile((b.name+"Script.cs"),car(b));
-   			}
-   			else
-   			println("unknown MetaObject");
-   			}
-   		for (c: a.channels){
-   			fsa.generateFile(("ChannelController"+c.name+".cs"),channelcontroller(c));
-   		}
-   			
-   		}
+		// generate unity code
+		generateUnityCode(resource,fsa,context);
+		// generate model xmi
+		generateXMIFile(resource,fsa);
+		// generate UMLRT model library
+		var UMLRTLibraryGenerator umlrtUtil=new UMLRTLibraryGenerator() ;
+		umlrtUtil.generateModelLibrary(resource,fsa,context);
+
    		
+	}
+	
+	def UMLRTLibraryGenerator(Resource resource, IFileSystemAccess2 access2, IGeneratorContext context) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	   		// --- utilities ---
+	// generate xmi file 
+	def generateXMIFile(Resource resource, IFileSystemAccess2 fsa) {
    		// ----- XMI generation -----
 		var Injector injector = new UnityStandaloneSetup().createInjectorAndDoEMFRegistration();
 		var XtextResourceSet resourceSet =injector.getInstance(XtextResourceSet);
@@ -65,45 +63,62 @@ class UnityGenerator extends AbstractGenerator {
     		} 
     		catch (IOException e) {
        	 		e.printStackTrace();
-   			}
-   		
+   			}		
 	}
-	   		// --- utilities ---
-	   		
-	   		
-	   		// can only return a certain type that must be consistent ie. bool or int
-	   		def intExtractor(Expression e){
-		    
-	   			switch (e)
-	   			{
-	   				Literal: {
-	   						var Literal litvalue=e as Literal;
-	   						if (litvalue instanceof IntLiteral){
-	   							 print((litvalue as IntLiteral).getInt()) ;
-	   							 var int i=(litvalue as IntLiteral).getInt().intValue;
-	   							 return i;
-	   							 }
-	   							 
-	   						
-	   						}
+		
+	// main unity code generation function
+	def generateUnityCode(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		for (a: resource.allContents.toIterable.filter(ENV)){
+			//starter populates the scene with all relevant objects for the simulation
+			fsa.generateFile("starter.cs",starter(a));
+			// ------- Create Unity scripts for each metaobject -------
+   			for (b: a.instances){
+   				if (b.instanceType.type.kind == 'generic'){
+   					fsa.generateFile((b.name+"Script.cs"),generic(b));
+   				}
+   				if (b.instanceType.type.kind == 'others'){
+   					fsa.generateFile((b.name+"Script.cs"),landscape(b));
+   				}
+   				else if (b.instanceType.type.kind == 'rover'){
+   					fsa.generateFile((b.name+"Script.cs"),rover(b));
+   				}
+   				else if (b.instanceType.type.kind == 'car'){
+   					fsa.generateFile((b.name+"Script.cs"),car(b));
+   				}
+   				else
+   					println("unknown MetaObject");
+   			}
+   			for (c: a.channels){
+   				fsa.generateFile(("ChannelController"+c.name+".cs"),channelcontroller(c));
+   			}
+   			
+   		}		
+	} 		
+	// can only return a certain type that must be consistent ie. bool or int
+	def intExtractor(Expression e){
+		switch (e){
+	   		Literal:{
+	   				var Literal litvalue=e as Literal;
+	   				if (litvalue instanceof IntLiteral){
+	   				print((litvalue as IntLiteral).getInt()) ;
+	   				var int i=(litvalue as IntLiteral).getInt().intValue;
+	   				return i;
+	   				}			 		
 	   			}
 	   		}
-	   		def stringExtractor(Expression e){
-		    
-	   			switch (e)
-	   			{
+	}
+	def stringExtractor(Expression e){   
+	   	switch (e){
 	   				Literal: {
 	   						var Literal litvalue=e as Literal;
 	   						if (litvalue instanceof StLiteral){
 	   							 print((litvalue as StLiteral).getString()) ;
 	   							 var String i=(litvalue as StLiteral).getString();
 	   							 return i;
-	   							 }
-	   							 
-	   						
+	   							} 
 	   						}
 	   			}
-	   		}
+	 }
 	   		
 	   		
 	   		def boolExtractor(Expression e){

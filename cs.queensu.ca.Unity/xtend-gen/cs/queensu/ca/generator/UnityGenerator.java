@@ -7,6 +7,7 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Injector;
 import cs.queensu.ca.UnityStandaloneSetup;
+import cs.queensu.ca.generator.UMLRTLibraryGenerator;
 import cs.queensu.ca.unity.BoolLiteral;
 import cs.queensu.ca.unity.Channel;
 import cs.queensu.ca.unity.Config;
@@ -41,6 +42,36 @@ public class UnityGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     InputOutput.<String>println("Saving Ecore model is started");
+    this.generateUnityCode(resource, fsa, context);
+    this.generateXMIFile(resource, fsa);
+    UMLRTLibraryGenerator umlrtUtil = new UMLRTLibraryGenerator();
+    umlrtUtil.generateModelLibrary(resource, fsa, context);
+  }
+  
+  public void UMLRTLibraryGenerator(final Resource resource, final IFileSystemAccess2 access2, final IGeneratorContext context) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  public void generateXMIFile(final Resource resource, final IFileSystemAccess2 fsa) {
+    Injector injector = new UnityStandaloneSetup().createInjectorAndDoEMFRegistration();
+    XtextResourceSet resourceSet = injector.<XtextResourceSet>getInstance(XtextResourceSet.class);
+    String xtextFilename = resource.getURI().lastSegment();
+    String EcoreFileName = xtextFilename.replace(xtextFilename.split("\\.")[1], "xmi");
+    Resource xmiResource = resourceSet.createResource(fsa.getURI(EcoreFileName));
+    xmiResource.getContents().add(resource.getContents().get(0));
+    try {
+      xmiResource.save(null);
+    } catch (final Throwable _t) {
+      if (_t instanceof IOException) {
+        final IOException e = (IOException)_t;
+        e.printStackTrace();
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+  }
+  
+  public void generateUnityCode(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     Iterable<ENV> _filter = Iterables.<ENV>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), ENV.class);
     for (final ENV a : _filter) {
       {
@@ -89,22 +120,6 @@ public class UnityGenerator extends AbstractGenerator {
           String _plus_1 = (_plus + ".cs");
           fsa.generateFile(_plus_1, this.channelcontroller(c));
         }
-      }
-    }
-    Injector injector = new UnityStandaloneSetup().createInjectorAndDoEMFRegistration();
-    XtextResourceSet resourceSet = injector.<XtextResourceSet>getInstance(XtextResourceSet.class);
-    String xtextFilename = resource.getURI().lastSegment();
-    String EcoreFileName = xtextFilename.replace(xtextFilename.split("\\.")[1], "xmi");
-    Resource xmiResource = resourceSet.createResource(fsa.getURI(EcoreFileName));
-    xmiResource.getContents().add(resource.getContents().get(0));
-    try {
-      xmiResource.save(null);
-    } catch (final Throwable _t) {
-      if (_t instanceof IOException) {
-        final IOException e = (IOException)_t;
-        e.printStackTrace();
-      } else {
-        throw Exceptions.sneakyThrow(_t);
       }
     }
   }

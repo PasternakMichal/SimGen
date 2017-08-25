@@ -1,0 +1,14 @@
+UMLRTS_ROOT ?= /home/mojtaba/.p2/pool/plugins/org.eclipse.papyrusrt.rts_0.7.2.201604191919/umlrts
+CC_INCLUDES+=/home/mojtaba/papyrus-rt-master/runtime-papyrus-rt/ObserverLibs/src
+
+CONFIG=$(TARGETOS).$(BUILDTOOLS)
+
+# Destination directory for the RTS services library.
+LIBDEST=$(UMLRTS_ROOT)/lib/$(CONFIG)
+
+include $(UMLRTS_ROOT)/build/host/host.mk
+include $(UMLRTS_ROOT)/build/buildtools/$(BUILDTOOLS)/buildtools.mk
+
+LD_PATHS=$(LIBDEST)
+CC_INCLUDES+=$(UMLRTS_ROOT)/include
+CC_INCLUDES+=/home/mojtaba/papyrus-rt-master/runtime-papyrus-rt/ObserverLibs/src

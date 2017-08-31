@@ -1,0 +1,284 @@
+grammar cs.queensu.ca.Unity with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+generate unity "http://www.queensu.cs/ca/Unity"
+
+Specification:
+		spec+=(UnityObject|MetaObject|ENV)*
+	;
+
+/*=====================================================================================================
+ * MetaObject defines properties, actions, and commands
+ * Property rule has a pattern such as Speed : int range ( 1 .. 300); 
+ * Action rule includes input, output, and expressions
+ * Command rule can defines commands such as command c1(parm1:bool,parm1:int) returns out:boolean;
+ =====================================================================================================*/
+
+MetaObject:
+		'MetaObject' name=ID ':' kind=('car'|'rover'|'generic'|'others')
+			'{'
+					(
+						 properties+=Attribute
+						 |actions+=Action 
+					)*
+			'}'
+	;
+	
+Action: 
+		'Action' name=ID  '(' payload=Payload?  ')' ('return' '(' returnPayload=Payload?  ')')		
+			 '{'
+				 expressions+=Expression*
+			  '}'
+	;
+	
+Payload:
+   		 params+=Param (',' params+=Param)* 
+    ;
+    
+Param: 
+		 (name=ID ':' type=VarType )
+	;
+
+DotExpression returns Ref:
+    	SingleRef ({DotExpression.head=current}  "." tail=([Property]))*
+	;
+
+SingleRef returns SingleRef:
+    	{SingleRef} SingleRef=[Property]
+    ;
+    			   			
+Property:
+		Attribute|Param
+	;
+
+Attribute:
+		'property' name=ID ':' propertyType=(VarType)
+		('range'  range=Range )?
+	;
+
+VarType:  
+		name=('bool' | 'int' |'string'| 'real')
+	;
+
+Range:   
+	  '(' 
+		  from=Value '-' to=Value
+	   ')'
+	;
+
+Value: 
+		minues?=('-')?
+		value=INT
+		| fixedPointValue=RealLiteral
+	;
+	
+RealLiteral: 
+		 intPart=INT '.' decimalPart=INT
+   ;
+
+/*=====================================================================================================
+ * Object is an instance of MetaObject, which includes configuration, implementing 
+  actions and commands defined in MetaObject.
+  * 
+ =====================================================================================================*/
+UnityObject:
+	 'Object' name=ID ':' type=[MetaObject] 
+	    	'{'
+	    	        (configurations+=ConfigAssignment
+	    	        | newActions+=Action
+	    	     	|overrideActions+=OverrideAction 
+	    	     	|properties+=Attribute
+	    	     	)*
+	   		 '}'
+ 	;
+
+OverrideAction:
+	'override' actionName=[Action] 
+				'{'
+					expressions+=Expression*	
+				'}'
+	;
+	
+ConfigAssignment :
+	'config' '{' 
+	   			{ConfigAssignment}
+	 			configs+=Config+
+			 '}'
+	;
+
+Config:
+		propertyName=[Attribute] '=' propertyValue=Expression
+	;
+
+/*=====================================================================================================
+ * ENV 
+ =====================================================================================================*/
+
+ENV:
+		'Env' name=ID
+			'{'
+				(
+				 channels+=Channel
+			 	 |maps+=Map
+			 	 |instances+=Instance
+			 	 |properties+=Property
+				)*
+				initCodes=Init?
+			'}'
+	;
+
+Instance:
+		'Instance' name=ID ':' instanceType=[UnityObject] 
+	;
+	
+Channel:
+		'Channel' name=ID    ('direction' direction=Direction)?
+		 ('type' type=interfaceType)?
+			 			'('
+			 				(
+			 			 		 (ip=IP ',' port=Port)
+			 			 		|(areaname=AreaName ',' qname=QName )
+			 				)
+			 			 ')'  ('assign' (boundInstances+=[Instance])+)?
+    ;
+    
+Direction: ('in'|'out'|'inout');
+
+Init: 'config' '{'
+		expressions+=Expression*
+		
+	  '}'
+	;
+
+Map:
+		'load' 'map' mapName=ID  'from' pathName=StLiteral
+	;
+	
+Message:
+		 'message' ':' name=ID 'content' ':' content=STRING
+	;
+
+QName:
+		'qname' ':' name=ID
+	;
+
+AreaName:
+		'area' ':'name=ID
+	;
+
+Port:
+		'port' ':'  portnumber=INT
+	;
+
+IP:
+		'ip' ':'   ipAddr=STRING
+	;
+
+interfaceType: 
+		 name = ( 'TCP' | 'IPC')  
+	;
+		
+/*=====================================================================================================
+ * Expressions
+ =====================================================================================================*/
+
+Expression:	
+		Assign
+	;
+
+Assign returns Expression: 
+	    OrExpression ({Assign.left=current} '=' right=OrExpression)*
+	;
+	
+OrExpression  returns Expression:  
+		AndExpression 
+        ({OrExpression.left=current} 'or' right=AndExpression)*
+    ;
+
+AndExpression returns Expression: 
+		ComparisonOperators 
+    	({AndExpression.left=current} 'and' right=ComparisonOperators)*
+    ;
+
+ComparisonOperators returns Expression:  
+		Addition  (=>
+		  ( {GT.left=current} ">"  // Greater Than
+	      | {LT.left=current} "<"  // Lower Than
+	      | {GE.left=current} ">=" // Greater or Equal
+	      | {LE.left=current} "<=" // Lower or Equal
+	      | {EQ.left=current} "==" // Equal
+	      | {NE.left=current} "!=" // Not Equal
+		  ) 
+		rest=Addition)*
+	;
+	
+Addition returns Expression:  
+		 Multiplication (=>({Addition.left=current}  '+' 
+    	                | {Minus.left=current}  '-')
+    	 right=Multiplication )*
+    ;
+
+Multiplication returns Expression:   
+	    Unary (=>({Multiplication.left=current} '*'
+    	               | {Divide.left=current}     '/' 
+    	               | {Modulo.left=current}     '%'
+                        ) 
+        right=Unary )*
+    ;
+    
+
+Unary  returns Expression:  
+		UnaryExpressionNotPlusMinus
+	    |  ({UnaryExpression} '-' exp=Unary)
+    ;
+
+UnaryExpressionNotPlusMinus returns Expression:  
+		NotBooleanExpression
+	    |	PrimaryExpression
+    ;
+
+NotBooleanExpression :	
+		'!' exp=Unary
+	;
+
+PrimaryExpression returns Expression:	
+		LiteralOrIdentifier
+		| '(' Expression ')'
+	;
+
+LiteralOrIdentifier returns Expression:		
+		Literal
+		| Identifier
+	;
+
+Literal:
+		IntLiteral
+		| BoolLiteral
+		| StLiteral
+		| RealLiteral
+	;
+
+IntLiteral: 
+		{IntLiteral} int=INT
+	;
+
+BoolLiteral:
+		{BoolLiteral} bool=BOOLEAN
+	;
+
+terminal BOOLEAN returns ecore::EBoolean:	
+		 'true'
+		| 'false'
+	;
+
+StLiteral:
+		{StLiteral} string=STRING
+	;
+	
+Identifier:
+		Refrence=DotExpression
+	;
+
+QualifiedName:
+  		ID ('.' ID)*
+  	;

@@ -38,26 +38,26 @@ public class roverMover : MonoBehaviour {
 	}
 
 	public void LeftPower(float percent){
-		ColliderL1.motorTorque = percent * maxPower;
-		ColliderL2.motorTorque = percent * maxPower;
-		ColliderL3.motorTorque = percent * maxPower;
+		ColliderL1.motorTorque = percent * maxPower/100;
+		ColliderL2.motorTorque = percent * maxPower/100;
+		ColliderL3.motorTorque = percent * maxPower/100;
 	}
 
 	public void RightPower(float percent){
-		ColliderR1.motorTorque = percent * maxPower;
-		ColliderR2.motorTorque = percent * maxPower;
-		ColliderR3.motorTorque = percent * maxPower;
+		ColliderR1.motorTorque = percent * maxPower/100;
+		ColliderR2.motorTorque = percent * maxPower/100;
+		ColliderR3.motorTorque = percent * maxPower/100;
 	}
 
 	public void LeftBrake(float percent){
-		ColliderL1.brakeTorque = percent * maxBrake;
-		ColliderL2.brakeTorque = percent * maxBrake;
-		ColliderL3.brakeTorque = percent * maxBrake;
+		ColliderL1.brakeTorque = percent * maxBrake/100;
+		ColliderL2.brakeTorque = percent * maxBrake/100;
+		ColliderL3.brakeTorque = percent * maxBrake/100;
 	}
 	public void RightBrake(float percent){
-		ColliderR1.brakeTorque = percent * maxBrake;
-		ColliderR2.brakeTorque = percent * maxBrake;
-		ColliderR3.brakeTorque = percent * maxBrake;
+		ColliderR1.brakeTorque = percent * maxBrake/100;
+		ColliderR2.brakeTorque = percent * maxBrake/100;
+		ColliderR3.brakeTorque = percent * maxBrake/100;
 	}
 
 	public float RightSpeed(){

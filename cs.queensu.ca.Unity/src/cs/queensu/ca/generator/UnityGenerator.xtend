@@ -301,14 +301,14 @@ class UnityGenerator extends AbstractGenerator {
    						string reply = «q.name».command (S);
    						// if inout, then do this if in only don't 
    						if (reply!= "" || reply != null)
-   							externalComm.SendMessage("«q.name»,"+reply);
+   							externalComm.SendMessage("«q.name»,"+reply+";");
    						}
    						«ENDFOR»
    					}
    				}
    		
    			public string cut(string message){
-   				return message.Substring(message.IndexOf(','));
+   				return message.Substring(message.IndexOf(',')+1);
    			}
    		}
    		//message example "buddy,1,LS,RS,LB,RB"
@@ -405,7 +405,7 @@ class UnityGenerator extends AbstractGenerator {
    		   			message=cut(message);
    		   			rover.LeftBrake(decode(message));
    		   			message=cut(message);
-   		   			rover.LeftBrake(decode(message));
+   		   			rover.RightBrake(decode(message));
    		   			break;
    		   					
    		   			case 2:
@@ -418,7 +418,12 @@ class UnityGenerator extends AbstractGenerator {
    		   		
    			public float decode(string message){
    		   		if (message !="" || message!= null){
-   		   			return float.Parse( message.Substring(0,message.IndexOf(',')));
+   		   			if (message.Contains(",")){
+   		   				return float.Parse( message.Substring(0,message.IndexOf(',')));
+   		   			}
+   		   			else{
+   		   				return float.Parse( message.Substring(0,message.IndexOf(';')));
+   		   			}
    		   		}
    		   		else{
    		   			Debug.Log("error in the decode function, decoding empty string");
@@ -426,7 +431,10 @@ class UnityGenerator extends AbstractGenerator {
    		   		}
    		   	}
    			public string cut(string message){
-   		   		return message.Substring(message.IndexOf(','));
+   				if(message.Contains(",")){
+   		   			return message.Substring(message.IndexOf(',')+1);
+   		   		}
+   		   		return message;
    		   	}
    			void focus(){
    				cam.observedObject = gameObject;

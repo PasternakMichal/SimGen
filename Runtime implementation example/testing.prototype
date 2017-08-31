@@ -61,8 +61,8 @@ Object zoomzoom : Rover {
 		posy = 3
 		posz = 0
 		size = 1
-		brake = 200
-		power = 1000
+		brake = 20
+		power = 100
 		network = true
 		Port = 8888
 		NetId = 23
@@ -90,8 +90,8 @@ Object spirit : Rover {
 		posy = 3
 		posz = 0
 		size = 2
-		brake = 200
-		power = 1000
+		brake = 20
+		power = 100
 		network = true
 		Port = 8887
 		NetId = 24
@@ -133,6 +133,6 @@ Env simulation {
 	Instance buddy : zoomzoom
 	Instance realdeal : spirit
 	Instance obstacle : rock
-	Channel MyChannel direction inout type TCP (ip : "192.168.1.1", port : 1234) assign buddy realdeal  
+	Channel MyChannel direction inout type TCP (ip : "192.168.1.1", port : 8888) assign buddy realdeal  
 }
 

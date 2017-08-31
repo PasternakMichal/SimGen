@@ -36,7 +36,7 @@ class UnityGenerator extends AbstractGenerator {
 		// generate unity code
 		generateUnityCode(resource,fsa,context);
 		// generate model xmi
-		generateXMIFile(resource,fsa);
+		generateXMIFile(resource,fsa); 
 		// generate UMLRT model library
 		//var UMLRTLibraryGenerator umlrtUtil=new UMLRTLibraryGenerator(resource,fsa,context) ;
 		//umlrtUtil.generateModelLibrary();

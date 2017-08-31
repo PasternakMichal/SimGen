@@ -23,7 +23,12 @@
 .*.java._trace
 .*.xtendbin
 *._trace
-cs.queensu.ca.Unity.ide/bin/cs/*
+cs.queensu.ca.Unity.ide/bin/cs/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 cs.queensu.ca.Unity/.classpath
 hs_err_pid*
+cs.queensu.ca.Unity/bin/cs/queensu/ca/Unity.xtextbin
+cs.queensu.ca.Unity/bin/*
+cs.queensu.ca.Unity/xtend-gen/*
+cs.queensu.ca.Unity/META-INF/*
+*.swp

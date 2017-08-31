@@ -3,6 +3,7 @@ package cs.queensu.ca.generator;
 import java.io.IOException;
 import java.util.Map;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
@@ -58,8 +59,8 @@ public class UMLRTLibraryGenerator {
 	}
 
 	public void  generateModelLibrary(){
-		this.intUMLModel("../cs.queensu.ca.UnityUMLRTGateWay/UnityGateway/model.uml");
-		//this.intUMLModel("/UnityGateway/model.uml");
+		//this.intUMLModel("../cs.queensu.ca.UnityUMLRTGateWay/UnityGateway/model.uml");
+		this.intUMLModel("/UnityGateway/model.uml");
 		this.loadUMLModel();
 		createClass("test");
 		createUMLRTCapsule("testCapsule111");
@@ -67,29 +68,31 @@ public class UMLRTLibraryGenerator {
 	public void intUMLModel(String umlModelPath){
 		this.setUmlModelPath(umlModelPath);
 		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-		resourceSet.getPackageRegistry().put(Ecore2XMLPackage.eNS_URI,Ecore2XMLPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(UMLRealTimePackage.eNS_URI, UMLRealTimePackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(RTCppPropertiesPackage.eNS_URI, RTCppPropertiesPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(UMLRTStateMachinesPackage.eNS_URI, UMLRTStateMachinesPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(Ecore2XMLPackage.eNS_URI,Ecore2XMLPackage.eINSTANCE);
-		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
-		resourceSet.getPackageRegistry().put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
-		
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
 		Map<URI,URI> uriMap = resourceSet.getURIConverter().getURIMap();
-		
+		//Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+
 		
 		//org.eclipse.uml2.uml.util.UMLUtil.init(resourceSet);
-		org.eclipse.uml2.uml.resources.util.UMLResourcesUtil.init(resourceSet);
-		uriMap.put(URI.createURI("pathmap://UML_RT_PROFILE/UMLRealTimeSM-addendum.profile.uml"),
-				URI.createURI("file:../cs.queensu.ca.Unity/UMLRT-Profiles/UMLRealTimeSM-addendum.profile.uml/"));
-		uriMap.put(URI.createURI("pathmap://UMLRT_CPP/RTCppProperties.profile.uml"),
-				URI.createURI("file:../cs.queensu.ca.Unity/UMLRT-Profiles/RTCppProperties.profile.uml/"));
-		uriMap.put(URI.createURI("pathmap://UML_RT_PROFILE/uml-rt.profile.uml"),
-				URI.createURI("file:../cs.queensu.ca.Unity/UMLRT-Profiles/uml-rt.profile.uml/"));
-		uriMap.put(URI.createURI("pathmap://UMLRTRTSLIB/UMLRT-RTS.uml"),
-				URI.createURI("file:../cs.queensu.ca.Unity/UMLRT-Profiles/UMLRT-RTS.uml/")); 
+		if (!EMFPlugin.IS_ECLIPSE_RUNNING) {
+			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+			resourceSet.getPackageRegistry().put(Ecore2XMLPackage.eNS_URI,Ecore2XMLPackage.eINSTANCE);
+	        resourceSet.getPackageRegistry().put(UMLRealTimePackage.eNS_URI, UMLRealTimePackage.eINSTANCE);
+	        resourceSet.getPackageRegistry().put(RTCppPropertiesPackage.eNS_URI, RTCppPropertiesPackage.eINSTANCE);
+	        resourceSet.getPackageRegistry().put(UMLRTStateMachinesPackage.eNS_URI, UMLRTStateMachinesPackage.eINSTANCE);
+	        resourceSet.getPackageRegistry().put(Ecore2XMLPackage.eNS_URI,Ecore2XMLPackage.eINSTANCE);
+			resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+			resourceSet.getPackageRegistry().put(EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
+			org.eclipse.uml2.uml.resources.util.UMLResourcesUtil.init(resourceSet);
+			uriMap.put(URI.createURI("pathmap://UML_RT_PROFILE/UMLRealTimeSM-addendum.profile.uml"),
+			URI.createURI("file:../cs.queensu.ca.Unity/UMLRT-Profiles/UMLRealTimeSM-addendum.profile.uml/"));
+			uriMap.put(URI.createURI("pathmap://UMLRT_CPP/RTCppProperties.profile.uml"),
+			URI.createURI("file:../cs.queensu.ca.Unity/UMLRT-Profiles/RTCppProperties.profile.uml/"));
+			uriMap.put(URI.createURI("pathmap://UML_RT_PROFILE/uml-rt.profile.uml"),
+			URI.createURI("file:../cs.queensu.ca.Unity/UMLRT-Profiles/uml-rt.profile.uml/"));
+			uriMap.put(URI.createURI("pathmap://UMLRTRTSLIB/UMLRT-RTS.uml"),
+			URI.createURI("file:../cs.queensu.ca.Unity/UMLRT-Profiles/UMLRT-RTS.uml/")); 
+		}
 		this.umlResource = (UMLResource) resourceSet.createResource(URI.createURI(this.getUmlModelPath()));
 	}
 

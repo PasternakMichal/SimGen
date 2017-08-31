@@ -488,6 +488,8 @@ config.loadConfig();
     <packagedElement xmi:type="uml:Class" xmi:id="_uwglEIlYEee-mf7vW28LSQ" name="testCapsule111"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_9wiOsIlYEee2UKyRincZEA" name="test"/>
     <packagedElement xmi:type="uml:Class" xmi:id="_91pYMIlYEee2UKyRincZEA" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_p5KUoImlEeeKlLk4eb0MoA" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qB6oAImlEeeKlLk4eb0MoA" name="testCapsule111"/>
     <profileApplication xmi:id="_MlWf8AdxEeadtKuU2t6fMg">
       <eAnnotations xmi:id="_MlYVIAdxEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt#/"/>
@@ -558,4 +560,5 @@ config.loadConfig();
   <UMLRealTime:Capsule xmi:id="_sciXUIlYEeePueVEZo20Aw"/>
   <UMLRealTime:Capsule xmi:id="_u3QtUIlYEee-mf7vW28LSQ"/>
   <UMLRealTime:Capsule xmi:id="_98Jo0IlYEee2UKyRincZEA"/>
+  <UMLRealTime:Capsule xmi:id="_qIzTIImlEeeKlLk4eb0MoA"/>
 </xmi:XMI>

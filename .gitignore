@@ -25,4 +25,5 @@
 *._trace
 cs.queensu.ca.Unity.ide/bin/cs/*
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+cs.queensu.ca.Unity/.classpath
 hs_err_pid*

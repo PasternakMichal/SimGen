@@ -31,4 +31,8 @@ cs.queensu.ca.Unity/bin/cs/queensu/ca/Unity.xtextbin
 cs.queensu.ca.Unity/bin/*
 cs.queensu.ca.Unity/xtend-gen/*
 cs.queensu.ca.Unity/META-INF/*
+cs.queensu.ca.Unity.ui/xtend-gen/*
+cs.queensu.ca.Unity.ui/bin/*
+cs.queensu.ca.Unity.ide/xtend-gen/*
+cs.queensu.ca.Unity.ide/bin/*
 *.swp

@@ -36,3 +36,5 @@ cs.queensu.ca.Unity.ui/bin/*
 cs.queensu.ca.Unity.ide/xtend-gen/*
 cs.queensu.ca.Unity.ide/bin/*
 *.swp
+cs.queensu.ca.Unity/src-gen/*
+cs.queensu.ca.Unity/src-gen/*

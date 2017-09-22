@@ -30,6 +30,8 @@ import org.eclipse.xtext.resource.XtextResourceSet
  */
 class UnityGenerator extends AbstractGenerator {
 
+	//UMLRTLibraryGenerator umlrtUtil;
+	
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		//----- Unity File Generation -----
 		println("Saving Ecore model is started");
@@ -38,8 +40,8 @@ class UnityGenerator extends AbstractGenerator {
 		// generate model xmi
 		generateXMIFile(resource,fsa); 
 		// generate UMLRT model library
-		//var UMLRTLibraryGenerator umlrtUtil=new UMLRTLibraryGenerator(resource,fsa,context) ;
-		//umlrtUtil.generateModelLibrary();
+		var UMLRTLibraryGenerator umlrtUtil=new UMLRTLibraryGenerator(resource,fsa,context) ;
+		umlrtUtil.generateModelLibrary();
 	}
 	
 	def UMLRTLibraryGenerator(Resource resource, IFileSystemAccess2 access2, IGeneratorContext context) {

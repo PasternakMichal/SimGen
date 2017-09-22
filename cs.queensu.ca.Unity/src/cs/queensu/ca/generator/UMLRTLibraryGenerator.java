@@ -18,8 +18,14 @@ import org.eclipse.emf.mapping.ecore2xml.Ecore2XMLPackage;
 import org.eclipse.papyrusrt.codegen.cpp.profile.RTCppProperties.RTCppPropertiesPackage;
 import org.eclipse.papyrusrt.umlrt.profile.UMLRealTime.UMLRealTimePackage;
 import org.eclipse.papyrusrt.umlrt.profile.statemachine.UMLRTStateMachines.UMLRTStateMachinesPackage;
+import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Event;
+import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -117,7 +123,6 @@ public class UMLRTLibraryGenerator {
             System.err.println(ioe.getMessage());
         }
 	}
-/// create capsule
 /// create package
     protected  org.eclipse.uml2.uml.Package createPackage(org.eclipse.uml2.uml.Package owner, String name) {
         org.eclipse.uml2.uml.Package package_ =owner.createNestedPackage(name);
@@ -127,8 +132,7 @@ public class UMLRTLibraryGenerator {
         org.eclipse.uml2.uml.Package package_ =this.getUmlRTModel().createNestedPackage(name);
         return package_;
     }
-/// create protocol
-/// create port
+
 /// create top capsule
 	public  org.eclipse.uml2.uml.Class createUMLRTCapsule(String name){
 		org.eclipse.uml2.uml.Class class_=this.createClass(name);
@@ -148,6 +152,8 @@ public class UMLRTLibraryGenerator {
 /// create connection
 /// remove message from protocols
 /// remove 
+	
+
 /// create class
 	public  org.eclipse.uml2.uml.Class createClass(String name){
 		org.eclipse.uml2.uml.Class class_=this.getUmlRTModel().createOwnedClass(name, false);
@@ -157,6 +163,84 @@ public class UMLRTLibraryGenerator {
 	public  org.eclipse.uml2.uml.Class createClass(org.eclipse.uml2.uml.Package owner, String name){
 		org.eclipse.uml2.uml.Class class_=owner.createOwnedClass(name, false);
 		return class_;	
+	}
+	
+	
+	
+/// create port kind
+	public org.eclipse.uml2.uml.Port createPortKind(org.eclipse.uml2.uml.Class owner, String kind){
+		org.eclipse.uml2.uml.Port portKind1 =  this.createPort(owner, null, null, null,null,null);
+		if (kind=="SAP"){
+			portKind1.setIsService(false);
+			}
+		else if (kind=="SPP"){
+			portKind1.setIsService(true);
+			}
+		return portKind1;
+	}
+/// create port
+	public org.eclipse.uml2.uml.Port createPort(org.eclipse.uml2.uml.Class owner, String name, Boolean conj, Integer lowerValue, Integer upperValue, String type){
+		org.eclipse.uml2.uml.Port port1 =  owner.createOwnedPort(name, null);
+		this.applyStreotype(port1,"Port1");
+		port1.setLower(lowerValue);
+		port1.setUpper(upperValue);
+		port1.setIsConjugated(conj);
+		//port1.setType(type);
+		return port1;
+	}
+	
+/// create protocol 	
+	public org.eclipse.uml2.uml.Collaboration createProtocol(String name){
+		org.eclipse.uml2.uml.Package pm=this.createPackage(name);
+		org.eclipse.uml2.uml.Collaboration protocol1 =this.createCollaboration(pm,name);
+		org.eclipse.uml2.uml.Interface baseInterface=this.createInterface(pm, name);
+		org.eclipse.uml2.uml.Interface conjugateInterface=this.createInterface(pm, name.concat("~"));
+		org.eclipse.uml2.uml.Interface binaryInterface=this.createInterface(pm, name.concat("IO"));
+		this.createUsage(pm,protocol1,baseInterface);
+		this.createUsage(pm,protocol1,conjugateInterface);
+		this.createUsage(pm,protocol1,binaryInterface);
+		this.createRealization(protocol1,baseInterface);
+		this.createRealization(protocol1,conjugateInterface);
+		this.createRealization(protocol1,binaryInterface);
+		applyStreotype(pm,"Protocol");
+		this.createMessage(binaryInterface, "signal1");
+		//create conncetion between operation and event
+		//this.createEvent(pm, "event1").;
+		return protocol1;
+	}
+	
+	
+//// createRealization
+	public org.eclipse.uml2.uml.InterfaceRealization createRealization(org.eclipse.uml2.uml.Collaboration collaboration1, org.eclipse.uml2.uml.Interface interface1){
+		org.eclipse.uml2.uml.InterfaceRealization realization1 =  collaboration1.createInterfaceRealization("", interface1);
+		return realization1;
+	}
+/// createUsage
+	public org.eclipse.uml2.uml.Usage createUsage(org.eclipse.uml2.uml.Package owner, org.eclipse.uml2.uml.Collaboration collaboration, org.eclipse.uml2.uml.Interface interface1){
+		org.eclipse.uml2.uml.Usage usage1 =  owner.createUsage(collaboration);
+		usage1.createDependency(interface1);
+		return usage1;
+	}
+/// create Event
+	public org.eclipse.uml2.uml.Event createEvent(org.eclipse.uml2.uml.Package owner,String name){
+		org.eclipse.uml2.uml.Event event1 = (Event) owner.createOwnedType(name, UMLPackage.Literals.EVENT);
+		return event1;
+	}
+/// create Signal(message)
+	public org.eclipse.uml2.uml.Operation createMessage(org.eclipse.uml2.uml.Interface owner  ,String name){
+		Operation operation1 =  owner.createOwnedOperation(name, null, null,null);
+		//org.eclipse.uml2.uml.Event event1=this.createEvent();
+		return operation1;
+	}
+/// create Collaboration
+	public org.eclipse.uml2.uml.Collaboration createCollaboration(org.eclipse.uml2.uml.Package owner,String name){
+		org.eclipse.uml2.uml.Collaboration collaboration1 = (Collaboration) owner.createOwnedType(name, UMLPackage.Literals.COLLABORATION);
+		return collaboration1;
+	}
+/// create UML Interface 
+	public org.eclipse.uml2.uml.Interface createInterface(org.eclipse.uml2.uml.Package owner,String name){
+		org.eclipse.uml2.uml.Interface interface1 =(Interface) owner.createOwnedType(name, UMLPackage.Literals.INTERFACE);
+		return interface1;
 	}
 /// apply stereotype
 	public int applyStreotype(org.eclipse.uml2.uml.Element umlModelElement,String stereotypeName){

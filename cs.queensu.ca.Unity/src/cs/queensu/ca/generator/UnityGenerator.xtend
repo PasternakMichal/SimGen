@@ -545,7 +545,7 @@ class UnityGenerator extends AbstractGenerator {
    		   		interface1.ConnectRover(«getIntValue(e.instanceType,"brake")»f,«getIntValue(e.instanceType,"power")»f,"«e.name»");
    		   	}
    		   			
-   		   	void Update () {}
+   		   	void Update1 () {}
    		   			
    		   		
    			void focus(){

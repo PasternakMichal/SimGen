@@ -22,6 +22,19 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import org.eclipse.xtext.resource.XtextResourceSet
+import cs.queensu.ca.unity.MetaObject
+import cs.queensu.ca.unity.impl.PropertyImpl
+import cs.queensu.ca.unity.impl.IdentifierImpl
+import cs.queensu.ca.unity.impl.MultiplicationImpl
+import cs.queensu.ca.unity.impl.AdditionImpl
+import cs.queensu.ca.unity.impl.AssignImpl
+import cs.queensu.ca.unity.impl.ModuloImpl
+import cs.queensu.ca.unity.impl.DivideImpl
+import cs.queensu.ca.unity.impl.MinusImpl
+import cs.queensu.ca.unity.UnaryExpression
+import cs.queensu.ca.unity.impl.SingleRefImpl
+import cs.queensu.ca.unity.Ref
+import cs.queensu.ca.unity.Attribute
 
 /**
  * Generates code from your model files on save.
@@ -70,34 +83,59 @@ class UnityGenerator extends AbstractGenerator {
 		
 	// main unity code generation function
 	def generateUnityCode(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		for (m: resource.allContents.toIterable.filter(MetaObject)){
+			// ----- Generate all the metaobject classes for reference in unity
+			if(m.kind == 'rover'){
+				fsa.generateFile(("Simulator/"+m.name+"MetaObject.cs"),roverClass(m));
+			}
+			else if (m.kind == 'generic'){
+				fsa.generateFile(("Simulator/"+m.name+"MetaObject.cs"),genericClass(m));
+			}
+			else if (m.kind == 'car'){
+				fsa.generateFile(("Simulator/"+m.name+"MetaObject.cs"),carClass(m));
+			}
+			else{
+				fsa.generateFile(("Simulator/"+m.name+"MetaObject.cs"),othersClass(m));
+			}
+		}
 		for (a: resource.allContents.toIterable.filter(ENV)){
 			//starter populates the scene with all relevant objects for the simulation
-			fsa.generateFile("starter.cs",starter(a));
+			fsa.generateFile("Simulator/starter.cs",starter(a));
 			// ------- Create Unity scripts for each metaobject -------
    			for (b: a.instances){
-   				if (b.instanceType.type.kind == 'generic'){
-   					fsa.generateFile((b.name+"Script.cs"),generic(b));
+   				fsa.generateFile(("Simulator/"+b.name+"Script.cs"),objectScript(b));
+   				
+   			}
+   			/* 	if (b.instanceType.type.kind == 'generic'){
+   					fsa.generateFile(("Simulator/"+b.name+"Script.cs"),generic(b));
    				}
    				if (b.instanceType.type.kind == 'others'){
-   					fsa.generateFile((b.name+"Script.cs"),landscape(b));
+   					fsa.generateFile(("Simulator/"+b.name+"Script.cs"),landscape(b));
    				}
    				else if (b.instanceType.type.kind == 'rover'){
-   					fsa.generateFile((b.name+"Script.cs"),rover(b));
+   					fsa.generateFile(("Simulator/"+b.name+"Script.cs"),rover(b));
    				}
    				else if (b.instanceType.type.kind == 'car'){
-   					fsa.generateFile((b.name+"Script.cs"),car(b));
+   					fsa.generateFile(("Simulator/"+b.name+"Script.cs"),car(b));
    				}
    				else
    					println("unknown MetaObject");
    			}
+   			 */
+   			
    			for (c: a.channels){
-   				fsa.generateFile(("ChannelController"+c.name+".cs"),channelcontroller(c));
+   				fsa.generateFile(("Simulator/"+"ChannelController"+c.name+".cs"),channelcontroller(c));
+   				
+   				//fsa.generateFile((c.name+"/CTstarter.cs"),clientStarter(c));
    			}
    			
    		}		
 	} 		
 	// can only return a certain type that must be consistent ie. bool or int
-	def intExtractor(Expression e){
+	
+	
+	
+	def int intExtractor(Expression e){
 		switch (e){
 	   		Literal:{
 	   				var Literal litvalue=e as Literal;
@@ -107,8 +145,79 @@ class UnityGenerator extends AbstractGenerator {
 	   				return i;
 	   				}			 		
 	   			}
+	   		UnaryExpression:{ 
+	   			var Expression myExp = e.exp;
+	   			var answer = intExtractor(myExp);
+	   			return -answer
+	   			}
+	   		
 	   		}
+	   		
+	   		return 0;
 	}
+	
+		def String stringify(Expression e,String s){
+			 switch(e){
+			 	PropertyImpl:{return translateToUnity(e.name)}
+			 	IdentifierImpl:{s+translateToUnity(refExtract(e.refrence))}
+			 	Literal:{return stringExtractor(e)}
+			 	MultiplicationImpl:{return (stringify(e.left,s)+" * "+stringify(e.right,s))}
+			 	AdditionImpl: {return stringify(e.left,s)+" + "+stringify(e.right,s)}
+			 	AssignImpl:{return (stringify(e.left,s)+" = "+stringify(e.right,s))}
+			 	ModuloImpl:{return (stringify(e.left,s) +" % "+stringify(e.right,s))}
+			 	DivideImpl:{return (stringify(e.left,s) +" / "+stringify(e.right,s))}
+			 	MinusImpl:{return (stringify(e.left,s) +" - "+stringify(e.right,s))}
+			 	Expression:{return "error help me"}
+			 }
+			
+		}
+		
+		def String translateToUnity(String s){
+			
+				if(s == "LFmotor") return "rm.ColliderL1.motorTorque"
+				else if (s == "LMmotor") return "rm.ColliderL2.motorTorque"
+				else if (s == "LBmotor") return "rm.ColliderL3.motorTorque"
+				else if (s == "RFmotor") return "rm.ColliderR1.motorTorque"
+				else if (s == "RMmotor") return "rm.ColliderR2.motorTorque"
+				else if (s == "RBmotor") return "rm.ColliderR3.motorTorque"
+				
+				else if (s == "LFbrake") return "rm.ColliderL1.brakeTorque"
+				else if (s == "LMbrake") return "rm.ColliderL2.brakeTorque"
+				else if (s == "LBbrake") return "rm.ColliderL3.brakeTorque"
+				else if (s == "RFbrake") return "rm.ColliderR1.brakeTorque"
+				else if (s == "RMbrake") return "rm.ColliderR2.brakeTorque"
+				else if (s == "RBbrake") return "rm.ColliderR3.brakeTorque"
+				
+				else if (s == "velX") return "rb.velocity.x"
+				else if (s == "velY") return "rb.velocity.y"
+				else if (s == "velZ") return "rb.velocity.z"
+				
+				else if (s == "posX") return "t.localPosition.x"
+				else if (s == "posY") return "t.localPosition.y"
+				else if (s == "posZ") return "t.localPosition.z"
+				
+				else if (s == "sizeX") return "t.localScale.x"
+				else if (s == "sizeY") return "t.localScale.y"
+				else if (s == "sizeZ") return "t.localScale.z"
+			
+				else if (s == "angVelX") return "rb.angularVelocity.x"
+				else if (s == "angVelY") return "rb.angularVelocity.y"
+				else if (s == "angVelZ") return "rb.angularVelocity.z"
+				
+				else return s
+		}
+		
+		def String refExtract(Ref a){
+			switch(a){
+				SingleRefImpl:{
+					a.singleRef.name
+				}
+			}
+		}
+		
+
+		
+	
 	def stringExtractor(Expression e){   
 	   	switch (e){
 	   				Literal: {
@@ -118,6 +227,12 @@ class UnityGenerator extends AbstractGenerator {
 	   							 var String i=(litvalue as StLiteral).getString();
 	   							 return i;
 	   							} 
+	   							if (litvalue instanceof IntLiteral){
+	   								return (intExtractor(litvalue)).toString
+	   							}
+	   							if (litvalue instanceof BoolLiteral){
+	   								return (boolExtractor(litvalue)).toString
+	   							}
 	   						}
 	   			}
 	 }
@@ -148,6 +263,8 @@ class UnityGenerator extends AbstractGenerator {
 	   			}
 	   			return 0;
 	   		}
+	 
+	   		
 	   		def getStringValue(UnityObject a,String b){
 	   			for (q: a.configurations){
 	   				for (w: q.configs){
@@ -167,6 +284,20 @@ class UnityGenerator extends AbstractGenerator {
 	   			}
 	   			return false;
 	   		}
+	   	def String getVarType(Attribute p) {
+   			if (p.propertyType.name == 'bool'){
+   				return 'bool'
+   			}
+   			else if (p.propertyType.name ==  'int'){
+   				return 'int'
+   			}
+   			else if (p.propertyType.name == 'string'){
+   				return 'string'
+   			}
+   			else {
+   				return 'float'
+   			}
+   		}
 	   		
 	   		def sizeAndScale(UnityObject e,String a)'''
 	   		Transform t = GetComponentInChildren<Transform>();
@@ -186,7 +317,7 @@ class UnityGenerator extends AbstractGenerator {
    		public class «e.name»Script : MonoBehaviour {
    			public sateliteCameraScript cam;
    			void Start () {
-   				«sizeAndScale(e.instanceType,e.name)»
+   				«sizeAndScale(e.instanceType,e.instanceType.type.kind)»
    				
    			}
    			
@@ -205,7 +336,7 @@ class UnityGenerator extends AbstractGenerator {
    		public class «e.name»Script : MonoBehaviour {
    			public sateliteCameraScript cam;
    			void Start () {
-   				«sizeAndScale(e.instanceType,e.name)»
+   				«sizeAndScale(e.instanceType,e.instanceType.type.kind)»
    				Rigidbody rb = gameObject.GetComponent<Rigidbody> ();
    				rb.mass = «getIntValue(e.instanceType,"mass")»;
    				
@@ -250,16 +381,22 @@ class UnityGenerator extends AbstractGenerator {
    		   		
    		public class starter : MonoBehaviour {
    		// ---- These must be assigned as prefabs in Unity and as "metaobjects" in the DSL
+   			public sateliteCameraScript Camera;
    			public GameObject Generic;
    			public GameObject Plane;
    			public GameObject Rover;
    			public GameObject Car;
    			public GameObject Gem;
+   			
+   				«FOR k:e.instances»
+   			   		   		GameObject «k.name»Object;
+   			   		   	«ENDFOR»
    		//-----
    			void Start () {
+   			Application.runInBackground = true;
    		//-- adding the necessary instances
    		   	«FOR k:e.instances»
-   		   		GameObject «k.name»Object = Instantiate («k.instanceType.type.name»,transform);
+   		   		«k.name»Object = Instantiate («k.instanceType.type.name»,transform);
    		   		«k.name»Object.AddComponent<«k.name»Script>();
    		   	«ENDFOR»
    		//adding the necessary channel information scripts	
@@ -267,6 +404,28 @@ class UnityGenerator extends AbstractGenerator {
    		   	gameObject.AddComponent<ChannelController«k.name»>();
    		   	«ENDFOR»
    			}
+   			
+   			
+   				void Update(){//«var i = 0»
+   				«FOR k:e.instances»
+   				
+   					if (Input.GetKeyDown(KeyCode.Alpha«i=i+1»)){
+   						Camera.observedObject = «k.name»Object;
+   					}
+   					«ENDFOR»
+   					if (Input.GetKeyDown(KeyCode.Z)){
+   						Camera.follow = true;
+   					}
+   					if (Input.GetKeyDown(KeyCode.X)){
+   						Camera.follow = false;
+   					}
+   					if (Input.GetKeyDown(KeyCode.LeftArrow)){
+   								Camera.transform.Rotate (0, -10, 0);
+   							}
+   							if (Input.GetKeyDown(KeyCode.RightArrow)){
+   								Camera.transform.Rotate (0, 10, 0);
+   							}
+   				}
    		}
    		'''
    		
@@ -297,17 +456,17 @@ class UnityGenerator extends AbstractGenerator {
    						string name = S.Substring (0, S.IndexOf (','));
    						S = cut (S);
    						// send the message on to the designated recipient inout
-   						«FOR q: c.boundInstances»
-   					if (name == "«q.name»") {
-   						«q.name»Script «q.name» = GetComponentInChildren<«q.name»Script> ();
-   						string reply = «q.name».command (S);
-   						// if inout, then do this if in only don't 
-   						if (reply!= "" || reply != null)
-   							externalComm.SendMessage("«q.name»,"+reply+";");
-   						}
-   						«ENDFOR»
-   					}
+   		«FOR q: c.boundInstances»
+   			if (name == "«q.name»") {
+   				«q.name»Script «q.name» = GetComponentInChildren<«q.name»Script> ();
+   				string reply = «q.name».command (S);
+   				// if inout, then do this if in only don't 
+   				if (reply!= "" || reply != null)
+   					externalComm.SendMessage("«q.name»,"+reply+";");
    				}
+   		«ENDFOR»
+   			}
+   		}
    		
    			public string cut(string message){
    				return message.Substring(message.IndexOf(',')+1);
@@ -323,7 +482,7 @@ class UnityGenerator extends AbstractGenerator {
    		   		
    		   		public class «e.name»Script : MonoBehaviour {
    		   			void Start () {
-   		   				«sizeAndScale(e.instanceType,e.name)»
+   		   				«sizeAndScale(e.instanceType,e.instanceType.type.kind)»
    		   				carMover interface1 = GetComponent<carMover>();
    		   				interface1.ConnectCar(«getIntValue(e.instanceType,"brake")»f,«getIntValue(e.instanceType,"power")»f,"«e.name»");
    		   				«includeNetwork(e,getBoolValue(e.instanceType,"network"),20)»
@@ -377,74 +536,46 @@ class UnityGenerator extends AbstractGenerator {
    		using System.Collections.Generic;
    		using UnityEngine;
    		
-   		public class «e.name»Script : MonoBehaviour {
+   		public class «e.name»Script : «e.instanceType.type.name»MetaObject {
    		   	public string channelID;
    		   	public sateliteCameraScript cam;
    			void Start () {
-   		   		«sizeAndScale(e.instanceType,"rover")»
-   		   		Rigidbody rb = GetComponent<Rigidbody> ();
-   		   		rb.velocity = new Vector3 (0f,0f,0f);
-   		   		rb.angularVelocity = new Vector3 (0f,0f,0f);
-   		   		roverMover interface1 = GetComponent<roverMover>();
+   		   		«sizeAndScale(e.instanceType,e.instanceType.type.kind)»
+   		   		
    		   		interface1.ConnectRover(«getIntValue(e.instanceType,"brake")»f,«getIntValue(e.instanceType,"power")»f,"«e.name»");
    		   	}
    		   			
    		   	void Update () {}
    		   			
-   		   	public string command(string com){
-   		   		return translate(com);
-   		   	}
-   		   	string translate(string message){
-   		   		string reply = null;
-   		   		roverMover rover = GetComponent<roverMover> ();
-   		   		int num = (int) decode(message);
-   		   		message = cut(message);
-   		   		switch (num){
-   		   			case 1: 
-   		   			rover.LeftPower(decode(message));
-   		   			message=cut(message);
-   		   			rover.RightPower(decode(message));
-   		   			message=cut(message);
-   		   			rover.LeftBrake(decode(message));
-   		   			message=cut(message);
-   		   			rover.RightBrake(decode(message));
-   		   			break;
-   		   					
-   		   			case 2:
-   		   			reply = "2,"+rover.RoverEngine();
-   		   			break;
-   		  		}
-   		   			
-   		   		return reply;
-   		   	}
    		   		
-   			public float decode(string message){
-   		   		if (message !="" || message!= null){
-   		   			if (message.Contains(",")){
-   		   				return float.Parse( message.Substring(0,message.IndexOf(',')));
-   		   			}
-   		   			else{
-   		   				return float.Parse( message.Substring(0,message.IndexOf(';')));
-   		   			}
-   		   		}
-   		   		else{
-   		   			Debug.Log("error in the decode function, decoding empty string");
-   		   			return 0;
-   		   		}
-   		   	}
-   			public string cut(string message){
-   				if(message.Contains(",")){
-   		   			return message.Substring(message.IndexOf(',')+1);
-   		   		}
-   		   		return message;
-   		   	}
    			void focus(){
    				cam.observedObject = gameObject;
    			}
+   		
+   		'''
+   		
+   		def objectScript(Instance e)'''
+   		using System.Collections;
+   		using System.Collections.Generic;
+   		using UnityEngine;
+   		   		
+   		public class «e.name»Script : «e.instanceType.type.name»MetaObject {
+   		   			
+   		   	public string channelID;
+   		   	public sateliteCameraScript cam;
+   		   	«FOR a:e.instanceType.newActions»
+   		   	public void «a.name»(){
+   		   		«FOR v:a.expressions»
+   		   		«stringify(v,'')»;
+   		   		«ENDFOR»
+   		   	}
+   		   		«ENDFOR»
+   		   	void focus(){
+   		   		cam.observedObject = gameObject;
+   		   	}
    		}
-   		//1,LS,RS,LB,RB
-   		// 1 - send a state command
-   		// 2- request a state command
+   		
+   		
    		'''
    		
    		def includeNetwork(Instance e, boolean nets,int size ) '''
@@ -456,4 +587,177 @@ class UnityGenerator extends AbstractGenerator {
    		«ENDIF»
    		'''
    		
-}
+   		def clientStarter(Channel c) '''
+   		using System.Collections;
+   		using System.Collections.Generic;
+   		using UnityEngine.UI;
+   		using UnityEngine;
+   		   		
+   		public class CTstarter : MonoBehaviour {
+   			public Controller comm;
+   			public utilities util;
+   			public string msgPayload;
+   			public Text port;
+   			public Text placeholderPort;
+   			public GameObject RoverControl;
+   			public GameObject CarControl;
+   			public GameObject GenericControl;
+   			«FOR a:c.boundInstances»
+   			Text «a.name»statesenttext;
+   			«ENDFOR»
+   			«FOR a:c.boundInstances»
+   			float «a.name»lp;
+   			float «a.name»rp;
+   			float «a.name»lb;
+   			float «a.name»rb;
+   			«ENDFOR»
+   			
+   			void Start(){
+
+   				port.text = "«c.port.portnumber»";
+   				placeholderPort.text = "«c.port.portnumber»";
+   				«var xAdd = 10»«var yAdd = -200»//«var i=0»
+   				«FOR k:c.boundInstances»
+   					GameObject «k.name»Object = Instantiate («k.instanceType.type.name»Control,transform);
+   					(«k.name»Object.GetComponent<RectTransform>()).anchoredPosition3D = new Vector3 («xAdd+(((i/2)%2)*350)»,«yAdd+((i%2)*-120)»,0);// «i=i+1»
+   					(«k.name»Object.transform.Find("nameText").gameObject).GetComponent<Text>().text = "«k.name»";
+   					«k.name»statesenttext = («k.name»Object.transform.Find("stateSentText").gameObject).GetComponent<Text>();
+   				 «FOR a:k.instanceType.type.actions»
+   			 	 	Button «k.name»«a.name»But = («k.name»Object.transform.Find ("«a.name»But").gameObject).GetComponent<Button>();
+   				 	«k.name»«a.name»But.onClick.AddListener(«k.name»«a.name»);
+   				 «ENDFOR»
+   				«ENDFOR»
+   		«FOR a:c.boundInstances»
+   		«a.name»statesenttext.text = "1,0,0,0,0;";
+   		«ENDFOR»
+   				}
+   				// Generate button actions
+   				
+   				public void inform(string message){
+   					«FOR a:c.boundInstances»
+   					if (message.StartsWith("«a.name»")==true){
+   						«a.name»statesenttext.text = util.cut(message);
+   					}
+   					«ENDFOR»
+   				}
+   				
+   				«FOR q: c.boundInstances»
+   				public void «q.name»Passer(string message){
+   					if (message.StartsWith ("1") == true) {
+   						comm.lastStatemsg = message;
+   					}
+   					comm.send("«q.name»,"+message);
+   					
+   				}
+   				«IF q.instanceType.type.kind == "rover"»
+
+   					«FOR a: q.instanceType.type.actions»
+   						public void «q.name»«a.name»(){
+   							if(comm.connectStatus.text == "Connected"){
+   							«FOR v:a.expressions»
+   							«stringify(v,q.name)»;
+   							«ENDFOR»
+   							string msg = "1,"+«q.name»lp+","+«q.name»rp +","+ «q.name»lb +","+ «q.name»rb+";";
+   							«q.name»statesenttext.text = "sent: "+msg;
+   							«q.name»Passer(msg); // msg is "x,0,0,0,0;"
+   							
+   							
+   							}
+   						}
+   					«ENDFOR»   				
+   				«ENDIF»
+   				
+   				«IF q.instanceType.type.kind == "generic"»
+   					«FOR a: q.instanceType.type.actions»
+   						public void «q.name»«a.name»(){
+   							
+   							}
+   					«ENDFOR»
+   				«ENDIF»
+   				«IF q.instanceType.type == "Car"»
+   				   				
+   				«ENDIF»
+   				
+   				«ENDFOR»«»
+   		}
+   		
+   		
+   		'''		
+   		
+
+   		def roverClass (MetaObject m)'''
+   		using UnityEngine;
+   		using System.Collections;
+   		
+   		public class «m.name»MetaObject : MonoBehaviour {
+   		
+   		public roverMover rm;
+   		public Rigidbody rb;
+   		public Transform t;
+   		
+   		
+   		void requiredStart(){
+   				rm = GetComponent<roverMover> ();
+   				rb = GetComponent<Rigidbody> ();
+   				t = GetComponentInChildren<Transform>();
+   				t.localScale = new Vector3 (size,size,size);
+   				t.localPosition = new Vector3(5f,1f,5f);
+   				rb.velocity = new Vector3 (velX,velY,velZ);
+   				rb.angularVelocity = new Vector3 (0f,0f,0f);
+   			}
+   		
+   		void update(){}
+   			
+   			
+   			«var b = false»
+   			«FOR a:m.actions»
+   			public void «a.name»(){
+   				«IF a.name == "Start"»
+   				requiredStart(); //«b =true»
+   				«ENDIF»
+   					«FOR v:a.expressions»
+   				   	«stringify(v,'')»;
+   				   	«ENDFOR»
+   				}
+   				
+   			«ENDFOR»
+   			«IF b== false»
+   			void Start(){
+   			 	requiredStart();
+   			}
+   			«ENDIF»
+   			
+   		}
+   		'''
+   		def carClass (MetaObject m)'''
+   		using UnityEngine;
+   		   		using System.Collections;
+   		   		   		
+   		   		public class «m.name»MetaObject : MonoBehaviour {
+   		   		   void start(){}
+   		   		   void update(){}
+   		   		   
+   		   		}
+   		'''
+ 		def genericClass (MetaObject m)'''
+   		using UnityEngine;
+   		   		using System.Collections;
+   		   		   		
+   		   		public class «m.name»MetaObject : MonoBehaviour {
+   		   		   void start(){}
+   		   		   void update(){}
+   		   		   
+   		   		}
+   		'''
+   		def othersClass (MetaObject m)'''
+   		using UnityEngine;
+   		using System.Collections;
+   		   		
+   		public class «m.name»MetaObject : MonoBehaviour {
+   		   void start(){}
+   		   void update(){}
+   		   
+   		}
+   		'''
+   		
+   		}

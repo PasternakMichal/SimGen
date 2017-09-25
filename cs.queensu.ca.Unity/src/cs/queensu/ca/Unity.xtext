@@ -136,7 +136,7 @@ Channel:
 		 ('type' type=interfaceType)?
 			 			'('
 			 				(
-			 			 		 (ip=IP ',' port=Port)
+			 			 		 (port=Port)
 			 			 		|(areaname=AreaName ',' qname=QName )
 			 				)
 			 			 ')'  ('assign' (boundInstances+=[Instance])+)?

@@ -109,7 +109,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//interfaceType"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ip" eType="#//IP" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="port" eType="#//Port" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="areaname" eType="#//AreaName"
         containment="true"/>

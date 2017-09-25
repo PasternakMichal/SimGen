@@ -65,7 +65,9 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 		//println (scop)
 		if (sr.containerOfType(Action)!==null){
 			var Action action=sr.containerOfType(Action) as Action;
+			if ((action.payload as Payload)!=null)
 			scop=Scopes::scopeFor((action.payload as Payload).params,scop)
+			if ((action.returnPayload as Payload)!=null)
 			scop=Scopes::scopeFor((action.returnPayload as Payload).params,scop)
 		}
 		if (sr.containerOfType(MetaObject)!==null){

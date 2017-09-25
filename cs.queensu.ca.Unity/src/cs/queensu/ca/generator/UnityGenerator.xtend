@@ -53,8 +53,8 @@ class UnityGenerator extends AbstractGenerator {
 		// generate model xmi
 		generateXMIFile(resource,fsa); 
 		// generate UMLRT model library
-		var UMLRTLibraryGenerator umlrtUtil=new UMLRTLibraryGenerator(resource,fsa,context) ;
-		umlrtUtil.generateModelLibrary();
+		//var UMLRTLibraryGenerator umlrtUtil=new UMLRTLibraryGenerator(resource,fsa,context) ;
+		//umlrtUtil.generateModelLibrary();
 	}
 	
 	def UMLRTLibraryGenerator(Resource resource, IFileSystemAccess2 access2, IGeneratorContext context) {
@@ -105,24 +105,7 @@ class UnityGenerator extends AbstractGenerator {
    			for (b: a.instances){
    				fsa.generateFile(("Simulator/"+b.name+"Script.cs"),objectScript(b));
    				
-   			}
-   			/* 	if (b.instanceType.type.kind == 'generic'){
-   					fsa.generateFile(("Simulator/"+b.name+"Script.cs"),generic(b));
-   				}
-   				if (b.instanceType.type.kind == 'others'){
-   					fsa.generateFile(("Simulator/"+b.name+"Script.cs"),landscape(b));
-   				}
-   				else if (b.instanceType.type.kind == 'rover'){
-   					fsa.generateFile(("Simulator/"+b.name+"Script.cs"),rover(b));
-   				}
-   				else if (b.instanceType.type.kind == 'car'){
-   					fsa.generateFile(("Simulator/"+b.name+"Script.cs"),car(b));
-   				}
-   				else
-   					println("unknown MetaObject");
-   			}
-   			 */
-   			
+   			}		
    			for (c: a.channels){
    				fsa.generateFile(("Simulator/"+"ChannelController"+c.name+".cs"),channelcontroller(c));
    				
@@ -131,9 +114,7 @@ class UnityGenerator extends AbstractGenerator {
    			
    		}		
 	} 		
-	// can only return a certain type that must be consistent ie. bool or int
-	
-	
+
 	
 	def int intExtractor(Expression e){
 		switch (e){
@@ -371,7 +352,7 @@ class UnityGenerator extends AbstractGenerator {
    			void focus(){
    				cam.observedObject = gameObject;
    			}
-   		}   		
+   		}
    		'''
    		// --- starter needs all game object prefabs to be declared and attached
    		def starter(ENV e)'''
@@ -388,9 +369,9 @@ class UnityGenerator extends AbstractGenerator {
    			public GameObject Car;
    			public GameObject Gem;
    			
-   				«FOR k:e.instances»
-   			   		   		GameObject «k.name»Object;
-   			   		   	«ENDFOR»
+   		«FOR k:e.instances»
+   		GameObject «k.name»Object;
+   		«ENDFOR»
    		//-----
    			void Start () {
    			Application.runInBackground = true;
@@ -405,7 +386,7 @@ class UnityGenerator extends AbstractGenerator {
    		   	«ENDFOR»
    			}
    			
-   			
+
    				void Update(){//«var i = 0»
    				«FOR k:e.instances»
    				
@@ -451,6 +432,8 @@ class UnityGenerator extends AbstractGenerator {
    				}
    		
    			}
+   			
+   			// take out the important information from the message
    				public void route(string S){
    					if (S != null || S != "") {
    						string name = S.Substring (0, S.IndexOf (','));
@@ -459,7 +442,11 @@ class UnityGenerator extends AbstractGenerator {
    		«FOR q: c.boundInstances»
    			if (name == "«q.name»") {
    				«q.name»Script «q.name» = GetComponentInChildren<«q.name»Script> ();
-   				string reply = «q.name».command (S);
+   				
+   				// send the action name, return the reply that is generated
+   				string reply = «q.name».translate (S);
+   				
+   				
    				// if inout, then do this if in only don't 
    				if (reply!= "" || reply != null)
    					externalComm.SendMessage("«q.name»,"+reply+";");
@@ -472,7 +459,6 @@ class UnityGenerator extends AbstractGenerator {
    				return message.Substring(message.IndexOf(',')+1);
    			}
    		}
-   		//message example "buddy,1,LS,RS,LB,RB"
    		'''
    		
    		def car(Instance e)'''
@@ -485,7 +471,7 @@ class UnityGenerator extends AbstractGenerator {
    		   				«sizeAndScale(e.instanceType,e.instanceType.type.kind)»
    		   				carMover interface1 = GetComponent<carMover>();
    		   				interface1.ConnectCar(«getIntValue(e.instanceType,"brake")»f,«getIntValue(e.instanceType,"power")»f,"«e.name»");
-   		   				«includeNetwork(e,getBoolValue(e.instanceType,"network"),20)»
+   		   				
    		   			}
    		   			
    		   			void Update () {
@@ -530,29 +516,7 @@ class UnityGenerator extends AbstractGenerator {
    		// 1 = set speed,brake;
    		//2 = get speed,brake, position;
    		'''
-   		
-   		def rover(Instance e) '''
-   		using System.Collections;
-   		using System.Collections.Generic;
-   		using UnityEngine;
-   		
-   		public class «e.name»Script : «e.instanceType.type.name»MetaObject {
-   		   	public string channelID;
-   		   	public sateliteCameraScript cam;
-   			void Start () {
-   		   		«sizeAndScale(e.instanceType,e.instanceType.type.kind)»
-   		   		
-   		   		interface1.ConnectRover(«getIntValue(e.instanceType,"brake")»f,«getIntValue(e.instanceType,"power")»f,"«e.name»");
-   		   	}
-   		   			
-   		   	void Update () {}
-   		   			
-   		   		
-   			void focus(){
-   				cam.observedObject = gameObject;
-   			}
-   		
-   		'''
+
    		
    		def objectScript(Instance e)'''
    		using System.Collections;
@@ -570,6 +534,30 @@ class UnityGenerator extends AbstractGenerator {
    		   		«ENDFOR»
    		   	}
    		   		«ENDFOR»
+   		   		
+   		   	«FOR a:e.instanceType.overrideActions»
+   		   	   	public override string «a.actionName.name»(){
+   		   	   		base.«a.actionName.name»();
+   		   	   		«FOR v:a.expressions»
+   		   	   		«stringify(v,'')»;
+   		   	   		«ENDFOR»
+   		   	   		   	}
+   		   	 «ENDFOR»
+   		   	 
+   			public string translate(string name){
+   		   	«FOR a:e.instanceType.newActions»
+   		   		if(name == "«a.name»"){
+   		   			return «a.name»();
+   		   		 }
+   		   	«ENDFOR»
+   		   	 «FOR a:e.instanceType.type.actions»
+   		   	  if(name == "«a.name»"){
+   		   	   	return «a.name»();
+   		   	  }
+   		   	  «ENDFOR»
+   		   	   		
+   		   	else return "";
+   		   	} 
    		   	void focus(){
    		   		cam.observedObject = gameObject;
    		   	}
@@ -578,16 +566,85 @@ class UnityGenerator extends AbstractGenerator {
    		
    		'''
    		
-   		def includeNetwork(Instance e, boolean nets,int size ) '''
-   		«IF nets ==true»
-   		comms = new Network(«getIntValue(e.instanceType,"Port")»,«getIntValue(e.instanceType,"NetId")»,«size»);
-   		Debug.Log("comms initiated on «getIntValue(e.instanceType,"Port")» for «e.name»");
-   		«ELSE»
-   		Debug.Log("«e.name» has no network capability");
-   		«ENDIF»
+   		def roverClass (MetaObject m)'''
+   		using UnityEngine;
+   		using System.Collections;
+   		
+   		public class «m.name»MetaObject : MonoBehaviour {
+   		
+   		public roverMover rm;
+   		public Rigidbody rb;
+   		public Transform t;
+   		
+   		
+   		void requiredStart(){
+   				rm = GetComponent<roverMover> ();
+   				rb = GetComponent<Rigidbody> ();
+   				t = GetComponentInChildren<Transform>();
+   				t.localScale = new Vector3 (1,1,1);
+   				t.localPosition = new Vector3(5f,1f,5f);
+   				rb.velocity = new Vector3 (0,0,0);
+   				rb.angularVelocity = new Vector3 (0f,0f,0f);
+   			}
+   		
+   		virtual update(){}
+   			
+   			
+   			«var b = false»
+   			«FOR a:m.actions»
+   			public virtual string «a.name»(){
+   				«IF a.name == "Start"»
+   				requiredStart(); //«b =true»
+   				«ENDIF»
+   					«FOR v:a.expressions»
+   				   	«stringify(v,'')»;
+   				   	«ENDFOR»
+   				   	return ""; // this should be based off return payload?
+   				}
+   				
+   			«ENDFOR»
+   			«IF b== false»
+   			void Start(){
+   			 	requiredStart();
+   			}
+   			«ENDIF»
+   			
+   		}
+   		'''
+   		def carClass (MetaObject m)'''
+   		using UnityEngine;
+   		   		using System.Collections;
+   		   		   		
+   		   		public class «m.name»MetaObject : MonoBehaviour {
+   		   		   void start(){}
+   		   		   void update(){}
+   		   		   
+   		   		}
+   		'''
+ 		def genericClass (MetaObject m)'''
+   		using UnityEngine;
+   		   		using System.Collections;
+   		   		   		
+   		   		public class «m.name»MetaObject : MonoBehaviour {
+   		   		   void start(){}
+   		   		   void update(){}
+   		   		   
+   		   		}
+   		'''
+   		def othersClass (MetaObject m)'''
+   		using UnityEngine;
+   		using System.Collections;
+   		   		
+   		public class «m.name»MetaObject : MonoBehaviour {
+   		   void start(){}
+   		   void update(){}
+   		   
+   		} 
    		'''
    		
-   		def clientStarter(Channel c) '''
+   		}
+   		
+   		/*def clientStarter(Channel c) '''
    		using System.Collections;
    		using System.Collections.Generic;
    		using UnityEngine.UI;
@@ -678,86 +735,8 @@ class UnityGenerator extends AbstractGenerator {
    				   				
    				«ENDIF»
    				
-   				«ENDFOR»«»
+   				«ENDFOR»
    		}
    		
    		
-   		'''		
-   		
-
-   		def roverClass (MetaObject m)'''
-   		using UnityEngine;
-   		using System.Collections;
-   		
-   		public class «m.name»MetaObject : MonoBehaviour {
-   		
-   		public roverMover rm;
-   		public Rigidbody rb;
-   		public Transform t;
-   		
-   		
-   		void requiredStart(){
-   				rm = GetComponent<roverMover> ();
-   				rb = GetComponent<Rigidbody> ();
-   				t = GetComponentInChildren<Transform>();
-   				t.localScale = new Vector3 (size,size,size);
-   				t.localPosition = new Vector3(5f,1f,5f);
-   				rb.velocity = new Vector3 (velX,velY,velZ);
-   				rb.angularVelocity = new Vector3 (0f,0f,0f);
-   			}
-   		
-   		void update(){}
-   			
-   			
-   			«var b = false»
-   			«FOR a:m.actions»
-   			public void «a.name»(){
-   				«IF a.name == "Start"»
-   				requiredStart(); //«b =true»
-   				«ENDIF»
-   					«FOR v:a.expressions»
-   				   	«stringify(v,'')»;
-   				   	«ENDFOR»
-   				}
-   				
-   			«ENDFOR»
-   			«IF b== false»
-   			void Start(){
-   			 	requiredStart();
-   			}
-   			«ENDIF»
-   			
-   		}
-   		'''
-   		def carClass (MetaObject m)'''
-   		using UnityEngine;
-   		   		using System.Collections;
-   		   		   		
-   		   		public class «m.name»MetaObject : MonoBehaviour {
-   		   		   void start(){}
-   		   		   void update(){}
-   		   		   
-   		   		}
-   		'''
- 		def genericClass (MetaObject m)'''
-   		using UnityEngine;
-   		   		using System.Collections;
-   		   		   		
-   		   		public class «m.name»MetaObject : MonoBehaviour {
-   		   		   void start(){}
-   		   		   void update(){}
-   		   		   
-   		   		}
-   		'''
-   		def othersClass (MetaObject m)'''
-   		using UnityEngine;
-   		using System.Collections;
-   		   		
-   		public class «m.name»MetaObject : MonoBehaviour {
-   		   void start(){}
-   		   void update(){}
-   		   
-   		}
-   		'''
-   		
-   		}
+   		'''		*/

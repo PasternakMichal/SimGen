@@ -21,6 +21,7 @@ import org.eclipse.xtext.scoping.Scopes
 import cs.queensu.ca.unity.ConfigAssignment
 import cs.queensu.ca.unity.Init
 import cs.queensu.ca.unity.ENV
+import cs.queensu.ca.unity.Attribute
 
 /**
  * This class contains custom scoping description.
@@ -63,21 +64,37 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 		var scop=IScope::NULLSCOPE
 		scop=super.getScope(sr.eContainer,ref);
 		//println (scop)
+		
+		
+		
+		
 		if (sr.containerOfType(Action)!==null){
 			var Action action=sr.containerOfType(Action) as Action;
 			if ((action.payload as Payload)!=null)
 			scop=Scopes::scopeFor((action.payload as Payload).params,scop)
 			if ((action.returnPayload as Payload)!=null)
 			scop=Scopes::scopeFor((action.returnPayload as Payload).params,scop)
+			//var MetaObject metaObj=(sr.containerOfType(UnityObject) as UnityObject).type ?: null;
+			
 		}
 		if (sr.containerOfType(MetaObject)!==null){
 			var MetaObject metaObj=sr.containerOfType(MetaObject) as MetaObject;
 			scop=Scopes::scopeFor(metaObj.properties,scop)
 
 		}
+		
+		if (sr.containerOfType(UnityObject)!==null){
+			var MetaObject uniObj=(sr.containerOfType(UnityObject) as UnityObject).type;
+			if (uniObj.properties!==null)
+				scop=Scopes::scopeFor(uniObj.properties,scop)
+
+		}
+		
 		if (sr.containerOfType(Config)!==null && sr.containerOfType(UnityObject)!==null ){
 			var MetaObject metaObj=(sr.containerOfType(UnityObject) as UnityObject).type ?: null;
+			var UnityObject unityObj=(sr.containerOfType(UnityObject) as UnityObject) ?: null;
 			scop=Scopes::scopeFor(metaObj.properties,scop)
+			scop=Scopes::scopeFor(unityObj.properties,scop);
 
 		}
 		if (sr.containerOfType(OverrideAction)!==null && sr.containerOfType(UnityObject)!==null ){
@@ -88,6 +105,7 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 	        scop=Scopes::scopeFor(refAction.payload.params,scop)
 	        scop=Scopes::scopeFor(refAction.returnPayload.params,scop)
 		}
+
 		println (scop)
 		scop
 
@@ -101,6 +119,8 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 			switch(head.singleRef){
 				Instance: 
 					scop=extractScop((head.singleRef as Instance),ref)
+				Property:
+					scop=extractScop((head.singleRef as Property),ref)
 				default: 
 					return scop  // the attribute and Param can not be head of Dot expression
 			}
@@ -118,9 +138,16 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 		switch(pro){
 			Instance: scop=extractScop((pro as Instance), ref)
 			Param: scop=extractScop((pro as Param), ref)
+			Attribute: scop=extractScop((pro as Attribute), ref)
 			
 		}	
 	}
+
+/////////////////
+def dispatch IScope extractScop(Attribute att,EReference ref){
+			
+	}
+
 
 //////*/
 	def dispatch IScope extractScop(Instance ins,EReference ref){
@@ -163,8 +190,11 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 		var scop=IScope::NULLSCOPE
 		var UnityObject parentObj=configAssig.containerOfType(UnityObject) as UnityObject
 		if (parentObj!==null){
-			if (parentObj.type!==null)
+			if (parentObj.type!==null){
 				scop=Scopes::scopeFor(parentObj.type.properties)
+				scop=Scopes::scopeFor(parentObj.properties,scop)
+				}
+				
 		}
 		return scop
 	}
@@ -193,6 +223,11 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 	        scop=Scopes::scopeFor(refAction.payload.params,scop)
 	        scop=Scopes::scopeFor(refAction.returnPayload.params,scop)
 		}
+		if (exp.containerOfType(Attribute)!==null && exp.containerOfType(UnityObject)!==null ){
+			var MetaObject metaObj=(exp.containerOfType(UnityObject) as UnityObject).type ?: null;
+			scop=Scopes::scopeFor(metaObj.properties,scop)
+		}
+		
 		if (exp.containerOfType(Init)!==null && exp.containerOfType(ENV)!==null ){
 			scop=super.getScope(exp,ref);
 		}

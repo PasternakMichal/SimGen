@@ -46,21 +46,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\ChannelController.cs" />
-     <Compile Include="Assets\Scripts\ChannelControllerMyChannel.cs" />
+     <Compile Include="Assets\Scripts\CarMetaObject.cs" />
+     <Compile Include="Assets\Scripts\ChannelControllercomp1.cs" />
+     <Compile Include="Assets\Scripts\GemMetaObject.cs" />
+     <Compile Include="Assets\Scripts\GenericMetaObject.cs" />
      <Compile Include="Assets\Scripts\GenericObjectScript.cs" />
      <Compile Include="Assets\Scripts\Network.cs" />
-     <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
-     <Compile Include="Assets\Scripts\TransporterBackup.cs" />
-     <Compile Include="Assets\Scripts\buddyScript.cs" />
+     <Compile Include="Assets\Scripts\PlaneMetaObject.cs" />
+     <Compile Include="Assets\Scripts\RoverMetaObject.cs" />
      <Compile Include="Assets\Scripts\carScript.cs" />
-     <Compile Include="Assets\Scripts\landScript.cs" />
-     <Compile Include="Assets\Scripts\lolzScript.cs" />
-     <Compile Include="Assets\Scripts\obstacleScript.cs" />
-     <Compile Include="Assets\Scripts\realdealScript.cs" />
+     <Compile Include="Assets\Scripts\planeScript.cs" />
+     <Compile Include="Assets\Scripts\rover1Script.cs" />
      <Compile Include="Assets\Scripts\roverMover.cs" />
      <Compile Include="Assets\Scripts\sateliteCameraScript.cs" />
      <Compile Include="Assets\Scripts\starter.cs" />
+     <Compile Include="Assets\Scripts\tree1Script.cs" />
      <Compile Include="Assets\Scripts\wheelScript.cs" />
      <Compile Include="Assets\Scripts\wheelScriptCar.cs" />
  <Reference Include="UnityEngine.Analytics">

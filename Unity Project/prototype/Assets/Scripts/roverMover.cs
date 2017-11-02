@@ -19,15 +19,11 @@ public class roverMover : MonoBehaviour {
 	public string RoverName;
 
 	void Start () {
-		RightPower (0);
-		LeftPower (0);
-		RightBrake (20);
-		LeftBrake (20);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 
 	}
 	public void ConnectRover(float brake, float power,string name){
@@ -36,44 +32,4 @@ public class roverMover : MonoBehaviour {
 		On = true;
 		RoverName = name;
 	}
-
-	public void LeftPower(float percent){
-		ColliderL1.motorTorque = percent * maxPower/100;
-		ColliderL2.motorTorque = percent * maxPower/100;
-		ColliderL3.motorTorque = percent * maxPower/100;
-	}
-
-	public void RightPower(float percent){
-		ColliderR1.motorTorque = percent * maxPower/100;
-		ColliderR2.motorTorque = percent * maxPower/100;
-		ColliderR3.motorTorque = percent * maxPower/100;
-	}
-
-	public void LeftBrake(float percent){
-		ColliderL1.brakeTorque = percent * maxBrake/100;
-		ColliderL2.brakeTorque = percent * maxBrake/100;
-		ColliderL3.brakeTorque = percent * maxBrake/100;
-	}
-	public void RightBrake(float percent){
-		ColliderR1.brakeTorque = percent * maxBrake/100;
-		ColliderR2.brakeTorque = percent * maxBrake/100;
-		ColliderR3.brakeTorque = percent * maxBrake/100;
-	}
-
-	public float RightSpeed(){
-		return ColliderR1.motorTorque;
-	}
-	public float LeftSpeed(){
-		return ColliderL1.motorTorque;
-	}
-	public float LeftBrake(){
-		return ColliderL1.brakeTorque;
-	}
-	public float RightBrake(){
-		return ColliderR1.brakeTorque;
-	}
-	public string RoverEngine(){
-		return "" + LeftSpeed () + "," + RightSpeed () + "," + LeftBrake () + "," + RightBrake ();
-	}
 }
-

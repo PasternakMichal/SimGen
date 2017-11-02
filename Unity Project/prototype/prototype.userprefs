@@ -1,22 +1,23 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/roverMover.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/RoverMetaObject.cs">
     <Files>
-      <File FileName="Assets/Scripts/carScript.cs" Line="5" Column="23" />
-      <File FileName="Assets/Scripts/roverMover.cs" Line="68" Column="9" />
-      <File FileName="Assets/Scripts/wheelScript.cs" Line="12" Column="1" />
+      <File FileName="Assets/Scripts/RoverMetaObject.cs" Line="29" Column="1" />
+      <File FileName="Assets/Scripts/roverMover.cs" Line="34" Column="3" />
+      <File FileName="Assets/Scripts/carScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/wheelScript.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/starter.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/buddyScript.cs" Line="20" Column="30" />
-      <File FileName="Assets/Scripts/lolzScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/landScript.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/wheelScriptCar.cs" Line="18" Column="3" />
+      <File FileName="Assets/Scripts/wheelScriptCar.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Network.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/sateliteCameraScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/rover1Script.cs" Line="16" Column="1" />
+      <File FileName="Assets/Scripts/planeScript.cs" Line="11" Column="1" />
+      <File FileName="Assets/Scripts/ChannelControllercomp1.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CarMetaObject.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <RunToCursorBreakpoint file="/Users/michal/Desktop/School/Masters work/Unity/prototype/Assets/Scripts/wheelScriptCar.cs" line="36" column="14" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

@@ -15,7 +15,7 @@ Specification:
  =====================================================================================================*/
 
 MetaObject:
-		'MetaObject' name=ID ':' kind=('car'|'rover'|'generic'|'others')
+		'MetaObject' name=ID ':' kind=('car'|'rover'|'generic'|'others'|'decoration')
 			'{'
 					(
 						 properties+=Attribute
@@ -28,6 +28,7 @@ Action:
 		'Action' name=ID  '(' payload=Payload?  ')' ('return' '(' returnPayload=Payload?  ')')		
 			 '{'
 				 expressions+=Expression*
+				 (description=Purpose)?
 			  '}'
 	;
 	
@@ -73,8 +74,10 @@ Value:
 	;
 	
 RealLiteral: 
-		 intPart=INT '.' decimalPart=INT
+		 {RealLiteral} real=REAL
    ;
+   
+  terminal REAL returns ecore::EDouble: ('0'..'9')+'.'('0'..'9'+);
 
 /*=====================================================================================================
  * Object is an instance of MetaObject, which includes configuration, implementing 
@@ -124,8 +127,22 @@ ENV:
 			 	 |properties+=Property
 				)*
 				initCodes=Init?
+				(focus=Focus)
+				(author=Author)?
+				(purpose=Purpose)?
 			'}'
 	;
+	
+	Focus:
+		'Focus' ':' focusObject= [Instance] (':('dx=REAL','dy=REAL','dz=REAL')')?
+	;
+	
+Author:
+	'Author' ':' authorString=STRING
+;
+Purpose:
+	'Purpose' ':' purposeString=STRING
+;
 
 Instance:
 		'Instance' name=ID ':' instanceType=[UnityObject] 

@@ -6,10 +6,8 @@
 package cs.queensu.ca.generator
 
 import com.google.inject.Injector
-import java.io.FileReader
-import java.util.Set
-import static extension com.google.common.io.CharStreams.*
 import cs.queensu.ca.UnityStandaloneSetup
+import cs.queensu.ca.unity.Attribute
 import cs.queensu.ca.unity.BoolLiteral
 import cs.queensu.ca.unity.Channel
 import cs.queensu.ca.unity.ENV
@@ -17,31 +15,33 @@ import cs.queensu.ca.unity.Expression
 import cs.queensu.ca.unity.Instance
 import cs.queensu.ca.unity.IntLiteral
 import cs.queensu.ca.unity.Literal
+import cs.queensu.ca.unity.MetaObject
+import cs.queensu.ca.unity.RealLiteral
+import cs.queensu.ca.unity.Ref
 import cs.queensu.ca.unity.StLiteral
+import cs.queensu.ca.unity.UnaryExpression
 import cs.queensu.ca.unity.UnityObject
+import cs.queensu.ca.unity.VarType
+import cs.queensu.ca.unity.impl.AdditionImpl
+import cs.queensu.ca.unity.impl.AssignImpl
+import cs.queensu.ca.unity.impl.DivideImpl
+import cs.queensu.ca.unity.impl.IdentifierImpl
+import cs.queensu.ca.unity.impl.MinusImpl
+import cs.queensu.ca.unity.impl.ModuloImpl
+import cs.queensu.ca.unity.impl.MultiplicationImpl
+import cs.queensu.ca.unity.impl.PropertyImpl
+import cs.queensu.ca.unity.impl.SingleRefImpl
+import java.io.FileReader
 import java.io.IOException
+import java.util.ArrayList
+import java.util.HashMap
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import org.eclipse.xtext.resource.XtextResourceSet
-import cs.queensu.ca.unity.MetaObject
-import cs.queensu.ca.unity.impl.PropertyImpl
-import cs.queensu.ca.unity.impl.IdentifierImpl
-import cs.queensu.ca.unity.impl.MultiplicationImpl
-import cs.queensu.ca.unity.impl.AdditionImpl
-import cs.queensu.ca.unity.impl.AssignImpl
-import cs.queensu.ca.unity.impl.ModuloImpl
-import cs.queensu.ca.unity.impl.DivideImpl
-import cs.queensu.ca.unity.impl.MinusImpl
-import cs.queensu.ca.unity.UnaryExpression
-import cs.queensu.ca.unity.impl.SingleRefImpl
-import cs.queensu.ca.unity.Ref
-import cs.queensu.ca.unity.Attribute
-import cs.queensu.ca.unity.VarType
-import cs.queensu.ca.unity.RealLiteral
-import java.util.HashMap
-import java.util.ArrayList
+
+import static extension com.google.common.io.CharStreams.*
 
 /**
  * Generates code from your model files on save.

@@ -214,7 +214,7 @@ class UnityTypeValidationUtility {
 		val righType=e?.right.typeFor
 		if (((e.right  instanceof IntLiteral) && (e.right as IntLiteral).int==0))
 			return divideByZero
-		else if (((e.right  instanceof RealLiteral) && (e.right as RealLiteral).real==0))
+		else if (((e.right  instanceof RealLiteral) && (e.right as RealLiteral).real==0 ))
 			return divideByZero
 		if (leftType==stringType||righType==stringType||leftType==boolType||righType==boolType||e?.right==0)
 			return notValid

@@ -74,6 +74,8 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 			scop=Scopes::scopeFor((action.payload as Payload).params,scop)
 			if ((action.returnPayload as Payload)!=null)
 			scop=Scopes::scopeFor((action.returnPayload as Payload).params,scop)
+			//var MetaObject metaObj=(sr.containerOfType(UnityObject) as UnityObject).type ?: null;
+			
 		}
 		if (sr.containerOfType(MetaObject)!==null){
 			var MetaObject metaObj=sr.containerOfType(MetaObject) as MetaObject;
@@ -85,6 +87,7 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 			var MetaObject uniObj=(sr.containerOfType(UnityObject) as UnityObject).type;
 			if (uniObj.properties!==null)
 				scop=Scopes::scopeFor(uniObj.properties,scop)
+
 		}
 		
 		if (sr.containerOfType(Config)!==null && sr.containerOfType(UnityObject)!==null ){
@@ -102,6 +105,7 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 	        scop=Scopes::scopeFor(refAction.payload.params,scop)
 	        scop=Scopes::scopeFor(refAction.returnPayload.params,scop)
 		}
+
 		println (scop)
 		scop
 
@@ -134,7 +138,8 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 		switch(pro){
 			Instance: scop=extractScop((pro as Instance), ref)
 			Param: scop=extractScop((pro as Param), ref)
-			Attribute: scop=extractScop((pro as Attribute),ref)
+			Attribute: scop=extractScop((pro as Attribute), ref)
+			
 		}	
 	}
 
@@ -142,6 +147,7 @@ class UnityScopeProvider extends AbstractUnityScopeProvider {
 def dispatch IScope extractScop(Attribute att,EReference ref){
 			
 	}
+
 
 //////*/
 	def dispatch IScope extractScop(Instance ins,EReference ref){
@@ -188,7 +194,7 @@ def dispatch IScope extractScop(Attribute att,EReference ref){
 				scop=Scopes::scopeFor(parentObj.type.properties)
 				scop=Scopes::scopeFor(parentObj.properties,scop)
 				}
-			
+				
 		}
 		return scop
 	}
@@ -217,7 +223,6 @@ def dispatch IScope extractScop(Attribute att,EReference ref){
 	        scop=Scopes::scopeFor(refAction.payload.params,scop)
 	        scop=Scopes::scopeFor(refAction.returnPayload.params,scop)
 		}
-		
 		if (exp.containerOfType(Attribute)!==null && exp.containerOfType(UnityObject)!==null ){
 			var MetaObject metaObj=(exp.containerOfType(UnityObject) as UnityObject).type ?: null;
 			scop=Scopes::scopeFor(metaObj.properties,scop)

@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:RTCppProperties="http://www.eclipse.org/papyrus/umlrt/cppproperties" xmlns:UMLRTStateMachines="http://www.eclipse.org/papyrus/umlrt/statemachine" xmlns:UMLRealTime="http://www.eclipse.org/papyrus/umlrt" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_MZw7AAdxEeadtKuU2t6fMg" name="UnityGateway">
+    <eAnnotations xmi:id="_GCr80Ad0EeadtKuU2t6fMg" source="UMLRT_Default_top">
+      <details xmi:id="_GCsj4Ad0EeadtKuU2t6fMg" key="top_name" value="TOP"/>
+    </eAnnotations>
+    <packagedElement xmi:type="uml:Class" xmi:id="_SikFQAdxEeadtKuU2t6fMg" name="TOP" isActive="true">
+      <ownedAttribute xmi:id="_qQ-wcAdzEeadtKuU2t6fMg" name="CarController" visibility="protected" type="_ZZT9sE_KEeaAu87Fs2V0IA" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qRDo8AdzEeadtKuU2t6fMg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qREQAAdzEeadtKuU2t6fMg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_qz-v0AdzEeadtKuU2t6fMg" name="reciever" visibility="protected" type="_zEmsoE_JEeaAu87Fs2V0IA" isOrdered="true" aggregation="composite">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_q0BMEAdzEeadtKuU2t6fMg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_q0BMEQdzEeadtKuU2t6fMg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qOd90DGKEeaxYMPe_sHEiw" name="TCPClient"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_QhX9oDHDEeaxYMPe_sHEiw" name="Config"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_cXztgD8TEea_INjZTfhBHQ" name="SharedMem"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zEmsoE_JEeaAu87Fs2V0IA" name="UnityGateway" visibility="public" isActive="true">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_zEmsoU_JEeaAu87Fs2V0IA" name="unityGatewayComm" visibility="public" type="_mLrngE_LEeaAu87Fs2V0IA" isOrdered="true" aggregation="composite" isBehavior="true">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zEmsok_JEeaAu87Fs2V0IA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zEmso0_JEeaAu87Fs2V0IA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_zEmspE_JEeaAu87Fs2V0IA" name="clientConn" type="_qOd90DGKEeaxYMPe_sHEiw"/>
+      <ownedAttribute xmi:id="_zEmspU_JEeaAu87Fs2V0IA" name="config" type="_QhX9oDHDEeaxYMPe_sHEiw"/>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_zEmspk_JEeaAu87Fs2V0IA" name="configTimer" visibility="public" isOrdered="true" aggregation="composite" isBehavior="true">
+        <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_MxQZgGXsEeS_4daqvwyFrg"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zEmsp0_JEeaAu87Fs2V0IA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zEmsqE_JEeaAu87Fs2V0IA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_zEmsqU_JEeaAu87Fs2V0IA" name="reportContextTimer" visibility="public" isOrdered="true" aggregation="composite" isBehavior="true">
+        <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_MxQZgGXsEeS_4daqvwyFrg"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zEmsqk_JEeaAu87Fs2V0IA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zEmsq0_JEeaAu87Fs2V0IA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_zEmsrE_JEeaAu87Fs2V0IA" name="sharedMemory" type="_cXztgD8TEea_INjZTfhBHQ"/>
+      <ownedAttribute xmi:id="_uWIekFgdEeaVFuc_XL9xNA" name="buffer[100]">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7r3woFgdEeaVFuc_XL9xNA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7sJdcFgdEeaVFuc_XL9xNA" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_zEmsrU_JEeaAu87Fs2V0IA" name="GateWay">
+        <region xmi:id="_zEmsrk_JEeaAu87Fs2V0IA" name="Region1">
+          <transition xmi:id="_zEmsr0_JEeaAu87Fs2V0IA" name="init" source="_zEmsyk_JEeaAu87Fs2V0IA" target="_zEmszU_JEeaAu87Fs2V0IA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_zEmssE_JEeaAu87Fs2V0IA" name="initial">
+              <language>C++</language>
+              <body>// instantiate the configutility class 
+std::cout&lt;&lt;&quot;Gateway is Starting\n&quot;;
+config.setCommentStr(&quot;#&quot;);
+config.setFieldSeperaor(&quot;=&quot;);
+config.setConfigFileName(&quot;gateWay.config&quot;);
+</body>
+            </effect>
+          </transition>
+          <transition xmi:id="_zEmssU_JEeaAu87Fs2V0IA" name="gotCommand" source="_zEmsy0_JEeaAu87Fs2V0IA" target="_zEmsy0_JEeaAu87Fs2V0IA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_zEmssk_JEeaAu87Fs2V0IA" name="processForwardCommand">
+              <language>C++</language>
+              <body>// parse the message, if the foerward is instant send it right away, otherwise add it in queeue
+    std::cout&lt;&lt;&quot;spp message &quot;&lt;&lt;umlrtparam_command&lt;&lt;&quot;\n&quot;;
+    	if (clientConn.checkConnectionStatus()!=-1)
+    		clientConn.sendData(umlrtparam_command);
+    	else
+    	{
+    		clientConn.closeConn();
+    		clientConn.conn();
+
+    	}
+
+</body>
+            </effect>
+            <trigger xmi:id="_zEmss0_JEeaAu87Fs2V0IA" name="newCommand" event="_YY4wkE_MEeaAu87Fs2V0IA" port="_zEmsoU_JEeaAu87Fs2V0IA"/>
+          </transition>
+          <transition xmi:id="_zEmstE_JEeaAu87Fs2V0IA" source="_zEmszU_JEeaAu87Fs2V0IA" target="_zEms0E_JEeaAu87Fs2V0IA">
+            <trigger xmi:id="_zEmstU_JEeaAu87Fs2V0IA" port="_zEmspk_JEeaAu87Fs2V0IA">
+              <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="_zEmstk_JEeaAu87Fs2V0IA" source="_zEmsz0_JEeaAu87Fs2V0IA" target="_zEmszU_JEeaAu87Fs2V0IA"/>
+          <transition xmi:id="_zEmst0_JEeaAu87Fs2V0IA" guard="_zEmsuE_JEeaAu87Fs2V0IA" source="_zEmsz0_JEeaAu87Fs2V0IA" target="_zEmsy0_JEeaAu87Fs2V0IA">
+            <ownedRule xmi:id="_zEmsuE_JEeaAu87Fs2V0IA" name="checkTCPConn">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_zEmsuU_JEeaAu87Fs2V0IA" name="checkconnectionState">
+                <language>C++</language>
+                <body>if (clientConn.checkConnectionStatus()==-1)
+        return false;
+else
+        return true;</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_ZdyZEFhREeaVFuc_XL9xNA" name="enterInControlstate">
+              <language>C++</language>
+              <body>std::cout&lt;&lt;&quot;UnityGareway: Enter Control State&quot; ;
+std::string tempStr=config.getConfig(&quot;contextFreguencySec&quot;);
+    long timeoutSec=atol(tempStr.c_str());
+   tempStr=config.getConfig(&quot;contextFreguencyNano&quot;);
+   long timeoutNano=atol(tempStr.c_str());
+   std::cout&lt;&lt;&quot;The Timeout for the next context query is:  &quot;&lt;&lt;  timeoutSec &lt;&lt; &quot; second  &quot;&lt;&lt;timeoutNano&lt;&lt;&quot; Nanosecond\n&quot;;
+   reportContextTimer.informIn(UMLRTTimespec(timeoutSec,timeoutNano), 3);</body>
+            </effect>
+          </transition>
+          <transition xmi:id="_zEmsvU_JEeaAu87Fs2V0IA" name="reportContext" source="_zEmsy0_JEeaAu87Fs2V0IA" target="_zEmsy0_JEeaAu87Fs2V0IA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_zEmsvk_JEeaAu87Fs2V0IA" name="sendContextcmd" visibility="public">
+              <language>C++</language>
+              <body>  std::cout&lt;&lt;&quot;asking for context\n&quot;;
+    if (clientConn.checkConnectionStatus()!=-1)
+    {
+    std::string tempStr=config.getConfig(&quot;contextCmd&quot;);	
+    clientConn.sendData(tempStr.c_str());
+    //char  buffer[45];
+    /// i am reading one by one, since message get fragmented when the system is busy and then .....
+    char singleBuf[1];
+    singleBuf[0]=' ';
+    int len=0;
+    while (singleBuf[0]!='>')
+    {
+    	clientConn.receive(1, singleBuf);
+    	buffer[len++]=singleBuf[0];
+    }
+
+    //int len=clientConn.receive(45, this->buffer);
+    this->buffer[len]='\0';
+    //char *  contextData=new char(len+1);
+    //strcpy(contextData, buffer);
+    //unityGatewayComm.context(contextData).send();
+    //std::cout&lt;&lt;&quot;UnityGateWay: context data is : &quot;&lt;&lt;contextData&lt;&lt;&quot;\n&quot;;
+    unityGatewayComm.context(buffer).send();
+    std::cout&lt;&lt;&quot;UnityGateWay: context data is : &quot;&lt;&lt;buffer&lt;&lt;&quot;\n&quot;;
+    //free(contextData);
+    }
+    else
+    {
+    clientConn.closeConn();
+    clientConn.conn();
+    }
+    std::string tempStr=config.getConfig(&quot;contextFreguencySec&quot;);
+    long timeoutSec=atol(tempStr.c_str());
+    tempStr=config.getConfig(&quot;contextFreguencyNano&quot;);
+    long timeoutNano=atol(tempStr.c_str());
+    std::cout&lt;&lt;&quot;The Timeout for the next context query is:  &quot;&lt;&lt;  timeoutSec &lt;&lt; &quot; second  &quot;&lt;&lt;timeoutNano&lt;&lt;&quot; Nanosecond\n&quot;;
+    reportContextTimer.informIn(UMLRTTimespec(timeoutSec,timeoutNano), 3);</body>
+            </effect>
+            <trigger xmi:id="_uyNM4E_VEeaAu87Fs2V0IA" name="reportContext" port="_zEmsqU_JEeaAu87Fs2V0IA">
+              <event xmi:type="uml:CallEvent" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_IaEO8HDxEeSwWKwNKw1iAA"/>
+            </trigger>
+          </transition>
+          <transition xmi:id="_zEmsv0_JEeaAu87Fs2V0IA" name="setupSharedMem" guard="_zEmswE_JEeaAu87Fs2V0IA" source="_zEms0E_JEeaAu87Fs2V0IA" target="_zEms0U_JEeaAu87Fs2V0IA">
+            <ownedRule xmi:id="_zEmswE_JEeaAu87Fs2V0IA" name="checkCommType">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_zEmswU_JEeaAu87Fs2V0IA">
+                <language>C++</language>
+                <body>std::string tempStr =config.getConfig(&quot;comm&quot;);
+if (tempStr==&quot;shm&quot;)
+    	return true;
+else 
+	return false;</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_zEmswk_JEeaAu87Fs2V0IA" name="setupSHM">
+              <language>C++</language>
+              <body>// set shared memory as a server
+sharedMemory.setUp(server);
+std::cout&lt;&lt;&quot;observer works with SHM&quot;&lt;&lt;&quot;\n&quot;;</body>
+            </effect>
+          </transition>
+          <transition xmi:id="_zEmsw0_JEeaAu87Fs2V0IA" source="_zEms0E_JEeaAu87Fs2V0IA" target="_zEmsz0_JEeaAu87Fs2V0IA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_zEmsxE_JEeaAu87Fs2V0IA">
+              <language>C++</language>
+              <body>clientConn.conn();</body>
+            </effect>
+          </transition>
+          <transition xmi:id="_zEmsxU_JEeaAu87Fs2V0IA" name="reconfigTCP" source="_zEmsy0_JEeaAu87Fs2V0IA" target="_zEmszU_JEeaAu87Fs2V0IA"/>
+          <transition xmi:id="_zEmsxk_JEeaAu87Fs2V0IA" name="reconfigSHM" source="_zEms0U_JEeaAu87Fs2V0IA" target="_zEmszU_JEeaAu87Fs2V0IA"/>
+          <transition xmi:id="_zEmsx0_JEeaAu87Fs2V0IA" name="processAndForwardEvent" source="_zEms0U_JEeaAu87Fs2V0IA" target="_zEms0U_JEeaAu87Fs2V0IA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_zEmsyE_JEeaAu87Fs2V0IA" name="processAndForwardCommand">
+              <language>C++</language>
+              <body>std::cout&lt;&lt;&quot;Observer: new event, write to shared memory&quot;&lt;&lt;&quot;\n&quot;;
+sharedMemory.safePushBackString(std::string(umlrtparam_command));
+</body>
+            </effect>
+            <trigger xmi:id="_zEmsyU_JEeaAu87Fs2V0IA" name="newCommand" event="_YY4wkE_MEeaAu87Fs2V0IA" port="_zEmsoU_JEeaAu87Fs2V0IA"/>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_zEmsyk_JEeaAu87Fs2V0IA" name="InitObserver"/>
+          <subvertex xmi:type="uml:State" xmi:id="_zEmsy0_JEeaAu87Fs2V0IA" name="ControlWithTCP">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_zEmszE_JEeaAu87Fs2V0IA" name="ControlStateEntry">
+              <language>C++</language>
+              <body>    //std::cout&lt;&lt;&quot;Etering the Control State\n&quot;;
+    /*std::string tempStr=config.getConfig(&quot;contextFreguencySec&quot;);
+    long timeoutSec=atol(tempStr.c_str());
+   tempStr=config.getConfig(&quot;contextFreguencyNano&quot;);
+   long timeoutNano=atol(tempStr.c_str());
+   std::cout&lt;&lt;&quot;The Timeout for the next context query is:  &quot;&lt;&lt;  timeoutSec &lt;&lt; &quot; second  &quot;&lt;&lt;timeoutNano&lt;&lt;&quot; Nanosecond\n&quot;;
+   reportContextTimer.informIn(UMLRTTimespec(timeoutSec,timeoutNano), 3);*/
+</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_zEmszU_JEeaAu87Fs2V0IA" name="config">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_zEmszk_JEeaAu87Fs2V0IA" name="initObserver">
+              <language>C++</language>
+              <body>//init the time for config read -----
+configTimer.informAt(UMLRTTimespec(2,0),4);
+// include read config
+config.loadConfig();
+///
+std::string tempStr =config.getConfig(&quot;ip&quot;);
+if (tempStr!=&quot;&quot;)
+    	clientConn.setServerAddress(tempStr);
+tempStr=config.getConfig(&quot;port&quot;);
+if (tempStr!=&quot;&quot;)
+ 	clientConn.setPort(atoi(tempStr.c_str()));
+// configure shared memory
+tempStr=config.getConfig(&quot;areaname&quot;);
+if (tempStr!=&quot;&quot;)
+    	sharedMemory.setName(tempStr);
+tempStr=config.getConfig(&quot;qname&quot;);
+if (tempStr!=&quot;&quot;)
+        sharedMemory.setQueueName(tempStr);
+/// Unity Config
+
+</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_zEmsz0_JEeaAu87Fs2V0IA" name="checkTCPConn" kind="choice"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_zEms0E_JEeaAu87Fs2V0IA" name="CommsType" kind="choice"/>
+          <subvertex xmi:type="uml:State" xmi:id="_zEms0U_JEeaAu87Fs2V0IA" name="observationWithSharedMem"/>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZZT9sE_KEeaAu87Fs2V0IA" name="CarController" visibility="public" classifierBehavior="_ZZT9t0_KEeaAu87Fs2V0IA" isActive="true">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_ZZT9sU_KEeaAu87Fs2V0IA" name="Timer1" visibility="public" isOrdered="true" aggregation="composite" isBehavior="true">
+        <type xmi:type="uml:Collaboration" href="pathmap://UMLRTRTSLIB/UMLRT-RTS.uml#_MxQZgGXsEeS_4daqvwyFrg"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZZT9sk_KEeaAu87Fs2V0IA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZZT9s0_KEeaAu87Fs2V0IA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_T7KkcFeVEearHKEzCEQGQw" name="unityGatewayComm" visibility="protected" type="_mLrngE_LEeaAu87Fs2V0IA" isOrdered="true" aggregation="composite" isBehavior="true" isConjugated="true" isService="false">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_T7SgQFeVEearHKEzCEQGQw" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_T7TuYFeVEearHKEzCEQGQw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_rwboEFejEearHKEzCEQGQw" name="config"/>
+      <ownedAttribute xmi:id="_uPsf0FejEearHKEzCEQGQw" name="context"/>
+      <ownedAttribute xmi:id="_fhAoYFekEearHKEzCEQGQw" name="command"/>
+      <ownedAttribute xmi:id="_4UkVcFhQEeaVFuc_XL9xNA" name="cmd[50]"/>
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_ZZT9t0_KEeaAu87Fs2V0IA" name="CarController">
+        <region xmi:id="_ZZT9uE_KEeaAu87Fs2V0IA" name="Region1">
+          <transition xmi:id="_ZZT9uU_KEeaAu87Fs2V0IA" name="init" source="_ZZT9wE_KEeaAu87Fs2V0IA" target="_ZZT9wU_KEeaAu87Fs2V0IA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_ZZT9uk_KEeaAu87Fs2V0IA" name="intial">
+              <language>C++</language>
+              <body>// instantiate the configutility class 
+std::cout&lt;&lt;&quot;Controller is Starting\n&quot;;
+config.setCommentStr(&quot;#&quot;);
+config.setFieldSeperaor(&quot;=&quot;);
+config.setConfigFileName(&quot;controller.config&quot;);</body>
+            </effect>
+          </transition>
+          <transition xmi:id="_mp5-sFeZEearHKEzCEQGQw" name="Adapt1" source="_dRGRsFeYEearHKEzCEQGQw" target="_1ANhcFePEearHKEzCEQGQw"/>
+          <transition xmi:id="__7f-wFeZEearHKEzCEQGQw" name="Adapt2" source="_PYh5AFeQEearHKEzCEQGQw" target="_A345EFebEearHKEzCEQGQw"/>
+          <transition xmi:id="_Ut3LsFegEearHKEzCEQGQw" name="checkconfig" source="_ZZT9wU_KEeaAu87Fs2V0IA" target="_SlKPQFefEearHKEzCEQGQw">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_6eYi4FemEearHKEzCEQGQw" name="loadContext">
+              <language>C++</language>
+              <body>std::cout&lt;&lt;&quot;CarController: Got context message, Leaving the config state\n&quot;;
+std::cout&lt;&lt;&quot;CarController: Context data is : &quot;&lt;&lt;umlrtparam_contextData&lt;&lt;&quot;\n&quot;;
+context.pasrseContext(std::string(umlrtparam_contextData));</body>
+            </effect>
+            <trigger xmi:id="_L-3wYFeiEearHKEzCEQGQw" name="context" event="_kObbME_MEeaAu87Fs2V0IA" port="_T7KkcFeVEearHKEzCEQGQw"/>
+          </transition>
+          <transition xmi:id="_-LXZsFegEearHKEzCEQGQw" name="OK" guard="_ellM0FeiEearHKEzCEQGQw" source="_SlKPQFefEearHKEzCEQGQw" target="_gwE0YFgkEeaVFuc_XL9xNA">
+            <ownedRule xmi:id="_ellM0FeiEearHKEzCEQGQw" name="checkconfig">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_ellM0VeiEearHKEzCEQGQw" name="checkConfig">
+                <language>C++</language>
+                <body>return checkConfig();</body>
+              </specification>
+            </ownedRule>
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_NQlt8FgFEearHKEzCEQGQw" name="setGoals">
+              <language>C++</language>
+              <body>std::cout&lt;&lt;&quot;CarController: Config is ok, going to drive state\n&quot;;
+    std::cout&lt;&lt;&quot;CarController: Config is ok, going to drive state\n&quot;;
+      context.setEndPointX(atof(config.getConfig(&quot;endpointX&quot;).c_str()));
+    context.setEndPointZ(atof(config.getConfig(&quot;endpointZ&quot;).c_str()));</body>
+            </effect>
+          </transition>
+          <transition xmi:id="_ENetIFehEearHKEzCEQGQw" name="NOk" source="_SlKPQFefEearHKEzCEQGQw" target="_ZZT9wU_KEeaAu87Fs2V0IA"/>
+          <transition xmi:id="_zpbtwFgpEeaVFuc_XL9xNA" name="nextMove" source="_gwE0YFgkEeaVFuc_XL9xNA" target="_gwE0YFgkEeaVFuc_XL9xNA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_P0gcYFgqEeaVFuc_XL9xNA" name="driveInCity">
+              <language>C++</language>
+              <body>context.pasrseContext(std::string(umlrtparam_contextData));
+driveInCity();</body>
+            </effect>
+            <trigger xmi:id="_IaYNIFgqEeaVFuc_XL9xNA" name="contextData" event="_kObbME_MEeaAu87Fs2V0IA" port="_T7KkcFeVEearHKEzCEQGQw"/>
+          </transition>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_ZZT9wE_KEeaAu87Fs2V0IA" name="Initial1"/>
+          <subvertex xmi:type="uml:State" xmi:id="_ZZT9wU_KEeaAu87Fs2V0IA" name="Config">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_DdQ7sFeiEearHKEzCEQGQw" name="loadConfig">
+              <language>C++</language>
+              <body>std::cout&lt;&lt;&quot;CarController: Entering Config state\n&quot;;
+config.loadConfig();
+
+</body>
+            </entry>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_04VNQFeOEearHKEzCEQGQw" name="CityDrive">
+            <connectionPoint xmi:id="_AjihEFeYEearHKEzCEQGQw" name="cityInit" kind="entryPoint"/>
+            <connectionPoint xmi:id="_dRGRsFeYEearHKEzCEQGQw" name="init3" kind="exitPoint"/>
+            <connectionPoint xmi:id="_A345EFebEearHKEzCEQGQw" name="init2" kind="entryPoint"/>
+            <region xmi:id="_G_x60VePEearHKEzCEQGQw" name="Region1">
+              <transition xmi:id="_JHoOwFeoEearHKEzCEQGQw" name="contextForDrive" source="_G_3aYFePEearHKEzCEQGQw" target="_G_3aYFePEearHKEzCEQGQw">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_GuXNIFevEearHKEzCEQGQw" name="driveInCity">
+                  <language>C++</language>
+                  <body>driveInCity();</body>
+                </effect>
+                <trigger xmi:id="_pGNrQFeoEearHKEzCEQGQw" name="context" event="_kObbME_MEeaAu87Fs2V0IA" port="_T7KkcFeVEearHKEzCEQGQw"/>
+              </transition>
+              <transition xmi:id="_MGLqkFeoEearHKEzCEQGQw" name="contextForStop" source="_I5VdcFePEearHKEzCEQGQw" target="_I5VdcFePEearHKEzCEQGQw">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_t7yO4FevEearHKEzCEQGQw" name="stop">
+                  <language>C++</language>
+                  <body>stopCar();</body>
+                </effect>
+                <trigger xmi:id="_33QdsFeoEearHKEzCEQGQw" name="context" event="_kObbME_MEeaAu87Fs2V0IA" port="_T7KkcFeVEearHKEzCEQGQw"/>
+              </transition>
+              <subvertex xmi:type="uml:State" xmi:id="_G_3aYFePEearHKEzCEQGQw" name="Drive"/>
+              <subvertex xmi:type="uml:State" xmi:id="_I5VdcFePEearHKEzCEQGQw" name="Stop"/>
+            </region>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_-kvBIFeOEearHKEzCEQGQw" name="HighwayDrive">
+            <connectionPoint xmi:id="_1ANhcFePEearHKEzCEQGQw" name="init6" kind="entryPoint"/>
+            <connectionPoint xmi:id="_PYh5AFeQEearHKEzCEQGQw" name="init5" kind="exitPoint"/>
+            <region xmi:id="_Rv8RwlePEearHKEzCEQGQw" name="Region1">
+              <transition xmi:id="_JXb5QFeQEearHKEzCEQGQw" source="_Rv-G8FePEearHKEzCEQGQw" target="_USV9EFePEearHKEzCEQGQw"/>
+              <transition xmi:id="_1lplQFeZEearHKEzCEQGQw" source="_yIh-IFeZEearHKEzCEQGQw" target="_Rv-G8FePEearHKEzCEQGQw"/>
+              <transition xmi:id="_6lHI4FeZEearHKEzCEQGQw" source="_USV9EFePEearHKEzCEQGQw" target="_PYh5AFeQEearHKEzCEQGQw"/>
+              <subvertex xmi:type="uml:State" xmi:id="_Rv-G8FePEearHKEzCEQGQw" name="DriveHighway"/>
+              <subvertex xmi:type="uml:State" xmi:id="_USV9EFePEearHKEzCEQGQw" name="ExitHighway"/>
+              <subvertex xmi:type="uml:Pseudostate" xmi:id="_yIh-IFeZEearHKEzCEQGQw" kind="junction"/>
+            </region>
+          </subvertex>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_SlKPQFefEearHKEzCEQGQw" name="configIsOk" kind="choice"/>
+          <subvertex xmi:type="uml:State" xmi:id="_gwE0YFgkEeaVFuc_XL9xNA" name="NormalDrive"/>
+          <subvertex xmi:type="uml:State" xmi:id="_y97vIFgoEeaVFuc_XL9xNA" name="NormalStop"/>
+        </region>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_QB94wFeqEearHKEzCEQGQw" name="checkConfig">
+        <language>C++</language>
+        <body>return true;</body>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_8D8R0FeuEearHKEzCEQGQw" name="drive" specification="_9ypPUFeuEearHKEzCEQGQw">
+        <language>C++</language>
+        <body>    double distanceStartTostop=100;
+    double distance=context.getEndPointX()-context.getPositionX();
+    std::cout&lt;&lt;&quot;Distance to goal is : &quot;&lt;&lt;distance&lt;&lt;&quot;\n&quot;;
+    std::cout&lt;&lt;&quot;postion X is:&quot;&lt;&lt;context.getPositionX()&lt;&lt;&quot;\n&quot;;
+    if (
+    (distance > distanceStartTostop ) &amp;
+    (context.getSpeed()&lt;=atoi(config.getConfig(&quot;maxSpeed&quot;).c_str()))
+    )
+    command.setGas(command.getGas()+1);
+    else if (
+    (distance &lt;= distanceStartTostop ) &amp;
+    (context.getSpeed()>=atoi(config.getConfig(&quot;minSpeed&quot;).c_str()))
+    )
+    command.setGas(command.getGas()-1);
+
+    //// manage the steer
+    std::cout&lt;&lt;&quot;postion Z is:&quot;&lt;&lt;context.getPositionZ()&lt;&lt;&quot;\n&quot;;
+    if (context.getPositionZ() &lt; context.getEndPointZ())
+    	command.setSteer(-1);
+    else if (context.getPositionZ() > context.getEndPointZ())
+    	command.setSteer(+1);
+
+    ///////  manage to stop
+
+    if ( distance &lt; distanceStartTostop)
+    {
+    	command.setGas(command.getGas()-5);
+    	command.setBrake(command.getBrake()+5);
+    }
+    if ( distance &lt;= 20)
+    {
+    	command.setBrake(100);
+    	command.setGas(0);
+    }
+
+    ///////
+    std::string tmpCmd=context.getName()+command.generateUnitySetCommand();
+    strcpy(cmd,tmpCmd.c_str());
+    std::cout&lt;&lt;cmd&lt;&lt;&quot;\n&quot;;
+    unityGatewayComm.Request(cmd).send();
+    //unityGatewayComm.Request(&quot;gas+&quot;).send();
+    //command.generateUnitySetCommand();</body>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_opP-QFevEearHKEzCEQGQw" name="stopCar" specification="_pfAhkFevEearHKEzCEQGQw">
+        <language>C++</language>
+        <body>write the stop car function</body>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_9ypPUFeuEearHKEzCEQGQw" name="driveInCity" method="_8D8R0FeuEearHKEzCEQGQw"/>
+      <ownedOperation xmi:id="_pfAhkFevEearHKEzCEQGQw" name="stopCar" method="_opP-QFevEearHKEzCEQGQw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_mMBlwE_LEeaAu87Fs2V0IA" name="UnityGatewayP">
+      <packagedElement xmi:type="uml:Collaboration" xmi:id="_mLrngE_LEeaAu87Fs2V0IA" name="UnityGatewayP">
+        <interfaceRealization xmi:id="_mMQ2UE_LEeaAu87Fs2V0IA" client="_mLrngE_LEeaAu87Fs2V0IA" supplier="_mMKvsE_LEeaAu87Fs2V0IA" contract="_mMKvsE_LEeaAu87Fs2V0IA"/>
+        <interfaceRealization xmi:id="_mMh8EE_LEeaAu87Fs2V0IA" client="_mLrngE_LEeaAu87Fs2V0IA" supplier="_mMb1cU_LEeaAu87Fs2V0IA" contract="_mMb1cU_LEeaAu87Fs2V0IA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_mMKvsE_LEeaAu87Fs2V0IA" name="UnityGatewayP">
+        <ownedOperation xmi:id="_YY1GME_MEeaAu87Fs2V0IA" name="Request">
+          <ownedParameter xmi:id="_YY1GMU_MEeaAu87Fs2V0IA" name="command">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_mMTSkE_LEeaAu87Fs2V0IA" name="UnityGatewayP~">
+        <ownedOperation xmi:id="_kOaNEE_MEeaAu87Fs2V0IA" name="context">
+          <ownedParameter xmi:id="_kOaNEU_MEeaAu87Fs2V0IA" name="contextData">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          </ownedParameter>
+        </ownedOperation>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_mManUE_LEeaAu87Fs2V0IA" client="_mLrngE_LEeaAu87Fs2V0IA" supplier="_mMTSkE_LEeaAu87Fs2V0IA"/>
+      <packagedElement xmi:type="uml:AnyReceiveEvent" xmi:id="_mMb1cE_LEeaAu87Fs2V0IA" name="*"/>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_mMb1cU_LEeaAu87Fs2V0IA" name="UnityGatewayPIO"/>
+      <packagedElement xmi:type="uml:Usage" xmi:id="_mMijIE_LEeaAu87Fs2V0IA" client="_mLrngE_LEeaAu87Fs2V0IA" supplier="_mMb1cU_LEeaAu87Fs2V0IA"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_YY4wkE_MEeaAu87Fs2V0IA" operation="_YY1GME_MEeaAu87Fs2V0IA"/>
+      <packagedElement xmi:type="uml:CallEvent" xmi:id="_kObbME_MEeaAu87Fs2V0IA" operation="_kOaNEE_MEeaAu87Fs2V0IA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Q-P6cIiNEee-cN-yODqd0w" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Q-XPMIiNEee-cN-yODqd0w" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YiUv4IiNEeeW0bL3kWLRbQ" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YiV-AIiNEeeW0bL3kWLRbQ" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_OH0GkIiSEeenRepNI_xI9g" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_OH9QgIiSEeenRepNI_xI9g" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wPy4gIiSEeejFohPLzEc8A" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_wP4_IIiSEeejFohPLzEc8A" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_7zW68IiVEeedVJcocFsp2w" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_7zdooIiVEeedVJcocFsp2w" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZPbU8IkmEeeCdseMTmxYaw" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZPipsIkmEeeCdseMTmxYaw" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UZeD4IksEeedq6M8AXVLew" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_UddzEIksEeedq6M8AXVLew" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_vjsZgIksEeed-oFlnNv2qw" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_vj08YIksEeed-oFlnNv2qw" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_0EJs8IksEeeu6Y7t3jBrzA" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_0ERowIksEeeu6Y7t3jBrzA" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5BKZgIksEeePa_ehZ86fQA" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_5E0KcIksEeePa_ehZ86fQA" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_9tWJ4IkuEee50OO714WKKw" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_9wuOAIkuEee50OO714WKKw" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_B7Q70IkvEeewZvXsx86h8g" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_B_Pc4IkvEeewZvXsx86h8g" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_itGaMIkvEeeVFZ1DiSZ8bQ" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_iwqEgIkvEeeVFZ1DiSZ8bQ" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_xDhtMIkvEeelG6MIYPHIkQ" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_xIUGkIkvEeelG6MIYPHIkQ" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_2soDsIkvEeeSCM5Q6oQAMw" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_2wB9AIkvEeeSCM5Q6oQAMw" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_RPWUcIkwEeeWTbZY-34o6A" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_RVvQUIkwEeeWTbZY-34o6A" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_J3Oa4IkxEee6Effg1Z_adw" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_J64L0IkxEee6Effg1Z_adw" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_N-7QEIkxEeeEc41Lgsc-uw" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_OC5KEIkxEeeEc41Lgsc-uw" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_SSSisIkxEee3EIULJmXWQA" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_SV9hwIkxEee3EIULJmXWQA" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_drR0MIkxEeeUAuLwE3PrvQ" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_dusUkIkxEeeUAuLwE3PrvQ" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rvCp4IkxEeexaoz2o0DfYw" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rzDAIIkxEeexaoz2o0DfYw" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tt2f8IkxEee3dIKRFpGdeg" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_txqo8IkxEee3dIKRFpGdeg" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1tlWoIkxEeesZukXgRDd9g" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1yC_4IkxEeesZukXgRDd9g" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ScU9kIkzEeeOEJZS8aDC1A" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Sf85UIkzEeeOEJZS8aDC1A" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_W2usUIkzEee5H61hUb3seQ" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_W6RIgIkzEee5H61hUb3seQ" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_C6fI4IlKEeePj9C9IhuBxA" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_C-DaQIlKEeePj9C9IhuBxA" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qjcBUIlQEee07qxUx8TF4g" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qnL44IlQEee07qxUx8TF4g" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-FazMIlQEeelrJjzOI3O0w" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-JRYcIlQEeelrJjzOI3O0w" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="__7kcgIlQEee39exUJ9sieA" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="___IG0IlQEee39exUJ9sieA" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_iAXQMIlUEeeYQbFrmdI5NQ" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_iGKWMIlUEeeYQbFrmdI5NQ" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_sOMgsIlVEeeOj4mkOfJYcw" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_sUt_cIlVEeeOj4mkOfJYcw" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_vFcaoIlVEeeLEYmeRxFzGA" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_vKJUcIlVEeeLEYmeRxFzGA" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_H1jo0IlXEeeo0YEHvqTK6g" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_H6a6sIlXEeeo0YEHvqTK6g" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_sPFxMIlYEeePueVEZo20Aw" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_sUJ3YIlYEeePueVEZo20Aw" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_upWNIIlYEee-mf7vW28LSQ" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_uwglEIlYEee-mf7vW28LSQ" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_9wiOsIlYEee2UKyRincZEA" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_91pYMIlYEee2UKyRincZEA" name="testCapsule111"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_p5KUoImlEeeKlLk4eb0MoA" name="test"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qB6oAImlEeeKlLk4eb0MoA" name="testCapsule111"/>
+    <profileApplication xmi:id="_MlWf8AdxEeadtKuU2t6fMg">
+      <eAnnotations xmi:id="_MlYVIAdxEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_RT_PROFILE/uml-rt.profile.uml#_1h74oEeVEeO0lv5O1DTHOQ"/>
+    </profileApplication>
+    <profileApplication xmi:id="_IjNqwAdyEeadtKuU2t6fMg">
+      <eAnnotations xmi:id="_IjO44AdyEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt/statemachine#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_RT_PROFILE/UMLRealTimeSM-addendum.profile.uml#_KLcn0FDtEeOA4ecmvfqvaw"/>
+    </profileApplication>
+    <profileApplication xmi:id="_IjQHAAdyEeadtKuU2t6fMg">
+      <eAnnotations xmi:id="_IjQuEAdyEeadtKuU2t6fMg" source="PapyrusVersion">
+        <details xmi:id="_IjQuEQdyEeadtKuU2t6fMg" key="Version" value="0.0.11"/>
+        <details xmi:id="_IjQuEgdyEeadtKuU2t6fMg" key="Comment" value=""/>
+        <details xmi:id="_IjQuEwdyEeadtKuU2t6fMg" key="Copyright" value=""/>
+        <details xmi:id="_IjQuFAdyEeadtKuU2t6fMg" key="Date" value="2015-12-10"/>
+        <details xmi:id="_IjQuFQdyEeadtKuU2t6fMg" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:id="_IjQHAQdyEeadtKuU2t6fMg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/umlrt/cppproperties#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLRT_CPP/RTCppProperties.profile.uml#_vl5LALs8EeSTjNEQkASznQ"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLRealTime:Capsule xmi:id="_Sl00oAdxEeadtKuU2t6fMg" base_Class="_SikFQAdxEeadtKuU2t6fMg"/>
+  <UMLRealTime:CapsulePart xmi:id="_qRDB4AdzEeadtKuU2t6fMg" base_Property="_qQ-wcAdzEeadtKuU2t6fMg"/>
+  <UMLRealTime:CapsulePart xmi:id="_q0AlAAdzEeadtKuU2t6fMg" base_Property="_qz-v0AdzEeadtKuU2t6fMg"/>
+  <RTCppProperties:CapsuleProperties xmi:id="_jvSTwDMSEea2-oZZIR7RkQ" base_Class="_QhX9oDHDEeaxYMPe_sHEiw" generateHeader="false" generateImplementation="false"/>
+  <RTCppProperties:CapsuleProperties xmi:id="_IJASQDMoEea2-oZZIR7RkQ" base_Class="_qOd90DGKEeaxYMPe_sHEiw" generateHeader="false" generateImplementation="false"/>
+  <RTCppProperties:CapsuleProperties xmi:id="_o60iID8TEea_INjZTfhBHQ" base_Class="_cXztgD8TEea_INjZTfhBHQ" generateHeader="false"/>
+  <UMLRealTime:Capsule xmi:id="_zEuBYE_JEeaAu87Fs2V0IA" base_Class="_zEmsoE_JEeaAu87Fs2V0IA"/>
+  <RTCppProperties:CapsuleProperties xmi:id="_zE3yYE_JEeaAu87Fs2V0IA" headerPreface="#include &lt;iostream>&#xA;#include &lt;unistd.h>&#xA;#include &quot;TCPClient.h&quot;&#xA;#include &quot;Config.h&quot;&#xA;#include &quot;SharedMem.h&quot;&#xA;using  namespace Comms;&#xA;using  namespace ConfigUtil;" implementationPreface="" base_Class="_zEmsoE_JEeaAu87Fs2V0IA"/>
+  <UMLRealTime:RTPort xmi:id="_zE5nkE_JEeaAu87Fs2V0IA" isPublish="true" isWired="false" base_Port="_zEmsoU_JEeaAu87Fs2V0IA"/>
+  <UMLRealTime:RTPort xmi:id="_zE7cwE_JEeaAu87Fs2V0IA" base_Port="_zEmspk_JEeaAu87Fs2V0IA"/>
+  <UMLRealTime:RTPort xmi:id="_zE8D0E_JEeaAu87Fs2V0IA" base_Port="_zEmsqU_JEeaAu87Fs2V0IA"/>
+  <UMLRealTime:Capsule xmi:id="_ZZjOQE_KEeaAu87Fs2V0IA" base_Class="_ZZT9sE_KEeaAu87Fs2V0IA"/>
+  <RTCppProperties:CapsuleProperties xmi:id="_ZZkcYE_KEeaAu87Fs2V0IA" headerPreface="#include &quot;Config.h&quot;&#xA;#include &quot;SharedMem.h&quot;&#xA;#include &quot;MobileContext.h&quot;&#xA;#include &quot;UnityCarCommand.h&quot;&#xA;using  namespace Comms;&#xA;using  namespace ConfigUtil;" implementationPreface="#include &lt;iostream>&#xA;#include &lt;unistd.h>&#xA;" base_Class="_ZZT9sE_KEeaAu87Fs2V0IA" publicDeclarations="bool checkConfig()&#xA;        {&#xA;                if (!config.isLoaded())&#xA;                {&#xA;&#xA;                &#x9;std::cout&lt;&lt;&quot;The config is not loaded\n&quot;;&#xA;                &#x9;return false;&#xA;                }&#xA;                else if (atof(config.getConfig(&quot;endpointX&quot;).c_str())==0 ||atof(config.getConfig(&quot;endpointZ&quot;).c_str())==0)&#xA;                {&#xA;                &#x9;std::cout&lt;&lt;&quot;The endpount data  is not set\n&quot;;&#xA;                &#x9;return false;&#xA;                }&#xA;                return true;&#xA;        }"/>
+  <UMLRealTime:RTPort xmi:id="_ZZmRkE_KEeaAu87Fs2V0IA" base_Port="_ZZT9sU_KEeaAu87Fs2V0IA"/>
+  <UMLRealTime:ProtocolContainer xmi:id="_mMITcE_LEeaAu87Fs2V0IA" base_Package="_mMBlwE_LEeaAu87Fs2V0IA"/>
+  <UMLRealTime:RTMessageSet xmi:id="_mMPoME_LEeaAu87Fs2V0IA" base_Interface="_mMKvsE_LEeaAu87Fs2V0IA"/>
+  <UMLRealTime:RTMessageSet xmi:id="_mMaAQE_LEeaAu87Fs2V0IA" base_Interface="_mMTSkE_LEeaAu87Fs2V0IA" rtMsgKind="out"/>
+  <UMLRealTime:RTMessageSet xmi:id="_mMgt8E_LEeaAu87Fs2V0IA" base_Interface="_mMb1cU_LEeaAu87Fs2V0IA" rtMsgKind="inOut"/>
+  <UMLRealTime:Protocol xmi:id="_mMjKME_LEeaAu87Fs2V0IA" base_Collaboration="_mLrngE_LEeaAu87Fs2V0IA"/>
+  <RTCppProperties:AttributeProperties xmi:id="_YG7QsFeJEearHKEzCEQGQw" base_Property="_zEmspE_JEeaAu87Fs2V0IA"/>
+  <UMLRealTime:RTPort xmi:id="_T7XYwFeVEearHKEzCEQGQw" isWired="false" base_Port="_T7KkcFeVEearHKEzCEQGQw"/>
+  <RTCppProperties:AttributeProperties xmi:id="_3neukFejEearHKEzCEQGQw" type="Config" base_Property="_rwboEFejEearHKEzCEQGQw"/>
+  <RTCppProperties:AttributeProperties xmi:id="_74LHsFejEearHKEzCEQGQw" type="Unity::MobileContext" base_Property="_uPsf0FejEearHKEzCEQGQw"/>
+  <RTCppProperties:AttributeProperties xmi:id="_jJGwcFekEearHKEzCEQGQw" type="Unity::UnityCarCommand" base_Property="_fhAoYFekEearHKEzCEQGQw"/>
+  <RTCppProperties:AttributeProperties xmi:id="_x92zMFgdEeaVFuc_XL9xNA" type="char" base_Property="_uWIekFgdEeaVFuc_XL9xNA"/>
+  <UMLRTStateMachines:RTState xmi:id="_7bQvgFgiEeaVFuc_XL9xNA" base_State="_-kvBIFeOEearHKEzCEQGQw"/>
+  <UMLRTStateMachines:RTState xmi:id="_9_IacFgiEeaVFuc_XL9xNA" base_State="_04VNQFeOEearHKEzCEQGQw"/>
+  <UMLRTStateMachines:RTState xmi:id="_KrFIoFgjEeaVFuc_XL9xNA" base_State="_G_3aYFePEearHKEzCEQGQw"/>
+  <UMLRTStateMachines:RTState xmi:id="_MIjMMFgjEeaVFuc_XL9xNA" base_State="_I5VdcFePEearHKEzCEQGQw"/>
+  <UMLRTStateMachines:RTState xmi:id="_QSRaoFgjEeaVFuc_XL9xNA" base_State="_ZZT9wU_KEeaAu87Fs2V0IA"/>
+  <UMLRTStateMachines:RTStateMachine xmi:id="_fhunYFgjEeaVFuc_XL9xNA" base_StateMachine="_ZZT9t0_KEeaAu87Fs2V0IA"/>
+  <UMLRTStateMachines:RTState xmi:id="_kA0o4FgjEeaVFuc_XL9xNA" base_State="_USV9EFePEearHKEzCEQGQw"/>
+  <UMLRTStateMachines:RTState xmi:id="_lBHoQFgjEeaVFuc_XL9xNA" base_State="_Rv-G8FePEearHKEzCEQGQw"/>
+  <RTCppProperties:AttributeProperties xmi:id="_6_RBIFhQEeaVFuc_XL9xNA" type="char " base_Property="_4UkVcFhQEeaVFuc_XL9xNA"/>
+  <UMLRealTime:Capsule xmi:id="_qtLzMIlQEee07qxUx8TF4g"/>
+  <UMLRealTime:Capsule xmi:id="_-O6tcIlQEeelrJjzOI3O0w"/>
+  <UMLRealTime:Capsule xmi:id="_AFAsYIlREee39exUJ9sieA"/>
+  <UMLRealTime:Capsule xmi:id="_iPZxwIlUEeeYQbFrmdI5NQ"/>
+  <UMLRealTime:Capsule xmi:id="_se8ScIlVEeeOj4mkOfJYcw"/>
+  <UMLRealTime:Capsule xmi:id="_omSwcIlWEeeLEYmeRxFzGA"/>
+  <UMLRealTime:Capsule xmi:id="_ICmmUIlXEeeo0YEHvqTK6g"/>
+  <UMLRealTime:Capsule xmi:id="_sciXUIlYEeePueVEZo20Aw"/>
+  <UMLRealTime:Capsule xmi:id="_u3QtUIlYEee-mf7vW28LSQ"/>
+  <UMLRealTime:Capsule xmi:id="_98Jo0IlYEee2UKyRincZEA"/>
+  <UMLRealTime:Capsule xmi:id="_qIzTIImlEeeKlLk4eb0MoA"/>
+</xmi:XMI>

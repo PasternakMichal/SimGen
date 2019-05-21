@@ -205,13 +205,15 @@ class UnityGenerator extends AbstractGenerator {
 			 }
 		}
 				
-		if (s == "posX") return "posx"
-		else if (s == "posY") return "posy"
-		else if (s == "posZ") return "posz"
-				
-		else if (s == "sizeX") return "sizex"
-		else if (s == "sizeY") return "sizey"
-		else if (s == "sizeZ") return "sizez"
+		if (s.equals("posX")) return "posx"
+		else if (s.equals("posY")) return "posy"
+		else if (s.equals("posZ")) return "posz"	
+		else if (s.equals("sizeX")) return "sizex"
+		else if (s.equals("sizeY")) return "sizey"
+		else if (s.equals("sizeZ")) return "sizez"
+		else if (s.equals("rotX")) return "rotx"
+		else if (s.equals("rotY")) return "roty"
+		else if (s.equals("rotZ")) return "rotz"
 					
 		else return s
 	}
@@ -615,6 +617,10 @@ class UnityGenerator extends AbstractGenerator {
    			public double sizey;
    			public double sizez;
    			
+   			public double rotx;
+   			public double roty;
+   			public double rotz;
+   			
    			void update(){
    				posx = t.localPosition.x;
    				posy = t.localPosition.y;
@@ -791,13 +797,14 @@ public class «e.name»Script : «e.instanceType.type.name»MetaObject {
    		
    		NOTICE!!!
    		«FOR b:a.channels»
+   		
    		Channel «b.name» requires port «b.port.portnumber» to be available for connection on the host machine.
    		«ENDFOR»
    		-----------------------------------------------------------------------
    		
    		«FOR b:a.channels»
-   		Connecting on Port «b.port.portnumber» will allow you to control: «var s =false»«FOR c:b.boundInstances»
-«IF s==false»«{s=true;null}»«c.name»«ELSE»,«c.name»«ENDIF»«ENDFOR»
+   		Connecting on Port «b.port.portnumber» will allow you to control: «var s =false»«FOR c:b.boundInstances»«IF s==false»«{s=true;null}»«c.name»«ELSE», «c.name»«ENDIF»«ENDFOR»
+   		
    		«ENDFOR»
    		«var names = ""»«FOR b:a.instances»«IF b.instanceType.newActions.length==0&&b.instanceType.type.actions.length==0»
 «{names=names+b.name+" ";null}»«ENDIF»«ENDFOR»
@@ -807,15 +814,15 @@ public class «e.name»Script : «e.instanceType.type.name»MetaObject {
    		«IF b.instanceType.newActions.length!=0»
    		
    		-----------------------------------------------------------------------
+   		
    		You can interact with «b.name» by using these actions:
    		
    		«FOR c:b.instanceType.newActions»
    		Action: «c.name»
-   		Message Syntax: «b.name»,«c.name»«var s =false»(«IF c.payload!== null»«FOR d:c.payload.params»«IF s== false»«{s=true;null}»
- «ELSE»,«ENDIF»«d.type.name»«ENDFOR»«ENDIF»)
-   		Returns: «IF c.returnPayload!== null»String in form "«b.name»,«{s =false;null}»«FOR d:c.returnPayload.params»«IF s== false»
-«{s=true;null}»«ELSE»,«ENDIF»«d.type.name»«ENDFOR»;"«ELSE» No Return«ENDIF»
+   		Message Syntax: «b.name»,«c.name»«var s =false»(«IF c.payload!== null»«FOR d:c.payload.params»«IF s== false»«{s=true;null}»«ELSE»,«ENDIF»«d.type.name»«ENDFOR»«ENDIF»)
+   		Returns: «IF c.returnPayload!== null»String in form "«b.name»,«{s =false;null}»«FOR d:c.returnPayload.params»«IF s== false»«{s=true;null}»«ELSE»,«ENDIF»«d.type.name»«ENDFOR»;"«ELSE» No Return«ENDIF»
    		Description: «IF c.description!==null»«c.description.purposeString»«ELSE»no description provided«ENDIF»
+   		
    		«ENDFOR»«ENDIF»
    		«IF b.instanceType.type.actions.length!=0»
    		 
@@ -824,10 +831,8 @@ public class «e.name»Script : «e.instanceType.type.name»MetaObject {
    		
    		«FOR c:b.instanceType.type.actions»  
    		Action: «c.name»
-   		Message Syntax: «b.name»,«c.name»«var s =false»(«IF c.payload!== null»«FOR d:c.payload.params»«IF s== false»
- «{s=true;null}»«ELSE»,«ENDIF»«d.type.name»«ENDFOR»«ENDIF»)
-   		Returns: «IF c.returnPayload!== null»String in form "«b.name»,«{s =false;null}»«FOR d:c.returnPayload.params»
- «IF s== false»«{s=true;null}»«ELSE»,«ENDIF»«d.type.name»«ENDFOR»;"«ELSE» No Return«ENDIF»
+   		Message Syntax: «b.name»,«c.name»«var s =false»(«IF c.payload!== null»«FOR d:c.payload.params»«IF s== false»«{s=true;null}»«ELSE»,«ENDIF»«d.type.name»«ENDFOR»«ENDIF»)
+   		Returns: «IF c.returnPayload!== null»String in form "«b.name»,«{s =false;null}»«FOR d:c.returnPayload.params»«IF s== false»«{s=true;null}»«ELSE»,«ENDIF»«d.type.name»«ENDFOR»;"«ELSE» No Return«ENDIF»
    		Description: «IF c.description!==null»«c.description.purposeString»«ELSE»no description provided«ENDIF»
    		
    		«ENDFOR»

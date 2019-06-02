@@ -8,6 +8,7 @@ The SimGen tool allows for creating 3D Unity Simulation Environments through the
 ## Citation
 Please cite the following paper when you use the tool: 
 
+```
 @inproceedings{Pasternak:2018:STG:3270112.3270135,
  author = {Pasternak, Michal and Kahani, Naf\iseh and Bagherzadeh, Mojtaba and Dingel, Juergen and Cordy, James R.},
  title = {Simgen: A Tool for Generating Simulations and Visualizations of Embedded Systems on the Unity Game Engine},
@@ -19,3 +20,4 @@ Please cite the following paper when you use the tool:
  pages = {42--46},
  numpages = {5},
 } 
+```

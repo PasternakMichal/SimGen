@@ -10,7 +10,7 @@ Please cite the following paper when you use the tool:
 
 ```
 @inproceedings{Pasternak:2018:STG:3270112.3270135,
- author = {Pasternak, Michal and Kahani, Naf\iseh and Bagherzadeh, Mojtaba and Dingel, Juergen and Cordy, James R.},
+ author = {Pasternak, Michal and Kahani, Nafiseh and Bagherzadeh, Mojtaba and Dingel, Juergen and Cordy, James R.},
  title = {Simgen: A Tool for Generating Simulations and Visualizations of Embedded Systems on the Unity Game Engine},
  booktitle = {Proceedings of the 21st ACM/IEEE International Conference on Model Driven Engineering Languages and Systems: Companion Proceedings},
  series = {MODELS '18},
